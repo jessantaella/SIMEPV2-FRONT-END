@@ -1,0 +1,70 @@
+.img-red {
+  min-width: 2rem;
+}
+
+.barraAzul {
+  background: #2e3e97;
+  color: white;
+  width: 100%;
+  height: 90px;
+}
+
+.redes {
+  width: 225px;
+}
+
+.img-logo-cnvl {
+  min-width: 225px;
+  max-width: 225px;
+  height: 60px;
+}
+
+.coneval-sarc {
+  height: 60px;
+}
+
+.border-coneval {
+  border-right: 3px solid #737277;
+}
+
+.nombre-sistema-cnvl {
+  font-size: 12px;
+  max-width: 3rem;
+  color: #27b052 !important;
+  font-family: ITC Avant Garde Gothic Std Demi, Arial, Helvetica, sans-serif !important;
+}
+
+.color-titulo {
+  color: #27b052 !important;
+}
+
+@media (min-width: 0px) and (max-width: 360px) {
+  .nombre-sistema-cnvl {
+    font-size: 0.5rem;
+  }
+}
+@media screen and (min-width: 340px) and (max-width: 380px) {
+  .nombre-sistema-cnvl {
+    font-size: 0.6rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .nombre-sistema-cnvl {
+    font-size: 14px;
+    max-width: 5rem;
+  }
+}
+.alturaConeval {
+  height: 90px;
+}
+
+@media (max-width: 992px) {
+  .labelRuta {
+    margin-top: 7px;
+    font-size: 14px !important;
+  }
+}
+.labelRuta {
+  margin-top: 7px;
+  font-size: 16px;
+}

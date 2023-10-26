@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InicioComponent } from './base/inicio/inicio.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '**', component: InicioComponent },  // Página incial
+  {
+    path:'inicio',
+    component:InicioComponent,
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

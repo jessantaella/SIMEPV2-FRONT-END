@@ -1,0 +1,27 @@
+
+<div class="container-fluid px-0">
+    <span id="nombreSistema" class="float-start mx-1 nombre-sistema">
+      {{cortarNombre(simeps?.sistemaCorto)}}
+    </span>
+    <a class="navbar-brand d-flex flex-column mx-0 py-0">
+      <img [src]="generales?.logos.header?.logoConevalHeader" class="logoConeval"
+        [alt]="generales?.logos.header?.alt" />
+      <img src="http://127.0.0.1:5500/dist/assets/img/FRASE-CONEVAL.svg" width="250" classs="mt-5"/>
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+      <span class="visually-hidden">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div id="navcol-1" class="collapse navbar-collapse color-menu">
+      <ul class="navbar-nav w-100 d-flex justify-content-evenly ms-4">
+        <li *ngFor="let item of opciones" class="nav-item opt-text" [ngClass]="{'opciónseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}" (click)="cambiarPagina(item?.url)">
+          <a class="nav-link text-light"
+            [href]="item?.url">{{item?.nombre}}</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+  

@@ -1,0 +1,170 @@
+.borde-Coneval {
+  border-right: 3px solid #737277;
+}
+
+.nombre-coneval {
+  max-width: 10rem;
+  font-family: ITC Avant Garde Gothic Std Demi,Arial,Helvetica,sans-serif!important;
+  color: #27b052;
+}
+
+.border-menu {
+  border-radius: 0px;
+  border-right: 3px solid #737277;
+  border-left: 3px solid #737277;
+}
+
+.border-menu-right {
+  border-radius: 0px;
+  border-right: 3px solid #737277;
+}
+
+.border-menu:hover {
+  border-radius: 0px;
+  border-right: 3px solid #737277;
+  border-left: 3px solid #737277;
+}
+
+.border-menu-right:hover {
+  border-radius: 0px;
+  border-right: 3px solid #737277;
+}
+
+@media (min-width: 1200px) {
+  .tamanioLetraTitulo {
+    font-size: 22px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@media (max-width: 1199px) {
+  .tamanioLetraTitulo {
+    font-size: 18px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@media (max-width: 991px) {
+  .tamanioLetraTitulo {
+    font-size: 14px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+.barraAzul {
+  background: #2e3e97;
+  color: white;
+  width: 100%;
+  height: 90px;
+}
+
+@media (min-width: 576px) {
+  .menu-coneval {
+    display: block;
+  }
+}
+
+@media (min-width: 576px) {
+  .menu-coneval-movil {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .menu-coneval {
+    display: none !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .menu-coneval-movil {
+    display: block !important;
+  }
+}
+
+.border-menu-movil {
+  border: groove;
+}
+
+.border-submenu-movil {
+  border: groove;
+}
+
+.titulo-coneval {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #21b052;
+}
+
+@media (min-width: 993px) {
+  .color-menu {
+    /*border-left: 60px solid transparent;*/
+    /*border-bottom: 100px solid transparent;*/
+    /*background: linear-gradient(to right, #21b052, #2b3172);*/
+    /*background: linear-gradient(to right, #21b052, #2b3172);*/
+    background: rgb(39,176,82);
+    background: linear-gradient(103deg, rgba(39,176,82,1) 0%, rgba(33,64,154,1) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 0%);
+  }
+}
+
+@media (max-width: 994px) {
+  .color-menu {
+    /*border-left: 60px solid transparent;*/
+    /*border-bottom: 100px solid transparent;*/
+    /*background: linear-gradient(to right, #21b052, #2b3172);*/
+    /*background: linear-gradient(to right, #21b052, #2b3172);*/
+    background: rgb(39,176,82);
+    background: linear-gradient(103deg, rgba(39,176,82,1) 0%, rgba(33,64,154,1) 100%);
+    /*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 0%);*/
+  }
+}
+
+.opciones-menu-coneval {
+  color: white;
+  font-size: 16px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  --bs-btn-active-color: white;
+}
+
+.opciones-menu-coneval:hover {
+  color: white;
+  font-size: 16px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  --bs-btn-active-color: white;
+}
+
+#divOcultarRedes.hidden {
+  display: none;
+}
+
+#divOcultarTitulo.hidden {
+  display: none;
+}
+
+#nombreSistema.hidden {
+  display: none;
+}
+
+.header-div-sctiky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nombre-sistema {
+  font-size: 16px;
+  color: black;
+  color: #2e3e97;
+  margin-left: 8px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: rotate(270deg);
+  display: inline-block;
+  /*top: 0;*/
+  /*z-index: 100;*/
+}
+

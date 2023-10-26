@@ -1,0 +1,36 @@
+.resaltado:hover{
+    stroke: black;
+    stroke-width: 7;
+    cursor: pointer;   
+}
+.mascara{
+    width: 995px;
+    height: 742px;
+    background-image: url( "../../../assets/img/mascara.png");
+    //background: rgba(0,0,0,0.5);
+    background-repeat: no-repeat;
+    position: relative;
+    text-align: center;
+    margin: auto;
+}
+
+.imagen{
+  position:absolute;
+  background-color:  rgba(0,0,0,0.6);
+  }
+.politicas{
+    font-family: 'Pencil Tool', sans-serif;
+    font-size: 20px;
+    width: 100px;
+    padding-top: 20%;
+    margin-left: 5%;
+}
+
+.interactua{
+  border-color: #3F63B5;
+  border-width: 5px;
+  border-style: dashed;
+  color:#3F63B5;
+}
+
+

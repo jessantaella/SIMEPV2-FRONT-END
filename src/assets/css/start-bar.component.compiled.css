@@ -1,0 +1,130 @@
+.start-bar {
+  height: 20%;
+  max-height: 30px;
+  background-color: #21a542;
+}
+
+.footer {
+  background-color: #2b3172;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: normal;
+}
+
+@media (min-width: 576px) {
+  .footer {
+    height: 80px;
+  }
+}
+.r-footer {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.img-footer {
+  width: 188px;
+  height: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+  .info-footer {
+    text-align: center;
+    border-top-width: 3px;
+    border-top-color: #ffffff;
+    border-top-style: solid;
+    margin-top: 10px;
+    padding-top: 10px;
+    line-height: normal;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+@media only screen and (min-width: 767px) {
+  .info-footer {
+    border-left-width: 3px;
+    border-left-color: #ffffff;
+    border-left-style: solid;
+    line-height: normal;
+    padding-left: 15px;
+  }
+}
+.fuente-footer {
+  font-size: 10px;
+  line-height: normal;
+}
+
+.v-line {
+  border-left: 3px solid rgb(100, 98, 98);
+  top: 10%;
+  right: 1px;
+  position: relative;
+  height: 80%;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.v-line-white {
+  border-left: 3px solid rgb(249, 249, 249);
+  top: 10%;
+  right: 1px;
+  position: relative;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.botonesB {
+  border-radius: 0;
+  font-size: 22px;
+  width: 50%;
+  height: auto;
+  background-color: #2e3e97;
+}
+
+.divCentrar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buscadorC {
+  margin-left: auto;
+  width: 100%;
+}
+
+.searchI {
+  width: 100%;
+}
+
+.botonesAltura {
+  height: 100%;
+  font-size: 22px;
+}
+
+.bordeConeval {
+  border-right: 3px solid white;
+}
+
+.dropdown-decoration {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-bar-color {
+  background: #e8e8e8;
+  height: 56px;
+}
+
+@media (max-width: 767px) {
+  .span-sesion {
+    display: none;
+  }
+}
+.navbarVolver {
+  font-size: 18px;
+}
