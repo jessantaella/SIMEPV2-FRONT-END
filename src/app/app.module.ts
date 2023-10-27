@@ -9,6 +9,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InicioComponent } from './base/inicio/inicio.component';
 import { DiagramaPndComponent } from './base/diagrama-pnd/diagrama-pnd.component';
 import { FooterComponent } from './base/footer/footer.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +23,12 @@ import { FooterComponent } from './base/footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    AccordionModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

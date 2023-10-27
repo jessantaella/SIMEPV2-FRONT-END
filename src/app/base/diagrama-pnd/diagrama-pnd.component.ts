@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ServicesBaseService } from '../services/services-base.service';
+
 @Component({
   selector: 'app-diagrama-pnd',
   templateUrl: './diagrama-pnd.component.html',
@@ -19,6 +20,8 @@ export class DiagramaPndComponent {
   timeLeft: number = 5;
   interval:any;
   mostrarMovil:boolean = true;
+  //nd:true,desarrollo:true,fondos:true
+  ocultarSecciones = [false,false,false];
 
 
   public innerWidth: any;
@@ -63,4 +66,9 @@ export class DiagramaPndComponent {
   eventoRamo(){
     console.log("rAMO"); 
   }
+
+  mostrarSeccion(opcion:number){
+    this.ocultarSecciones[opcion]=!this.ocultarSecciones[opcion];
+  }
+
 }

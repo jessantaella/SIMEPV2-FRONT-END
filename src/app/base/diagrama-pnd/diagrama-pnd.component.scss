@@ -1,36 +1,128 @@
-.resaltado:hover{
-    stroke: black;
-    stroke-width: 7;
-    cursor: pointer;   
-}
-.mascara{
-    width: 995px;
-    height: 742px;
-    background-image: url( "../../../assets/img/mascara.png");
-    //background: rgba(0,0,0,0.5);
-    background-repeat: no-repeat;
-    position: relative;
-    text-align: center;
-    margin: auto;
+.resaltado:hover {
+  stroke: black;
+  stroke-width: 7;
+  cursor: pointer;
 }
 
-.imagen{
-  position:absolute;
-  background-color:  rgba(0,0,0,0.6);
-  }
-.politicas{
-    font-family: 'Pencil Tool', sans-serif;
-    font-size: 20px;
-    width: 100px;
-    padding-top: 20%;
-    margin-left: 5%;
+.mascara {
+  width: 995px;
+  height: 742px;
+  background-image: url("../../../assets/img/mascara.png");
+  //background: rgba(0,0,0,0.5);
+  background-repeat: no-repeat;
+  position: relative;
+  text-align: center;
+  margin: auto;
+}
+.tituloDiagrama{
+  color: #3F63B5;
+  border-color: #3F63B5;
+  border-width: 4px;
+  border-style: dashed;
 }
 
-.interactua{
+.tituloPnd{
+  background-color: rgb(76,175,98,.70);
+  color: white;
+  height: 70px;
+}
+.tituloPndrow{
+  background-color: rgb(57,130,73,100);
+  height: 50px;
+  width: 95%;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.pnd{
+  background-color: rgb(76,175,98,.60);
+  height: 300px;
+  color: white;
+}
+.federales{
+  background-color: rgb(130,133,224,.80);
+  height: 150px;
+  color: white;
+}
+.ramo33{
+  background-color: rgb(23,176,186,.9);
+  height: 150px;
+  color: white;
+}
+
+ul{list-style: none;}
+
+.PndrowTitulo{
+  background-color: rgb(57,130,73,100);
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.federalesTitulo{
+  background-color: rgb(83,85,143,100);
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.ramo33Titulo{
+  background-color: rgb(28,97,115,100);
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.Pndrow{
+  background-color: rgb(57,130,73,100);
+  width: 95%;
+  height: 200px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+
+.federalesContenido{
+  background-color: rgb(83,85,143,100);
+  width: 95%;
+  height: 50px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+.ramo33Contenido{
+  background-color: rgb(28,97,115,100);
+  width: 95%;
+  height: 60px;
+  margin: auto;
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.imagen {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.politicas {
+  font-family: 'Pencil Tool', sans-serif;
+  font-size: 20px;
+  width: 100px;
+  padding-top: 20%;
+  margin-left: 5%;
+}
+
+.interactua {
   border-color: #3F63B5;
   border-width: 5px;
   border-style: dashed;
-  color:#3F63B5;
+  color: #3F63B5;
 }
-
-

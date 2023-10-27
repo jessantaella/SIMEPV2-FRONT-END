@@ -351,42 +351,46 @@
 </svg>
 
 <div class="container" *ngIf="mostrarMovil">
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+    <div class="tituloDiagrama m-2">Interactua con los módulos</div>
+    <div class="row tituloPnd m-2">
+        <div class="col-12 tituloPndrow">
+            Plan Nacional de Desarrollo (PND)
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+    </div>
+    <div class="row pnd m-2" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
+        <div class="col-12 PndrowTitulo" (click)="mostrarSeccion(0)">
+            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></i>
+            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[0]"></i>
+            Programas dericados del PND
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Accordion Item #3
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+        <div class="col-12 Pndrow" *ngIf="ocultarSecciones[0]" >
+            <p>Se monitorean los objetivos e indicadores de los programas derivados del PND. Los programas derivados son los siguiens:</p>
+            <ul>
+              <li>Programas Sectoriales</li>
+              <li>Programas Especiales</li>
+              <li>Programas Institucionales</li>
+              <li>Programas Regionales</li>
+            </ul>
         </div>
-      </div>
+    </div>
+    <div class="row federales m-2" [ngStyle]="{'height':ocultarSecciones[1] ? '150px':'70px'}">
+        <div class="col-12 federalesTitulo" (click)="mostrarSeccion(1)">
+            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[1]"></i>
+            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[1]"></i>
+            Programas y acciones federales de desarrollo social
+        </div>
+        <div class="col-12 federalesContenido" *ngIf="ocultarSecciones[1]" >
+            <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los programas y acciones federales de desarrollo social.</p>
+        </div>
+    </div>
+    <div class="row ramo33 m-2" [ngStyle]="{'height':ocultarSecciones[2] ? '150px':'70px'}">
+        <div class="col-12 ramo33Titulo" (click)="mostrarSeccion(2)">
+            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[2]"></i>
+            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[2]"></i>
+            Fondos de Aportaciones Federales del Ramo 33 del ámbito social
+        </div>
+        <div class="col-12 ramo33Contenido" *ngIf="ocultarSecciones[2]" >
+            <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los Fondos de Aportaciones Federales del Ramo 33 del ámbito social.</p>
+        </div>
+    </div>
 </div>

@@ -1,98 +1,115 @@
 <div class="position-fixed d-flex flex-column w-100">
-    <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row" >
-
+    <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
         <div id="divOcultarRedes" class="social-icons redesInternas">
-          <a class="img-red" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt" class="iconoRed"/></a>
+            <a class="img-red" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
+                    class="iconoRed" /></a>
         </div>
-        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
-      </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{
+            nombreSistema
+            }}</span>
+    </div>
 
-      <div class="d-flex justify-content-evenly w-100 preguntas" >
-        <div class="opcionPregunta text-wrap" [ngStyle]="{'color':regresaEstilosMenu(1).color,'font-size':regresaEstilosMenu(1).font}" (click)="goTo(1)">¿Qué es el monitoreo?
-            <img *ngIf="menuSeleccionado===1"[src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion">
-       </div>
-       <div class="opcionPregunta text-wrap" [ngStyle]="{'color':regresaEstilosMenu(2).color,'font-size':regresaEstilosMenu(2).font}" (click)="goTo(2)">¿Qué monitorea el CONEVAL?
-           <img *ngIf="menuSeleccionado===2"[src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion">
-       </div>
-       <div class="opcionPregunta text-wrap" [ngStyle]="{'color':regresaEstilosMenu(3).color,'font-size':regresaEstilosMenu(3).font}" (click)="goTo(3)">¿Qué es el SIMEPS?
-           <img *ngIf="menuSeleccionado===3"[src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion">
-       </div>
-      </div>
-    
+    <div class="d-flex justify-content-evenly w-100 preguntas">
+        <div class="opcionPregunta text-wrap" [ngStyle]="{
+        color: regresaEstilosMenu(1).color,
+        'font-size': regresaEstilosMenu(1).font
+      }" (click)="goTo(1)">
+            ¿Qué es el monitoreo?
+            <img *ngIf="menuSeleccionado === 1" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+        </div>
+        <div class="opcionPregunta text-wrap" [ngStyle]="{
+        color: regresaEstilosMenu(2).color,
+        'font-size': regresaEstilosMenu(2).font
+      }" (click)="goTo(2)">
+            ¿Qué monitorea el CONEVAL?
+            <img *ngIf="menuSeleccionado === 2" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+        </div>
+        <div class="opcionPregunta text-wrap" [ngStyle]="{
+        color: regresaEstilosMenu(3).color,
+        'font-size': regresaEstilosMenu(3).font
+      }" (click)="goTo(3)">
+            ¿Qué es el SIMEPS?
+            <img *ngIf="menuSeleccionado === 3" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+        </div>
+    </div>
 </div>
 <div class="m-auto d-flex justify-content-center w-100" (wheel)="obtenerPosicion()">
     <div class="h-75 overflow separador">
-    <table class="table table-borderless mt-4" >
-        <caption></caption>
-        <tbody>
-            <tr>
-                <td>
-                    <div class="parrafoInformativo" id="monitoreo">
-                        <p>El monitoreo es el <span class="resalteNormal">proceso continuo y sistemático de recolección,
-                            generación y
-                            análisis de información </span>,
-                        para brindar orientación acerca del <span class="resalteNormal">progreso en el logro de
-                            objetivos de una
-                            intervención pública</span>,
-                        analizando tanto los <span class="resalteNormal">resultados esperados</span> como la <span
-                            class="resalteNormal">entrega de bienes o servicios</span>.
-                        Asimismo, proporciona insumos para la toma de decisiones que contribuyan a mejorar la gestión de
-                        dichas
-                        intervenciones.</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="parrafoInformativo">
-
-                        Para el <span class="resalteNormal">CONEVAL</span>, este proceso tiene como finalidad valorar el
-                        cumplimiento de los objetivos del
-                        <span class="resaltePND">Plan Nacional de Desarrollo y sus programas derivados</span>, de los
-                        <span class="resaltePlan">programas y acciones federales de desarrollo social</span>
-                        y de los <span class="resalteRamo33">Fondos de Aportaciones Federales del Ramo 33 del ámbito
-                            social</span>, coordinados por las dependencias y entidades de la Administración Pública
-                        Federal, a través de los <a href="">instrumentos</a> que para ello defina.
-                        Lo anterior derivado de la información que genera la Secretaría de Hacienda y Crédito Público a
-                        través del seguimiento.
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="pnd">
-    <table class="table table-borderless" >
-        <caption></caption>
-        <tbody class="text-center">
-            <tr>
-                <td>
-                    <app-diagrama-pnd></app-diagrama-pnd>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="simeps">
-    <table class="table table-borderless mt-2" >
-        <caption></caption>
-        <tbody>
-            <tr>
-                <td>
-                    <div class="text-justify parrafoInformativo">
-                    El Sistema de Monitoreo de la Política Social (SIMEPS) da seguimiento a la Política de Desarrollo
-                    Social de la Administración Pública Federal a través de los indicadores de políticas, programas y
-                    Fondos, para conocer el avance de sus objetivos.
-                    </div>
-                    <br>
-                    <div class="text-center">
-                        <iframe [width]="anchoPantalla/2" height="315" src="https://www.youtube.com/embed/VRosxIwBjt0?si=2u6-hLaehQ9GdC7s"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
-                    </div>
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <table class="table table-borderless mt-4">
+            <caption></caption>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="parrafoInformativo" id="monitoreo">
+                            <p>
+                                El monitoreo es el
+                                <span class="resalteNormal">proceso continuo y sistemático de recolección, generación y
+                                    análisis de información </span>, para brindar orientación acerca del
+                                <span class="resalteNormal">progreso en el logro de objetivos de una intervención
+                                    pública</span>, analizando tanto los
+                                <span class="resalteNormal">resultados esperados</span> como la
+                                <span class="resalteNormal">entrega de bienes o servicios</span>. Asimismo, proporciona
+                                insumos para la toma de decisiones que
+                                contribuyan a mejorar la gestión de dichas intervenciones.
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="parrafoInformativo">
+                            Para el <span class="resalteNormal">CONEVAL</span>, este proceso
+                            tiene como finalidad valorar el cumplimiento de los objetivos del
+                            <span class="resaltePND">Plan Nacional de Desarrollo y sus programas derivados</span>, de
+                            los
+                            <span class="resaltePlan">programas y acciones federales de desarrollo social</span>
+                            y de los
+                            <span class="resalteRamo33">Fondos de Aportaciones Federales del Ramo 33 del ámbito
+                                social</span>, coordinados por las dependencias y entidades de la
+                            Administración Pública Federal, a través de los
+                            <a href="">instrumentos</a> que para ello defina. Lo anterior
+                            derivado de la información que genera la Secretaría de Hacienda y
+                            Crédito Público a través del seguimiento.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="pnd" />
+        <table class="table table-borderless">
+            <caption></caption>
+            <tbody class="text-center">
+                <tr>
+                    <td>
+                        <app-diagrama-pnd></app-diagrama-pnd>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="simeps" />
+        <table class="table table-borderless mt-2">
+            <caption></caption>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="text-justify parrafoInformativo">
+                            El Sistema de Monitoreo de la Política Social (SIMEPS) da
+                            seguimiento a la Política de Desarrollo Social de la
+                            Administración Pública Federal a través de los indicadores de
+                            políticas, programas y Fondos, para conocer el avance de sus
+                            objetivos.
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <iframe [width]="anchoPantalla / 2" height="315"
+                                src="https://www.youtube.com/embed/VRosxIwBjt0?si=2u6-hLaehQ9GdC7s"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
