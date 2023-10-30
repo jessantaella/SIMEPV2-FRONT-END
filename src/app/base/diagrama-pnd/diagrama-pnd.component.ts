@@ -19,7 +19,7 @@ export class DiagramaPndComponent {
   mostrarMascara:boolean = false;
   timeLeft: number = 5;
   interval:any;
-  mostrarMovil:boolean = true;
+  mostrarMovil:boolean = false;
   //nd:true,desarrollo:true,fondos:true
   ocultarSecciones = [false,false,false];
 
@@ -33,7 +33,7 @@ export class DiagramaPndComponent {
           console.log("aqui es movil");
           this.mostrarMovil = true;     
       } else {
-         console.log('escritorio')
+          this.mostrarMovil = false;   
       }
     });
   }
@@ -70,5 +70,4 @@ export class DiagramaPndComponent {
   mostrarSeccion(opcion:number){
     this.ocultarSecciones[opcion]=!this.ocultarSecciones[opcion];
   }
-
 }

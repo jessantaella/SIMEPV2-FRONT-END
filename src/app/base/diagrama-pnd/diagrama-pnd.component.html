@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center w-100">
+<div class="w-100">
     <div class="text-right info ">
         <button (click)="mascara()" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-info-circle"
@@ -10,7 +10,7 @@
         </button>
     </div>
 </div>
-<div class="mascara" *ngIf="mostrarMascara && !mostrarMovil">
+<div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="742">
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="959px"
     height="742px" viewBox="-0.5 -0.5 959 742" *ngIf="!mostrarMascara && !mostrarMovil">
@@ -350,20 +350,27 @@
     </switch>
 </svg>
 
-<div class="container" *ngIf="mostrarMovil">
+<div class="container vistaMovil" *ngIf="mostrarMovil">
     <div class="tituloDiagrama m-2">Interactua con los módulos</div>
     <div class="row tituloPnd m-2">
-        <div class="col-12 tituloPndrow">
+        <div class="tituloPndrow">
             Plan Nacional de Desarrollo (PND)
         </div>
     </div>
+    <div class="row nivel">
+        <div class="nivelTexto">
+            Nivel estratégico
+        </div>
+    </div>
+    <i class="bi bi-chevron-compact-down"></i>
+
     <div class="row pnd m-2" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
-        <div class="col-12 PndrowTitulo" (click)="mostrarSeccion(0)">
-            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></i>
-            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[0]"></i>
+        <div class="PndrowTitulo" (click)="mostrarSeccion(0)">
+            <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></i>
+            <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[0]"></i>
             Programas dericados del PND
         </div>
-        <div class="col-12 Pndrow" *ngIf="ocultarSecciones[0]" >
+        <div class="Pndrow" *ngIf="ocultarSecciones[0]" >
             <p>Se monitorean los objetivos e indicadores de los programas derivados del PND. Los programas derivados son los siguiens:</p>
             <ul>
               <li>Programas Sectoriales</li>
@@ -373,23 +380,30 @@
             </ul>
         </div>
     </div>
-    <div class="row federales m-2" [ngStyle]="{'height':ocultarSecciones[1] ? '150px':'70px'}">
-        <div class="col-12 federalesTitulo" (click)="mostrarSeccion(1)">
-            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[1]"></i>
-            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[1]"></i>
+    <div class="row nivel">
+        <div class="nivelTexto">
+            Nivel operativo
+        </div>
+    </div>
+    <i class="bi bi-chevron-compact-down"></i>
+
+    <div class="row federales m-2" [ngStyle]="{'height':ocultarSecciones[1] ? '200px':'70px'}">
+        <div class="federalesTitulo" (click)="mostrarSeccion(1)">
+            <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[1]"></i>
+            <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[1]"></i>
             Programas y acciones federales de desarrollo social
         </div>
-        <div class="col-12 federalesContenido" *ngIf="ocultarSecciones[1]" >
+        <div class="federalesContenido" *ngIf="ocultarSecciones[1]" >
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los programas y acciones federales de desarrollo social.</p>
         </div>
     </div>
-    <div class="row ramo33 m-2" [ngStyle]="{'height':ocultarSecciones[2] ? '150px':'70px'}">
-        <div class="col-12 ramo33Titulo" (click)="mostrarSeccion(2)">
-            <i class="bi bi-chevron-compact-down float-right fs-3" *ngIf="!ocultarSecciones[2]"></i>
-            <i class="bi bi-chevron-compact-up float-right fs-3" *ngIf="ocultarSecciones[2]"></i>
+    <div class="row ramo33 m-2" [ngStyle]="{'height':ocultarSecciones[2] ? '200px':'70px'}">
+        <div class="ramo33Titulo" (click)="mostrarSeccion(2)">
+            <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[2]"></i>
+            <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[2]"></i>
             Fondos de Aportaciones Federales del Ramo 33 del ámbito social
         </div>
-        <div class="col-12 ramo33Contenido" *ngIf="ocultarSecciones[2]" >
+        <div class="ramo33Contenido" *ngIf="ocultarSecciones[2]" >
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los Fondos de Aportaciones Federales del Ramo 33 del ámbito social.</p>
         </div>
     </div>
