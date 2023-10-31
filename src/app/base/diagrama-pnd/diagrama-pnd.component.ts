@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ServicesBaseService } from '../services/services-base.service';
 
@@ -21,12 +21,13 @@ export class DiagramaPndComponent {
   interval:any;
   mostrarMovil:boolean = false;
   //nd:true,desarrollo:true,fondos:true
-  //ocultarSecciones = [false,false,false];
+  ocultarSecciones = [false,false,false];
 
   mostrarPnd=false;
   mostrarFederales=false;
   mostrarRamo=false;
 
+  @Input() mascaraActiva=false;
 
   tamanioSecciones = [
   {height:'60.26',heightOriginal:'234.26'},
@@ -37,14 +38,49 @@ export class DiagramaPndComponent {
   separadoDiagrama = [
    { pndOriginal:{
       fondo: '378.29',
-      texto: '379.75',
-      conector:'0'
+      fondo1: '379.75',
+      texto: '389.07',
+      conector:'0',
+      flecha:''
     },
   pndNuevo:{
     fondo : '210',
-    texto : '210',
-    conector : '-170' 
+    fondo1: '210',
+    texto : '220',
+    conector : '-170',
+    flecha:'' 
   }
+  },
+  {
+    federalesOriginal:{
+        fondo:'402',
+        fondo1:'405',
+        texto : '417.3',
+        conector : '0',
+        flecha:'0',
+        contenido:'443.29',
+        textoContenido:'0'
+    },
+    federalesNuevo:{
+      fondo:'230',
+      fondo1:'240',
+      texto : '250',
+      conector : '-120',
+      flecha:'-165' ,
+      contenido:'275',
+      textoContenido:'-170'
+    }
+  },
+  {
+    fondoOrigina:{
+      conector:'0'
+    },
+    fondosNuevo:{
+      conector:'-55'
+    },
+    fondosNuevoOcultos:{
+      conector:'-235'
+    }
   }
   ]
 
@@ -91,6 +127,10 @@ export class DiagramaPndComponent {
     console.log("rAMO"); 
   }
 
+  mostrarSeccion(opcion:number){
+    this.ocultarSecciones[opcion] = !this.ocultarSecciones[opcion];
+  }
+
   mostrarEvent(tipo:number){
     if(tipo===1){
       this.mostrarPnd = !this.mostrarPnd;
@@ -121,13 +161,28 @@ export class DiagramaPndComponent {
   }
 
   obtenerPosicion(tipo:number){
-    let salida={fondo:'',texto:'',conector:''};
+    let salida:any;
     switch( tipo){
       case 1:
         salida =  !this.mostrarPnd ? this.separadoDiagrama[0].pndNuevo : this.separadoDiagrama[0].pndOriginal;
       break;
+      case 2:
+        salida = !this.mostrarPnd ? this.separadoDiagrama[1].federalesNuevo : this.separadoDiagrama[1].federalesOriginal;
+        break;
+      case 3:
+        if(!this.mostrarPnd && !this.mostrarFederales){
+          salida =  this.separadoDiagrama[2]. fondosNuevoOcultos; 
+        }else if(!this.mostrarPnd){
+          salida =  this.separadoDiagrama[2]. fondosNuevo; 
+        }else if(this.mostrarFederales){
+
+        }
+        break;
     }
-    console.log(salida)
     return salida;
+  }
+
+  sumarDiferencia(valor1:string,valor2:number){
+    return Number(valor1) + valor2;
   }
 }

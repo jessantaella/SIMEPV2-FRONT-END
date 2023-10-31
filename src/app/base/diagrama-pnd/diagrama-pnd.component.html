@@ -1,4 +1,4 @@
-<div class="w-100">
+<div class="w-100" *ngIf="!mostrarMovil">
     <div class="text-right info ">
         <button (click)="mascara()" class="btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-info-circle"
@@ -351,24 +351,24 @@
 </svg>
 
 <div class="container vistaMovil" *ngIf="mostrarMovil">
-    <!--div class="tituloDiagrama m-2">Interactua con los módulos</div>
-    <div class="row tituloPnd m-2">
+    <div class="tituloDiagrama m-0">Interactua con los módulos</div>
+    <div class="row tituloPnd mt-2">
         <div class="tituloPndrow">
             Plan Nacional de Desarrollo (PND)
         </div>
     </div>
+    <div class="figure"></div>	
     <div class="row nivel">
         <div class="nivelTexto">
             Nivel estratégico
         </div>
     </div>
-    <i class="bi bi-chevron-compact-down"></i>
-
-    <div class="row pnd m-2" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
+    <div class="figure"></div>	
+    <div class="row pnd m-0" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
         <div class="PndrowTitulo" (click)="mostrarSeccion(0)">
             <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></i>
             <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[0]"></i>
-            Programas dericados del PND
+            Programas derivados del PND
         </div>
         <div class="Pndrow" *ngIf="ocultarSecciones[0]" >
             <p>Se monitorean los objetivos e indicadores de los programas derivados del PND. Los programas derivados son los siguiens:</p>
@@ -380,14 +380,15 @@
             </ul>
         </div>
     </div>
+    <div class="figure"></div>	
     <div class="row nivel">
         <div class="nivelTexto">
             Nivel operativo
         </div>
     </div>
-    <i class="bi bi-chevron-compact-down"></i>
+    <div class="figure"></div>	
 
-    <div class="row federales m-2" [ngStyle]="{'height':ocultarSecciones[1] ? '200px':'70px'}">
+    <div class="row federales m-0" [ngStyle]="{'height':ocultarSecciones[1] ? '200px':'70px'}">
         <div class="federalesTitulo" (click)="mostrarSeccion(1)">
             <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[1]"></i>
             <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[1]"></i>
@@ -397,7 +398,9 @@
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los programas y acciones federales de desarrollo social.</p>
         </div>
     </div>
-    <div-- class="row ramo33 m-2" [ngStyle]="{'height':ocultarSecciones[2] ? '200px':'70px'}">
+    <div class="figure"></div>	
+
+    <div class="row ramo33 m-0" [ngStyle]="{'height':ocultarSecciones[2] ? '200px':'70px'}">
         <div class="ramo33Titulo" (click)="mostrarSeccion(2)">
             <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[2]"></i>
             <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[2]"></i>
@@ -406,8 +409,8 @@
         <div class="ramo33Contenido" *ngIf="ocultarSecciones[2]" >
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los Fondos de Aportaciones Federales del Ramo 33 del ámbito social.</p>
         </div>
-    </div-->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="292px"
+    </div>
+<!--svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="292px"
     height="661px" viewBox="-0.5 -0.5 292 661" style="background-color: rgb(255, 255, 255);">
     <g>
         <rect x="0" y="42.29" width="292" height="72.76" fill-opacity="0.3" fill="#4caf62" stroke="none"
@@ -519,51 +522,55 @@
                     text-anchor="middle">Programas derivados del PND:</text>
             </switch>
         </g>
-        <rect x="3.74" y="397.29" width="286.46" [attr.height]="obtenerTamanio(2)" fill-opacity="0.8" fill="#8285e0" stroke="none"
+        <rect x="3.74" [attr.y]="obtenerPosicion(2).fondo" width="286.46" [attr.height]="obtenerTamanio(2)" fill-opacity="0.8" fill="#8285e0" stroke="none"
             pointer-events="none"/>
-            <svg x="0" [attr.y]="0">
+            <svg x="0" [attr.y]="obtenerPosicion(1).conector">
                 <path d="M 147.47 371.55 L 147.47 384.29 L 144.11 384.29 L 144.11 397.54" fill="none" stroke="#ababab"
                 stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none" />
             </svg>
        
-        <rect x="12.8" y="443.29" width="266.4" height="70" rx="10.7" ry="10.7" fill-opacity="0.6" fill="#52548c"
+        <rect x="12.8" [attr.y]="obtenerPosicion(2).contenido" width="266.4" height="70" rx="10.7" ry="10.7" fill-opacity="0.6" fill="#52548c"
             stroke="none" pointer-events="none" *ngIf="mostrarFederales" />
-        <g transform="translate(-0.5 -0.5)">
-            <switch>
-                <foreignObject pointer-events="none" width="100%" height="100%"
-                    requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
-                    style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" *ngIf="mostrarFederales"
-                        style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 237px; height: 1px; padding-top: 477px; margin-left: 25px;">
-                        <div data-drawio-colors="color: rgb(0, 0, 0); "
-                            style="box-sizing: border-box; font-size: 0px; text-align: left;">
-                            <div
-                                style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
-                                <div style="text-align: justify;"><span style="font-size: 12px; font-family: Arial;">
-                                        <font color="#ffffff">Se monitorean las <b>Matrices de Indicadores para
-                                                Resultados (MIR)</b> de los programas y acciones federales de desarrollo
-                                            social.</font>
-                                    </span></div>
+            <svg x="0" [attr.y]="obtenerPosicion(2).textoContenido">
+                <g transform="translate(-0.5 -0.5)">
+                    <switch>
+                        <foreignObject pointer-events="none" width="100%" height="100%"
+                            requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+                            style="overflow: visible; text-align: left;">
+                            <div xmlns="http://www.w3.org/1999/xhtml" *ngIf="mostrarFederales"
+                                style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 237px; height: 1px; padding-top: 477px; margin-left: 25px;">
+                                <div data-drawio-colors="color: rgb(0, 0, 0); "
+                                    style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                                    <div
+                                        style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                        <div style="text-align: justify;"><span style="font-size: 12px; font-family: Arial;">
+                                                <font color="#ffffff">Se monitorean las <b>Matrices de Indicadores para
+                                                        Resultados (MIR)</b> de los programas y acciones federales de desarrollo
+                                                    social.</font>
+                                            </span></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </foreignObject><text x="25" y="481" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="16px">Se
-                    monitorean las Matrices de...</text>
-            </switch>
-        </g>
-        <rect x="13.8" y="404.29" width="265.4" height="32.02" rx="4.8" ry="4.8" fill="#53558f" stroke="none"
+                        </foreignObject><text x="25" y="481" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="16px">Se
+                            monitorean las Matrices de...</text>
+                    </switch>
+                </g>
+            </svg>
+        <rect x="13.8" [attr.y]="obtenerPosicion(2).fondo1" width="265.4" height="32.02" rx="4.8" ry="4.8" fill="#53558f" stroke="none"
             pointer-events="all"  (click)="mostrarEvent(2)" />
         <g fill="#FFFFFF" font-family="Arial" font-weight="bold" pointer-events="none" text-anchor="middle"
-            font-size="13px"><text x="146" y="417.3">Programas y acciones </text><text x="146" y="433.3">federales de
+            font-size="13px"><text x="146" [attr.y]="obtenerPosicion(2).texto">Programas y acciones </text><text x="146" [attr.y]="sumarDiferencia(obtenerPosicion(2).texto,13)">federales de
                 desarrollo social</text></g>
-        <path d="M 139.88 521.29 L 139.88 529 L 139.74 536.99" fill="none" stroke="#ababab" stroke-width="2"
-            stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none" />
+                <svg x="0" [attr.y]="obtenerPosicion(3).conector">
+                    <path d="M 139.88 521.29 L 139.88 529 L 139.74 536.99" fill="none" stroke="#ababab" stroke-width="2"
+                    stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none" />
+                </svg>
         <rect x="76.22" [attr.y]="obtenerPosicion(1).fondo" width="128.6" height="14.55" fill-opacity="0.3" fill="#a9c4eb" stroke="none"
             pointer-events="none" />
-        <rect x="80.46" [attr.y]="obtenerPosicion(1).texto" width="120.11" height="11.64" rx="1.75" ry="1.75" fill-opacity="0.9" fill="#6a8cbd"
+        <rect x="80.46" [attr.y]="obtenerPosicion(1).fondo1" width="120.11" height="11.64" rx="1.75" ry="1.75" fill-opacity="0.9" fill="#6a8cbd"
             stroke="none" pointer-events="none" />
         <g fill="#FAFAFA" font-family="Arial" font-weight="bold" pointer-events="none" text-anchor="middle"
-            font-size="10px"><text x="140.02" y="389.07">Nivel operativo</text></g>
+            font-size="10px"><text x="140.02" [attr.y]="obtenerPosicion(1).texto">Nivel operativo</text></g>
         <rect x="78.2" y="117.29" width="128.6" height="14.55" fill-opacity="0.3" fill="#a9c4eb" stroke="none"
             pointer-events="none" />
         <rect x="82.44" y="118.75" width="120.11" height="11.64" rx="1.75" ry="1.75" fill-opacity="0.9" fill="#6a8cbd"
@@ -572,8 +579,11 @@
             font-size="10px"><text x="142" y="128.07">Nivel estratégico</text></g>
         <path d="M 262.89 159.97 L 275.89 167.97 L 262.89 175.97 Z" fill="#336646" stroke="none"
             transform="rotate(90,269.39,167.97)" pointer-events="none" />
-        <path d="M 260.2 413.29 L 273.2 421.29 L 260.2 429.29 Z" fill="#9689ed" stroke="none"
-            transform="rotate(90,266.7,421.29)" pointer-events="none" />
+
+            <svg x="0" [attr.y]="obtenerPosicion(2).flecha">
+                <path d="M 260.2 413.29 L 273.2 421.29 L 260.2 429.29 Z" fill="#9689ed" stroke="none"
+                transform="rotate(90,266.7,421.29)" pointer-events="none" />
+            </svg> 
         <image x="17.07" y="-0.5" width="256.85" height="42.29"
             xlink:href="data:image/png;base64,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"
             preserveAspectRatio="none" pointer-events="none" />
@@ -583,5 +593,5 @@
             xlink:href="https://www.drawio.com/doc/faq/svg-export-text-problems" target="_blank"><text
                 text-anchor="middle" font-size="10px" x="50%" y="100%">Text is not SVG - cannot display</text></a>
     </switch>
-</svg>
+</!--svg-->
 </div>
