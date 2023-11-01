@@ -5,9 +5,11 @@
 }
 
 .mascara {
-  width: 100%;
+  width: 995px;
   height: 742px;
-  background: url("../../../assets/img/mascara.png") no-repeat center;  
+  background-image: url("../../../assets/img/mascara.png");
+  //background: rgba(0,0,0,0.5);
+  background-repeat: no-repeat;
   position: relative;
   text-align: center;
   margin: auto;
@@ -40,12 +42,12 @@
 }
 .federales{
   background-color: rgb(130,133,224,.80);
-  height: 200px;
+  height: 150px;
   color: white;
 }
 .ramo33{
   background-color: rgb(23,176,186,.9);
-  height: 200px;
+  height: 150px;
   color: white;
 }
 
@@ -81,7 +83,7 @@ ul{list-style: none;}
 .Pndrow{
   background-color: rgb(57,130,73,100);
   width: 95%;
-  height: 220px;
+  height: 200px;
   margin: auto;
   padding: 1%;
   border-radius: 5px;
@@ -91,7 +93,7 @@ ul{list-style: none;}
 .federalesContenido{
   background-color: rgb(83,85,143,100);
   width: 95%;
-  height: 100px;
+  height: 50px;
   margin: auto;
   padding: 1%;
   border-radius: 5px;
@@ -99,22 +101,10 @@ ul{list-style: none;}
 .ramo33Contenido{
   background-color: rgb(28,97,115,100);
   width: 95%;
-  height: 130px;
+  height: 60px;
   margin: auto;
   padding: 1%;
   border-radius: 5px;
-}
-
-.nivel{
-  width: 70%;
-  margin: auto;
-  background-color: #A9C4EB;
-}
-.nivelTexto{
-  background-color: #6A8CBD;
-  color: white;
-  width: 90%;
-  margin: auto;
 }
 
 .imagen {
@@ -135,10 +125,4 @@ ul{list-style: none;}
   border-width: 5px;
   border-style: dashed;
   color: #3F63B5;
-}
-
-.figure {
-  height: 10px;
-  width: 2px;
-  background-color: black;
 }
