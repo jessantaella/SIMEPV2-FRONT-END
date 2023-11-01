@@ -19,20 +19,20 @@ export class InicioComponent {
   nombreSistema:any;
   coloresTitulos= ['#21409A','#00A94F','#21409A'];
   auxMascara = true;
-  anchoPantalla;
   fontSizeTitulo = '24px'
   fontSizeTituloNormal ="20px"
 
   constructor(private scroller: ViewportScroller,private base:ServicesBaseService,private servicio:DataDynamic,private breakpointObserver: BreakpointObserver) {
         this.consultarData();
-        this.anchoPantalla = getWindow().innerWidth;
-
         this.breakpointObserver.observe([
           "(max-width: 768px)"
         ]).subscribe((result: BreakpointState) => {
           if (result.matches) {
               this.fontSizeTitulo = '14px'
               this.fontSizeTituloNormal = '12px'
+          }else{
+            this.fontSizeTitulo = '24px'
+            this.fontSizeTituloNormal ="20px"
           }
         });
   }
