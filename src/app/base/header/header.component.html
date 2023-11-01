@@ -1,27 +1,33 @@
-
-<div class="container-fluid px-0">
+<div class="container-fluid p-0">
+  <div class="d-flex flex-row align-items-center w-100">
     <span id="nombreSistema" class="float-start mx-1 nombre-sistema">
       {{cortarNombre(simeps?.sistemaCorto)}}
     </span>
     <a class="navbar-brand d-flex flex-column mx-0 py-0">
       <img [src]="generales?.logos.header?.logoConevalHeader" class="logoConeval"
         [alt]="generales?.logos.header?.alt" />
-      <img src="http://127.0.0.1:5500/dist/assets/img/FRASE-CONEVAL.svg" width="250" classs="mt-5"/>
+      <img src="http://127.0.0.1:5500/dist/assets/img/FRASE-CONEVAL.svg" width="250" classs="mt-5" />
     </a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
-      <span class="visually-hidden">Toggle navigation</span>
-      <span class="navbar-toggler-icon"></span>
+    <ul class="list-unstyled d-flex justify-content-evenly w-100 m-0 p-0 links color-menu">
+      <li *ngFor="let item of opciones" class="nav-item opt-text"
+        [ngClass]="{'opciónseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}"
+        (click)="cambiarPagina(item?.url)">
+        <a class="nav-link text-light" [href]="item?.url">{{item?.nombre}}</a>
+      </li>
+    </ul>
+
+    <button class="navbar-toggler menu-priority d-none" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+      <svg class="bi bi-2-circle-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+        viewBox="0 0 16 16">
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24c0-.691.493-1.306 1.336-1.306.756 0 1.313.492 1.313 1.236 0 .697-.469 1.23-.902 1.705l-2.971 3.293V12h5.344v-1.107H7.268v-.077l1.974-2.22.096-.107c.688-.763 1.287-1.428 1.287-2.43 0-1.266-1.031-2.215-2.613-2.215-1.758 0-2.637 1.19-2.637 2.402v.065h1.271v-.07Z">
+        </path>
+      </svg>
     </button>
-  
-    <div id="navcol-1" class="collapse navbar-collapse color-menu">
-      <ul class="navbar-nav w-100 d-flex justify-content-evenly ms-4">
-        <li *ngFor="let item of opciones" class="nav-item opt-text" [ngClass]="{'opciónseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}" (click)="cambiarPagina(item?.url)">
-          <a class="nav-link text-light"
-            [href]="item?.url">{{item?.nombre}}</a></li>
-      </ul>
+  </div>
+  <div class="w-100">
+    <div id="navcol-1" class="collapse navbar-collapse  color-menu-collapsable">
+      <ul class="navbar-nav hidden-links"></ul>
     </div>
   </div>
-  
-  
-  
-  
+</div>
