@@ -112,7 +112,7 @@ export class HeaderComponent {
 
       // Observar cambios en el tamaño del elemento raíz del componente
       resizeObserver.observe(this.elementRef.nativeElement);
-    }, 0);
+    }, 10);
   }
 
 }

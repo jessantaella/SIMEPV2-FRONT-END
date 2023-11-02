@@ -33,6 +33,7 @@ export class DiagramaPndComponent {
           console.log("aqui es movil");
           this.mostrarMovil = true;     
       } else {
+        this.mostrarMovil = false;   
          console.log('escritorio')
       }
     });
