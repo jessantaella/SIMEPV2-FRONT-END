@@ -1,4 +1,4 @@
-<div class="position-fixed d-flex flex-column w-100 bg-white pos-z-up">
+<div class="position-fixed w-100">
     <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
         <div id="divOcultarRedes" class="social-icons redesInternas">
             <a class="img-red" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
@@ -33,7 +33,7 @@
         </div>
     </div>
 </div>
-<div class="m-auto d-flex justify-content-center w-100" (wheel)="obtenerPosicion()">
+<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()">
     <div class="h-75 overflow separador">
         <table class="table table-borderless mt-4">
             <caption></caption>
@@ -75,7 +75,7 @@
                 </tr>
             </tbody>
         </table>
-        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="pnd" />
+        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="pnd" />
         <table class="table table-borderless">
             <caption></caption>
             <tbody class="text-center">
@@ -86,7 +86,7 @@
                 </tr>
             </tbody>
         </table>
-        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block" id="simeps" />
+        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="simeps" />
         <table class="table table-borderless mt-2">
             <caption></caption>
             <tbody>
@@ -101,7 +101,7 @@
                         </div>
                         <br />
                         <div class="text-center">
-                            <iframe [width]="anchoPantalla / 2" height="315"
+                            <iframe width="50%" height="315"
                                 src="https://www.youtube.com/embed/VRosxIwBjt0?si=2u6-hLaehQ9GdC7s"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

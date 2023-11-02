@@ -5,15 +5,6 @@
     margin-right: 1%;
   }
 
-  @media only screen and (max-width: 600px) {
-    .redesInternas {
-      width: 100%;
-      margin: auto;
-    }
-    .opcionPregunta{
-      font-size: 14px;
-    }
-  }
 
   .selectorOpcion{
     width: 30px;
@@ -25,9 +16,13 @@
     padding-top: 10px;
   }
   
-  .separador{
+.contendorInicial{
+  padding-top: 2%;
+}
+
+.separador{
     margin-top: 7%!important;
-  }
+}
   table{
     width: 90%;
     margin: auto;
@@ -73,7 +68,18 @@
     color:#17b0ba !important;
     font-weight: bold;
   }
-  
-  .pos-z-up{
-    z-index: 1500 !important;
+  @media only screen and (max-width: 400px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .contendorInicial{
+      padding-top: 25%;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
   }
