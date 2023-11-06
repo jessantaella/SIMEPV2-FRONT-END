@@ -8,8 +8,8 @@
         [alt]="generales?.logos.header?.alt" />
       <img src="http://127.0.0.1:5500/dist/assets/img/FRASE-CONEVAL.svg" width="250" classs="mt-5" />
     </a>
-    <ul class="list-unstyled d-flex justify-content-evenly w-100 m-0 p-0 links color-menu">
-      <li *ngFor="let item of opciones" class="nav-item opt-text"
+    <ul class="list-unstyled d-flex justify-content-evenly w-100 ps-4 links color-menu">
+      <li *ngFor="let item of opciones" class="nav-item opt-text mx-1"
         [ngClass]="{'opciónseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}"
         (click)="cambiarPagina(item?.url)">
         <a class="nav-link text-light" [href]="item?.url">{{item?.nombre}}</a>
