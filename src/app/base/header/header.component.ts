@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, AfterViewInit  } from '@angular/core';
 import { Router,NavigationEnd  } from '@angular/router';
 import {Title} from "@angular/platform-browser";
 import { DataDynamic } from '../services/dinamic-data.services';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -26,22 +28,32 @@ export class HeaderComponent {
     }
     }
 
-   consultarData(){
-    this.servicio.getInformacion().subscribe(
-      res=>{
-        this.generales=res.generales;
-        this.simeps = res.simeps;
-        this.opciones = res.simeps.opciones;
-        this.redes = res.generales.redes;
-        if(this.href==='/'){
-          this.rutaActual=this.href;
-          console.log(this.simeps.sistemaCorto)
-          this.cambiarTitulo("Inicio");
-        }
-      }
-    )
-   }
-
+    consultarData() {
+      this.servicio.getInformacion()
+        .pipe(
+          tap((res) => {
+            this.generales = res.generales;
+            this.simeps = res.simeps;
+            this.opciones = res.simeps.opciones;
+            this.redes = res.generales.redes;
+            if (this.href === '/') {
+              this.rutaActual = this.href;
+              console.log(this.simeps.sistemaCorto);
+              this.cambiarTitulo("Inicio");
+            }
+          })
+        )
+        .subscribe({
+          next: (result) => {
+            // La función "otraFuncion" se llamará después de completar la lógica en "tap".
+            this.otraFuncion();
+          },
+          error: (error) => {
+            // Manejo de errores si es necesario.
+          },
+        });
+    }
+    
    cambiarTitulo(nombre:string){
     this.titleService.setTitle(this.simeps?.sistemaCorto+"-"+nombre);
    }
@@ -58,7 +70,7 @@ export class HeaderComponent {
     return ruta===this.rutaActual;
    }
 
-   ngAfterViewInit() {
+   otraFuncion() {
     // Espera a que la vista se inicie antes de realizar las operaciones DOM.
     setTimeout(() => {
       let btn: any = document.querySelector('.menu-priority');
