@@ -100,18 +100,12 @@ export class HeaderComponent {
       // Obtener el estado inicial
       Array.from(this.vlinks.children).forEach((link: any, index: number) => {
         let width = link.offsetWidth;
-        console.log(`${index}: ${width}`)
         this.totalSpace += width;
         this.numOfItems += 1;
         this.breakWidths.push(this.totalSpace);
       });
 
-      console.log("BREAK WIDTHS", this.breakWidths)
-
-
-
       setInterval(() => {
-        console.log("SE EJECUTÓ EL INTERVAL")
         let availableSpace: any;
         let numOfVisibleItems: any;
         let requiredSpace: any;

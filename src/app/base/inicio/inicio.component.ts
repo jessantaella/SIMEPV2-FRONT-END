@@ -60,12 +60,11 @@ export class InicioComponent {
         this.scroller.scrollToPosition([0,0]);
         break;
       case 2:
-        this.scroller.scrollToPosition([0,410]);
+        this.scroller.scrollToPosition([0,400]);
         this.auxMascara =true;
-        console.log(this.auxMascara)
         break;
       case 3:
-        this.scroller.scrollToPosition([0,1100]);
+        this.scroller.scrollToPosition([0,940]);
         break;
     }
   }
@@ -84,11 +83,10 @@ export class InicioComponent {
     if(pos[1]<400){
       this.menuSeleccionado = 1;
       this.auxMascara = false;
-    }else if (pos[1]<1100 && pos[1]>410){
+    }else if (pos[1]<940 && pos[1]>410){
       this.menuSeleccionado = 2;
       this.auxMascara = true;
-      console.log(this.auxMascara)
-    }else if(pos[1]>900){
+    }else if(pos[1]>940){
       this.menuSeleccionado = 3;
       this.auxMascara = false;
     }    

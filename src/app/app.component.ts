@@ -9,10 +9,12 @@ import { DataDynamic } from './base/services/dinamic-data.services';
 })
 export class AppComponent {
   title = 'SIMEPS';
+  version = 'V-1.0.0'+ new Date(); ;
   tags:any;
 
   constructor(private meta: Meta,private servicio:DataDynamic){
     this.consultarTags();
+    console.log(this.version)
    }
 
   consultarTags(){
