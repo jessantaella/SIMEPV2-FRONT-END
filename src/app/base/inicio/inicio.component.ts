@@ -18,11 +18,11 @@ export class InicioComponent {
   redes:any;
   nombreSistema:any;
   coloresTitulos= ['#21409A','#00A94F','#21409A'];
-  auxMascara = true;
+  auxMascara = false;
   fontSizeTitulo = '24px'
   fontSizeTituloNormal ="20px"
 
-  constructor(private scroller: ViewportScroller,private base:ServicesBaseService,private servicio:DataDynamic,private breakpointObserver: BreakpointObserver) {
+  constructor(private scroller: ViewportScroller,private servicio:DataDynamic,private breakpointObserver: BreakpointObserver) {
         this.consultarData();
         this.breakpointObserver.observe([
           "(max-width: 768px)"
@@ -61,8 +61,8 @@ export class InicioComponent {
         break;
       case 2:
         this.scroller.scrollToPosition([0,410]);
-        this.base.changeMascara(true);
-        this.auxMascara =false;
+        this.auxMascara =true;
+        console.log(this.auxMascara)
         break;
       case 3:
         this.scroller.scrollToPosition([0,1100]);
@@ -83,15 +83,14 @@ export class InicioComponent {
     let pos = this.scroller.getScrollPosition();
     if(pos[1]<400){
       this.menuSeleccionado = 1;
-      this.auxMascara =true;
-    }else if (pos[1]<900 && pos[1]>410){
+      this.auxMascara = false;
+    }else if (pos[1]<1100 && pos[1]>410){
       this.menuSeleccionado = 2;
-      if(this.auxMascara){
-        this.base.changeMascara(true);
-        this.auxMascara =false;
-      }
+      this.auxMascara = true;
+      console.log(this.auxMascara)
     }else if(pos[1]>900){
       this.menuSeleccionado = 3;
+      this.auxMascara = false;
     }    
   }
 

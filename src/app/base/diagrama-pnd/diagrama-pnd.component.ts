@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ServicesBaseService } from '../services/services-base.service';
 
@@ -90,16 +90,20 @@ export class DiagramaPndComponent {
       "(max-width: 768px)"
     ]).subscribe((result: BreakpointState) => {
       if (result.matches) {
-          console.log("aqui es movil");
           this.mostrarMovil = true;     
       } else {
         this.mostrarMovil = false;   
-         console.log('escritorio')
       }
     });
   }
 
   ngOnInit(): void {  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['mascaraActiva'].currentValue && !this.mostrarMascara) {
+      this.mascara();
+    }
+  }
 
   startTimer() {
     this.interval = setInterval(() => {
@@ -119,13 +123,16 @@ export class DiagramaPndComponent {
   }
 
   eventoPND(){
-    console.log("PND"); 
+    console.log("PND");
+    window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/HomeSIPOL.aspx"; 
   }
   eventoAcciones(){
     console.log("Acciones"); 
+    window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/MosaicoSips.aspx"; 
   }
   eventoRamo(){
     console.log("rAMO"); 
+    window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
   }
 
   mostrarSeccion(opcion:number){

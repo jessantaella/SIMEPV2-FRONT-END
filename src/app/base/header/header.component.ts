@@ -38,7 +38,6 @@ export class HeaderComponent {
             this.redes = res.generales.redes;
             if (this.href === '/') {
               this.rutaActual = this.href;
-              console.log(this.simeps.sistemaCorto);
               this.cambiarTitulo("Inicio");
             }
           })

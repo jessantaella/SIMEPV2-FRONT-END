@@ -27,7 +27,6 @@ export class AppComponent {
    addTags(){
     this.tags.forEach((tg: { name: any; content: any; }) => {
       this.meta.addTag({ name: tg.name , content: tg.content});
-      console.log('add Meta')
     });
    }
 }
