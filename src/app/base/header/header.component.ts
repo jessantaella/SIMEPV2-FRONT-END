@@ -1,9 +1,9 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from "@angular/platform-browser";
 import { DataDynamic } from '../services/dinamic-data.services';
-import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -29,7 +29,11 @@ export class HeaderComponent {
   minWrap=0;
   currentRoute:any;
 
-  constructor(private servicio: DataDynamic, private router: Router, private titleService: Title, private elementRef: ElementRef) {
+  isBrowser = false;
+
+
+  constructor(private servicio: DataDynamic, private router: Router, private titleService: Title,@Inject(DOCUMENT) private document: Document,@Inject(PLATFORM_ID) private platformId:any) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -52,7 +56,10 @@ export class HeaderComponent {
       .subscribe({
         next: (result) => {
           // La función "otraFuncion" se llamará después de completar la lógica en "tap".
-          this.otraFuncion();
+          if (this.isBrowser) {
+         this.otraFuncion();  
+          }
+         
         },
         error: (error) => {
           // Manejo de errores si es necesario.
@@ -87,9 +94,9 @@ export class HeaderComponent {
     // Espera a que la vista se inicie antes de realizar las operaciones DOM.
     setTimeout(() => {
 
-      this.btn = document.querySelector('.menu-priority');
-      this.vlinks = document.querySelector('ul.links');
-      this.hlinks = document.querySelector('ul.hidden-links');
+      this.btn =  this.document.querySelector('.menu-priority');
+      this.vlinks = this.document.querySelector('ul.links');
+      this.hlinks = this.document.querySelector('ul.hidden-links');
 
 
 
