@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './base/inicio/inicio.component';
 
 const routes: Routes = [
-  { path: '**', component: InicioComponent },  // Página incial
+  { path: '', redirectTo: 'inicio', pathMatch: 'full'},  // Página incial
   {
     path:'inicio',
     component:InicioComponent,

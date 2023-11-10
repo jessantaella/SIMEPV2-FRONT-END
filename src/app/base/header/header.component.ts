@@ -26,23 +26,17 @@ export class HeaderComponent {
   totalSpace: number = 0;
   closingTime: number = 1000;
   breakWidths: any = [];
+  minWrap=0;
+  currentRoute:any;
 
   constructor(private servicio: DataDynamic, private router: Router, private titleService: Title, private elementRef: ElementRef) {
     this.consultarData();
-    this.href = this.router.url;
-    if (this.href === '/') {
-      this.rutaActual = this.href;
-    }
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+          this.currentRoute = event.url;
+      }
+  });
   }
-
-  // ngOnInit() {
-  //   window.addEventListener('beforeunload', (event) => {
-  //     // Aquí puedes ejecutar tu función antes de que la página se recargue.
-  //     console.log('La página se está recargando. Aquí puedes ejecutar tu función.');
-  //     // Para mostrar un mensaje al usuario:
-  //     event.returnValue = '¿Estás seguro de que deseas recargar la página?';
-  //   });
-  // }
 
   consultarData() {
     this.servicio.getInformacion()
@@ -52,10 +46,7 @@ export class HeaderComponent {
           this.simeps = res.simeps;
           this.opciones = res.simeps.opciones;
           this.redes = res.generales.redes;
-          if (this.href === '/') {
-            this.rutaActual = this.href;
-            this.cambiarTitulo("Inicio");
-          }
+          this.cambiarPagina()
         })
       )
       .subscribe({
@@ -73,8 +64,13 @@ export class HeaderComponent {
     this.titleService.setTitle(this.simeps?.sistemaCorto + "-" + nombre);
   }
 
-  cambiarPagina(url: string) {
-    this.rutaActual = url;
+  cambiarPagina() {
+    this.opciones?.forEach((opc:any)=>{
+      if(opc.url === this.currentRoute){
+        this.cambiarTitulo(opc.nombre);
+      }
+    });
+
   }
 
   cortarNombre(nombreCorto: string) {
@@ -82,7 +78,7 @@ export class HeaderComponent {
   }
 
   opcionSeleccionada(ruta: string) {
-    return ruta === this.rutaActual;
+    return ruta === this.currentRoute;
   }
 
   otraFuncion() {
@@ -136,5 +132,7 @@ export class HeaderComponent {
       }, 10)
     }, 1_000);
   }
+
+  
 
 }
