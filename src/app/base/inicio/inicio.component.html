@@ -1,5 +1,5 @@
-<div class="position-fixed w-100 bg-white  border-bottom">
-    <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
+<div class="position-fixed w-100 bg-white" #main>
+    <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
         <div id="divOcultarRedes" class="social-icons redesInternas">
             <a class="img-red" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
                     class="iconoRed" /></a>
@@ -9,7 +9,7 @@
             }}</span>
     </div>
 
-    <div class="d-flex justify-content-evenly w-100 preguntas">
+    <div class="d-flex justify-content-evenly w-100 preguntas"  >
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(1).color,
         'font-size': regresaEstilosMenu(1).font
@@ -33,9 +33,9 @@
         </div>
     </div>
 </div>
-<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()">
-    <div class="h-75 overflow separador">
-        <table class="table table-borderless mt-4">
+<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}">
+    <div class="h-75 overflow">
+        <table class="table table-borderless mt-4" >
             <caption></caption>
             <tbody>
                 <tr>

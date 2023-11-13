@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,OnInit, ViewChild } from '@angular/core';
 import { ViewportScroller, isPlatformBrowser }
     from '@angular/common';
 import { ServicesBaseService } from '../services/services-base.service';
@@ -22,6 +22,10 @@ export class InicioComponent {
   fontSizeTitulo = '24px'
   fontSizeTituloNormal ="20px"
 
+  @ViewChild('main')
+  main!: ElementRef;
+  alto = 100;
+
   constructor(private scroller: ViewportScroller,private servicio:DataDynamic,private breakpointObserver: BreakpointObserver) {
         this.consultarData();
         this.breakpointObserver.observe([
@@ -44,6 +48,13 @@ export class InicioComponent {
     }
   }
 
+  ngAfterViewInit(){
+    setInterval(() => {
+      let aux = this.main?.nativeElement.offsetHeight
+      this.alto = aux + (aux/6);
+    },10)
+  }
+
   consultarData(){
     this.servicio.getInformacion().subscribe(
       res=>{
@@ -60,11 +71,11 @@ export class InicioComponent {
         this.scroller.scrollToPosition([0,0]);
         break;
       case 2:
-        this.scroller.scrollToPosition([0,400]);
+        this.scroller.scrollToPosition([0,320]);
         this.auxMascara =true;
         break;
       case 3:
-        this.scroller.scrollToPosition([0,940]);
+        this.scroller.scrollToPosition([0,870]);
         break;
     }
   }
@@ -80,16 +91,17 @@ export class InicioComponent {
 
   obtenerPosicion(){
     let pos = this.scroller.getScrollPosition();
-    if(pos[1]<400){
+    if(pos[1]<320){
       this.menuSeleccionado = 1;
       this.auxMascara = false;
-    }else if (pos[1]<940 && pos[1]>410){
+    }else if (pos[1]<940 && pos[1]>321){
       this.menuSeleccionado = 2;
       this.auxMascara = true;
-    }else if(pos[1]>940){
+    }else if(pos[1]>870){
       this.menuSeleccionado = 3;
       this.auxMascara = false;
     }    
   }
+
 
 }
