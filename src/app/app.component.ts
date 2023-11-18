@@ -10,7 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent{
   title = 'SIMEPS';
-  version = 'V-1.0.0'+ new Date(); ;
+  version = 'V-1.0.1'+ new Date(); ;
   tags:any;
   ga:any;
   isBrowser = false;
@@ -44,7 +44,7 @@ export class AppComponent{
         this.tags = res.simeps?.metas;
         this.ga = res.simeps?.ga?.url;
         if (this.isBrowser) {
-          //this.cargaGA();
+          this.cargaGA();
         }
         this.addTags();
       }
