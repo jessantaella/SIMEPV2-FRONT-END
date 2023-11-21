@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './base/inicio/inicio.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch: 'full'},  // Página incial
   {
-    path:'inicio',
+    path:'',
     component:InicioComponent,
   },
 ];

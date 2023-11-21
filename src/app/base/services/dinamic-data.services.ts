@@ -1,16 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataDynamic {
-constructor(private http:HttpClient){}
+  private headers: HttpHeaders = new HttpHeaders();
 
-  getInformacion(){
-    const url:string = "http://127.0.0.1:5500/dist/configuracion.json";
-    //const url:string = "http://10.1.15.180/Configuracion/configuracion.json";
-    return this.http.get<any>(url);
+constructor(private http:HttpClient){
+  this.headers = new HttpHeaders({'Content-Type': 'application/json'});
+}
+
+  getInformacion(): Observable<any> {
+    //const url:string = "http://127.0.0.1:5500/dist/configuracion.json";
+    const url:string = "http://10.1.15.180:81/conf/configuracion.json";
+ 
+    return this.http.get<any>(url,{ headers: this.headers });
   }
 }
