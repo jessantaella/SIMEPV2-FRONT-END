@@ -8,8 +8,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 
@@ -73,7 +72,7 @@ export class HeaderComponent {
   }
 
   cambiarPagina() {
-    this.opciones?.forEach((opc:any)=>{
+    this.opciones.forEach((opc:any)=>{
       if(opc.url === this.currentRoute){
         this.cambiarTitulo(opc.nombre);
       }

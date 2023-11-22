@@ -5,12 +5,11 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent{
   title = 'SIMEPS';
-  version = 'V-1.0.1'+ new Date(); ;
+  version = 'V-1.0.1'+ new Date();
   tags:any;
   ga:any;
   isBrowser = false;

@@ -182,8 +182,6 @@ export class DiagramaPndComponent {
           salida =  this.separadoDiagrama[2]. fondosNuevoOcultos; 
         }else if(!this.mostrarPnd){
           salida =  this.separadoDiagrama[2]. fondosNuevo; 
-        }else if(this.mostrarFederales){
-
         }
         break;
     }
