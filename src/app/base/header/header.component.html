@@ -12,7 +12,7 @@
       <li *ngFor="let item of opciones" class="nav-item opt-text mx-1" style="min-width: 8rem !important;"
         [ngClass]="{'opcionseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}">
         <a class="nav-link text-light" [href]="item?.url" *ngIf="!item.interna" >{{item?.nombre}}</a>
-        <a class="nav-link text-light subrayado" [routerLink]="[item?.url]" *ngIf="item.interna">{{item?.nombre}}</a>
+        <a class="nav-link text-light" [routerLink]="[item?.url]" *ngIf="item.interna">{{item?.nombre}}</a>
       </li>
     </ul>
 
