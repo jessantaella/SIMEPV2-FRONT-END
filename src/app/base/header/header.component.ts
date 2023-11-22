@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from "@angular/platform-browser";
 import { DataDynamic } from '../services/dinamic-data.services';
@@ -39,7 +39,8 @@ export class HeaderComponent {
       if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
       }
-  });
+    });
+
   }
 
   consultarData() {
@@ -57,7 +58,7 @@ export class HeaderComponent {
         next: (result) => {
           // La función "otraFuncion" se llamará después de completar la lógica en "tap".
           if (this.isBrowser) {
-         this.otraFuncion();  
+         this.otraFuncion(); 
           }
          
         },
@@ -85,7 +86,7 @@ export class HeaderComponent {
   }
 
   opcionSeleccionada(ruta: string) {
-    return ruta === this.currentRoute;
+    return ruta === this.currentRoute || (ruta === "/inicio" && this.currentRoute === "/");
   }
 
   otraFuncion() {
@@ -93,6 +94,7 @@ export class HeaderComponent {
 
     // Espera a que la vista se inicie antes de realizar las operaciones DOM.
     setTimeout(() => {
+      
 
       this.btn =  this.document.querySelector('.menu-priority');
       this.vlinks = this.document.querySelector('ul.links');
@@ -112,7 +114,6 @@ export class HeaderComponent {
         let availableSpace: any;
         let numOfVisibleItems: any;
         let requiredSpace: any;
-
         // Obtener el estado actual
         availableSpace = this.vlinks.offsetWidth - 10;
         numOfVisibleItems = this.vlinks.children.length;

@@ -1,7 +1,7 @@
 <div class="position-fixed w-100 bg-white" #main>
     <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
         <div id="divOcultarRedes" class="social-icons redesInternas">
-            <a class="img-red" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
                     class="iconoRed" /></a>
         </div>
         <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{
@@ -44,7 +44,7 @@
                             <p>
                                 El monitoreo es el
                                 <span class="resalteNormal">proceso continuo y sistemático de recolección, generación y
-                                    análisis de información </span>, para brindar orientación acerca del
+                                    análisis de información</span>, para brindar orientación acerca del
                                 <span class="resalteNormal">progreso en el logro de objetivos de una intervención
                                     pública</span>, analizando tanto los
                                 <span class="resalteNormal">resultados esperados</span> como la

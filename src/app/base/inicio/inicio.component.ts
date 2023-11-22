@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from "@
 import { ViewportScroller, isPlatformBrowser } from "@angular/common";
 import { DataDynamic } from "../services/dinamic-data.services";
 import { getWindow } from "ssr-window";
-import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
+import { BreakpointObserver, BreakpointState, Breakpoints } from "@angular/cdk/layout";
 
 @Component({
   selector: "app-inicio",
@@ -72,7 +72,79 @@ export class InicioComponent {
     });
   }
 
-  goTo(opcion: number) {
+  // goTo(opcion: number) {
+  //   if (this.isBrowser) {
+  //     this.menuSeleccionado = opcion;
+  //     switch (opcion) {
+  //       case 1:
+  //         this.scroller.scrollToPosition([0, 0]);
+  //         break;
+  //       case 2:
+  //         this.scroller.scrollToPosition([0, 320]);
+  //         this.auxMascara = true;
+  //         break;
+  //       case 3:
+  //         this.scroller.scrollToPosition([0, 870]);
+  //         break;
+  //     }
+  //   }
+  // }
+
+  goTo(opcion:number) {
+    if (this.isBrowser) {
+      this.breakpointObserver.observe([
+        "(min-width: 0px) and (max-width: 576px)", 
+        "(min-width: 577px) and (max-width: 992px)", 
+        "(min-width: 993px)" 
+      ]).subscribe((state: BreakpointState) => {
+        if (state.breakpoints["(min-width: 0px) and (max-width: 576px)"]) {
+          this.movil(opcion);
+        } else if (state.breakpoints["(min-width: 577px) and (max-width: 992px)"]) {
+          this.tablet(opcion);
+        } else if (state.breakpoints["(min-width: 993px)"]) {
+          this.web(opcion);
+        }
+      });
+    }
+  }
+
+  web(opcion:number){
+    if (this.isBrowser) {
+      this.menuSeleccionado = opcion;
+      switch (opcion) {
+        case 1:
+          this.scroller.scrollToPosition([0, 0]);
+          break;
+        case 2:
+          this.scroller.scrollToPosition([0, 320]);
+          this.auxMascara = true;
+          break;
+        case 3:
+          this.scroller.scrollToPosition([0, 870]);
+          break;
+      }
+    }
+  }
+
+  movil(opcion:number){
+    if (this.isBrowser) {
+      this.menuSeleccionado = opcion;
+      switch (opcion) {
+        case 1:
+          this.scroller.scrollToPosition([0, 0]);
+          break;
+        case 2:
+          this.scroller.scrollToPosition([0, 840]);
+          this.auxMascara = true;
+          break;
+        case 3:
+          this.scroller.scrollToPosition([0, 1500]);
+          break;
+      }
+    }
+  }
+
+  tablet(opcion:number){
     if (this.isBrowser) {
       this.menuSeleccionado = opcion;
       switch (opcion) {

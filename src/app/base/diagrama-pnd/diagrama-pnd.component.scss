@@ -77,6 +77,43 @@ ul{list-style: none;}
   border-radius: 5px;
 }
 
+@media(min-width: 0px) and (max-width: 576px){
+  .ramo33Titulo{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .PndrowTitulo{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .federalesTitulo{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .tituloPndrow{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .Pndrow{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .federalesContenido{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .ramo33Contenido{
+    font-size: 12px !important;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
 .Pndrow{
   background-color: rgb(57,130,73,100);
   width: 95%;

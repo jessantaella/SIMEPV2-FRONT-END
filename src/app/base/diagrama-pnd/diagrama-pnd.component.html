@@ -353,7 +353,7 @@
 <div class="container vistaMovil" *ngIf="mostrarMovil">
     <div class="tituloDiagrama m-0">Interactua con los módulos</div>
     <div class="row tituloPnd mt-2">
-        <div class="tituloPndrow">
+        <div class="tituloPndrow d-flex justify-content-center align-items-center">
             Plan Nacional de Desarrollo (PND)
         </div>
     </div>
@@ -365,18 +365,18 @@
     </div>
     <div class="figure"></div>	
     <div class="row pnd m-0" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
-        <div class="PndrowTitulo" (click)="mostrarSeccion(0)">
+        <div class="PndrowTitulo d-flex justify-content-evenly align-items-center justify-content-md-center justify-content-lg-center " (click)="mostrarSeccion(0)">
+            Programas derivados del PND
             <i class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></i>
             <i class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[0]"></i>
-            Programas derivados del PND
         </div>
         <div class="Pndrow" *ngIf="ocultarSecciones[0]" (click)="eventoPND()">
             <p>Se monitorean los objetivos e indicadores de los programas derivados del PND. Los programas derivados son los siguiens:</p>
-            <ul>
-              <li>Programas Sectoriales</li>
-              <li>Programas Especiales</li>
-              <li>Programas Institucionales</li>
-              <li>Programas Regionales</li>
+            <ul class="w-100 m-0 p-0">
+              <li class="d-block">Programas Sectoriales</li>
+              <li class="d-block">Programas Especiales</li>
+              <li class="d-block">Programas Institucionales</li>
+              <li class="d-block">Programas Regionales</li>
             </ul>
         </div>
     </div>
