@@ -13,8 +13,8 @@ constructor(private http:HttpClient){
 }
 
   getInformacion(): Observable<any> {
-    const url:string = "http://127.0.0.1:5500/dist/configuracion.json";
-    //const url:string = "http://10.1.15.180:81/conf/configuracion.json";
+    //const url:string = "http://127.0.0.1:5500/dist/configuracion.json";
+    const url:string = "http://10.1.15.180:81/conf/configuracion.json";
  
     return this.http.get<any>(url,{ headers: this.headers });
   }

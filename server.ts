@@ -10,7 +10,8 @@ import { AppServerModule } from './src/main.server';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/simepsv2-front-end/browser');
+  const distFolder = join(process.cwd(), ''); 
+  //const distFolder = join(process.cwd(), 'dist/simepsv2-front-end/browser');
   //const distFolder = join(process.cwd(), 'browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
@@ -31,6 +32,8 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
+    console.log(`APP_BASE_REF = ${APP_BASE_HREF}`);
+    console.log(`req.baseUrl = ${req.baseUrl}`); 
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
