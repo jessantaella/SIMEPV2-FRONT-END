@@ -3,10 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './base/inicio/inicio.component';
 
 const routes: Routes = [
-  {
-    path:'',
-    component:InicioComponent,
+  { path: '',
+    component: InicioComponent,
   },
+  {
+    path:'**',
+    component:InicioComponent,
+  }
 ];
 
 @NgModule({

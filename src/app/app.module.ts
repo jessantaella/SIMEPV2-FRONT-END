@@ -11,6 +11,7 @@ import { DiagramaPndComponent } from './base/diagrama-pnd/diagrama-pnd.component
 import { FooterComponent } from './base/footer/footer.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @NgModule({

@@ -1,6 +1,5 @@
 import 'zone.js/node';
-
-import { APP_BASE_HREF } from '@angular/common';
+import {APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { existsSync } from 'node:fs';
@@ -32,8 +31,6 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    console.log(`APP_BASE_REF = ${APP_BASE_HREF}`);
-    console.log(`req.baseUrl = ${req.baseUrl}`); 
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
