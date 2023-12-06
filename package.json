@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run simepsv2-front-end:serve-ssr",
-    "serve:ssr": "node dist/simepsv2-front-end/server/main.js",
+    "serve:ssr": "node dist/simeps/server/main.js",
     "build:ssr": "ng build && ng run simepsv2-front-end:server",
     "prerender": "ng run simepsv2-front-end:prerender",
     "sonar": "sonar-scanner"

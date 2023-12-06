@@ -12,6 +12,7 @@ import { FooterComponent } from './base/footer/footer.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     HttpClientModule,
     AccordionModule
-    
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/SIMEPS/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
