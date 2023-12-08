@@ -8,9 +8,10 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class DataDynamic {
   isBrowser = false;
+  servidor = "http://10.1.15.180:81/conf/configuracion.json"; //LOCAL
   //servidor = "http://10.1.15.102:81/conf/configuracion.json"; //DEV
   //servidor = "https://qa.coneval.org.mx/conf/configuracion.json" //QA
-  servidor = "https://sistemas.coneval.org.mx/conf/configuracion.json" // Prod
+  //servidor = "https://sistemas.coneval.org.mx/conf/configuracion.json" // PROD
 
 
 constructor(private http:HttpClient,@Inject(PLATFORM_ID) private platformId:any){

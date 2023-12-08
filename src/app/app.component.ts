@@ -17,7 +17,6 @@ export class AppComponent{
   constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any){
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarTags();
-    console.log(this.version)
    }
 
    cargaGA() {

@@ -176,13 +176,13 @@ export class InicioComponent {
   obtenerPosicion() {
     if (this.isBrowser) {
       let pos = this.scroller.getScrollPosition();
-    if (pos[1] < 320) {
+    if (pos[1] < 250) {
       this.menuSeleccionado = 1;
       this.auxMascara = false;
-    } else if (pos[1] < 940 && pos[1] > 321) {
+    } else if (pos[1] < 650 && pos[1] > 250) {
       this.menuSeleccionado = 2;
       this.auxMascara = true;
-    } else if (pos[1] > 870) {
+    } else if (pos[1] > 650) {
       this.menuSeleccionado = 3;
       this.auxMascara = false;
     }

@@ -112,7 +112,7 @@ export class DiagramaPndComponent {
       } else {
         this.mostrarMascara = false;
         clearInterval(this.interval);
-        this.timeLeft = 5;
+        this.timeLeft = 8;
       }
     },1000)
   }
@@ -123,15 +123,12 @@ export class DiagramaPndComponent {
   }
 
   eventoPND(){
-    console.log("PND");
     window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/HomeSIPOL.aspx"; 
   }
   eventoAcciones(){
-    console.log("Acciones"); 
     window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/MosaicoSips.aspx"; 
   }
   eventoRamo(){
-    console.log("rAMO"); 
     window.location.href = "http://sistemas.coneval.org.mx/SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
   }
 
