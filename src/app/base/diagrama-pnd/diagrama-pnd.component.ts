@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ServicesBaseService } from '../services/services-base.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-diagrama-pnd',
@@ -123,17 +124,17 @@ export class DiagramaPndComponent {
   }
 
   eventoPND(){
-    window.location.href = "http://devnet.coneval.org.mx:84/_SIMEPS/HomeSIPOL.aspx"; 
+    window.location.href = environment.simepsViejo+"_SIMEPS/HomeSIPOL.aspx"; 
     //window.location.href = "https://qa.coneval.org.mx/_SIMEPS/HomeSIPOL.aspx"; 
     //window.location.href = "http://sistemas.coneval.org.mx/_SIMEPS/HomeSIPOL.aspx"; 
   }
   eventoAcciones(){
-    window.location.href = "http://devnet.coneval.org.mx:84/_SIMEPS/MosaicoSips.aspx"; 
+    window.location.href = environment.simepsViejo+"_SIMEPS/MosaicoSips.aspx"; 
     //window.location.href = "https://qa.coneval.org.mx/_SIMEPS/MosaicoSips.aspx"; 
     //window.location.href = "http://sistemas.coneval.org.mx/_SIMEPS/MosaicoSips.aspx"; 
   }
   eventoRamo(){
-    window.location.href = "http://devnet.coneval.org.mx:84/_SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
+    window.location.href = environment.simepsViejo+"_SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
     //window.location.href = "https://qa.coneval.org.mx/_SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
     //window.location.href = "http://sistemas.coneval.org.mx/_SIMEPS/HomeRamo33.aspx?pCiclo=2023"; 
   }
