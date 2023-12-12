@@ -25,6 +25,7 @@
   }
   .opcionPregunta{
     cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
   }
   .parrafoInformativo{
     text-align: justify;
@@ -156,4 +157,8 @@
     .separadorConeval{
       width: 100%;
     }
+  }
+
+  p,.parrafoInformativo{
+    font-family: Arial, Helvetica, sans-serif;
   }
