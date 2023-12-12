@@ -15,29 +15,29 @@
         'font-size': regresaEstilosMenu(1).font
       }" (click)="goTo(1)">
             ¿Qué es el monitoreo?
-            <img *ngIf="menuSeleccionado === 1" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha" *ngIf="menuSeleccionado === 1" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(2).color,
         'font-size': regresaEstilosMenu(2).font
       }" (click)="goTo(2)">
             ¿Qué monitorea el CONEVAL?
-            <img *ngIf="menuSeleccionado === 2" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha2" *ngIf="menuSeleccionado === 2" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(3).color,
         'font-size': regresaEstilosMenu(3).font
       }" (click)="goTo(3)">
             ¿Qué es el SIMEPS?
-            <img *ngIf="menuSeleccionado === 3" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha3" *ngIf="menuSeleccionado === 3" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
         </div>
     </div>
 </div>
 <div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}">
     <div class="h-75 overflow">
         <table class="table table-borderless mt-4" >
-            <th id="th1" class="p-0"></th>
             <caption></caption>
+            <th id="th1" class="p-0"></th>
             <tbody>
                 <tr>
                     <td>
@@ -76,10 +76,10 @@
                 </tr>
             </tbody>
         </table>
-        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="pnd" />
+        <img alt="pnd" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="pnd" />
         <table class="table table-borderless">
-            <th id="th2" class="p-0"></th>
             <caption></caption>
+            <th id="th2" class="p-0"></th>
             <tbody class="text-center">
                 <tr>
                     <td>
@@ -88,10 +88,10 @@
                 </tr>
             </tbody>
         </table>
-        <img [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="simeps" />
+        <img alt="simeps" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="simeps" />
         <table class="table table-borderless mt-2">
-            <th id="th3" class="p-0"></th>
             <caption></caption>
+            <th id="th3" class="p-0"></th>
             <tbody>
                 <tr>
                     <td>
