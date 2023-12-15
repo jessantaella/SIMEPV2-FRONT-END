@@ -3,14 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './base/inicio/inicio.component';
 
 const routes: Routes = [
+  { path: '**', redirectTo: '', pathMatch: 'full' },
   {
     path:'',
     component:InicioComponent,
   },
-  {
-    path:'**',
-    component: InicioComponent
-  }
 ];
 
 @NgModule({
