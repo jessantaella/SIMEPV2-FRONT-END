@@ -15,31 +15,32 @@
   -moz-animation: fadeIn 3s;
   -o-animation: fadeIn 3s;
   -ms-animation: fadeIn 3s;
+  z-index: 100;
 }
 
 @keyframes fadeIn {
   0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% { opacity: 1; z-index: 100;}
 }
 
 @-moz-keyframes fadeIn {
   0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% { opacity: 1; z-index: 100;}
 }
 
 @-webkit-keyframes fadeIn {
   0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% { opacity: 1; z-index: 100;}
 }
 
 @-o-keyframes fadeIn {
   0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% { opacity: 1; z-index: 100;}
 }
 
 @-ms-keyframes fadeIn {
   0% { opacity: 0; }
-  100% { opacity: 1; }
+  100% { opacity: 1; z-index: 100;}
 }
 
 .tituloDiagrama{

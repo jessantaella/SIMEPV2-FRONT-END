@@ -1,4 +1,4 @@
-<div class="position-fixed w-100 bg-white" #main>
+<div class="position-fixed w-100 bg-white"  #main>
     <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
         <div id="divOcultarRedes" class="social-icons redesInternas">
             <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
@@ -33,9 +33,9 @@
         </div>
     </div>
 </div>
-<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}">
+<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}" id="total">
     <div class="h-75 overflow">
-        <table class="table table-borderless mt-4" >
+        <table class="table table-borderless mt-4" id="seccion1">
             <caption></caption>
             <th id="th1" class="p-0"></th>
             <tbody>
@@ -77,7 +77,7 @@
             </tbody>
         </table>
         <img alt="pnd" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="pnd" />
-        <table class="table table-borderless">
+        <table class="table table-borderless" id="seccion2">
             <caption></caption>
             <th id="th2" class="p-0"></th>
             <tbody class="text-center">
@@ -89,7 +89,7 @@
             </tbody>
         </table>
         <img alt="simeps" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="simeps" />
-        <table class="table table-borderless mt-2">
+        <table class="table table-borderless mt-2" id="seccion3">
             <caption></caption>
             <th id="th3" class="p-0"></th>
             <tbody>

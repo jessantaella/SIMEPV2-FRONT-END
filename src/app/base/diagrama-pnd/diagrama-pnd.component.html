@@ -10,7 +10,7 @@
         </button>
     </div>
 </div>
-<div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="100%">
+<div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="100%" (click)="ocultarMascara()">
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%"
     height="742px" viewBox="-0.5 -0.5 959 742" *ngIf="!mostrarMascara && !mostrarMovil">
@@ -344,7 +344,7 @@
     <div class="tituloDiagrama m-0">Interactua con los módulos</div>
     <div class="row tituloPnd mt-2">
         <div class="tituloPndrow d-flex justify-content-center align-items-center">
-            Plan Nacional de Desarrollo (PND)
+            <strong>Plan Nacional de Desarrollo (PND)</strong>
         </div>
     </div>
     <div class="figure"></div>	
@@ -356,12 +356,12 @@
     <div class="figure"></div>	
     <div class="row pnd m-0" [ngStyle]="{'height':ocultarSecciones[0] ? '300px':'70px'}">
         <div class="PndrowTitulo d-flex justify-content-evenly align-items-center justify-content-md-center justify-content-lg-center " (click)="mostrarSeccion(0)">
-            Programas derivados del PND
+            <strong>Programas derivados del PND</strong>
             <em class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[0]"></em>
             <em class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[0]"></em>
         </div>
         <div class="Pndrow" *ngIf="ocultarSecciones[0]" (click)="eventoPND()">
-            <p>Se monitorean los objetivos e indicadores de los programas derivados del PND. Los programas derivados son los siguiens:</p>
+            <p>Se monitorean los <strong>objetivos e indicadores</strong> de los programas derivados del PND. Los programas derivados son los siguiens:</p>
             <ul class="w-100 m-0 p-0">
               <li class="d-block">Programas Sectoriales</li>
               <li class="d-block">Programas Especiales</li>
@@ -382,7 +382,7 @@
         <div class="federalesTitulo" (click)="mostrarSeccion(1)">
             <em class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[1]"></em>
             <em class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[1]"></em>
-            Programas y acciones federales de desarrollo social
+        <strong>Programas y acciones federales de desarrollo social</strong>
         </div>
         <div class="federalesContenido" *ngIf="ocultarSecciones[1]" (click)="eventoAcciones()">
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los programas y acciones federales de desarrollo social.</p>
@@ -394,7 +394,7 @@
         <div class="ramo33Titulo" (click)="mostrarSeccion(2)">
             <em class="bi bi-chevron-down float-right fs-3" *ngIf="!ocultarSecciones[2]"></em>
             <em class="bi bi-chevron-up float-right fs-3" *ngIf="ocultarSecciones[2]"></em>
-            Fondos de Aportaciones Federales del Ramo 33 del ámbito social
+            <strong>Fondos de Aportaciones Federales del Ramo 33 del ámbito social</strong>
         </div>
         <div class="ramo33Contenido" *ngIf="ocultarSecciones[2]" (click)="eventoRamo()">
             <p>Se monitorean las <strong>Matrices de Indicadores para Resultados (MIR)</strong> de los Fondos de Aportaciones Federales del Ramo 33 del ámbito social.</p>

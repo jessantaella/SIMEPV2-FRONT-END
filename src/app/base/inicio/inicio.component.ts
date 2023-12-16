@@ -19,7 +19,7 @@ export class InicioComponent {
   fontSizeTitulo = "24px";
   fontSizeTituloNormal = "20px";
   isBrowser = false;
-
+  celular = false;
   @ViewChild("main")
   main!: ElementRef;
   alto = 100;
@@ -39,9 +39,11 @@ export class InicioComponent {
         if (result.matches) {
           this.fontSizeTitulo = "14px";
           this.fontSizeTituloNormal = "12px";
+          this.celular = true;
         } else {
           this.fontSizeTitulo = "24px";
           this.fontSizeTituloNormal = "20px";
+          this.celular = false;
         }
       });
     }
@@ -71,24 +73,6 @@ export class InicioComponent {
       this.redes = res.generales.redes;
     });
   }
-
-  // goTo(opcion: number) {
-  //   if (this.isBrowser) {
-  //     this.menuSeleccionado = opcion;
-  //     switch (opcion) {
-  //       case 1:
-  //         this.scroller.scrollToPosition([0, 0]);
-  //         break;
-  //       case 2:
-  //         this.scroller.scrollToPosition([0, 320]);
-  //         this.auxMascara = true;
-  //         break;
-  //       case 3:
-  //         this.scroller.scrollToPosition([0, 870]);
-  //         break;
-  //     }
-  //   }
-  // }
 
   goTo(opcion:number) {
     if (this.isBrowser) {
@@ -174,15 +158,24 @@ export class InicioComponent {
   }
 
   obtenerPosicion() {
+    let element1 = document.getElementById('seccion1')!.clientHeight;
+    let element2 = document.getElementById('seccion2')!.clientHeight;
+    let validaOpcion3 = 0;
+    if(this.celular){
+      validaOpcion3 = element1 + element2
+    }else{
+      validaOpcion3 = element2;
+    }
+
     if (this.isBrowser) {
       let pos = this.scroller.getScrollPosition();
-    if (pos[1] < 250) {
+    if (pos[1] < element1) {
       this.menuSeleccionado = 1;
       this.auxMascara = false;
-    } else if (pos[1] < 650 && pos[1] > 250) {
+    } else if (pos[1] < validaOpcion3 && pos[1] > element1) {
       this.menuSeleccionado = 2;
       this.auxMascara = true;
-    } else if (pos[1] > 650) {
+    } else if (pos[1] > validaOpcion3 ) {
       this.menuSeleccionado = 3;
       this.auxMascara = false;
     }
