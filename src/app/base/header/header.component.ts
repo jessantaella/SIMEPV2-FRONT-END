@@ -33,16 +33,18 @@ export class HeaderComponent {
 
   constructor(private servicio: DataDynamic, private router: Router, private titleService: Title,@Inject(DOCUMENT) private document: Document,@Inject(PLATFORM_ID) private platformId:any) {
     this.isBrowser = isPlatformBrowser(this.platformId);
-    this.consultarData();
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
+    if(this.isBrowser){
+      this.consultarData();
+      this.router.events.subscribe((event: any) => {
+        if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
-      }
-    });
-
+        }
+      });
+    }
   }
 
   consultarData() {
+    if(this.isBrowser){
     this.servicio.getInformacion()
       .pipe(
         tap((res) => {
@@ -51,7 +53,7 @@ export class HeaderComponent {
           this.opciones = res.simeps.opciones;
           this.redes = res.generales.redes;
           this.minWrap = res.simeps.configuracion.minimoWrap;
-          this.cambiarPagina()
+          this.cambiarPagina();
         })
       )
       .subscribe({
@@ -66,27 +68,38 @@ export class HeaderComponent {
           // Manejo de errores si es necesario.
         },
       });
+    }
   }
 
   cambiarTitulo(nombre: string) {
-    this.titleService.setTitle(this.simeps?.sistemaCorto + "-" + nombre);
+    if(this.isBrowser){
+    this.titleService.setTitle(this.simeps?.sistemaCorto + " | " + nombre);
+    }
   }
 
   cambiarPagina() {
-    this.opciones.forEach((opc:any)=>{
-      if(opc.url === this.currentRoute){
-        this.cambiarTitulo(opc.nombre);
-      }
-    });
-
+    if(this.isBrowser){
+      this.opciones?.forEach((opc: any) => {
+        if (opc.url === this.currentRoute) {
+          this.cambiarTitulo(opc.nombre);
+        }else if(this.currentRoute === '/'){
+            this.cambiarTitulo(this.opciones[0].nombre);
+        }
+      });
+    }
   }
 
   cortarNombre(nombreCorto: string) {
     return nombreCorto?.substring(0, 11);
   }
 
-  opcionSeleccionada(ruta: string) {
-    return ruta === this.currentRoute || (ruta === "/inicio" && this.currentRoute === "/");
+  opcionSeleccionada(ruta: string,pos:number) {
+    if(ruta === this.currentRoute){
+      return true;
+    }else if(this.currentRoute === '/' && pos ===0){
+      return true
+    }
+    return false;
   }
 
   otraFuncion() {
