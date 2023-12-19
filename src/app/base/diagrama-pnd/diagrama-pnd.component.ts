@@ -136,10 +136,12 @@ export class DiagramaPndComponent {
   mascara() {
     this.mostrarMascara = true;
     this.timeLeft = 8;
-    //this.startTimer();
+    this.startTimer();
   }
   ocultarMascara() {
     this.mostrarMascara = false;
+    this.timeLeft = 8;
+    clearInterval(this.interval);
   }
 
   eventoPND() {

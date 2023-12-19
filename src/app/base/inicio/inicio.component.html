@@ -33,7 +33,7 @@
         </div>
     </div>
 </div>
-<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}" id="total">
+<div class="m-auto w-100 contendorInicial" (wheel)="obtenerPosicion()" (scroll)="obtenerPosicion()" [ngStyle]="{'padding-top':alto+'px'}" id="total">
     <div class="h-75 overflow">
         <table class="table table-borderless mt-4" id="seccion1">
             <caption></caption>

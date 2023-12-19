@@ -13,6 +13,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {APP_BASE_HREF} from '@angular/common';
+import { WINDOW_PROVIDERS } from './base/services/window.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {APP_BASE_HREF} from '@angular/common';
     HttpClientModule,
     AccordionModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/SIMEPS/'}],
+  providers: [{provide: APP_BASE_HREF, useValue: '/SIMEPS/'},WINDOW_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

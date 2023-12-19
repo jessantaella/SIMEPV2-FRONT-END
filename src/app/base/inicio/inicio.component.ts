@@ -1,8 +1,8 @@
-import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from "@angular/core";
-import { ViewportScroller, isPlatformBrowser } from "@angular/common";
+import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild, HostListener } from "@angular/core";
+import { DOCUMENT, ViewportScroller, isPlatformBrowser } from "@angular/common";
 import { DataDynamic } from "../services/dinamic-data.services";
-import { getWindow } from "ssr-window";
-import { BreakpointObserver, BreakpointState, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
+import { WINDOW } from "../services/window.service";
 
 @Component({
   selector: "app-inicio",
@@ -28,6 +28,8 @@ export class InicioComponent {
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private breakpointObserver: BreakpointObserver,
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(WINDOW) private window: Window,
     @Inject(PLATFORM_ID) private platformId:any
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -51,6 +53,7 @@ export class InicioComponent {
 
   ngOnInit(): void {
     if (this.isBrowser) {
+    document.body.scrollTop = 0;
     let pos = this.scroller.getScrollPosition();
     if (pos[1] > 0) {
       this.scroller.scrollToPosition([0, 0]);
@@ -66,6 +69,15 @@ export class InicioComponent {
     }, 10);
     }
   }
+
+  @HostListener("window:scroll", ['$event'])
+  onWindowScroll() {
+    if (this.isBrowser) {
+    const offset = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    this.obtenerPosicion();
+    }
+  }
+
 
   consultarData() {
     this.servicio.getInformacion().subscribe((res) => {
@@ -160,6 +172,7 @@ export class InicioComponent {
   obtenerPosicion() {
     let element1 = document.getElementById('seccion1')!.clientHeight;
     let element2 = document.getElementById('seccion2')!.clientHeight;
+
     let validaOpcion3 = 0;
     if(this.celular){
       validaOpcion3 = element1 + element2
@@ -172,7 +185,7 @@ export class InicioComponent {
     if (pos[1] < element1) {
       this.menuSeleccionado = 1;
       this.auxMascara = false;
-    } else if (pos[1] < validaOpcion3 && pos[1] > element1) {
+    } else if (pos[1] < validaOpcion3 && pos[1] >= element1) {
       this.menuSeleccionado = 2;
       this.auxMascara = true;
     } else if (pos[1] > validaOpcion3 ) {

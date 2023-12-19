@@ -50,6 +50,7 @@ export class HeaderComponent {
           this.simeps = res.simeps;
           this.opciones = res.simeps.opciones;
           this.redes = res.generales.redes;
+          this.minWrap = res.simeps.configuracion.minimoWrap;
           this.cambiarPagina()
         })
       )
@@ -140,6 +141,15 @@ export class HeaderComponent {
     }, 1_000);
   }
 
-  
+  obtenerPalabraLarga(texto:string){
+    let palabras = texto.split(' ');
+    let tamañoLargo = 0;
+    palabras.forEach(i=>{
+      if(i.length> tamañoLargo){
+        tamañoLargo = i.length;
+      }
+    })
+    return tamañoLargo;
+  }
 
 }

@@ -6,11 +6,11 @@
     <a class="navbar-brand d-flex flex-column mx-0 py-0" target="_blank" [href]="generales?.logos?.header?.url" >
       <img [src]="generales?.logos.header?.logoConevalHeader" class="logoConeval"
         [alt]="generales?.logos.header?.alt" />
-        <img alt="logos" [src]="generales?.logos?.fraseConeval?.logoConevalHeader" width="200" classs="mt-5" />
+        <img alt="logos" [src]="generales?.logos?.fraseConeval?.logoConevalHeader" width="180" classs="mt-5" />
     </a>
     <ul class="list-unstyled d-flex justify-content-evenly w-100 ps-4 links color-menu my-0">
       <li *ngFor="let item of opciones" class="nav-item opt-text mx-1" style="min-width: 8rem !important;"
-        [ngClass]="{'opcionseleccionada':opcionSeleccionada(item?.url),'text-wrap':item?.nombre?.length<6,'text-break':item?.nombre?.length>6}">
+        [ngClass]="{'opcionseleccionada':opcionSeleccionada(item?.url),'text-wrap':obtenerPalabraLarga(item?.nombre)<=minWrap,'text-break':obtenerPalabraLarga(item?.nombre)>minWrap}">
         <a class="nav-link text-light" [href]="item?.url" *ngIf="!item.interna" >{{item?.nombre}}</a>
         <a class="nav-link text-light" [routerLink]="[item?.url]" *ngIf="item.interna">{{item?.nombre}}</a>
       </li>
