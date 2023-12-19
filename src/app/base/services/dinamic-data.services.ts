@@ -19,13 +19,10 @@ constructor(private http:HttpClient,@Inject(PLATFORM_ID) private platformId:any)
   getInformacion(): Observable<any> {
     const headers = new HttpHeaders()
     this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
+    
     //const url:string = "http://127.0.0.1:5500/dist/configuracion.json";
     const url:string = this.servidor;
     return this.http.get<any>(url,{ headers: headers });
-    }else{
-      const url:string = this.servidor;
-      return this.http.get<any>(url,{ headers: headers });
-    }
+    
   }
 }
