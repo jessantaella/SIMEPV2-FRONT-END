@@ -3,6 +3,7 @@ import { DOCUMENT, ViewportScroller, isPlatformBrowser } from "@angular/common";
 import { DataDynamic } from "../services/dinamic-data.services";
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { WINDOW } from "../services/window.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-inicio",
@@ -24,6 +25,8 @@ export class InicioComponent {
   main!: ElementRef;
   alto = 100;
 
+  flechaBtn ="";
+  lineaCnvl = "";
   constructor(
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
@@ -35,6 +38,8 @@ export class InicioComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     if (this.isBrowser) {
+      this.flechaBtn = environment.recursos+"Flecha-Boton.png";
+      this.lineaCnvl = environment.recursos+"Linea-Coneval.png";
       this.breakpointObserver
       .observe(["(max-width: 768px)"])
       .subscribe((result: BreakpointState) => {
@@ -80,10 +85,12 @@ export class InicioComponent {
 
 
   consultarData() {
-    this.servicio.getInformacion().subscribe((res) => {
-      this.nombreSistema = res?.simeps?.sistema;
-      this.redes = res.generales.redes;
-    });
+    if(this.isBrowser){
+      this.servicio.getInformacion().subscribe((res) => {
+        this.nombreSistema = res?.simeps?.sistema;
+        this.redes = res.generales.redes;
+      });
+    }
   }
 
   goTo(opcion:number) {

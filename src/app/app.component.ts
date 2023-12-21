@@ -37,21 +37,24 @@ export class AppComponent{
   }
 
   consultarTags(){
-    this.servicio.getInformacion().subscribe(
-      res=>{
-        this.tags = res.simeps?.metas;
-        this.ga = res.simeps?.ga?.url;
-        if (this.isBrowser) {
-          this.cargaGA();
-        }
-        this.addTags();
-      }
-    )
+    if(this.isBrowser){
+      this.servicio.getInformacion().subscribe(
+        res=>{
+          this.tags = res.simeps?.metas;
+          this.ga = res.simeps?.ga?.url;
+          if (this.isBrowser) {
+            this.cargaGA();
+          }
+          this.addTags();
+        })
+    }
    }
 
    addTags(){
-    this.tags.forEach((tg: { name: any; content: any; }) => {
-      this.meta.addTag({ name: tg.name , content: tg.content});
-    });
+    if(this.isBrowser){
+      this.tags.forEach((tg: { name: any; content: any; }) => {
+        this.meta.addTag({ name: tg.name , content: tg.content});
+      });
+    }
    }
 }

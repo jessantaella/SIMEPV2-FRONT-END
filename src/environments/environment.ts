@@ -1,7 +1,8 @@
 export const environment = {
     production: true,
-    servidor:'http://10.1.15.180:81/',
-    simepsViejo:'http://devnet.coneval.org.mx:84/'
+    servidor : "https://qa.coneval.org.mx",
+    simepsViejo:'https://qa.coneval.org.mx/',
+    recursos:'https://qa.coneval.org.mx/conf/SIMEPS/img/'
 };
 //servidor:'http://10.1.15.180:81/', //LOCAL
 //servidor : "http://10.1.15.102:81", //DEV

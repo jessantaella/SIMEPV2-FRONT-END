@@ -6,10 +6,12 @@ import * as express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppServerModule } from './src/main.server';
+const cors = require("cors");
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
+
   const distFolder = join(process.cwd(), '/SIMEPS/browser');  //Despliegue
   //const distFolder = join(process.cwd(), 'dist/simeps/browser'); //LOCAL
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -18,6 +20,14 @@ export function app(): express.Express {
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule
   }));
+
+
+  server.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://qa.coneval.org.mx"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
@@ -29,8 +39,9 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
+
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
+  server.get('*',(req, res) => {
     console.log(`APP_BASE_REF = ${APP_BASE_HREF}`);
     console.log(`req.baseUrl = ${req.baseUrl}`); 
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });

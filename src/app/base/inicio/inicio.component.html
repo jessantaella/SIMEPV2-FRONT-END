@@ -15,21 +15,21 @@
         'font-size': regresaEstilosMenu(1).font
       }" (click)="goTo(1)">
             ¿Qué es el monitoreo?
-            <img alt="flecha" *ngIf="menuSeleccionado === 1" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha" *ngIf="menuSeleccionado === 1" [src]="flechaBtn" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(2).color,
         'font-size': regresaEstilosMenu(2).font
       }" (click)="goTo(2)">
             ¿Qué monitorea el CONEVAL?
-            <img alt="flecha2" *ngIf="menuSeleccionado === 2" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha2" *ngIf="menuSeleccionado === 2" [src]="flechaBtn" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(3).color,
         'font-size': regresaEstilosMenu(3).font
       }" (click)="goTo(3)">
             ¿Qué es el SIMEPS?
-            <img alt="flecha3" *ngIf="menuSeleccionado === 3" [src]="'assets/img/Flecha-Boton.png'" class="selectorOpcion" />
+            <img alt="flecha3" *ngIf="menuSeleccionado === 3" [src]="flechaBtn" class="selectorOpcion" />
         </div>
     </div>
 </div>
@@ -76,7 +76,7 @@
                 </tr>
             </tbody>
         </table>
-        <img alt="pnd" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="pnd" />
+        <img alt="pnd" [src]="lineaCnvl" class="mx-auto d-block separadorConeval" id="pnd" />
         <table class="table table-borderless" id="seccion2">
             <caption></caption>
             <th id="th2" class="p-0"></th>
@@ -88,7 +88,7 @@
                 </tr>
             </tbody>
         </table>
-        <img alt="simeps" [src]="'assets/img/Linea-Coneval.png'" class="mx-auto d-block separadorConeval" id="simeps" />
+        <img alt="simeps" [src]="lineaCnvl" class="mx-auto d-block separadorConeval" id="simeps" />
         <table class="table table-borderless mt-2" id="seccion3">
             <caption></caption>
             <th id="th3" class="p-0"></th>
