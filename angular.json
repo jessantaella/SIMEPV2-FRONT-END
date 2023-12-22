@@ -18,7 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/simeps/browser",
+            "outputPath": "dist/SIMEPS/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -106,7 +106,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/simeps/server",
+            "outputPath": "dist/SIMEPS/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
