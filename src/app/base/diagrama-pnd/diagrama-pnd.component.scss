@@ -7,7 +7,8 @@
 .mascara {
   width: 100%;
   height: 742px;
-  background: url("https://sistemas.coneval.org.mx/conf/SIMEPS/img/mascara.png") no-repeat center;  
+  //background: url("https://qa.coneval.org.mx/conf/SIMEPS/img/mascara.png") no-repeat center;  
+  background: rgba(0, 0, 0, .55);
   text-align: center;
   margin: auto;
   animation: fadeIn 3s;
@@ -15,7 +16,11 @@
   -moz-animation: fadeIn 3s;
   -o-animation: fadeIn 3s;
   -ms-animation: fadeIn 3s;
-  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 @keyframes fadeIn {
@@ -190,13 +195,13 @@ ul{list-style: none;}
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.politicas {
+/*.politicas {
   font-family: 'Pencil Tool', sans-serif;
   font-size: 20px;
   width: 100px;
   padding-top: 20%;
   margin-left: 5%;
-}
+}*/
 
 .interactua {
   border-color: #3F63B5;
@@ -210,3 +215,123 @@ ul{list-style: none;}
   width: 2px;
   background-color: black;
 }
+
+/* Inicia versión de Mascara sin svg como fondo*/
+
+.politicas{
+  font-family: 'Ink Free', sans-serif;
+  position: absolute;
+  color:white;
+  margin-top:7%;
+  margin-left: 7%;
+  background: #398249;
+  align-items: center;
+  text-align: center;
+}
+.politicasSpan{
+  margin: 2%;
+  font-size: 20px;
+}
+
+.imgPoliticas{
+  margin-top: 10%;
+  margin-left:30%;
+  position: absolute;
+}
+
+.programas{
+  font-family: 'Ink Free', sans-serif;
+  position: absolute;
+  color:white;
+  margin-top:37%;
+  margin-left: 7%;
+  background: #53558F;
+ align-items: center;
+ text-align: center;
+}
+.programasSpan{
+  margin: 1%;
+  font-size: 20px;
+}
+.imgProgramas{
+  margin-top: 10%;
+  margin-left:30%;
+  position: absolute;
+}
+
+.fondos{
+  font-family: 'Ink Free', sans-serif;
+  position: absolute;
+  color:white;
+  margin-top:37%;
+  margin-left: 70%;
+  background: #1C6173;
+ align-items: center;
+ text-align: center;
+}
+.fondosSpan{
+  margin: 1%;
+  font-size: 20px;
+}
+.imgFondos{
+  margin-top: 10%;
+  margin-left:-70%;
+  position: absolute;
+}
+
+
+
+/*@media(min-width: 600px) and (max-width: 900px){
+  .politicas{
+    margin-top:20%;
+    margin-left: 7%;
+  }
+  .imgPoliticas{
+    margin-top: 30%;
+    margin-left:-25%;
+  }
+
+}
+@media(min-width: 901px) and (max-width: 1040px){
+  .politicas{
+    margin-top:10%;
+    margin-left: 7%;
+  }
+  .imgPoliticas{
+    margin-top: 20%;
+    margin-left:-30%;
+  }
+}
+@media(min-width: 1041px) and (max-width: 1299px){
+  .politicas{
+    margin-top:7%;
+    margin-left: 7%;
+  }
+  .imgPoliticas{
+    margin-top: 15%;
+    margin-left:-30%;
+  }
+}
+@media(min-width: 1300px) and (max-width: 1800px){
+  .politicas{
+    margin-top:7%;
+    margin-left: 7%;
+  }
+  .imgPoliticas{
+    margin-top: 10%;
+    margin-left:-30%;
+  }
+  }
+
+  @media(min-width: 1801px) {
+    .politicas{
+      margin-top:4%;
+      margin-left: 28%;
+    }
+    .imgPoliticas{
+      margin-top: 7%;
+      margin-left:-15%;
+    }
+    }
+*/
+

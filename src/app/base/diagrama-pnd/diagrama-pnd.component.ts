@@ -122,7 +122,7 @@ export class DiagramaPndComponent {
   }
 
   startTimer() {
-    this.interval = setInterval(() => {
+    /*this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
@@ -130,11 +130,11 @@ export class DiagramaPndComponent {
         clearInterval(this.interval);
         this.timeLeft = 8;
       }
-    }, 1000);
+    }, 1000);*/
   }
 
   mascara() {
-    this.mostrarMascara = true;
+    this.mostrarMascara = !this.mostrarMascara;
     this.timeLeft = 8;
     this.startTimer();
   }

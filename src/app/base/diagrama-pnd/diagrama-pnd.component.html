@@ -10,10 +10,8 @@
         </button>
     </div>
 </div>
-<div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="100%" (click)="ocultarMascara()">
-</div>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%"
-    height="742px" viewBox="-0.5 -0.5 959 742" *ngIf="!mostrarMascara && !mostrarMovil">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%"
+    height="742px" viewBox="-0.5 -0.5 959 742" *ngIf="!mostrarMovil">
     <g>
         <path d="M 471.5 347.24 L 471.5 392.7 L 706.5 392.7 L 706.5 430" fill="none" stroke="rgb(0, 0, 0)"
             stroke-width="2" stroke-miterlimit="10" pointer-events="stroke" />
@@ -338,7 +336,31 @@
             </text>
         </a>
     </switch>
+    <foreignObject x="0" y="0" width="100%" height="100%">
+        <div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="100%" (click)="ocultarMascara()">
+            <div class="politicas text-center ">
+                <span class="politicasSpan">
+                    Módulo de politicas
+                </span>
+                <img src="../../../assets/img/Flechapoliticas.png" class="imgPoliticas">
+
+            </div>
+            <div class="programas text-center ">
+                <span class="programasSpan">
+                    Módulo de programas y acciones
+                </span>
+                <img src="../../../assets/img/Flechapoliticas.png" class="imgProgramas">
+            </div>
+            <div class="fondos text-center ">
+                <span class="fondosSpan">
+                    Módulo de Fondos de Ramo 33
+                </span>
+                <img src="../../../assets/img/Flechamodulo.png" class="imgFondos">
+            </div>
+        </div>
+    </foreignObject>
 </svg>
+
 
 <div class="container vistaMovil" *ngIf="mostrarMovil">
     <div class="tituloDiagrama m-0">Interactua con los módulos</div>
