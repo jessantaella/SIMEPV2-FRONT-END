@@ -14,21 +14,21 @@
         color: regresaEstilosMenu(1).color,
         'font-size': regresaEstilosMenu(1).font
       }" (click)="goTo(1)">
-            ¿Qué es el monitoreo?
+            <strong>¿Qué es el monitoreo?</strong>
             <img alt="flecha" *ngIf="menuSeleccionado === 1" [src]="flechaBtn" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(2).color,
         'font-size': regresaEstilosMenu(2).font
       }" (click)="goTo(2)">
-            ¿Qué monitorea el CONEVAL?
+            <strong>¿Qué monitorea el CONEVAL?</strong>
             <img alt="flecha2" *ngIf="menuSeleccionado === 2" [src]="flechaBtn" class="selectorOpcion" />
         </div>
         <div class="opcionPregunta text-wrap" [ngStyle]="{
         color: regresaEstilosMenu(3).color,
         'font-size': regresaEstilosMenu(3).font
       }" (click)="goTo(3)">
-            ¿Qué es el SIMEPS?
+            <strong>¿Qué es el SIMEPS?</strong>
             <img alt="flecha3" *ngIf="menuSeleccionado === 3" [src]="flechaBtn" class="selectorOpcion" />
         </div>
     </div>
@@ -44,12 +44,12 @@
                         <div class="parrafoInformativo" id="monitoreo">
                             <p>
                                 El monitoreo es el
-                                <span class="resalteNormal">proceso continuo y sistemático de recolección, generación y
-                                    análisis de información</span>, para brindar orientación acerca del
-                                <span class="resalteNormal">progreso en el logro de objetivos de una intervención
-                                    pública</span>, analizando tanto los
-                                <span class="resalteNormal">resultados esperados</span> como la
-                                <span class="resalteNormal">entrega de bienes o servicios</span>. Asimismo, proporciona
+                                proceso continuo y sistemático de recolección, generación y
+                                    análisis de información, para brindar orientación acerca del
+                                progreso en el logro de objetivos de una intervención
+                                    pública, analizando tanto los
+                               resultados esperados como la
+                                entrega de bienes o servicios. Asimismo, proporciona
                                 insumos para la toma de decisiones que
                                 contribuyan a mejorar la gestión de dichas intervenciones.
                             </p>
@@ -59,7 +59,7 @@
                 <tr>
                     <td>
                         <div class="parrafoInformativo">
-                            Para el <span class="resalteNormal">CONEVAL</span>, este proceso
+                            Para el CONEVAL, este proceso
                             tiene como finalidad valorar el cumplimiento de los objetivos del
                             <span class="resaltePND">Plan Nacional de Desarrollo y sus programas derivados</span>, de
                             los

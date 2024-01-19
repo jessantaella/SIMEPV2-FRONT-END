@@ -41,6 +41,8 @@ export class DiagramaPndComponent {
 
   @Input() mascaraActiva = false;
 
+  vecesAbiertaMask = 0;
+
   tamanioSecciones = [
     { height: "60.26", heightOriginal: "234.26" },
     { height: "50.26", heightOriginal: "125" },
@@ -117,12 +119,13 @@ export class DiagramaPndComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["mascaraActiva"].currentValue && !this.mostrarMascara) {
-      this.mascara();
+      //this.mascara();
+      this.mascaraAutomatica();
     }
   }
 
   startTimer() {
-    /*this.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
@@ -130,13 +133,26 @@ export class DiagramaPndComponent {
         clearInterval(this.interval);
         this.timeLeft = 8;
       }
-    }, 1000);*/
+    }, 1000);
+  }
+
+  mascaraAutomatica(){
+    this.vecesAbiertaMask ++ ;
+    if(this.vecesAbiertaMask<=1){
+      clearInterval(this.interval);
+      this.timeLeft = 8;
+      this.startTimer();
+      this.mostrarMascara = true;
+    }
   }
 
   mascara() {
     this.mostrarMascara = !this.mostrarMascara;
-    this.timeLeft = 8;
-    this.startTimer();
+    if(this.mostrarMascara){
+      clearInterval(this.interval);
+      this.timeLeft = 8;
+      this.startTimer();
+    }
   }
   ocultarMascara() {
     this.mostrarMascara = false;
