@@ -336,8 +336,8 @@
             </text>
         </a>
     </switch>
-    <foreignObject x="0" y="0" width="100%" height="100%">
-        <div class="mascara" *ngIf="mostrarMascara && !mostrarMovil" width="100%" (click)="ocultarMascara()">
+    <foreignObject x="0" y="0" width="100%" height="100%"  *ngIf="mostrarMascara && !mostrarMovil" >
+        <div class="mascara"width="100%" (click)="ocultarMascara()">
             <div class="politicas text-center ">
                 <span class="politicasSpan">
                     Módulo de politicas
