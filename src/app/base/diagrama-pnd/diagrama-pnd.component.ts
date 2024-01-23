@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
+import { Component, Inject, Input, OnInit, PLATFORM_ID, SimpleChanges } from "@angular/core";
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { ServicesBaseService } from "../services/services-base.service";
 import { environment } from "src/environments/environment";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: "app-diagrama-pnd",
@@ -38,6 +39,11 @@ export class DiagramaPndComponent {
   mostrarPnd = false;
   mostrarFederales = false;
   mostrarRamo = false;
+
+  isBrowser = false;
+
+  flechapoliticas = "";
+  flechamodulo = "";
 
   @Input() mascaraActiva = false;
 
@@ -102,8 +108,10 @@ export class DiagramaPndComponent {
   public innerWidth: any;
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private base: ServicesBaseService
+    private base: ServicesBaseService,
+    @Inject(PLATFORM_ID) private platformId:any
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.breakpointObserver
       .observe(["(max-width: 768px)"])
       .subscribe((result: BreakpointState) => {
@@ -113,6 +121,11 @@ export class DiagramaPndComponent {
           this.mostrarMovil = false;
         }
       });
+
+      if (this.isBrowser) {
+        this.flechapoliticas = environment.recursos + "Flechapoliticas.png";
+        this.flechamodulo = environment.recursos + "Flechamodulo.png";
+      }
   }
 
   ngOnInit(): void {}
