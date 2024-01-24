@@ -42,8 +42,8 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*',(req, res) => {
-    console.log(`APP_BASE_REF = ${APP_BASE_HREF}`);
-    console.log(`req.baseUrl = ${req.baseUrl}`); 
+    //console.log(`APP_BASE_REF = ${APP_BASE_HREF}`);
+    //console.log(`req.baseUrl = ${req.baseUrl}`); 
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 

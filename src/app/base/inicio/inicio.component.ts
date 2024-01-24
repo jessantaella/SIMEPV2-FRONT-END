@@ -15,7 +15,7 @@ export class InicioComponent {
   menuSeleccionado = 1;
   redes: any;
   nombreSistema: any;
-  coloresTitulos = ["#21409A", "#00A94F", "#21409A"];
+  coloresTitulos = ["#21409A", "#21409A", "#21409A"];
   auxMascara = false;
   fontSizeTitulo = "24px";
   fontSizeTituloNormal = "20px";
@@ -177,19 +177,20 @@ export class InicioComponent {
   }
 
   obtenerPosicion() {
-    let element1 = document.getElementById('seccion1')!.clientHeight;
-    let element2 = document.getElementById('seccion2')!.clientHeight;
+    let element1 = document.getElementById('seccion1')!.scrollTop;
+    let element2 = document.getElementById('seccion2')!.scrollTop;
 
     let validaOpcion3 = 0;
     if(this.celular){
       validaOpcion3 = element1 + element2
     }else{
-      validaOpcion3 = element2;
+      validaOpcion3 = element2+500;
     }
 
     if (this.isBrowser) {
       let pos = this.scroller.getScrollPosition();
-    if (pos[1] < element1) {
+      console.log('->',pos)
+    if (pos[1] < element1 || pos[1] === 0)  {
       this.menuSeleccionado = 1;
       this.auxMascara = false;
     } else if (pos[1] < validaOpcion3 && pos[1] >= element1) {
