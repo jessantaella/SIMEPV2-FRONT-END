@@ -180,13 +180,16 @@ export class InicioComponent {
     let element1 = document.getElementById('seccion1')!.clientHeight;
     let element2 = document.getElementById('seccion2')!.clientHeight;
 
+
     let validaOpcion3 = 0;
     if(this.celular){
       validaOpcion3 = element1 + element2;
     }else{
-      validaOpcion3 = element2+500;
+      validaOpcion3 = element2-400;
     }
-
+    if(this.celular){
+      element1 = element1-100
+    }
     if (this.isBrowser) {
       let pos = this.scroller.getScrollPosition();
     if (pos[1] < element1 || pos[1] === 0)  {
