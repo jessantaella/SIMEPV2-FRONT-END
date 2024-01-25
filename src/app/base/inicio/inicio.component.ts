@@ -142,7 +142,7 @@ export class InicioComponent {
           this.auxMascara = true;
           break;
         case 3:
-          this.scroller.scrollToPosition([0, 870]);
+          this.scroller.scrollToPosition([0, 1200]);
           break;
       }
     }
@@ -156,7 +156,7 @@ export class InicioComponent {
           this.scroller.scrollToPosition([0, 0]);
           break;
         case 2:
-          this.scroller.scrollToPosition([0, 840]);
+          this.scroller.scrollToPosition([0, 950]);
           this.auxMascara = true;
           break;
         case 3:
@@ -211,7 +211,6 @@ export class InicioComponent {
       let opciones= ['seccion1', 'seccion2', 'seccion3'];
       let opcionVisible: string = '';
   
-      const scrollPosition = this.scroller.getScrollPosition();
       const windowHeight = window.innerHeight;
   
       for (const opcion of opciones) {
@@ -220,23 +219,29 @@ export class InicioComponent {
           const rect = element.getBoundingClientRect();
           if (rect.top >= 0 && rect.bottom <= windowHeight) {
             opcionVisible = opcion;
+            console.log('->',opcionVisible)
             switch(opcionVisible){
               case 'seccion1':
                 this.menuSeleccionado = 1;
-        this.auxMascara = false;
+                this.auxMascara = false;
               break;
               case 'seccion2':
                 this.menuSeleccionado = 2;
                 this.auxMascara = true;
-                break;
-                case 'seccion3':
-                  this.menuSeleccionado = 3;
-                  this.auxMascara = false;
-                  break;
+              break;
+              case 'seccion3':
+                this.menuSeleccionado = 3;
+                this.auxMascara = false;
+              break;
             }
             break;
           }
         }
+      }
+
+      if(this.scroller.getScrollPosition()[1]<300){
+        this.menuSeleccionado = 1;
+        this.auxMascara = false;
       }
     }
    
