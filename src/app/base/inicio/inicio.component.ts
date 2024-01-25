@@ -138,11 +138,11 @@ export class InicioComponent {
           this.scroller.scrollToPosition([0, 0]);
           break;
         case 2:
-          this.scroller.scrollToPosition([0, 350]);
+          this.scroller.scrollToPosition([0, 450]);
           this.auxMascara = true;
           break;
         case 3:
-          this.scroller.scrollToPosition([0, 1200]);
+          this.scroller.scrollToPosition([0, 1300]);
           break;
       }
     }
@@ -219,7 +219,6 @@ export class InicioComponent {
           const rect = element.getBoundingClientRect();
           if (rect.top >= 0 && rect.bottom <= windowHeight) {
             opcionVisible = opcion;
-            console.log('->',opcionVisible)
             switch(opcionVisible){
               case 'seccion1':
                 this.menuSeleccionado = 1;
