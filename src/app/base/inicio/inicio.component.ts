@@ -212,7 +212,6 @@ export class InicioComponent {
       let opcionVisible: string = '';
   
       const scrollPosition = this.scroller.getScrollPosition();
-      console.log(scrollPosition)
       const windowHeight = window.innerHeight;
   
       for (const opcion of opciones) {
