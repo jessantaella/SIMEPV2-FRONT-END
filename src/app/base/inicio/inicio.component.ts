@@ -12,6 +12,7 @@ import { DataDynamic } from '../services/dinamic-data.services';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -43,6 +44,7 @@ export class InicioComponent {
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private breakpointObserver: BreakpointObserver,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window,
     @Inject(PLATFORM_ID) private platformId: any
@@ -70,6 +72,8 @@ export class InicioComponent {
 
   ngOnInit(): void {
     if (this.isBrowser) {
+      window.history.replaceState(null, '', '/');
+      this.router.navigateByUrl('/');
       document.body.scrollTop = 0;
       let pos = this.scroller.getScrollPosition();
       if (pos[1] > 0) {
@@ -138,11 +142,11 @@ export class InicioComponent {
           this.scroller.scrollToPosition([0, 0]);
           break;
         case 2:
-          this.scroller.scrollToPosition([0, 450]);
+          this.scroller.scrollToPosition([0, 350]);
           this.auxMascara = true;
           break;
         case 3:
-          this.scroller.scrollToPosition([0, 1300]);
+          this.scroller.scrollToPosition([0, 1200]);
           break;
       }
     }

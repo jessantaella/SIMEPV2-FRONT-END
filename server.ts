@@ -6,7 +6,14 @@ import * as express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AppServerModule } from './src/main.server';
+import { environment } from './src/environments/environment'; // Importa el entorno aquí
+import { enableProdMode } from '@angular/core';
+
 const cors = require("cors");
+// Habilita el modo de producción si estás en producción
+if (environment.production) {
+  enableProdMode();
+}
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -46,6 +53,16 @@ export function app(): express.Express {
     //console.log(`req.baseUrl = ${req.baseUrl}`); 
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
+
+// Carga el archivo de entorno y lo hace accesible en toda la aplicación Express
+  // Carga el archivo de entorno y lo hace accesible en toda la aplicación Express
+  server.locals['environment'] = environment;
+  console.log('server->',server.locals['environment'].server);
+
+  server.all('*', function(req, res) {
+    res.redirect(301,server.locals['environment'].server+'/SIMEPS');
+  });
+
 
   return server;
 }
