@@ -180,8 +180,11 @@ export class DiagramaPndComponent {
     window.location.href = environment.simepsViejo + "_SIMEPS/MosaicoSips.aspx";
   }
   eventoRamo() {
-    window.location.href =
-      environment.simepsViejo + "_SIMEPS/HomeRamo33.aspx?pCiclo=2023";
+    //if (this.isBrowser) {
+      //let anio = new Date()
+      window.location.href =
+        environment.simepsViejo + "_SIMEPS/HomeRamo33.aspx?pCiclo=2023";
+    //}
   }
 
   mostrarSeccion(opcion: number) {
@@ -196,7 +199,6 @@ export class DiagramaPndComponent {
     } else if (tipo === 3) {
       this.mostrarRamo = !this.mostrarRamo;
     }
-    console.log(this.mostrarPnd);
   }
 
   obtenerTamanio(tipo: number) {
