@@ -1,0 +1,116 @@
+.titulo{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #278148;
+}
+
+.texto{
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    text-align: justify;
+}
+
+.estilo-encabezado{
+    height: 2rem; 
+    background: #27B052; 
+    color: white;
+    border: 3px solid black;
+}
+
+.estilo-boton{
+    background-color: #00876f;
+    color: white;
+    border: 3px solid black;
+}
+
+.border-derecho{
+    border-right: 5px solid white;
+}
+
+.borde-abajo{
+    border-bottom: 3px solid white;
+
+}
+
+.estilo-texto-div{
+    color: white;
+}
+
+@media(min-width: 1200px){
+    .dispositivosCuadros{
+        width: 25%;
+    }
+}
+
+@media(min-width: 992px) and (max-width: 1199px){
+    .dispositivosCuadros{
+        width: 30% !important;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px){
+    .dispositivosCuadros{
+        width: 60%;
+    }
+}
+
+@media(max-width: 767px){
+    .dispositivosCuadros{
+        width: 80%;
+    }
+}
+
+@media ( min-width: 1200px){
+    .imagen-principal{  
+        width: 80%;
+    }
+    
+    .subimagen{
+        width: 100%;
+    }  
+
+    .subimagen-1{
+        width: 110%;
+    }  
+}
+
+@media (min-width: 768px) and ( max-width: 1199px){
+    .imagen-principal{  
+        width: 80%;
+    }
+    
+    .subimagen{
+        width: 80%;
+    }
+    .subimagen-1{
+        width: 80%;
+    }
+}
+
+@media (min-width: 576px) and ( max-width: 767px){
+    .imagen-principal{  
+        width: 80%;
+    }
+    
+    .subimagen{
+        width: 80%;
+    }  
+    .subimagen-1{
+        width: 80%;
+    } 
+}
+
+@media (max-width: 575px){
+    .imagen-principal{  
+        width: 80%;
+    }
+    
+    .subimagen{
+        width: 70%;
+    }  
+    .subimagen-1{
+        width: 70%;
+    } 
+}

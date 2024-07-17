@@ -1,8 +1,9 @@
-<div class="position-fixed w-100 bg-white"  #main>
-    <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+<div class="position-fixed w-100 bg-white" #main>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
         <div id="divOcultarRedes" class="social-icons redesInternas">
-            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img" [alt]="red?.alt"
-                    class="iconoRed" /></a>
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
         </div>
         <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{
             nombreSistema

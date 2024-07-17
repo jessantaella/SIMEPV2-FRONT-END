@@ -1,0 +1,124 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'90%'}" id="total" id="padre">
+    <div class="column col-12 text-center p-0">
+        <span class="titulo my-2">¿Qué puedes encontrar en el Módulo de planeación nacional?</span>
+        <p class="texto my-2">En este módulo podrás encontrar la información derivada del monitoreo de los programas, 
+            objetivos e indicadores de la planeación nacional del desarrollo, 
+            por administración pública sexenal, desde 2013. 
+        </p>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-6 col-sm-12 text-center">
+            <span class="titulo my-2 mx-2">¿Qué es la planeación nacional del desarrollo?</span>
+            <p class="texto my-2 me-4">
+                La planeación nacional del desarrollo es el ordenamiento racional y 
+                sistemático de las acciones del gobierno con el propósito de fomentar el desarrollo social y 
+                económico del país en el largo plazo. Se compone por el documento del Plan Nacional de Desarrollo (PND), 
+                y sus <strong>programas derivados.</strong>
+            </p>
+        </div>
+        <div class="col-md-6 col-sm-12 text-center">
+            <span class="titulo my-2 mx-2">Plan Nacional de Desarrollo y los programas derivados</span>
+            <p class="texto my-2 ms-4">
+                El Plan Nacional de Desarrollo es el documento rector de la administración donde se estipulan los objetivos prioritarios
+                 en función del diagnóstico de los problemas nacionales y las soluciones a implementar en el sexenio. 
+                 A partir del PND se definen programas derivados que se dividen en sectoriales, 
+                 institucionales, espaciales y regionales, y determinan las prioridades de atención en cada uno de sus ámbitos.
+            </p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center w-100 my-3">
+        <div class="w-75 column text-center">
+            <div class="w-100">
+                <img *ngIf="this.esEscritorio" [src]="parte_1_pnd" class="imagen-principal" alt="imagen1">
+                <img *ngIf="this.esTablet" [src]="parte_2_pnd" class="imagen-principal" alt="imagen1">
+                <img *ngIf="this.esMovil" [src]="parte_3_pnd" class="imagen-principal" alt="imagen1">
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
+                    <img *ngIf="!this.cambiarImagen_1" [src]="modulo_1" class="btn subimagen p-0" alt="modulo-1" (mouseenter)="this.cambiosImagen('modulo_1')" >
+                    <img *ngIf="this.cambiarImagen_1" [src]="submodulo_1" class="btn subimagen-1 p-0" alt="modulo-1" (mouseleave)="this.cambiosImagen('modulo_1')" >
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6"> 
+                    <img *ngIf="!this.cambiarImagen_2" [src]="modulo_2" class="btn subimagen p-0" alt="modulo-2" (mouseenter)="this.cambiosImagen('modulo_2')" >
+                    <img *ngIf="this.cambiarImagen_2" [src]="submodulo_2" class="btn subimagen-1 p-0" alt="modulo-2" (mouseleave)="this.cambiosImagen('modulo_2')" >
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
+                    <img *ngIf="!this.cambiarImagen_3" [src]="modulo_3" class="btn subimagen p-0" alt="modulo-3" (mouseenter)="this.cambiosImagen('modulo_3')" >
+                    <img *ngIf="this.cambiarImagen_3" [src]="submodulo_3" class="btn subimagen-1 p-0" alt="modulo-3" (mouseleave)="this.cambiosImagen('modulo_3')" >
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
+                    <img *ngIf="!this.cambiarImagen_4" [src]="modulo_4" class="btn subimagen p-0" alt="modulo-4" (mouseenter)="this.cambiosImagen('modulo_4')" >
+                    <img *ngIf="this.cambiarImagen_4" [src]="submodulo_4" class="btn subimagen-1 p-0" alt="modulo-4" (mouseleave)="this.cambiosImagen('modulo_4')" >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" d-flex flex-column ">
+        <span class="titulo my-1 mx-2 text-center">Resultados del monitoreo</span>
+        <span class="texto my-1 text-center">El CONEVAL, a través de los objetivos, indicadores y metas, monitorea los programas derivados.</span>
+        <span class="texto my-1 text-center"><strong>¡Elige la administración sexenal que deseas consultar!</strong></span>
+    </div>
+    <div class="d-flex flex-column flex-sm-column flex-md-column flex-lg-row flex-xl-row flex-xxl-row justify-content-center align-items-center my-2">
+        <!--Primer boton-->
+        <div class="d-flex flex-column dispositivosCuadros mx-2"  >
+            <div class="estilo-encabezado text-center texto">
+                <span><strong>2013 - 2018</strong></span>
+            </div>
+            <div class="estilo-boton my-1 d-flex">
+                <div class="border-derecho my-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="7rem" height="7rem" fill="currentColor" class="bi bi-bullseye m-2" style="color: white;" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
+                        <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                      </svg>
+                </div>
+                <div class="d-flex flex-column mx-2 justify-content-center align-items-center text-center">
+                    <a class="btn p-0" href="http://devnet.coneval.org.mx:84/_SIMEPS/MetasNacionales.aspx">
+                        <div class="borde-abajo my-1">
+                            <span class="texto my-1 estilo-texto-div" ><strong>Plan Nacional de Desarrollo</strong></span>
+                        </div>    
+                    </a>
+                    <a class="btn p-0" href="http://devnet.coneval.org.mx:84/_SIMEPS/MosaicoSectores.aspx">
+                        <div class="my-1">
+                            <span class="texto my-1 estilo-texto-div"><strong>Programas derrivados del ámbito social</strong></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--Segundo boton-->
+        <div class="d-flex flex-column dispositivosCuadros mx-2"  >
+            <div class="estilo-encabezado text-center texto">
+                <span><strong>2019 - 2024</strong></span>
+            </div>
+            <div class="estilo-boton my-1 d-flex">
+                <div class="border-derecho my-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="7rem" height="7rem" fill="currentColor" class="bi bi-bullseye m-2" style="color: white;" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
+                        <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                      </svg>
+                </div>
+                <div class="d-flex flex-column mx-2 justify-content-center align-items-center text-center">
+                    <a class="btn p-0" href="http://devnet.coneval.org.mx:84/_SIMEPS/MosaicoSectores19-24.aspx">
+                        <div class="my-1">
+                            <span class="texto my-1 estilo-texto-div"><strong>Programas derrivados del ámbito social</strong></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

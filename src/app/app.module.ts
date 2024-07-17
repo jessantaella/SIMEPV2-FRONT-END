@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {APP_BASE_HREF} from '@angular/common';
 import { WINDOW_PROVIDERS } from './base/services/window.service';
+import { ModuloPlaneacionComponent } from './base/modulo-planeacion/modulo-planeacion.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { WINDOW_PROVIDERS } from './base/services/window.service';
     HeaderComponent,
     InicioComponent,
     DiagramaPndComponent,
+    ModuloPlaneacionComponent,
     FooterComponent
   ],
   imports: [
