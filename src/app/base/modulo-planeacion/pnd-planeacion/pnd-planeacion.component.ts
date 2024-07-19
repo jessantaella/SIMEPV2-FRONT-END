@@ -3,8 +3,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-pnd-planeacion',
-  templateUrl: './pnd-planeacion.component.html',
-  styleUrls: ['./pnd-planeacion.component.scss']
+  templateUrl: './pnd-planeacion.component.html'
 })
 export class PndPlaneacionComponent {
   isBrowser: boolean;

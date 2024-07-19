@@ -46,20 +46,20 @@
             </div>
             <div class="row">
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_1 && (this.esMovil || this.esTablet) " [src]="modulo_1" class="btn subimagen p-0" alt="modulo-1" (mouseenter)="this.cambiosImagen('modulo_1')" >
-                    <img *ngIf="this.cambiarImagen_1 && (this.esMovil || this.esTablet) " class="btn subimagen-1 p-0" alt="modulo-1" (mouseleave)="this.cambiosImagen('modulo_1')" >
+                    <img *ngIf="!this.cambiarImagen_1 && (this.esMovil || this.esTablet) " [src]="modulo_1" class="btn subimagen p-0" alt="modulo-1" (click)="this.cambiosImagen('modulo_1')" >
+                    <img *ngIf="this.cambiarImagen_1 && (this.esMovil || this.esTablet) " [src]="submodulo_1" class="btn subimagen-1 p-0" alt="modulo-1" (click)="this.cambiosImagen('modulo_1')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6"> 
-                    <img *ngIf="!this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="modulo_2" class="btn subimagen p-0" alt="modulo-2" (mouseenter)="this.cambiosImagen('modulo_2')" >
-                    <img *ngIf="this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="submodulo_2" class="btn subimagen-1 p-0" alt="modulo-2" (mouseleave)="this.cambiosImagen('modulo_2')" >
+                    <img *ngIf="!this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="modulo_2" class="btn subimagen p-0" alt="modulo-2" (click)="this.cambiosImagen('modulo_2')" >
+                    <img *ngIf="this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="submodulo_2" class="btn subimagen-1 p-0" alt="modulo-2" (click)="this.cambiosImagen('modulo_2')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="modulo_3" class="btn subimagen p-0" alt="modulo-3" (mouseenter)="this.cambiosImagen('modulo_3')" >
-                    <img *ngIf="this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="submodulo_3" class="btn subimagen-1 p-0" alt="modulo-3" (mouseleave)="this.cambiosImagen('modulo_3')" >
+                    <img *ngIf="!this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="modulo_3" class="btn subimagen p-0" alt="modulo-3" (click)="this.cambiosImagen('modulo_3')" >
+                    <img *ngIf="this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="submodulo_3" class="btn subimagen-1 p-0" alt="modulo-3" (click)="this.cambiosImagen('modulo_3')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="modulo_4" class="btn subimagen p-0" alt="modulo-4" (mouseenter)="this.cambiosImagen('modulo_4')" >
-                    <img *ngIf="this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="submodulo_4" class="btn subimagen-1 p-0" alt="modulo-4" (mouseleave)="this.cambiosImagen('modulo_4')" >
+                    <img *ngIf="!this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="modulo_4" class="btn subimagen p-0" alt="modulo-4" (click)="this.cambiosImagen('modulo_4')" >
+                    <img *ngIf="this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="submodulo_4" class="btn subimagen-1 p-0" alt="modulo-4" (click)="this.cambiosImagen('modulo_4')" >
                 </div>
             </div>
         </div>

@@ -110,7 +110,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     this.submodulo_2 = environment.recursos + 'diagrama-pnd/submodulo-2.png';
     this.submodulo_3 = environment.recursos + 'diagrama-pnd/submodulo-3.png';
     this.submodulo_4 = environment.recursos + 'diagrama-pnd/submodulo-4.png';
-    this.plantilla = environment.recursos + 'diagrama-pnd/plantilla.png';
+
   }
 
   consultarData() {
@@ -127,29 +127,53 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     switch (nombre) {
       case 'modulo_1':
         if (this.cambiarImagen_1) {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_4 = false;
           this.cambiarImagen_1 = false;
         } else {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_4 = false;
           this.cambiarImagen_1 = true;
         }
       break;
       case 'modulo_2':
         if (this.cambiarImagen_2) {
+          this.cambiarImagen_1 = false;
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_4 = false;
           this.cambiarImagen_2 = false;
         } else {
+          this.cambiarImagen_1 = false;	
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_4 = false
           this.cambiarImagen_2 = true;
         }
       break;
       case 'modulo_3':
         if (this.cambiarImagen_3) {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_1 = false;
+          this.cambiarImagen_4 = false;
           this.cambiarImagen_3 = false;
         } else {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_1 = false;
+          this.cambiarImagen_4 = false;
           this.cambiarImagen_3 = true;
         }
       break;
       case 'modulo_4':
         if (this.cambiarImagen_4) {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_1 = false;
           this.cambiarImagen_4 = false;
         } else {
+          this.cambiarImagen_2 = false;
+          this.cambiarImagen_3 = false;
+          this.cambiarImagen_1 = false;
           this.cambiarImagen_4 = true;
         }
       break;
