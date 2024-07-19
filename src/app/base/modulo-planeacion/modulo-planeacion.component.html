@@ -32,33 +32,34 @@
                 El <strong class="texto-marcado">Plan Nacional de Desarrollo</strong> es el documento rector de la administración donde se estipulan los <strong class="texto-marcado">objetivos prioritarios</strong>
                  en función del diagnóstico de los problemas nacionales y las soluciones a implementar en el <strong class="texto-marcado">sexenio.</strong> 
                  A partir del PND se definen programas derivados que se dividen en <strong class="texto-marcado">sectoriales, 
-                 institucionales, espaciales y regionales,</strong> y determinan las prioridades de atención en cada uno de sus ámbitos.
+                 institucionales, espaciales</strong> y <strong class="texto-marcado">regionales</strong>, y determinan las prioridades de atención en cada uno de sus ámbitos.
             </p>
         </div>
     </div>
+    <!--Diagrama Escritorio y Tablet-->
+    <app-pnd-planeacion *ngIf="this.esEscritorio" ></app-pnd-planeacion>
+    <!--Diagrama Movil-->
     <div class="d-flex justify-content-center w-100 my-3">
         <div class="w-75 column text-center">
             <div class="w-100">
-                <img *ngIf="this.esEscritorio" [src]="parte_1_pnd" class="imagen-principal" alt="imagen1">
-                <img *ngIf="this.esTablet" [src]="parte_2_pnd" class="imagen-principal" alt="imagen1">
-                <img *ngIf="this.esMovil" [src]="parte_3_pnd" class="imagen-principal" alt="imagen1">
+                <img *ngIf="(this.esMovil || this.esTablet) " [src]="parte_3_pnd" class="imagen-principal" alt="imagen1">
             </div>
             <div class="row">
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_1" [src]="modulo_1" class="btn subimagen p-0" alt="modulo-1" (mouseenter)="this.cambiosImagen('modulo_1')" >
-                    <img *ngIf="this.cambiarImagen_1" [src]="submodulo_1" class="btn subimagen-1 p-0" alt="modulo-1" (mouseleave)="this.cambiosImagen('modulo_1')" >
+                    <img *ngIf="!this.cambiarImagen_1 && (this.esMovil || this.esTablet) " [src]="modulo_1" class="btn subimagen p-0" alt="modulo-1" (mouseenter)="this.cambiosImagen('modulo_1')" >
+                    <img *ngIf="this.cambiarImagen_1 && (this.esMovil || this.esTablet) " class="btn subimagen-1 p-0" alt="modulo-1" (mouseleave)="this.cambiosImagen('modulo_1')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6"> 
-                    <img *ngIf="!this.cambiarImagen_2" [src]="modulo_2" class="btn subimagen p-0" alt="modulo-2" (mouseenter)="this.cambiosImagen('modulo_2')" >
-                    <img *ngIf="this.cambiarImagen_2" [src]="submodulo_2" class="btn subimagen-1 p-0" alt="modulo-2" (mouseleave)="this.cambiosImagen('modulo_2')" >
+                    <img *ngIf="!this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="modulo_2" class="btn subimagen p-0" alt="modulo-2" (mouseenter)="this.cambiosImagen('modulo_2')" >
+                    <img *ngIf="this.cambiarImagen_2 && (this.esMovil || this.esTablet) " [src]="submodulo_2" class="btn subimagen-1 p-0" alt="modulo-2" (mouseleave)="this.cambiosImagen('modulo_2')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_3" [src]="modulo_3" class="btn subimagen p-0" alt="modulo-3" (mouseenter)="this.cambiosImagen('modulo_3')" >
-                    <img *ngIf="this.cambiarImagen_3" [src]="submodulo_3" class="btn subimagen-1 p-0" alt="modulo-3" (mouseleave)="this.cambiosImagen('modulo_3')" >
+                    <img *ngIf="!this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="modulo_3" class="btn subimagen p-0" alt="modulo-3" (mouseenter)="this.cambiosImagen('modulo_3')" >
+                    <img *ngIf="this.cambiarImagen_3 && (this.esMovil || this.esTablet) " [src]="submodulo_3" class="btn subimagen-1 p-0" alt="modulo-3" (mouseleave)="this.cambiosImagen('modulo_3')" >
                 </div>
                 <div class="col-xl-3 col-lg-6 col-sm-6 col-sx-6">
-                    <img *ngIf="!this.cambiarImagen_4" [src]="modulo_4" class="btn subimagen p-0" alt="modulo-4" (mouseenter)="this.cambiosImagen('modulo_4')" >
-                    <img *ngIf="this.cambiarImagen_4" [src]="submodulo_4" class="btn subimagen-1 p-0" alt="modulo-4" (mouseleave)="this.cambiosImagen('modulo_4')" >
+                    <img *ngIf="!this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="modulo_4" class="btn subimagen p-0" alt="modulo-4" (mouseenter)="this.cambiosImagen('modulo_4')" >
+                    <img *ngIf="this.cambiarImagen_4 && (this.esMovil || this.esTablet) " [src]="submodulo_4" class="btn subimagen-1 p-0" alt="modulo-4" (mouseleave)="this.cambiosImagen('modulo_4')" >
                 </div>
             </div>
         </div>
