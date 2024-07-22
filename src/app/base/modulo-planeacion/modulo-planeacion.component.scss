@@ -118,3 +118,174 @@
         width: 70%;
     } 
 }
+
+
+
+//HEADER
+
+
+.redesInternas{
+    min-width: 11.5rem !important;
+  }
+
+
+  .selectorOpcion{
+    width: 30px;
+    height: 30px;
+  }
+  .preguntas{
+    background-color: white;
+    z-index: 100;
+    padding-top: 10px;
+  }
+  
+.separador{
+    margin-top: 7%!important;
+}
+  table{
+    width: 90%;
+    margin: auto;
+  }
+  .opcionPregunta{
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .parrafoInformativo{
+    text-align: justify;
+    font-size: 19px;
+    width: 100%;
+    margin: auto;
+  }
+  
+  .contenido{
+    padding-top: 5%;
+  }
+  .contexto{
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .diagrama{
+    margin: auto;
+  }
+  
+  .resalteNormal{
+    color:#2e3e97 !important;
+    font-weight: bold;
+  }
+  
+  .resaltePND{
+    color:#4caf62 !important;
+    font-weight: bold;
+  }
+  
+  .resaltePlan{
+    color:#8285e0 !important;
+    font-weight: bold;
+  }
+  
+  .resalteRamo33{
+    color:#17b0ba !important;
+    font-weight: bold;
+  }
+
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+    .opcionPregunta{
+      font-size: 14px;
+    }
+
+    .separadorConeval{
+      width: 100%;
+    }
+  }
+
+  p,.parrafoInformativo{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .instrumentos{
+    cursor: pointer;
+  }
