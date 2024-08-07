@@ -39,6 +39,9 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   cambiarImagen_2 = false;
   cambiarImagen_3 = false;
   cambiarImagen_4 = false;
+  direccion_1 = "";
+  direccion_2 = "";
+  direccion_3 = "";
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
@@ -110,6 +113,11 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     this.submodulo_2 = environment.recursos + 'diagrama-pnd/submodulo-2.png';
     this.submodulo_3 = environment.recursos + 'diagrama-pnd/submodulo-3.png';
     this.submodulo_4 = environment.recursos + 'diagrama-pnd/submodulo-4.png';
+
+    //Direcciones
+    this.direccion_1 = environment.simepsViejo + '_SIMEPS/MetasNacionales.aspx';
+    this.direccion_2 = environment.simepsViejo + '_SIMEPS/MosaicoSectores.aspx';
+    this.direccion_3 = environment.simepsViejo + '_SIMEPS/MosaicoSectores19-24.aspx';
 
   }
 
