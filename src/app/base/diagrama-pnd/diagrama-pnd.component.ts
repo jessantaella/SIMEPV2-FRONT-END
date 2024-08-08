@@ -174,7 +174,7 @@ export class DiagramaPndComponent {
   }
 
   eventoPND() {
-    window.location.href = environment.simepsViejo + "_SIMEPS/HomeSIPOL.aspx";
+    window.location.href = "/SIMEPS/modulo-planeacion";
   }
   eventoAcciones() {
     window.location.href = environment.simepsViejo + "_SIMEPS/MosaicoSips.aspx";
