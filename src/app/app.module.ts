@@ -17,6 +17,7 @@ import { WINDOW_PROVIDERS } from './base/services/window.service';
 import { ModuloPlaneacionComponent } from './base/modulo-planeacion/modulo-planeacion.component';
 import { PndPlaneacionComponent } from './base/modulo-planeacion/pnd-planeacion/pnd-planeacion.component';
 import { ProgramasIndicadores1924Component } from './base/programas-indicadores1924/programas-indicadores1924.component';
+import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProgramasIndicadores1924Component } from './base/programas-indicadores1
     PndPlaneacionComponent,
     ModuloPlaneacionComponent,
     FooterComponent,
-    ProgramasIndicadores1924Component
+    ProgramasIndicadores1924Component,
+    IndicadorSectorial1924Component
   ],
   imports: [
     BrowserModule,
