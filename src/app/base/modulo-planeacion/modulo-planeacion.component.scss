@@ -5,6 +5,14 @@
     color: #278148;
 }
 
+.titulo2{
+  font-size: 19px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: #008D6C;
+}
+
 .texto{
     font-size: 19px;
     font-family: Arial, Helvetica, sans-serif;
@@ -12,15 +20,23 @@
     text-align: justify;
 }
 
+.tituloContenedor{
+  border-width: 3px;
+  border-color: #008D6C;
+  border-style: solid;
+  display: inline-block;
+  padding: 10px;
+  transform: translateY(20px);
+}
+
 .estilo-encabezado{
     height: 2rem; 
-    background: #27B052; 
-    color: white;
-    border: 3px solid black;
+    background: white;
+    border-radius: 7px;
+    border: 3px solid #008D6C;
 }
 
 .estilo-boton{
-    background-color: #00876f;
     color: white;
     border: 3px solid black;
 }
@@ -30,39 +46,53 @@
 }
 
 .borde-abajo{
-    border-bottom: 3px solid white;
+    border-bottom: 4px solid #008D6C;
 
 }
 
 .estilo-texto-div{
-    color: white;
+    color: #008D6C;
 }
 
 .texto-marcado{
     color: #278148;;
 }
 
+.img-svg {
+  width: 100px;
+  height: 100px;
+}
+
+.sexenioContenedor{
+  background-color: #E0F1DA;
+  color: #008D6C;
+  padding: 20px;
+  border-radius: 30px;
+  border: 3px solid #008D6C;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
 @media(min-width: 1200px){
     .dispositivosCuadros{
-        width: 25%;
+        width: 35%;
     }
 }
 
 @media(min-width: 992px) and (max-width: 1199px){
     .dispositivosCuadros{
-        width: 30% !important;
+        width: 45% !important;
     }
 }
 
 @media(min-width: 768px) and (max-width: 991px){
     .dispositivosCuadros{
-        width: 60%;
+        width: 70%;
     }
 }
 
 @media(max-width: 767px){
     .dispositivosCuadros{
-        width: 80%;
+        width: 90%;
     }
 }
 
