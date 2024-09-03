@@ -1,1 +1,24 @@
-<p>programas-indicadores1924 works!</p>
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
+    <div class="text-center">
+        <div class="my-2" [ngStyle]="{'background-color' : '#fff'}">
+            <h2 class="titulo" >Programas derivados del PND 2019-2024</h2>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    <div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>
