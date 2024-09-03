@@ -117,7 +117,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     //Direcciones
     this.direccion_1 = environment.simepsViejo + '_SIMEPS/MetasNacionales.aspx';
     this.direccion_2 = environment.simepsViejo + '_SIMEPS/MosaicoSectores.aspx';
-    this.direccion_3 = environment.simepsViejo + '_SIMEPS/MosaicoSectores19-24.aspx';
+    this.direccion_3 = 'MosaicoSectores19-24';
 
   }
 

@@ -16,6 +16,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import { WINDOW_PROVIDERS } from './base/services/window.service';
 import { ModuloPlaneacionComponent } from './base/modulo-planeacion/modulo-planeacion.component';
 import { PndPlaneacionComponent } from './base/modulo-planeacion/pnd-planeacion/pnd-planeacion.component';
+import { ProgramasIndicadores1924Component } from './base/programas-indicadores1924/programas-indicadores1924.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PndPlaneacionComponent } from './base/modulo-planeacion/pnd-planeacion/
     DiagramaPndComponent,
     PndPlaneacionComponent,
     ModuloPlaneacionComponent,
-    FooterComponent
+    FooterComponent,
+    ProgramasIndicadores1924Component
   ],
   imports: [
     BrowserModule,
