@@ -20,6 +20,7 @@ import { PndPlaneacionComponent } from './base/modulo-planeacion/pnd-planeacion/
 import { ProgramasIndicadores1924Component } from './base/programas-indicadores1924/programas-indicadores1924.component';
 import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
 import { CarruselComponent } from './base/shared/carrusel/carrusel.component';
+import { DetallesInd1924Component } from './base/indicador-sectorial1924/detalles-ind1924/detalles-ind1924.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CarruselComponent } from './base/shared/carrusel/carrusel.component';
     FooterComponent,
     ProgramasIndicadores1924Component,
     IndicadorSectorial1924Component,
-    CarruselComponent
+    CarruselComponent,
+    DetallesInd1924Component
   ],
   imports: [
     BrowserModule,
