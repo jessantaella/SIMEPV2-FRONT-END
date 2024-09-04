@@ -62,7 +62,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     '../../../assets/img/NUBE.svg',
   ];
   currentIndex: number = 0;
-  imageWidth: number = 165;
+  imageWidth: number = 160;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -146,7 +146,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
 
   private visibleImageCount(): number {
     const carouselWidth = document.querySelector('.carousel')?.clientWidth || 0;
-    return Math.floor(carouselWidth / this.imageWidth);
+    return Math.floor(carouselWidth / (this.imageWidth + 10));
   }
   
 }
