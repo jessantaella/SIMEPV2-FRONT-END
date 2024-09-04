@@ -61,18 +61,9 @@
         </div>
     </div>
     
-    <div class="carousel" #carousel>
-        <button (click)="prev()">&#10094;</button>
-        <div>
-            <ul>
-              <li *ngFor="let image of images; let i = index" [class.active]="i === currentIndex">
-                <img class="imagen-indicador" [src]="image" alt="Image {{i + 1}}">
-              </li>
-            </ul>
-        </div>
-        
-        <button (click)="next()">&#10095;</button>
-    </div>
+    
+
+    <app-carrusel></app-carrusel>
     
     
     

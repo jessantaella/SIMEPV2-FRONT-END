@@ -38,31 +38,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     { value: 'Educación', label: 'Educación' },
     { value: 'Igualdad de Género', label: 'Igualdad de Género' },
   ];
-  images: string[] = [
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-  ];
-  currentIndex: number = 0;
-  imageWidth: number = 160;
+  
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -125,28 +101,6 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     }
   }
 
-  prev() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.updateTransform();
-    }
-  }
-
-  next() {
-    if (this.currentIndex < this.images.length - this.visibleImageCount()) {
-      this.currentIndex++;
-      this.updateTransform();
-    }
-  }
-
-  private updateTransform() {
-    const ul = document.querySelector('.carousel ul') as HTMLElement;
-    ul.style.transform = `translateX(-${this.currentIndex * this.imageWidth}px)`;
-  }
-
-  private visibleImageCount(): number {
-    const carouselWidth = document.querySelector('.carousel')?.clientWidth || 0;
-    return Math.floor(carouselWidth / (this.imageWidth + 10));
-  }
+  
   
 }
