@@ -1,1 +1,83 @@
-<p>indicador-sectorial1924 works!</p>
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
+    <div class="text-center">
+        <div class="my-2" [ngStyle]="{'background-color' : '#fff'}">
+            <h2 class="titulo" >Programas derivados del PND 2019-2024</h2>
+        </div>
+    </div>
+    <div class="my-2 row flex-row-reverse " [ngStyle]="{'background-color' : '#fff'}">
+        <div class="col-lg-4 d-flex gap-3 justify-content-center align-items-center">
+            <img class="download-svg" src="../../../assets/img/NUBE.svg" alt="DESCARGA">
+            <p class="texto" >Base de datos de los indicadores derivados del PND 2019-2024</p>
+        </div>
+    </div>
+
+    <!-- Combo Sectores -->
+    <div>
+        <select class="select-sectores" [(ngModel)]="programaSectorialSelected">
+            <option *ngFor="let option of programasSectoriales" [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select> 
+    </div>
+
+    <!-- Estadisticas Sector -->
+    <div class="text-center row d-flex justify-content-center">
+        <div class=" col-md-9 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly" [ngStyle]="{'background-color': '#E8E8E8'}">
+            <div class="">
+                <p class="texto">SECTORES</p>
+                <div class="texto circulo-estadisticas" [ngStyle]="{'background-color': '#1C520D'}">
+                    10
+                </div>
+            </div>
+            <div class="">
+                <p class="texto">PROGRAMAS DERIVADOS</p>
+                <div class="texto circulo-estadisticas" [ngStyle]="{'background-color': '#278148'}">
+                    10
+                </div>
+            </div>
+            <div class="">
+                <p class="texto text-center">METAS PARA EL BIENESTAR</p>
+                <div class="texto circulo-estadisticas" [ngStyle]="{'background-color': '#50841B'}">
+                    10
+                </div>
+            </div>
+            <div class="">
+                <p class="texto">PARÁMETROS</p>
+                <div class="texto circulo-estadisticas" [ngStyle]="{'background-color': '#83BA2B'}">
+                    10
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="carousel" #carousel>
+        <button (click)="prev()">&#10094;</button>
+        <div>
+            <ul>
+              <li *ngFor="let image of images; let i = index" [class.active]="i === currentIndex">
+                <img class="imagen-indicador" [src]="image" alt="Image {{i + 1}}">
+              </li>
+            </ul>
+        </div>
+        
+        <button (click)="next()">&#10095;</button>
+    </div>
+    
+    
+    
+    
+    
+    
+    <div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>
