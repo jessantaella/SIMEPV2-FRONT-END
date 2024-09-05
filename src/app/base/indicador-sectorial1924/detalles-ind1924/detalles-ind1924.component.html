@@ -1,29 +1,32 @@
+<button class="btn btn-primary" (click)="mostrarOcultar()" >
+    Toggle width collapse
+</button>
 <div class="row">
-    <div class="col-lg-3 bg-dark-subtle">
-        <div class="d-flex flex-wrap gap-1  p-0 pt-4 align-items-center justify-content-evenly">
-            <div class="circulo-estadisticas-detalles">
-                <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
-                    10
+    <div class="col-lg-3 bg-dark-subtle menu menuVisible" id="menuDesplegable" #menuDesplegable>
+            <div class="d-flex gap-1  p-0 pt-4 align-items-center justify-content-evenly">
+                <div class="circulo-estadisticas-detalles">
+                    <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
+                        10
+                    </div>
+                    <p class="textoDetalles text-center">Objetivos prioritarios</p>
                 </div>
-                <p class="textoDetalles text-center">Objetivos prioritarios</p>
-            </div>
-            <div class="circulo-estadisticas-detalles">
-                <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
-                    10
+                <div class="circulo-estadisticas-detalles">
+                    <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
+                        10
+                    </div>
+                    <p class="textoDetalles text-center">Metas para el bienestar (M)</p>
                 </div>
-                <p class="textoDetalles text-center">Metas para el bienestar (M)</p>
-            </div>
-            <div class="circulo-estadisticas-detalles">
-                <div class="textoDetalles" [ngStyle]="{'background-color': '#50841B'}">
-                    10
+                <div class="circulo-estadisticas-detalles">
+                    <div class="textoDetalles" [ngStyle]="{'background-color': '#50841B'}">
+                        10
+                    </div>
+                    <p class="textoDetalles text-center">Parámetros (P)</p>
                 </div>
-                <p class="textoDetalles text-center">Parámetros (P)</p>
+                
             </div>
-            
-        </div>
-        <app-menu-desplegable [listaObjetivosSectoriales]="listaObjetivosSectoriales4T"></app-menu-desplegable>
+            <app-menu-desplegable [listaObjetivosSectoriales]="listaObjetivosSectoriales4T"></app-menu-desplegable>
     </div>
-    <div class="col-lg-9 bg-info" [ngStyle]="{'height': '1000px'}">
+    <div class="col bg-info" [ngStyle]="{'height': '1000px'}">
 algo
     </div>
 
