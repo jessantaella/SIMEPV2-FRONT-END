@@ -1,8 +1,8 @@
-<button class="btn btn-primary" (click)="mostrarOcultar()" >
-    Toggle width collapse
+<button class="mb-2 button-menu" type="button" data-bs-toggle="collapse" data-bs-target="#menuDesplegable" aria-controls="menuDesplegable">
+    <i class="bi bi-list"></i>
 </button>
-<div class="row">
-    <div class="col-lg-3 bg-dark-subtle menu menuVisible" id="menuDesplegable" #menuDesplegable>
+<div class="row h-100 bg-dark-subtle" style="min-height: 1000px;">
+    <div class="col-lg-3 collapse-horizontal show menu-desplegable" id="menuDesplegable" #menuDesplegable >
             <div class="d-flex gap-1  p-0 pt-4 align-items-center justify-content-evenly">
                 <div class="circulo-estadisticas-detalles">
                     <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
@@ -26,8 +26,7 @@
             </div>
             <app-menu-desplegable [listaObjetivosSectoriales]="listaObjetivosSectoriales4T"></app-menu-desplegable>
     </div>
-    <div class="col bg-info" [ngStyle]="{'height': '1000px'}">
-algo
+    <div class="col bg-info" >
     </div>
 
 </div>

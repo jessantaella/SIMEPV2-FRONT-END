@@ -26,8 +26,13 @@
     text-align: justify;
 }
 
-.menu {
-    transition: opacity 0.1s ease;
-    transition: all 0.3s ease;
-  }
-  
+.button-menu{
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.button-menu:hover{
+    background-color: #ddd;
+}

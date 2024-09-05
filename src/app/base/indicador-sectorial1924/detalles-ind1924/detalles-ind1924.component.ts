@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ObjetivoSectorial } from '../../Models/ObjetivoSectorial';
 import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 
@@ -9,6 +9,8 @@ import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 })
 export class DetallesInd1924Component {
   @ViewChild('menuDesplegable') menuDesplegable!: ElementRef;
+  screenWidth: number;
+
   listaObjetivosSectoriales4T: ObjetivoSectorial[] = [
     {
         NUM_OBJETIVO: 1,
@@ -50,41 +52,31 @@ export class DetallesInd1924Component {
         ],
     }
   ];
-  
 
-  mostrarOcultar() {
-    const menuElement = this.menuDesplegable.nativeElement;
-    const screenWidth = window.innerWidth; // Obtén el ancho de la pantalla
-  
-    if (menuElement.classList.contains('menuVisible')) {
-      menuElement.classList.remove('menuVisible');
-      
-      if (screenWidth > 992) { 
-        menuElement.style.maxWidth = "0";
-        
-      }else{
-        menuElement.style.maxHeight = "0";
-      }
-      
-      setTimeout(() =>{
-        menuElement.style.display = "none";
-      }, 300)
-      menuElement.style.opacity = "0";
-    } else {
-      menuElement.style.display = "block";
-      menuElement.classList.add('menuVisible');
-      setTimeout(() =>{
-        if (screenWidth > 992) { // Ajusta el tamaño según tu necesidad
-          menuElement.style.maxWidth = "10000px";
-          menuElement.style.maxHeight = "none";
-        } else {
-          menuElement.style.maxWidth = "none";
-          menuElement.style.maxHeight = "10000px"; // Ajusta el tamaño según tu necesidad
-        }
-        menuElement.style.opacity = "1";
-        menuElement.style.display = "block";
-      }, 100)
-    }
+  constructor() {
+    this.screenWidth = window.innerWidth; // Inicializa con el tamaño actual de la pantalla
   }
+  
+  ngAfterViewInit(): void {
+    this.screenWidth = window.innerWidth;
+    this.changeCollapseMode(this.screenWidth);
+    
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.screenWidth = (event.target as Window).innerWidth;
+    this.changeCollapseMode(this.screenWidth);
+  }
+  
+  changeCollapseMode(innerWidth: number) {
+    if(innerWidth > 992){
+      this.menuDesplegable.nativeElement.classList.add('collapse-horizontal');
+    }else{
+      this.menuDesplegable.nativeElement.classList.remove('collapse-horizontal');
+    }
+
+  }
+  
 
 }
