@@ -21,6 +21,7 @@ import { ProgramasIndicadores1924Component } from './base/programas-indicadores1
 import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
 import { CarruselComponent } from './base/shared/carrusel/carrusel.component';
 import { DetallesInd1924Component } from './base/indicador-sectorial1924/detalles-ind1924/detalles-ind1924.component';
+import { MenuDesplegableComponent } from './base/shared/menu-desplegable/menu-desplegable.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DetallesInd1924Component } from './base/indicador-sectorial1924/detalle
     ProgramasIndicadores1924Component,
     IndicadorSectorial1924Component,
     CarruselComponent,
-    DetallesInd1924Component
+    DetallesInd1924Component,
+    MenuDesplegableComponent
   ],
   imports: [
     BrowserModule,

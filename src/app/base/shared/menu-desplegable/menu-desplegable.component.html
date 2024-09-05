@@ -1,0 +1,44 @@
+
+<div class="accordion pt-4 pb-4">
+    <div class="accordion-item">
+        <button
+            class="header-menu d-flex justify-content-between gap-2 collapsed accordion-button link-light"
+            type="button"
+            data-bs-toggle="collapse" 
+            data-bs-target="#submenu"  
+            aria-controls="submenu">
+            <strong >
+                    Indicadores derivados del Plan Nacional de Desarrollo
+            </strong>
+            
+        </button>
+        <div 
+            
+            class="collapse accordion-item" 
+            id="submenu"
+            *ngFor="let objetivo of listaObjetivosSectoriales">
+            <button 
+            class="card card-body header-submenu d-flex flex-row justify-content-between collapsed accordion-button" 
+            data-bs-toggle="collapse" 
+            [attr.data-bs-target]="'#indicadores' + objetivo.NUM_OBJETIVO"
+            data-bs-target="#indicadores"  
+            aria-controls="indicadores"
+            >
+                <p class="m-0">
+                    {{objetivo.OBJETIVO}}
+                </p>
+            </button>
+
+            <div 
+            class="collapse multi-collapse " 
+            *ngFor="let indicador of objetivo.INDICADORES_SECTORIALES"
+            [attr.id]="'indicadores' + objetivo.NUM_OBJETIVO">
+            <div 
+            class="card card-body">
+                {{indicador.INDICADOR}}
+            </div>
+        </div>
+        </div>
+        
+    </div>
+</div>
