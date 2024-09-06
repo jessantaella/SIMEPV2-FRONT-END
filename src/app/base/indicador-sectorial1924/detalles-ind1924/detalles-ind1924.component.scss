@@ -1,5 +1,5 @@
 .circulo-estadisticas-detalles{
-    max-width: 80px;
+    max-width: 90px;
 }
 
 .circulo-estadisticas-detalles div{
@@ -15,8 +15,13 @@
     border-radius: 100px;
 }
 
+.estadisticas-rapidas .circulo-estadisticas-detalles div{
+    width: 70px;
+    height: 70px;
+}
+
 .circulo-estadisticas-detalles p {
-    font-weight: bold;
+    font-weight: bold;  
 }
 
 .textoDetalles{
@@ -36,3 +41,44 @@
 .button-menu:hover{
     background-color: #ddd;
 }
+
+.download-svg {
+    width: 70px;
+    height: 70px;
+}
+
+.titulo{
+    font-size: 19px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #008D6C;
+}
+
+.tituloContenedor{
+    border-width: 3px;
+    border-color: #008D6C;
+    border-style: solid;
+    display: inline-block;
+    padding: 10px 40px;
+    transform: translateY(20px);
+}
+
+.borderParrafo1 {
+    border-bottom: 1px solid #d0cfcf;
+    text-align: justify;
+    word-wrap: break-word;
+}
+ 
+.borderParrafo2 {
+     border-bottom: 1px solid #008D6C;
+     text-align: justify;
+     word-wrap: break-word;
+}
+    
+.borderParrafo3 {
+     border-bottom: 1px solid #21B052;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+ 

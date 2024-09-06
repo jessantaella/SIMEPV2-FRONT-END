@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ObjetivoSectorial } from '../../Models/ObjetivoSectorial';
 import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
+import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
 
 @Component({
   selector: 'app-detalles-ind1924',
@@ -10,7 +11,13 @@ import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 export class DetallesInd1924Component {
   @ViewChild('menuDesplegable') menuDesplegable!: ElementRef;
   screenWidth: number;
-
+  listaDerechosSocialesAsociados: DerechoSocialInd[] = [
+    {
+      DER_DESCRIPCION: 'Educación',
+      DER_ID: 1
+    }
+  ]
+  indicadorSectorial: IndicadorSectorial = new IndicadorSectorial();
   listaObjetivosSectoriales4T: ObjetivoSectorial[] = [
     {
         NUM_OBJETIVO: 1,

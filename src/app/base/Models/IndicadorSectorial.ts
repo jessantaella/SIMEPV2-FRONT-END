@@ -86,7 +86,7 @@ export class IndicadorSectorial {
         this.VALOR_LB = '';
         this.PERIODICIDAD = '';
         this.UDM = '';
-        this.META = undefined; // Campo opcional
+        this.META = undefined;
         this.ID_NIVEL = 0;
         this.NIVEL = '';
 
