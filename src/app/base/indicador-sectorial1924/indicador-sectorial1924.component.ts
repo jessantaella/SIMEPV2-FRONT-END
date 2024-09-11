@@ -2,9 +2,11 @@ import { DOCUMENT, isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DataDynamic } from '../services/dinamic-data.services';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
+import { Sector } from '../Models/Sector';
+import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 
 @Component({
   selector: 'app-indicador-sectorial1924',
@@ -30,13 +32,38 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
   esEscritorio = false;
   programaSectorialSelected = 'Desarrollo Agropecuario';
   plantilla = '';
-  programasSectoriales = [
-    { value: 'Desarrollo Agropecuario', label: 'Desarrollo Agropecuario' },
-    { value: 'Desarrollo Económico', label: 'Desarrollo Económico' },
-    { value: 'Desarrollo Social', label: 'Desarrollo Social' },
-    { value: 'Desarrollo Urbano', label: 'Desarrollo Urbano' },
-    { value: 'Educación', label: 'Educación' },
-    { value: 'Igualdad de Género', label: 'Igualdad de Género' },
+
+  listaSectores: Sector[] = [
+    { ID_SECTOR: 1, NOMBRE: 'Desarrollo Agropecuario', ICONO: 'icono_desarrolloagropecuario.jpg' },
+    { ID_SECTOR: 2, NOMBRE: 'Desarrollo Económico', ICONO: 'icono_desarrolloeconomico.jpg' },
+    { ID_SECTOR: 3, NOMBRE: 'Desarrollo Social', ICONO: 'icono_desarrollosocial.jpg' },
+    { ID_SECTOR: 4, NOMBRE: 'Desarrollo Urbano', ICONO: 'icono_desarrollourbano.jpg' },
+    { ID_SECTOR: 5, NOMBRE: 'Educación', ICONO: 'icono_educacion.jpg' },
+    { ID_SECTOR: 6, NOMBRE: 'Igualdad de Género', ICONO: 'icono_igualdadgenero.jpg' },
+    { ID_SECTOR: 7, NOMBRE: 'Medio Ambiente', ICONO: 'icono_medioambiente.jpg' },
+    { ID_SECTOR: 8, NOMBRE: 'Otros', ICONO: 'icono_otros.jpg' },
+    { ID_SECTOR: 9, NOMBRE: 'Salud', ICONO: 'icono_salud.jpg' },
+    { ID_SECTOR: 10, NOMBRE: 'Trabajo y Previsión Social', ICONO: 'icono_trabajo.jpg' }
+  ];
+  idSector: string | null = null;
+
+  listaEstadisticasBasicasSector: EstadisticasBasicas[] =[
+    {
+      CONTEO: 10,
+      TIPO: 'SECTORES'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'PROGRAMAS DERIVADOS'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'METAS PARA EL BIENESTAR'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'PARÁMETROS'
+    },
   ];
   
 
@@ -47,6 +74,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private router: Router,
+    private route: ActivatedRoute,
     
     private breakpointObserver: BreakpointObserver,
   ) {
@@ -80,6 +108,9 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.alto = aux + aux / 6;
       }, 10);
     }
+    this.route.queryParams.subscribe(params => {
+      this.idSector = params['idSector'];  // Aquí obtienes el valor de idSector
+    });
   }
 
   ngOnInit(): void {
