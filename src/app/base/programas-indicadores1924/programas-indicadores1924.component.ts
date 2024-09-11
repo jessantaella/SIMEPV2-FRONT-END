@@ -5,6 +5,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Router } from '@angular/router';
 import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
+import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 
 @Component({
   selector: 'app-programas-indicadores1924',
@@ -29,6 +30,30 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
   esEscritorio = false;
 
   plantilla = '';
+
+  // Objetos utilizados en vista
+  listaEstadisticasBasicas: EstadisticasBasicas[] =[
+    {
+      CONTEO: 10,
+      TIPO: 'SECTORES'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'PROGRAMAS DERIVADOS'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'OBJETIVOS'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'METAS PARA EL BIENESTAR'
+    },
+    {
+      CONTEO: 10,
+      TIPO: 'PARÁMETROS'
+    },
+  ]
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
