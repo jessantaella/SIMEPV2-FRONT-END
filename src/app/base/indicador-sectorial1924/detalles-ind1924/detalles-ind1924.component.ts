@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ObjetivoSectorial } from '../../Models/ObjetivoSectorial';
 import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalles-ind1924',
@@ -10,6 +11,7 @@ import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
 })
 export class DetallesInd1924Component {
   @ViewChild('menuDesplegable') menuDesplegable!: ElementRef;
+  idProgramaSector: string | null = null;
   screenWidth: number;
   listaDerechosSocialesAsociados: DerechoSocialInd[] = [
     {
@@ -60,14 +62,19 @@ export class DetallesInd1924Component {
     }
   ];
 
-  constructor() {
+  constructor(
+    private route: ActivatedRoute,
+  ) {
     this.screenWidth = window.innerWidth; // Inicializa con el tamaño actual de la pantalla
   }
   
   ngAfterViewInit(): void {
     this.screenWidth = window.innerWidth;
     this.changeCollapseMode(this.screenWidth);
-    
+    this.route.queryParams.subscribe(params => {
+      this.idProgramaSector = params['idProgramaSect'];
+      console.log({program: params['idProgramaSect']});
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -78,12 +85,13 @@ export class DetallesInd1924Component {
   
   changeCollapseMode(innerWidth: number) {
     if(innerWidth > 992){
-      this.menuDesplegable.nativeElement.classList.add('collapse-horizontal');
+      this.menuDesplegable?.nativeElement?.classList?.add('collapse-horizontal');
     }else{
-      this.menuDesplegable.nativeElement.classList.remove('collapse-horizontal');
+      this.menuDesplegable?.nativeElement?.classList?.remove('collapse-horizontal');
     }
 
   }
+  
   
 
 }

@@ -1,265 +1,267 @@
-<button class="mb-2 button-menu" type="button" data-bs-toggle="collapse" data-bs-target="#menuDesplegable" aria-controls="menuDesplegable">
-    <i class="bi bi-list"></i>
-</button>
-<div class="row h-100 bg-dark-subtle">
-
-    <!-- Menu desplegable -->
-    <div class="col-lg-3 collapse-horizontal show menu-desplegable" id="menuDesplegable" #menuDesplegable >
-            <div class="d-flex gap-1  p-0 pt-4 align-items-center justify-content-evenly">
-                <div class="circulo-estadisticas-detalles">
-                    <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
-                        10
-                    </div>
-                    <p class="textoDetalles text-center">Objetivos prioritarios</p>
-                </div>
-                <div class="circulo-estadisticas-detalles">
-                    <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
-                        10
-                    </div>
-                    <p class="textoDetalles text-center">Metas para el bienestar (M)</p>
-                </div>
-                <div class="circulo-estadisticas-detalles">
-                    <div class="textoDetalles" [ngStyle]="{'background-color': '#50841B'}">
-                        10
-                    </div>
-                    <p class="textoDetalles text-center">Parámetros (P)</p>
-                </div>
-                
-            </div>
-            <app-menu-desplegable [listaObjetivosSectoriales]="listaObjetivosSectoriales4T"></app-menu-desplegable>
-    </div>
-
-    <!-- Detalles del indicador -->
-    <div class="col bg-white ps-md-5 pe-md-5" style="min-height: 1000px;">
-        <!-- Boton de descarga -->
-        <div class="my-2 row " [ngStyle]="{'background-color' : '#fff'}">
-            <div class="col-lg-4 d-flex gap-3 justify-content-center align-items-center">
-                <img class="download-svg" src="../../../assets/img/NUBE.svg" alt="DESCARGA">
-                <p class="textoDetalles" >Fichas técnicas de los indicadores</p>
-            </div>
-        </div>
-        <!-- Titulo de los detalles -->
-        <div class="text-center">
-            <div class="my-2">
-                <h2 class="titulo" >Información general del indicador</h2>
-            </div>
-        </div>
-        <!-- Grafica -->
-        <div class="">
-            <div class="">
-               <div id="divGrafIndicadorSectorial" style="width: 100%; height: 400px; margin: 5px -6px 20px;"></div>
-               <div id="DivLPU" >
-                  <div class="textoDetalles">
-                     <p>{{this.indicadorSectorial.DOF_LB_DESCRIPCION}}</p>
-                     <p>{{this.indicadorSectorial.DOF_META_DESCRIPCION}}</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- Informacion del indicador -->
-         <div class="">
-            <br>
-            
-
-            <p style="color: #555;" class="borderParrafo1">Objetivo Prioritario: <span class="textoDetalles">{{this.indicadorSectorial.OBJETIVO}}</span></p>
-
-            <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Enfoque de Resultados del objetivo: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_RES}}</span></p>
-
-            <p style="color: #21B052;" class="borderParrafo3">Definición: <span class="textoDetalles">{{this.indicadorSectorial.DESCRIPCION}}</span></p>
-
-            
-
-            <p  style="color: #008D6C;" class="borderParrafo2">Método de cálculo: <span class="textoDetalles">{{this.indicadorSectorial.METODO}}</span></p>
-
-            <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Medio de verificación: <span class="textoDetalles">{{this.indicadorSectorial.FUENTE}}</span></p>
-             
-            <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Enfoque de Resultados del Indicador: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_INDICADOR}}</span></p>
-            
-            <div class="collapse" id="verMas">
-                <p style="color: #21B052;" class="borderParrafo3">Frecuencia de Medición: <span class="textoDetalles">{{this.indicadorSectorial.PERIODICIDAD}}</span></p>
-                <p style="color: #21B052;" class="borderParrafo3">Tipo: <span class="textoDetalles">{{this.indicadorSectorial.TIPO_INDICADOR_GRAFICA}}</span></p>
-                <p style="color: #21B052;" class="borderParrafo3">Unidad de Medida: <span class="textoDetalles">{{this.indicadorSectorial.UDM}}</span></p>
-                <p style="color: #21B052;" class="borderParrafo3">Tendencia Esperada: <span class="textoDetalles">{{this.indicadorSectorial.TENDENCIA}}</span></p>
-                <p style="color: #21B052;" class="borderParrafo3">Nivel de desagregación: <span class="textoDetalles">{{this.indicadorSectorial.NIVEL_DESAGREGACION}}</span></p>
-                <p style="color: #21B052;" class="borderParrafo3">Acumulado o periódico:  <span class="textoDetalles">{{this.indicadorSectorial.ACUM_PER}}</span></p>    
-            </div>
-            <p class="d-inline-flex gap-1">
-                <a id="datosvermas" class="btn btn-outline-light"
-                    data-bs-toggle="collapse" data-bs-target="#verMas" aria-expanded="false" aria-controls="verMas">
-                    Ver más
-                </a>
-            </p>
-        
-         </div>
-         <!-- TODO: Se tiene esta nota, hay que revisar bien cuando se muestra -->
-         <div id="divNotaGraf" style="display: none;" class="col-md-6">
-            <p style="font-size: 11px; text-align: justify">
-               Nota: Al inicio de la presente administración, la Secretaría de Educación Pública (SEP) disponía de dos instrumentos para medir el logro académico de los alumnos: la Evaluación Nacional del Logro Académico en Centros Escolares (ENLACE, de carácter censal) y los Exámenes de la Calidad y el Logro Educativos (EXCALE, de carácter muestral). Los resultados de ENLACE se consideraron para definir un indicador en el Plan Nacional de Desarrollo 2013-2018 (PND), y los de EXCALE para el Programa Sectorial de Educación 2013-2018 (PSE).<br />
-               <br />
-               Durante 2013 y 2014, un grupo de especialistas de diferentes instituciones llevó a cabo un análisis de ENLACE y EXCALE a fin de determinar sus fortalezas y limitaciones y, derivado de sus recomendaciones, en 2014 la SEP resolvió suspender la aplicación de ambas pruebas, que se venían realizando anualmente desde 2006 y 2005, respectivamente. En sustitución se implementó el Plan Nacional para la Evaluación de los Aprendizajes (PLANEA), desarrollado por el Instituto Nacional para la Evaluación de la Educación (INEE), que empezó a aplicarse en 2015.
-               <br />
-               <br />
-               Las evaluaciones de PLANEA no son equivalentes a ENLACE y EXCALE, razón por la cual los indicadores del PND y del PSE asociados a estas pruebas dejaron de reportarse desde 2014, dado que no es posible utilizar para ello los resultados de las nuevas evaluaciones.
-            </p>
-         </div>
-
-         <!-- Estadisticas rapidas -->
-         <div >
-            <h5 class="" style="color: #000000; font-weight: bold; font-size: 20px;">Estadísticas rápidas</h5>
-            <div class="row estadisticas-rapidas">
-                <!-- Metas planeadas -->
-               <div class="row col-md-12">
-                    <p class="titulo">Metas Planeadas</p>
-               </div>
-               <br/>
-               <br />
-               <div class="d-flex justify-content-evenly flex-wrap">
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br/> máximo</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
-                            {{this.indicadorSectorial.MAX_META_PLANEADA}}
-                        </div>
-                    </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br/> mínimo</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
-                            {{this.indicadorSectorial.MIN_META_PLANEADA}}
-                        </div>
-                    </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br /> promedio</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
-                            {{this.indicadorSectorial.AVG_META_PLANEADA}}
-                        </div>
-                    </div>
-               </div>
-               <br />
-               <br />
-               <!-- Metas alcanzadas -->
-               <div class="row col-md-12 metasAll">
-                <p class="titulo">Metas Alcanzadas</p>
-               </div>
-               <br />
-               <br />
-               <div class="d-flex justify-content-evenly flex-wrap">
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br/> máximo</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
-                            {{this.indicadorSectorial.MAX_META_ALCANZADA}}
-                        </div>
-                    </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br/> mínimo</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
-                            {{this.indicadorSectorial.MIN_META_ALCANZADA}}
-                        </div>
-                    </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <p class="textoDetalles text-center">Valor <br /> promedio</p>
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
-                            {{this.indicadorSectorial.AVG_META_ALCANZADA}}
-                        </div>
-                    </div>
-               </div>
-            </div>
-         </div>
-
-         <!-- Desempenio del indicador -->
-         <div class="">
-            <br />
-            <br />
-            <p style="font-size: 20px; font-weight: bold; text-align: justify">Desempeño del indicador</p>
-            <div class="estadisticas-rapidas">
-               <br />
-                  <div class="d-flex justify-content-evenly flex-wrap" >
+<div *ngIf="this.idProgramaSector != null">
+    <button class="mb-2 button-menu" type="button" data-bs-toggle="collapse" data-bs-target="#menuDesplegable" aria-controls="menuDesplegable">
+        <i class="bi bi-list"></i>
+    </button>
+    <div class="row h-100 bg-dark-subtle">
+    
+        <!-- Menu desplegable -->
+        <div class="col-lg-3 collapse-horizontal show menu-desplegable" id="menuDesplegable" #menuDesplegable >
+                <div class="d-flex gap-1  p-0 pt-4 align-items-center justify-content-evenly">
                     <div class="circulo-estadisticas-detalles">
                         <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
-                            {{this.indicadorSectorial.VALOR_LB}}
+                            10
                         </div>
-                        <p class="textoDetalles text-center">Línea Base</p>
+                        <p class="textoDetalles text-center">Objetivos prioritarios</p>
+                    </div>
+                    <div class="circulo-estadisticas-detalles">
+                        <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
+                            10
+                        </div>
+                        <p class="textoDetalles text-center">Metas para el bienestar (M)</p>
                     </div>
                     <div class="circulo-estadisticas-detalles">
                         <div class="textoDetalles" [ngStyle]="{'background-color': '#50841B'}">
-                            {{this.indicadorSectorial.META_ALCANZADA}}
+                            10
                         </div>
-                        <p class="textoDetalles text-center">Último valor alcanzado</p>
+                        <p class="textoDetalles text-center">Parámetros (P)</p>
                     </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
-                            {{this.indicadorSectorial.METATEXT}}
-                        </div>
-                        <p class="textoDetalles text-center">Meta 2024</p>
-                    </div>
-                    <div class="circulo-estadisticas-detalles">
-                        <div class="textoDetalles" [ngStyle]="{'color': this.indicadorSectorial.PORCENTAJE_COLOR == '#FFFF00' ? '#000': '#fff', 'background-color': this.indicadorSectorial.PORCENTAJE_COLOR}">
-                            {{this.indicadorSectorial.PORCENTAJE_AVANCE}}
-                        </div>
-                        <p class="textoDetalles text-center">Porcentaje de avance con respecto al 2024 </p>
-                    </div>
-                  </div>
-               <br />
-            </div>
-         </div>
-
-
-         <br />
-        <div class="row col-lg-12">
-            <div class="row col-md-6">
-                <!-- Calidad del indicador -->
-                <p style="font-size: 20px; font-weight: bold; text-align: justify">Calidad del indicador</p>
-                <div class="imgCalidad">
-                    <i *ngIf="this.indicadorSectorial.ADECUACION" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                    <i *ngIf="!this.indicadorSectorial.ADECUACION" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
-                    <label style="margin-left: 3px;">Adecuación</label>
-                </div>
-                <div class="imgCalidad">
-                    <i *ngIf="this.indicadorSectorial.CLARIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                    <i *ngIf="!this.indicadorSectorial.CLARIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
-                    <label style="margin-left: 3px;"> Claridad</label>
-                </div>
-                <div class="imgCalidad">
-                    <i *ngIf="this.indicadorSectorial.RELEVANCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                    <i *ngIf="!this.indicadorSectorial.RELEVANCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
-                    <label style="margin-left: 3px;"> Relevancia</label>
-                </div>
-                <div class="imgCalidad">
-                    <i *ngIf="this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                    <i *ngIf="!this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
-                    <label style="margin-left: 3px;"> Monitoreabilidad</label>
-                </div>
-                <div class="imgCalidad">
-                    <i *ngIf="this.indicadorSectorial.PERTINENCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                    <i *ngIf="!this.indicadorSectorial.PERTINENCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
-                    <label style="margin-left: 3px;"> Pertinencia</label>
-                </div>
-                <br />
-            </div>
-            <div class="row col-md-6">
-                <!-- Seccion comentario -->
-                <div *ngIf="this.indicadorSectorial.COMENTARIO != null && this.indicadorSectorial.COMENTARIO != ''" >
                     
-                    <p style="font-size: 20px; font-weight: bold;">Comentario para la dependencia responsable</p> 
-                    <p>
-                        {{this.indicadorSectorial.COMENTARIO}}
-                    </p>
                 </div>
-
-                <!-- Derecho social vinculado -->
-                <div>
-                    <p style="font-size: 20px; font-weight: bold;">Derecho social vinculado</p>
-                    <div 
-                      *ngFor="let derechoSocialInd of listaDerechosSocialesAsociados">
-                        <div class="col-md-3">
-                            <img [src]="'../../../assets/img/derechosSociales/derecho_' + derechoSocialInd.DER_DESCRIPCION + '.jpg'" style="width:60px;" alt="" />
-                            <div>
-                                <label>{{derechoSocialInd.DER_DESCRIPCION}}</label>
+                <app-menu-desplegable [listaObjetivosSectoriales]="listaObjetivosSectoriales4T"></app-menu-desplegable>
+        </div>
+    
+        <!-- Detalles del indicador -->
+        <div class="col bg-white ps-md-5 pe-md-5" style="min-height: 1000px;">
+            <!-- Boton de descarga -->
+            <div class="my-2 row " [ngStyle]="{'background-color' : '#fff'}">
+                <div class="col-lg-4 d-flex gap-3 justify-content-center align-items-center">
+                    <img class="download-svg" src="../../../assets/img/NUBE.svg" alt="DESCARGA">
+                    <p class="textoDetalles" >Fichas técnicas de los indicadores</p>
+                </div>
+            </div>
+            <!-- Titulo de los detalles -->
+            <div class="text-center">
+                <div class="my-2">
+                    <h2 class="titulo" >Información general del indicador</h2>
+                </div>
+            </div>
+            <!-- Grafica -->
+            <div class="">
+                <div class="">
+                   <div id="divGrafIndicadorSectorial" style="width: 100%; height: 400px; margin: 5px -6px 20px;"></div>
+                   <div id="DivLPU" >
+                      <div class="textoDetalles">
+                         <p>{{this.indicadorSectorial.DOF_LB_DESCRIPCION}}</p>
+                         <p>{{this.indicadorSectorial.DOF_META_DESCRIPCION}}</p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <!-- Informacion del indicador -->
+             <div class="">
+                <br>
+                
+    
+                <p style="color: #555;" class="borderParrafo1">Objetivo Prioritario: <span class="textoDetalles">{{this.indicadorSectorial.OBJETIVO}}</span></p>
+    
+                <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Enfoque de Resultados del objetivo: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_RES}}</span></p>
+    
+                <p style="color: #21B052;" class="borderParrafo3">Definición: <span class="textoDetalles">{{this.indicadorSectorial.DESCRIPCION}}</span></p>
+    
+                
+    
+                <p  style="color: #008D6C;" class="borderParrafo2">Método de cálculo: <span class="textoDetalles">{{this.indicadorSectorial.METODO}}</span></p>
+    
+                <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Medio de verificación: <span class="textoDetalles">{{this.indicadorSectorial.FUENTE}}</span></p>
+                 
+                <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Enfoque de Resultados del Indicador: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_INDICADOR}}</span></p>
+                
+                <div class="collapse" id="verMas">
+                    <p style="color: #21B052;" class="borderParrafo3">Frecuencia de Medición: <span class="textoDetalles">{{this.indicadorSectorial.PERIODICIDAD}}</span></p>
+                    <p style="color: #21B052;" class="borderParrafo3">Tipo: <span class="textoDetalles">{{this.indicadorSectorial.TIPO_INDICADOR_GRAFICA}}</span></p>
+                    <p style="color: #21B052;" class="borderParrafo3">Unidad de Medida: <span class="textoDetalles">{{this.indicadorSectorial.UDM}}</span></p>
+                    <p style="color: #21B052;" class="borderParrafo3">Tendencia Esperada: <span class="textoDetalles">{{this.indicadorSectorial.TENDENCIA}}</span></p>
+                    <p style="color: #21B052;" class="borderParrafo3">Nivel de desagregación: <span class="textoDetalles">{{this.indicadorSectorial.NIVEL_DESAGREGACION}}</span></p>
+                    <p style="color: #21B052;" class="borderParrafo3">Acumulado o periódico:  <span class="textoDetalles">{{this.indicadorSectorial.ACUM_PER}}</span></p>    
+                </div>
+                <p class="d-inline-flex gap-1">
+                    <a id="datosvermas" class="btn btn-outline-light"
+                        data-bs-toggle="collapse" data-bs-target="#verMas" aria-expanded="false" aria-controls="verMas">
+                        Ver más
+                    </a>
+                </p>
+            
+             </div>
+             <!-- TODO: Se tiene esta nota, hay que revisar bien cuando se muestra -->
+             <div id="divNotaGraf" style="display: none;" class="col-md-6">
+                <p style="font-size: 11px; text-align: justify">
+                   Nota: Al inicio de la presente administración, la Secretaría de Educación Pública (SEP) disponía de dos instrumentos para medir el logro académico de los alumnos: la Evaluación Nacional del Logro Académico en Centros Escolares (ENLACE, de carácter censal) y los Exámenes de la Calidad y el Logro Educativos (EXCALE, de carácter muestral). Los resultados de ENLACE se consideraron para definir un indicador en el Plan Nacional de Desarrollo 2013-2018 (PND), y los de EXCALE para el Programa Sectorial de Educación 2013-2018 (PSE).<br />
+                   <br />
+                   Durante 2013 y 2014, un grupo de especialistas de diferentes instituciones llevó a cabo un análisis de ENLACE y EXCALE a fin de determinar sus fortalezas y limitaciones y, derivado de sus recomendaciones, en 2014 la SEP resolvió suspender la aplicación de ambas pruebas, que se venían realizando anualmente desde 2006 y 2005, respectivamente. En sustitución se implementó el Plan Nacional para la Evaluación de los Aprendizajes (PLANEA), desarrollado por el Instituto Nacional para la Evaluación de la Educación (INEE), que empezó a aplicarse en 2015.
+                   <br />
+                   <br />
+                   Las evaluaciones de PLANEA no son equivalentes a ENLACE y EXCALE, razón por la cual los indicadores del PND y del PSE asociados a estas pruebas dejaron de reportarse desde 2014, dado que no es posible utilizar para ello los resultados de las nuevas evaluaciones.
+                </p>
+             </div>
+    
+             <!-- Estadisticas rapidas -->
+             <div >
+                <h5 class="" style="color: #000000; font-weight: bold; font-size: 20px;">Estadísticas rápidas</h5>
+                <div class="row estadisticas-rapidas">
+                    <!-- Metas planeadas -->
+                   <div class="row col-md-12">
+                        <p class="titulo">Metas Planeadas</p>
+                   </div>
+                   <br/>
+                   <br />
+                   <div class="d-flex justify-content-evenly flex-wrap">
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br/> máximo</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
+                                {{this.indicadorSectorial.MAX_META_PLANEADA}}
                             </div>
                         </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br/> mínimo</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
+                                {{this.indicadorSectorial.MIN_META_PLANEADA}}
+                            </div>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br /> promedio</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
+                                {{this.indicadorSectorial.AVG_META_PLANEADA}}
+                            </div>
+                        </div>
+                   </div>
+                   <br />
+                   <br />
+                   <!-- Metas alcanzadas -->
+                   <div class="row col-md-12 metasAll">
+                    <p class="titulo">Metas Alcanzadas</p>
+                   </div>
+                   <br />
+                   <br />
+                   <div class="d-flex justify-content-evenly flex-wrap">
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br/> máximo</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
+                                {{this.indicadorSectorial.MAX_META_ALCANZADA}}
+                            </div>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br/> mínimo</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
+                                {{this.indicadorSectorial.MIN_META_ALCANZADA}}
+                            </div>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <p class="textoDetalles text-center">Valor <br /> promedio</p>
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#278148'}">
+                                {{this.indicadorSectorial.AVG_META_ALCANZADA}}
+                            </div>
+                        </div>
+                   </div>
+                </div>
+             </div>
+    
+             <!-- Desempenio del indicador -->
+             <div class="">
+                <br />
+                <br />
+                <p style="font-size: 20px; font-weight: bold; text-align: justify">Desempeño del indicador</p>
+                <div class="estadisticas-rapidas">
+                   <br />
+                      <div class="d-flex justify-content-evenly flex-wrap" >
+                        <div class="circulo-estadisticas-detalles">
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#1C520D'}">
+                                {{this.indicadorSectorial.VALOR_LB}}
+                            </div>
+                            <p class="textoDetalles text-center">Línea Base</p>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#50841B'}">
+                                {{this.indicadorSectorial.META_ALCANZADA}}
+                            </div>
+                            <p class="textoDetalles text-center">Último valor alcanzado</p>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <div class="textoDetalles" [ngStyle]="{'background-color': '#83BA2B'}">
+                                {{this.indicadorSectorial.METATEXT}}
+                            </div>
+                            <p class="textoDetalles text-center">Meta 2024</p>
+                        </div>
+                        <div class="circulo-estadisticas-detalles">
+                            <div class="textoDetalles" [ngStyle]="{'color': this.indicadorSectorial.PORCENTAJE_COLOR == '#FFFF00' ? '#000': '#fff', 'background-color': this.indicadorSectorial.PORCENTAJE_COLOR}">
+                                {{this.indicadorSectorial.PORCENTAJE_AVANCE}}
+                            </div>
+                            <p class="textoDetalles text-center">Porcentaje de avance con respecto al 2024 </p>
+                        </div>
+                      </div>
+                   <br />
+                </div>
+             </div>
+    
+    
+             <br />
+            <div class="row col-lg-12">
+                <div class="row col-md-6">
+                    <!-- Calidad del indicador -->
+                    <p style="font-size: 20px; font-weight: bold; text-align: justify">Calidad del indicador</p>
+                    <div class="imgCalidad">
+                        <i *ngIf="this.indicadorSectorial.ADECUACION" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
+                        <i *ngIf="!this.indicadorSectorial.ADECUACION" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <label style="margin-left: 3px;">Adecuación</label>
                     </div>
-                    <label class="textoDetalles" *ngIf="this.listaDerechosSocialesAsociados.length == 0">El indicador no se encuentra vinculado a algún derecho social.</label>
+                    <div class="imgCalidad">
+                        <i *ngIf="this.indicadorSectorial.CLARIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
+                        <i *ngIf="!this.indicadorSectorial.CLARIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <label style="margin-left: 3px;"> Claridad</label>
+                    </div>
+                    <div class="imgCalidad">
+                        <i *ngIf="this.indicadorSectorial.RELEVANCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
+                        <i *ngIf="!this.indicadorSectorial.RELEVANCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <label style="margin-left: 3px;"> Relevancia</label>
+                    </div>
+                    <div class="imgCalidad">
+                        <i *ngIf="this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
+                        <i *ngIf="!this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <label style="margin-left: 3px;"> Monitoreabilidad</label>
+                    </div>
+                    <div class="imgCalidad">
+                        <i *ngIf="this.indicadorSectorial.PERTINENCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
+                        <i *ngIf="!this.indicadorSectorial.PERTINENCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <label style="margin-left: 3px;"> Pertinencia</label>
+                    </div>
+                    <br />
+                </div>
+                <div class="row col-md-6">
+                    <!-- Seccion comentario -->
+                    <div *ngIf="this.indicadorSectorial.COMENTARIO != null && this.indicadorSectorial.COMENTARIO != ''" >
+                        
+                        <p style="font-size: 20px; font-weight: bold;">Comentario para la dependencia responsable</p> 
+                        <p>
+                            {{this.indicadorSectorial.COMENTARIO}}
+                        </p>
+                    </div>
+    
+                    <!-- Derecho social vinculado -->
+                    <div>
+                        <p style="font-size: 20px; font-weight: bold;">Derecho social vinculado</p>
+                        <div 
+                          *ngFor="let derechoSocialInd of listaDerechosSocialesAsociados">
+                            <div class="col-md-3">
+                                <img [src]="'../../../assets/img/derechosSociales/derecho_' + derechoSocialInd.DER_DESCRIPCION + '.jpg'" style="width:60px;" alt="" />
+                                <div>
+                                    <label>{{derechoSocialInd.DER_DESCRIPCION}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="textoDetalles" *ngIf="this.listaDerechosSocialesAsociados.length == 0">El indicador no se encuentra vinculado a algún derecho social.</label>
+                    </div>
                 </div>
             </div>
         </div>
+    
     </div>
-
 </div>

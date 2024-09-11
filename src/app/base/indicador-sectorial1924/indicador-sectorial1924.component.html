@@ -25,8 +25,8 @@
 
     <!-- Combo Sectores -->
     <div>
-        <select class="select-sectores" [(ngModel)]="programaSectorialSelected">
-            <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR" [selected]="this.idSector == sector.ID_SECTOR?.toString()">
+        <select class="select-sectores" [(ngModel)]="idSector" (change)="cambiarSector()">
+            <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR">
               {{ sector.NOMBRE }}
             </option>
           </select> 

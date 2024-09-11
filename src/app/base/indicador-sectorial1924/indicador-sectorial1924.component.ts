@@ -31,7 +31,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
-  programaSectorialSelected = 'Desarrollo Agropecuario';
+  idSector: string | null = null;
   plantilla = '';
 
   listaSectores: Sector[] = [
@@ -46,7 +46,6 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     { ID_SECTOR: 9, NOMBRE: 'Salud', ICONO: 'icono_salud.jpg' },
     { ID_SECTOR: 10, NOMBRE: 'Trabajo y Previsión Social', ICONO: 'icono_trabajo.jpg' }
   ];
-  idSector: string | null = null;
 
   listaEstadisticasBasicasSector: EstadisticasBasicas[] =[
     {
@@ -125,11 +124,8 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.alto = aux + aux / 6;
       }, 10);
     }
-    this.route.queryParams.subscribe(params => {
-      this.idSector = params['idSector'];  // Aquí obtienes el valor de idSector
-    });
   }
-
+  
   ngOnInit(): void {
     if (this.isBrowser) {
       document.body.scrollTop = 0;
@@ -138,6 +134,9 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.scroller.scrollToPosition([0, 0]);
       }
     }
+    this.route.queryParams.subscribe(params => {
+      this.idSector = params['idSector'];
+    });
   }
   consultarData() {
     if (this.isBrowser) {
@@ -147,6 +146,15 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.redes = res.generales.redes;
       });
     }
+  }
+
+  cambiarSector() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { idSector: this.idSector },
+    });
+
+    //TODO: AGREGAR LLAMADA A SERVICIO PARA CAMBIAR LA INFORMACION DEL SECTOR
   }
 
   
