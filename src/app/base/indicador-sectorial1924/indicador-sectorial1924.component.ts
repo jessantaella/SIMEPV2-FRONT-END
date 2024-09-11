@@ -7,6 +7,7 @@ import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
 import { Sector } from '../Models/Sector';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
+import { ProgramaSectorial } from '../Models/ProgramaSectorial';
 
 @Component({
   selector: 'app-indicador-sectorial1924',
@@ -64,6 +65,22 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
       CONTEO: 10,
       TIPO: 'PARÁMETROS'
     },
+  ];
+
+  listaProgramasSectoriales: ProgramaSectorial[] =[
+    {
+      URL_ICONO: 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/LogosPS20192024/iconos-simeps2020_05agriculturayrural.jpg',
+      NOMBRE: 'Programa Sectorial de Agricultura y Desarrollo Rural',
+      ID_PROG_SECTORIAL: 5,
+      ID_SECTOR: 1,
+    },
+    {
+      URL_ICONO: 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/LogosPS20192024/iconos-simeps2020_17desruralsustentable.jpg',
+      NOMBRE: 'Programa Especial Concurrente para el Desarrollo Rural Sustentable',
+      ID_PROG_SECTORIAL: 15,
+      ID_SECTOR: 1,
+    },
+    
   ];
   
 

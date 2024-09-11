@@ -2,8 +2,10 @@
     <button (click)="prev()">&#10094;</button>
     <div>
         <ul>
-          <li *ngFor="let image of images; let i = index" [class.active]="i === currentIndex">
-            <img class="imagen-indicador" [src]="image" alt="Image {{i + 1}}">
+          <li *ngFor="let programaSectorial of listaProgramasSectoriales; let i = index" [class.active]="i === currentIndex">
+            <a (click)="agregarQueryParam(programaSectorial.ID_PROG_SECTORIAL!)">
+              <img class="imagen-indicador" [src]="programaSectorial.URL_ICONO">
+            </a>
           </li>
         </ul>
     </div>

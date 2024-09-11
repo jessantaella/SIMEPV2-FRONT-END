@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProgramaSectorial } from '../../Models/ProgramaSectorial';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrusel',
@@ -6,31 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./carrusel.component.scss']
 })
 export class CarruselComponent {
-  images: string[] = [
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-    '../../../assets/img/NUBE.svg',
-  ];
+  @Input() listaProgramasSectoriales: ProgramaSectorial[] = [];
+
   currentIndex: number = 0;
   imageWidth: number = 160;
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   prev() {
     if (this.currentIndex > 0) {
@@ -40,7 +23,7 @@ export class CarruselComponent {
   }
 
   next() {
-    if (this.currentIndex < this.images.length - this.visibleImageCount()) {
+    if (this.currentIndex < this.listaProgramasSectoriales.length - this.visibleImageCount()) {
       this.currentIndex++;
       this.updateTransform();
     }
@@ -54,6 +37,14 @@ export class CarruselComponent {
   private visibleImageCount(): number {
     const carouselWidth = document.querySelector('.carousel')?.clientWidth || 0;
     return Math.floor(carouselWidth / (this.imageWidth + 10));
+  }
+
+  agregarQueryParam(idProgramaSect: number) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { idProgramaSect: idProgramaSect },
+      queryParamsHandling: 'merge' // Esto mantiene los queryParams existentes
+    });
   }
 
 }
