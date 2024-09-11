@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
+import { Sector } from '../Models/Sector';
 
 @Component({
   selector: 'app-programas-indicadores1924',
@@ -53,7 +54,19 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
       CONTEO: 10,
       TIPO: 'PARÁMETROS'
     },
-  ]
+  ];
+  listaSectores: Sector[] = [
+    { ID_SECTOR: 1, NOMBRE: 'Desarrollo Agropecuario', ICONO: 'icono_desarrolloagropecuario.jpg' },
+    { ID_SECTOR: 2, NOMBRE: 'Desarrollo Económico', ICONO: 'icono_desarrolloeconomico.jpg' },
+    { ID_SECTOR: 3, NOMBRE: 'Desarrollo Social', ICONO: 'icono_desarrollosocial.jpg' },
+    { ID_SECTOR: 4, NOMBRE: 'Desarrollo Urbano', ICONO: 'icono_desarrollourbano.jpg' },
+    { ID_SECTOR: 5, NOMBRE: 'Educación', ICONO: 'icono_educacion.jpg' },
+    { ID_SECTOR: 6, NOMBRE: 'Igualdad de Género', ICONO: 'icono_igualdadgenero.jpg' },
+    { ID_SECTOR: 7, NOMBRE: 'Medio Ambiente', ICONO: 'icono_medioambiente.jpg' },
+    { ID_SECTOR: 8, NOMBRE: 'Otros', ICONO: 'icono_otros.jpg' },
+    { ID_SECTOR: 9, NOMBRE: 'Salud', ICONO: 'icono_salud.jpg' },
+    { ID_SECTOR: 10, NOMBRE: 'Trabajo y Previsión Social', ICONO: 'icono_trabajo.jpg' }
+  ];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

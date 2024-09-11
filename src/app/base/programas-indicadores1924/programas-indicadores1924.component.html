@@ -43,51 +43,13 @@
         <div class="tituloContenedor my-2" [ngStyle]="{'background-color' : '#fff'}">
             <span class="titulo" >Monitoreo de indicadores de la política social por sector</span>
         </div>
-        <div class="mt-4 d-flex justify-content-evenly gap-4 flex-wrap">
-            <a class="p-0 link-sectores" [routerLink]="['/IndicadorSectorial19-24']">
-                <img class="sectores-icon-svg" src="../../../assets/img/Desarrollo agropecuario.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Desarrollo Agropecuario</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Desarrollo economico.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Desarrollo Económico</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Desarrollo_social.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Desarrollo Social</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Desarrollo_urbano.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Desarrollo Urbano</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Educacion.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Educación</p>
+        <div class="mt-4 d-flex justify-content-evenly flex-wrap">
+            <a *ngFor="let sector of listaSectores" class="p-1 link-sectores" [routerLink]="['/IndicadorSectorial19-24']" [queryParams]="{ idSector: sector.ID_SECTOR }" style="flex: 1 1 20%;">
+                <img class="sectores-icon-svg" [src]="'../../../assets/img/'+ sector.ICONO?.replace('.jpg', '') + '.svg'" [alt]="sector.ICONO?.replace('.jpg', '') + '.svg'">
+                <p class="texto text-center">{{sector.NOMBRE}}</p>
             </a>
         </div>
-        <div class="mt-4 d-flex justify-content-evenly gap-4 flex-wrap">
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Igualdad de genero.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Igualdad de Género</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Medio_ambiente.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Medio Ambiente</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Salud.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Salud</p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Trabajo_prevision_social.svg" alt="Desarrollo agropecuario">
-                
-                    <p class="texto text-center">Trabajo y Previsión Social </p>
-            </a>
-            <a class="p-0 link-sectores">
-                <img class="sectores-icon-svg" src="../../../assets/img/Otros.svg" alt="Desarrollo agropecuario">
-                <p class="texto text-center">Otros</p>
-            </a>
-        </div>
+        
     </div>
     
     
