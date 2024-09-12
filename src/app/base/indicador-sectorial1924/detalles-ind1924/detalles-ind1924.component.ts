@@ -71,10 +71,13 @@ export class DetallesInd1924Component {
   ngAfterViewInit(): void {
     this.screenWidth = window.innerWidth;
     this.changeCollapseMode(this.screenWidth);
+  }
+  
+  ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.idProgramaSector = params['idProgramaSect'];
       console.log({program: params['idProgramaSect']});
-    });
+    });  
   }
 
   @HostListener('window:resize', ['$event'])
@@ -84,10 +87,12 @@ export class DetallesInd1924Component {
   }
   
   changeCollapseMode(innerWidth: number) {
-    if(innerWidth > 992){
-      this.menuDesplegable?.nativeElement?.classList?.add('collapse-horizontal');
-    }else{
-      this.menuDesplegable?.nativeElement?.classList?.remove('collapse-horizontal');
+    if(this.menuDesplegable != null){
+      if(innerWidth > 992){
+        this.menuDesplegable.nativeElement.classList.add('collapse-horizontal');
+      }else{
+        this.menuDesplegable.nativeElement.classList.remove('collapse-horizontal');
+      }
     }
 
   }

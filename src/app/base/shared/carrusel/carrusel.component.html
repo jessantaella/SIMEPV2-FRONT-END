@@ -4,7 +4,7 @@
         <ul>
           <li *ngFor="let programaSectorial of listaProgramasSectoriales; let i = index" [class.active]="i === currentIndex">
             <a (click)="agregarQueryParam(programaSectorial.ID_PROG_SECTORIAL!)">
-              <img class="imagen-indicador" [src]="programaSectorial.URL_ICONO">
+              <img class="imagen-indicador" [src]="programaSectorial.URL_ICONO" [alt]="programaSectorial.NOMBRE">
             </a>
           </li>
         </ul>

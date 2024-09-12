@@ -1,6 +1,6 @@
 <div *ngIf="this.idProgramaSector != null">
     <button class="mb-2 button-menu" type="button" data-bs-toggle="collapse" data-bs-target="#menuDesplegable" aria-controls="menuDesplegable">
-        <i class="bi bi-list"></i>
+        <em class="bi bi-list"></em>
     </button>
     <div class="row h-100 bg-dark-subtle">
     
@@ -72,9 +72,9 @@
     
                 <p  style="color: #008D6C;" class="borderParrafo2">Método de cálculo: <span class="textoDetalles">{{this.indicadorSectorial.METODO}}</span></p>
     
-                <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Medio de verificación: <span class="textoDetalles">{{this.indicadorSectorial.FUENTE}}</span></p>
+                <p style="color: #008D6C;" class="borderParrafo2">Medio de verificación: <span class="textoDetalles">{{this.indicadorSectorial.FUENTE}}</span></p>
                  
-                <p style="color: #008D6C; -ms-word-wrap: break-word;" class="borderParrafo2">Enfoque de Resultados del Indicador: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_INDICADOR}}</span></p>
+                <p style="color: #008D6C;" class="borderParrafo2">Enfoque de Resultados del Indicador: <span class="textoDetalles">{{this.indicadorSectorial.ENFOQUE_INDICADOR}}</span></p>
                 
                 <div class="collapse" id="verMas">
                     <p style="color: #21B052;" class="borderParrafo3">Frecuencia de Medición: <span class="textoDetalles">{{this.indicadorSectorial.PERIODICIDAD}}</span></p>
@@ -209,28 +209,28 @@
                     <!-- Calidad del indicador -->
                     <p style="font-size: 20px; font-weight: bold; text-align: justify">Calidad del indicador</p>
                     <div class="imgCalidad">
-                        <i *ngIf="this.indicadorSectorial.ADECUACION" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                        <i *ngIf="!this.indicadorSectorial.ADECUACION" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <em *ngIf="this.indicadorSectorial.ADECUACION" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></em>
+                        <em *ngIf="!this.indicadorSectorial.ADECUACION" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></em>
                         <label style="margin-left: 3px;">Adecuación</label>
                     </div>
                     <div class="imgCalidad">
-                        <i *ngIf="this.indicadorSectorial.CLARIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                        <i *ngIf="!this.indicadorSectorial.CLARIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <em *ngIf="this.indicadorSectorial.CLARIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></em>
+                        <em *ngIf="!this.indicadorSectorial.CLARIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></em>
                         <label style="margin-left: 3px;"> Claridad</label>
                     </div>
                     <div class="imgCalidad">
-                        <i *ngIf="this.indicadorSectorial.RELEVANCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                        <i *ngIf="!this.indicadorSectorial.RELEVANCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <em *ngIf="this.indicadorSectorial.RELEVANCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></em>
+                        <em *ngIf="!this.indicadorSectorial.RELEVANCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></em>
                         <label style="margin-left: 3px;"> Relevancia</label>
                     </div>
                     <div class="imgCalidad">
-                        <i *ngIf="this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                        <i *ngIf="!this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <em *ngIf="this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></em>
+                        <em *ngIf="!this.indicadorSectorial.MONITOREABILIDAD" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></em>
                         <label style="margin-left: 3px;"> Monitoreabilidad</label>
                     </div>
                     <div class="imgCalidad">
-                        <i *ngIf="this.indicadorSectorial.PERTINENCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></i>
-                        <i *ngIf="!this.indicadorSectorial.PERTINENCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></i>
+                        <em *ngIf="this.indicadorSectorial.PERTINENCIA" class="bi bi-check-circle-fill" style="color: #008D6C;font-size: 25px;"></em>
+                        <em *ngIf="!this.indicadorSectorial.PERTINENCIA" class="bi bi-exclamation-circle-fill" style="color: rgba(233, 204, 41, 0.973); font-size: 25px;"></em>
                         <label style="margin-left: 3px;"> Pertinencia</label>
                     </div>
                     <br />
