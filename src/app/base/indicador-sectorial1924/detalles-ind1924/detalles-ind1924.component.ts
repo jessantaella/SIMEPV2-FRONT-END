@@ -3,6 +3,8 @@ import { ObjetivoSectorial } from '../../Models/ObjetivoSectorial';
 import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
 import { ActivatedRoute } from '@angular/router';
+import { Meta } from '../../Models/Meta';
+import { DatasetGrafica, GraficaModel } from '../../Models/GraficaModel';
 
 
 @Component({
@@ -14,10 +16,109 @@ export class DetallesInd1924Component {
   @ViewChild('menuDesplegable') menuDesplegable!: ElementRef;
   idProgramaSector: string | null = null;
   screenWidth: number;
+  chartData: GraficaModel = {}
   listaDerechosSocialesAsociados: DerechoSocialInd[] = [
     {
       DER_DESCRIPCION: 'Educación',
       DER_ID: 1
+    }
+  ]
+  listaHistorico: Meta[]=[
+    {
+      CICLO: 2013,
+      MI: null,
+      VALOR: 81.50,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2013","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"81.50"}'
+    },
+    {
+      CICLO: 2014,
+      MI: null,
+      VALOR: 80.30,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2014","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"80.30"}'
+    },
+    {
+      CICLO: 2015,
+      MI: null,
+      VALOR: 79.00,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2015","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"79.00"}'
+    },
+    {
+      CICLO: 2016,
+      MI: null,
+      VALOR: 78.30,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2016","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"78.30"}'
+    },
+    {
+      CICLO: 2017,
+      MI: null,
+      VALOR: 76.90,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2017","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"76.90"}'
+    },
+    {
+      CICLO: 2018,
+      MI: null,
+      VALOR: 75.00,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2018","DOF_META":"1","DOF_LB":"1","LineaBase":"75.00","MetaAlcanzada":"75.00"}'
+    },
+    {
+      CICLO: 2019,
+      MI: null,
+      VALOR: 73.70,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2019","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"73.70"}'
+    },
+    {
+      CICLO: 2020,
+      MI: 76.70,
+      VALOR: 73.50,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2020","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"73.50","MetaIntermedia":"76.70"}'
+    },
+    {
+      CICLO: 2021,
+      MI: 77.50,
+      VALOR: 70.80,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2021","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"70.80","MetaIntermedia":"77.50"}'
+    },
+    {
+      CICLO: 2022,
+      MI: 78.30,
+      VALOR: 69.50,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2022","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"69.50","MetaIntermedia":"78.30"}'
+    },
+    {
+      CICLO: 2023,
+      MI: 79.20,
+      VALOR: null,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2023","DOF_META":"1","DOF_LB":"1","MetaIntermedia":"79.20"}'
+    },
+    {
+      CICLO: 2024,
+      MI: 80.00,
+      VALOR: null,
+      VALORLB: 75.00,
+      META: 80.00,
+      METASHISTORICO: '{"CICLO":"2024","DOF_META":"1","DOF_LB":"1","MetaIntermedia":"80.00","Meta2018":"80.00"}'
     }
   ]
   indicadorSectorial: IndicadorSectorial = new IndicadorSectorial();
@@ -78,9 +179,7 @@ export class DetallesInd1924Component {
     this.route.queryParams.subscribe(params => {
       this.idProgramaSector = params['idProgramaSect'];
     }); 
-    
-
-  
+    this.formatearChartData(this.listaHistorico)
   }
 
   @HostListener('window:resize', ['$event'])
@@ -97,6 +196,57 @@ export class DetallesInd1924Component {
         this.menuDesplegable.nativeElement.classList.remove('collapse-horizontal');
       }
     }
+
+  }
+
+  formatearChartData(metas: Meta[]){
+
+    const minValor = Math.min(...metas.map(meta => (meta.MI !== null ? meta.MI! : Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : Infinity)));
+    const maxValor = Math.max(...metas.map(meta => (meta.MI !== null ? meta.MI! : -Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : -Infinity)));
+    const graficaLabels = metas.map(meta =>(meta.CICLO ? meta.CICLO.toString(): ''));
+    const lineaBaseDatos = metas.map(meta =>(meta.VALOR == meta.VALORLB ? meta.VALORLB : null));
+    const datsetLineaBase: DatasetGrafica = {
+      backgroundColor: 'gray',
+      borderColor: 'gray',
+      data: lineaBaseDatos,
+      label: 'Línea Base',
+      pointRadius: 4,
+    }
+    const metaDatos = metas.map(meta =>(meta.MI == meta.META ? meta.META : null));
+    const datsetMeta: DatasetGrafica = {
+      backgroundColor: 'gray',
+      borderColor: 'gray',
+      data: metaDatos,
+      label: 'Meta Planteada',
+      pointRadius: 4,
+    }
+    const metaAlcanzadaDatos = metas.map(meta =>(meta.VALOR));
+    const datsetMetaAlcanzada: DatasetGrafica = {
+      backgroundColor: 'green',
+      borderColor: 'green',
+      data: metaAlcanzadaDatos,
+      label: 'Meta Alcanzada',
+      pointRadius: 4,
+    }
+    const metaIntermediaDatos = metas.map(meta =>(meta.MI));
+    const datsetMetaIntermedia: DatasetGrafica = {
+      backgroundColor: 'blue',
+      borderColor: 'blue',
+      data: metaIntermediaDatos,
+      label: 'Meta Intermedia',
+      pointRadius: 4,
+    }
+    
+    this.chartData.TITULO = this.indicadorSectorial.NOMBRE;
+    this.chartData.MAX_VALOR = maxValor;
+    this.chartData.MIN_VALOR = minValor;
+    this.chartData.LABELS = graficaLabels;
+    this.chartData.DATASETS = [
+      datsetLineaBase,
+      datsetMeta,
+      datsetMetaAlcanzada,
+      datsetMetaIntermedia
+    ];
 
   }
 

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {Chart, registerables } from 'chart.js';
+import { Component, Input } from '@angular/core';
+import {Chart, ChartDataset, registerables } from 'chart.js';
+import { GraficaModel } from '../../Models/GraficaModel';
 
 @Component({
   selector: 'app-grafica',
@@ -7,6 +8,7 @@ import {Chart, registerables } from 'chart.js';
   styleUrls: ['./grafica.component.scss']
 })
 export class GraficaComponent {
+  @Input() chartData: GraficaModel = {};
 
   chart: any;
 
@@ -23,37 +25,17 @@ export class GraficaComponent {
     this.chart = new Chart('divGrafIndicadorSectorial', {
       type: 'line', // Tipo de gráfico: línea
       data: {
-        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'], // Años
-        datasets: [
-          {
-            label: 'Línea Base',
-            data: [null, null, null, null, null, 75,null,null,null,null,null,null], 
-            borderColor: 'gray',
-            backgroundColor: 'gray',
-            pointRadius: 4,
-          },
-          {
-            label: 'Meta Planteada',
-            data: [null, null, null, null, null, null, null,null, null, null, null, 80],
-            borderColor: 'gray',
-            backgroundColor: 'gray',
-            pointRadius: 4,
-          },
-          {
-            label: 'Meta Alcanzada',
-            data: [81.5, 80.3, 79, 78.3, 76.9, 75, 73.7, 73.5, 70.8, 69.5, null, null], 
-            borderColor: 'green',
-            backgroundColor: 'green',
-            pointRadius: 4,
-          },
-          {
-            label: 'Meta Intermedia',
-            data: [null, null, null, null, null, null, null,76.7, 77.5, 78.3, 79.2, 80], 
-            borderColor: 'blue',
-            backgroundColor: 'blue',
-            pointRadius: 4,
-          },
-        ]
+        labels: this.chartData.LABELS,
+        datasets: this.chartData.DATASETS!.map(dataset => {
+          return {
+            label: dataset.label || '', // O un valor por defecto
+            data: dataset.data || [], // O un array vacío como valor por defecto
+            borderColor: dataset.borderColor || 'gray', // O un color por defecto
+            backgroundColor: dataset.backgroundColor || 'gray', // O un color por defecto
+            pointRadius: dataset.pointRadius ?? 4 // O un valor por defecto
+          } as ChartDataset<'line', (number | null)[]>; // Asegúrate de especificar el tipo aquí
+        }),
+       
       },
       options: {
         responsive: true,
@@ -81,11 +63,8 @@ export class GraficaComponent {
         scales: {
           y: {
             beginAtZero: false,
-            min: 65, // El mínimo del eje Y es 65
-            max: 85, // El máximo del eje Y es 85
-            ticks: {
-              stepSize: 5 // Incrementos de 5 unidades
-            }
+            min: this.chartData.MIN_VALOR, // El mínimo del eje Y es 65
+            max: this.chartData.MAX_VALOR, // El máximo del eje Y es 85
           }
         }
       }
