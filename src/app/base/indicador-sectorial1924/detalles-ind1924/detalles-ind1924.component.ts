@@ -5,6 +5,7 @@ import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '../../Models/Meta';
 import { DatasetGrafica, GraficaModel } from '../../Models/GraficaModel';
+import { ChartDataset } from 'chart.js';
 
 
 @Component({
@@ -200,46 +201,26 @@ export class DetallesInd1924Component {
   }
 
   formatearChartData(metas: Meta[]){
-
-    const minValor = Math.min(...metas.map(meta => (meta.MI !== null ? meta.MI! : Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : Infinity)));
-    const maxValor = Math.max(...metas.map(meta => (meta.MI !== null ? meta.MI! : -Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : -Infinity)));
-    const graficaLabels = metas.map(meta =>(meta.CICLO ? meta.CICLO.toString(): ''));
-    const lineaBaseDatos = metas.map(meta =>(meta.VALOR == meta.VALORLB ? meta.VALORLB : null));
-    const datsetLineaBase: DatasetGrafica = {
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      data: lineaBaseDatos,
-      label: 'Línea Base',
-      pointRadius: 4,
-    }
-    const metaDatos = metas.map(meta =>(meta.MI == meta.META ? meta.META : null));
-    const datsetMeta: DatasetGrafica = {
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      data: metaDatos,
-      label: 'Meta Planteada',
-      pointRadius: 4,
-    }
-    const metaAlcanzadaDatos = metas.map(meta =>(meta.VALOR));
-    const datsetMetaAlcanzada: DatasetGrafica = {
-      backgroundColor: 'green',
-      borderColor: 'green',
-      data: metaAlcanzadaDatos,
-      label: 'Meta Alcanzada',
-      pointRadius: 4,
-    }
-    const metaIntermediaDatos = metas.map(meta =>(meta.MI));
-    const datsetMetaIntermedia: DatasetGrafica = {
-      backgroundColor: 'blue',
-      borderColor: 'blue',
-      data: metaIntermediaDatos,
-      label: 'Meta Intermedia',
-      pointRadius: 4,
-    }
     
-    this.chartData.TITULO = this.indicadorSectorial.NOMBRE;
-    this.chartData.MAX_VALOR = maxValor;
-    this.chartData.MIN_VALOR = minValor;
+    const {minValorFinal, maxValorFinal} = this.obtenerMinMax(metas);
+    
+    const graficaLabels = metas.map(meta =>(meta.CICLO ? meta.CICLO.toString(): ''));
+
+    const lineaBaseDatos = metas.map(meta =>(meta.VALOR == meta.VALORLB ? meta.VALORLB : null));
+    const datsetLineaBase = this.construirDataSet('#E0F1DA', lineaBaseDatos, 'Línea Base');
+    
+    const metaDatos = metas.map(meta =>(meta.MI == meta.META ? meta.META : null));
+    const datsetMeta = this.construirDataSet('#a2a2a2',metaDatos,'Meta Planteada');
+
+    const metaAlcanzadaDatos = metas.map(meta =>(meta.VALOR));
+    const datsetMetaAlcanzada = this.construirDataSet('#008D6C', metaAlcanzadaDatos,'Meta Alcanzada');
+
+    const metaIntermediaDatos = metas.map(meta =>(meta.MI));
+    const datsetMetaIntermedia = this.construirDataSet('#83BA2B', metaIntermediaDatos, 'Meta Intermedia');
+    
+    this.chartData.TITULO = this.indicadorSectorial.NOMBRE ? this.indicadorSectorial.NOMBRE : '';
+    this.chartData.MAX_VALOR = maxValorFinal;
+    this.chartData.MIN_VALOR = minValorFinal;
     this.chartData.LABELS = graficaLabels;
     this.chartData.DATASETS = [
       datsetLineaBase,
@@ -248,6 +229,26 @@ export class DetallesInd1924Component {
       datsetMetaIntermedia
     ];
 
+  }
+
+  obtenerMinMax(metas: Meta[]) {
+    const minValor = Math.min(...metas.map(meta => (meta.MI !== null ? meta.MI! : Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : Infinity)));
+    const minValorFinal = minValor % 5 != 0 ? minValor - (minValor % 5) : minValor;
+    
+    const maxValor = Math.max(...metas.map(meta => (meta.MI !== null ? meta.MI! : -Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : -Infinity)));
+    const maxValorFinal = maxValor % 5 != 0 ? maxValor - (maxValor % 5) + 5 : maxValor;
+    return {minValorFinal, maxValorFinal};
+  }
+
+  construirDataSet (color: string, data: (number | null)[], titulo: string){
+    const dataset: ChartDataset<'line', (number | null)[]> = {
+      backgroundColor: color,
+      borderColor: color,
+      data: data,
+      label: titulo,
+      pointRadius: 4,
+    }
+    return dataset
   }
 
   
