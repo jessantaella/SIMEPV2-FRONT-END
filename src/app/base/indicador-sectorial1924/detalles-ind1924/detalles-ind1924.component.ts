@@ -4,7 +4,7 @@ import { IndicadorSectorial } from '../../Models/IndicadorSectorial';
 import { DerechoSocialInd } from '../../Models/DerechoSocialInd';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '../../Models/Meta';
-import { DatasetGrafica, GraficaModel } from '../../Models/GraficaModel';
+import { GraficaModel } from '../../Models/GraficaModel';
 import { ChartDataset } from 'chart.js';
 
 
@@ -17,7 +17,7 @@ export class DetallesInd1924Component {
   @ViewChild('menuDesplegable') menuDesplegable!: ElementRef;
   idProgramaSector: string | null = null;
   screenWidth: number;
-  chartData: GraficaModel = {}
+  chartData: GraficaModel = {};
   listaDerechosSocialesAsociados: DerechoSocialInd[] = [
     {
       DER_DESCRIPCION: 'Educación',
