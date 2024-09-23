@@ -19,3 +19,11 @@
     outline: none;
     box-shadow: none;
   }
+
+.textoIndicador{
+    cursor: pointer;
+}
+
+.textoIndicador:hover{
+    text-decoration: underline;
+}

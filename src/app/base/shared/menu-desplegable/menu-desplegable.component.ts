@@ -8,5 +8,12 @@ import { ObjetivoSectorial } from '../../Models/ObjetivoSectorial';
 })
 export class MenuDesplegableComponent {
   @Input() listaObjetivosSectoriales: ObjetivoSectorial[] = [];
+  @Input() cargarIndicador!: (id: number) => void;
+
+  onClickCard (idIndicador: number) {
+    if (this.cargarIndicador) {
+      this.cargarIndicador(idIndicador);
+    }
+  }
 
 }

@@ -133,7 +133,8 @@ export class DetallesInd1924Component {
         INDICADORES_SECTORIALES: [
           {
             TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria'
+            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
+            ID_INDICADOR: 12
           }
         ],
     },
@@ -146,7 +147,8 @@ export class DetallesInd1924Component {
         INDICADORES_SECTORIALES: [
           {
             TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria'
+            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
+            ID_INDICADOR: 22,
           }
         ],
     },
@@ -159,7 +161,8 @@ export class DetallesInd1924Component {
         INDICADORES_SECTORIALES: [
           {
             TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria'
+            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
+            ID_INDICADOR: 43,
           }
         ],
     }
@@ -198,6 +201,10 @@ export class DetallesInd1924Component {
       }
     }
 
+  }
+
+  cargarIndicador(idIndicador: number){
+    console.log({idIndicador});
   }
 
   formatearChartData(metas: Meta[]){

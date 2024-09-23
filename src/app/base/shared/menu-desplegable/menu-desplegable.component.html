@@ -34,8 +34,8 @@
             *ngFor="let indicador of objetivo.INDICADORES_SECTORIALES"
             [attr.id]="'indicadores' + objetivo.NUM_OBJETIVO">
             <div 
-            class="card card-body">
-                {{indicador.INDICADOR}}
+            class="card card-body" (click)="cargarIndicador(indicador.ID_INDICADOR || 0)">
+                <p class="mb-0 textoIndicador">{{indicador.INDICADOR}}</p>
             </div>
         </div>
         </div>
