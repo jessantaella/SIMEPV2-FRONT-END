@@ -2,6 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { DataDynamic } from './base/services/dinamic-data.services';
 import { isPlatformBrowser } from '@angular/common';
+import { ServerConfService } from './server-confing.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ export class AppComponent{
   ga:any;
   isBrowser = false;
 
-  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any){
+  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any,  private url:ServerConfService){
     this.isBrowser = isPlatformBrowser(this.platformId);
+    this.url.loadServerConfig();
     this.consultarTags();
    }
 

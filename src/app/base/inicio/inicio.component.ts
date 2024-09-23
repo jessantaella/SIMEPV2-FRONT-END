@@ -13,6 +13,7 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ServerConfService } from 'src/app/server-confing.service';
 
 @Component({
   selector: 'app-inicio',
@@ -47,13 +48,14 @@ export class InicioComponent {
     private router: Router,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window,
+    private url: ServerConfService,
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     if (this.isBrowser) {
-      this.flechaBtn = environment.recursos + 'Flecha-Boton.png';
-      this.lineaCnvl = environment.recursos + 'Linea-Coneval.png';
+      this.flechaBtn = this.servicio.getImagen('Flecha-Boton.png');
+      this.lineaCnvl = this.servicio.getImagen('Linea-Coneval.png');
       this.breakpointObserver
         .observe(['(max-width: 768px)'])
         .subscribe((result: BreakpointState) => {

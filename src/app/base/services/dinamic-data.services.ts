@@ -18,15 +18,36 @@ export class DataDynamic {
 constructor(private http:HttpClient,@Inject(PLATFORM_ID) private platformId:any){
 }
 
-  getInformacion(): Observable<any> {
-    const headers = new HttpHeaders()
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    if (this.isBrowser) {
-    const url:string = this.ruta;
-    return this.http.get<any>(url,{ headers: headers });
+getInformacion(): Observable<any> {
+  const headers = new HttpHeaders()
+  this.isBrowser = isPlatformBrowser(this.platformId);
+  //if (this.isBrowser) {
+    let url:string = window.location.hostname;
+    if(url.includes('qa')){
+      url = 'https://qa.coneval.org.mx/conf/configuracion.json'
+    }else if(url.includes('sistemas')){
+      url = 'https://sistemas.coneval.org.mx/conf/configuracion.json'
     }else{
-      const url:string = this.ruta;
-      return this.http.get<any>(url,{ headers: headers });
+      url = 'http://10.1.15.102:81/conf/configuracion.json'
     }
-  }
+    return this.http.get<any>(url,{ headers: headers });
+  //}
+}
+
+getImagen(imagen:string){
+  if (this.isBrowser) {
+    let url = window.location.hostname;
+    if(url === 'localhost'){
+      url = '10.1.15.102'
+      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen; 
+    }else if(url.includes('qa') || url.includes('sistemas')){
+      return "https://"+url + '/conf/SIMEPS/img/'+imagen;
+
+    }else{
+      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen; 
+    }
+  } else {
+    return '';
+  } 
+}
 }
