@@ -50,4 +50,35 @@ getImagen(imagen:string){
     return '';
   } 
 }
+
+getURLSimepsViejito(rute:string){
+  if (this.isBrowser) {
+    let url = window.location.hostname;
+    if(url === 'localhost'){
+      url = 'devnet.coneval.org.mx'
+      return 'HTTP://' + url + ':84/' + rute; 
+    }else if(url.includes('qa') || url.includes('sistemas')){
+      return "https://"+url + '/'+rute;
+
+    }else{
+      url = 'devnet.coneval.org.mx'
+      return 'HTTP://' + url + ':84/' + rute; 
+    }
+  } else {
+    return '';
+  } 
+}
+
+isProduccion(){
+  if (this.isBrowser) {
+    let url = window.location.hostname;
+    if(url.includes('sistemas')){
+      return true; 
+    }else{
+      return false; 
+    }
+  } else {
+    return false;
+  } 
+}
 }

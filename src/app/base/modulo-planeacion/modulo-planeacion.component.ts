@@ -102,21 +102,21 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   }
 
   cargarDiagrama() {
-    this.parte_1_pnd = environment.recursos + 'diagrama-pnd/parte-1-pnd.png';
-    this.parte_2_pnd = environment.recursos + 'diagrama-pnd/parte-2-pnd.png';
-    this.parte_3_pnd = environment.recursos + 'diagrama-pnd/parte-3-pnd.png';
-    this.modulo_1 = environment.recursos + 'diagrama-pnd/modulo-1.png';
-    this.modulo_2 = environment.recursos + 'diagrama-pnd/modulo-2.png';
-    this.modulo_3 = environment.recursos + 'diagrama-pnd/modulo-3.png';
-    this.modulo_4 = environment.recursos + 'diagrama-pnd/modulo-4.png';
-    this.submodulo_1 = environment.recursos + 'diagrama-pnd/submodulo-1.png';
-    this.submodulo_2 = environment.recursos + 'diagrama-pnd/submodulo-2.png';
-    this.submodulo_3 = environment.recursos + 'diagrama-pnd/submodulo-3.png';
-    this.submodulo_4 = environment.recursos + 'diagrama-pnd/submodulo-4.png';
+    this.parte_1_pnd = this.servicio.getImagen('diagrama-pnd/parte-1-pnd.png');
+    this.parte_2_pnd = this.servicio.getImagen('diagrama-pnd/parte-2-pnd.png');
+    this.parte_3_pnd = this.servicio.getImagen('diagrama-pnd/parte-3-pnd.png');
+    this.modulo_1 = this.servicio.getImagen('diagrama-pnd/modulo-1.png');
+    this.modulo_2 = this.servicio.getImagen('diagrama-pnd/modulo-2.png');
+    this.modulo_3 = this.servicio.getImagen('diagrama-pnd/modulo-3.png');
+    this.modulo_4 = this.servicio.getImagen('diagrama-pnd/modulo-4.png');
+    this.submodulo_1 = this.servicio.getImagen('diagrama-pnd/submodulo-1.png');
+    this.submodulo_2 = this.servicio.getImagen('diagrama-pnd/submodulo-2.png');
+    this.submodulo_3 = this.servicio.getImagen('diagrama-pnd/submodulo-3.png');
+    this.submodulo_4 = this.servicio.getImagen('diagrama-pnd/submodulo-4.png');
 
     //Direcciones
-    this.direccion_1 = environment.simepsViejo + '_SIMEPS/MetasNacionales.aspx';
-    this.direccion_2 = environment.simepsViejo + '_SIMEPS/MosaicoSectores.aspx';
+    this.direccion_1 = this.servicio.getURLSimepsViejito('_SIMEPS/MetasNacionales.aspx');
+    this.direccion_2 = this.servicio.getURLSimepsViejito('_SIMEPS/MosaicoSectores.aspx');
     this.direccion_3 = 'MosaicoSectores19-24';
 
   }

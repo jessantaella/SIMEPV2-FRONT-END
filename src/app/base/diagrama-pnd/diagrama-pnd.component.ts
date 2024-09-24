@@ -3,6 +3,7 @@ import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { ServicesBaseService } from "../services/services-base.service";
 import { environment } from "src/environments/environment";
 import { isPlatformBrowser } from "@angular/common";
+import { DataDynamic } from "../services/dinamic-data.services";
 
 @Component({
   selector: "app-diagrama-pnd",
@@ -109,6 +110,7 @@ export class DiagramaPndComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private base: ServicesBaseService,
+    private servicio: DataDynamic,
     @Inject(PLATFORM_ID) private platformId:any
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -123,8 +125,8 @@ export class DiagramaPndComponent {
       });
 
       if (this.isBrowser) {
-        this.flechapoliticas = environment.recursos + "Flechapoliticas.png";
-        this.flechamodulo = environment.recursos + "Flechamodulo.png";
+        this.flechapoliticas = this.servicio.getImagen("Flechapoliticas.png");
+        this.flechamodulo = this.servicio.getImagen("Flechamodulo.png");
       }
   }
 
@@ -177,13 +179,13 @@ export class DiagramaPndComponent {
     window.location.href = "/SIMEPS/modulo-planeacion";
   }
   eventoAcciones() {
-    window.location.href = environment.simepsViejo + "_SIMEPS/MosaicoSips.aspx";
+    window.location.href = this.servicio.getURLSimepsViejito("_SIMEPS/MosaicoSips.aspx");
   }
   eventoRamo() {
     //if (this.isBrowser) {
       //let anio = new Date()
       window.location.href =
-        environment.simepsViejo + "_SIMEPS/HomeRamo33.aspx?pCiclo=2023";
+        this.servicio.getURLSimepsViejito( "_SIMEPS/HomeRamo33.aspx?pCiclo=2023");
     //}
   }
 
