@@ -7,6 +7,7 @@ import { Meta } from '../../Models/Meta';
 import { GraficaModel } from '../../Models/GraficaModel';
 import { ChartDataset } from 'chart.js';
 import { Indicadores1924Service } from '../../services/indicadores1924.service';
+import { IndicadorSectorialResponse } from '../../ModelsResponse/IndicadorSectorialResponse';
 
 
 @Component({
@@ -269,9 +270,15 @@ export class DetallesInd1924Component {
       const res = await this.indicadores1924Service.getObjetivosSectoriales4T(idPrograma).toPromise();
       
       const objetivos = await Promise.all((res as ObjetivoSectorial[]).map(async (objetivo) => {
-        const listaIndicadores = await this.getIndicadorSectorial(objetivo.ID_PROGRAMA_SEC, 2, objetivo.OBJETIVO, objetivo.NUM_OBJETIVO);
+        const listaIndicadores = await this.getIndicadoresSectoriales(objetivo.ID_PROGRAMA_SEC, 2, objetivo.OBJETIVO, objetivo.NUM_OBJETIVO);
         return this.respuestaAObjetivoSectorial(objetivo, listaIndicadores);
       }));
+
+      if(objetivos.length > 0 && objetivos[0].INDICADORES_SECTORIALES && objetivos[0].INDICADORES_SECTORIALES?.length > 0){
+        console.log({id: objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!})
+        const primerIndicador = await this.getDetallesIndicadorSectorial(objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!);
+        this.indicadorSectorial = primerIndicador;
+      }
   
       this.listaObjetivosSectoriales4T = objetivos;
 
@@ -295,9 +302,9 @@ export class DetallesInd1924Component {
   }
 
 
-  async getIndicadorSectorial(idProgramaSectorial: number, opcion: number, descObjetivo: string, numObjetivo: number): Promise<IndicadorSectorial[]> {
+  async getIndicadoresSectoriales(idProgramaSectorial: number, opcion: number, descObjetivo: string, numObjetivo: number): Promise<IndicadorSectorial[]> {
     try {
-      const res = await this.indicadores1924Service.getDetallesIndicador4T(idProgramaSectorial, opcion, descObjetivo).toPromise();
+      const res = await this.indicadores1924Service.getIndicadorObjetivos4T(idProgramaSectorial, opcion, descObjetivo).toPromise();
       const response = (res as IndicadorSectorial[]).map(indicador => 
         this.respuestaAIndicadorSectorial(indicador, numObjetivo)
       );
@@ -317,7 +324,74 @@ export class DetallesInd1924Component {
     indicadorSectorial.NUM_OBJETIVO = numObjetivo;
     return indicadorSectorial;
   }
+
+  async getDetallesIndicadorSectorial(idIndicador: number,): Promise<IndicadorSectorial> {
+    try {
+      const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 1).toPromise();
+      console.log({res});
+      const response = this.respuestaADetalleIndicadorSectorial(res[0]);
+      return response;
+    } catch (err) {
+      console.error("Error al obtener los detalles del indicador:", err);
+      return new IndicadorSectorial(); // Retorna un arreglo vacío en caso de error
+    }
+  }
   
+  respuestaADetalleIndicadorSectorial(indicador: IndicadorSectorialResponse){
+    let indicadorSectorial = new IndicadorSectorial();
+
+    indicadorSectorial.ACUM_PER = indicador.ACUM_PER;
+    indicadorSectorial.ADECUACION = indicador.ADECUACION;
+    indicadorSectorial.AVG_META_ALCANZADA = indicador.AVG_META_ALCANZADA;
+    indicadorSectorial.AVG_META_PLANEADA = indicador.AVG_META_PLANEADA;
+    indicadorSectorial.CICLO = indicador.CICLO;
+    indicadorSectorial.CLARIDAD = indicador.CLARIDAD;
+    indicadorSectorial.DESCRIPCION = indicador.DEFINICION_META;
+    indicadorSectorial.OBJETIVO = indicador.DESCRIPCION_OBJETIVO;
+    indicadorSectorial.DOF_LB_DESCRIPCION = indicador.DOF_DESCRIPCION_LB;
+    indicadorSectorial.DOF_META_DESCRIPCION = indicador.DOF_DESCRIPCION_META;
+    indicadorSectorial.ENFOQUE_INDICADOR = indicador.ENFOQUE_INDICADOR;
+    indicadorSectorial.ENFOQUE_RES = indicador.ENFOQUE_RES;
+    indicadorSectorial.FUENTE = indicador.FUENTE_INFORMACION;
+    indicadorSectorial.LB_COLOR = indicador.LB_COLOR;
+    indicadorSectorial.MALCANZADA_COLOR = indicador.MALCANZADA_COLOR
+    indicadorSectorial.MAX_META_ALCANZADA = indicador.MAX_META_ALCANZADA;
+    indicadorSectorial.MAX_META_PLANEADA = indicador.MAX_META_PLANEADA;
+    indicadorSectorial.META = indicador.META;
+    indicadorSectorial.META_ALCANZADA = indicador.META_ALCANZADA;
+    indicadorSectorial.META_COLOR = indicador.META_COLOR;
+    indicadorSectorial.METODO = indicador.METODO_CALCULO;
+    indicadorSectorial.MIN_META_ALCANZADA = indicador.MIN_META_ALCANZADA;
+    indicadorSectorial.MIN_META_PLANEADA = indicador.MIN_META_PLANEADA;
+    indicadorSectorial.MONITOREABILIDAD = indicador.MONITOREABILIDAD;
+    indicadorSectorial.NIVEL_DESAGREGACION = indicador.NIVEL_DESAGREGACION;
+    indicadorSectorial.NOMBRE = indicador.NOMBRE_META;
+    indicadorSectorial.PERIODICIDAD = indicador.PERIODICIDAD;
+    indicadorSectorial.PERTINENCIA = indicador.PERTINENCIA;
+    indicadorSectorial.PORCENTAJE_AVANCE = indicador.PORCENTAJE_AVANCE;
+    indicadorSectorial.PORCENTAJE_COLOR = indicador.PORCENTAJE_COLOR;
+    indicadorSectorial.Nombre_Ramo = indicador.RAMO;
+    indicadorSectorial.RELEVANCIA = indicador.RELEVANCIA;
+    indicadorSectorial.TENDENCIA = indicador.TENDENCIA;
+    indicadorSectorial.TIPO = indicador.TIPO;
+    indicadorSectorial.UDM = indicador.UDM;
+    indicadorSectorial.VALOR_LB = indicador.VALOR_LB;
+    
+    indicadorSectorial.CAMBIO_TEXTO = indicador.CAMBIO_TEXTO;
+    
+    indicadorSectorial.TIPO_INDICADOR_GRAFICA = indicador.TIPO_INDICADOR_GRAFICA;
+
+    if (indicador.META == 0 || indicador.META == null)
+    {
+        indicadorSectorial.METATEXT = "ND";
+    }
+    else
+    {
+        indicadorSectorial.METATEXT = indicador.META.toString();
+    }
+
+    return indicadorSectorial;
+  }
   
 
   

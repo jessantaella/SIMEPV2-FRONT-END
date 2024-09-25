@@ -26,14 +26,14 @@ export class Indicadores1924Service {
     return this.http.get<any>(url);
   }
 
-  getDetallesIndicador4T(idProgramaSectorial: number, opcion: number, descObjetivo: string):Observable<any>{
+  getIndicadorObjetivos4T(idProgramaSectorial: number, opcion: number, descObjetivo: string):Observable<any>{
     let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadoresSectoriales/getSPMPAEMIndicadores4T?idIndicador='+idProgramaSectorial+'&opcion='+ opcion + '&objetivo='+ descObjetivo;
     return this.http.get<any>(url);
   }
 
-  getHistorico4T(idPrograma:string):Observable<any>{
+  getDetallesIndicador4T(idIndicador:number, opcion: number):Observable<any>{
     let url = this.serverConfigService.getServerConfig()+'api/simeps/api/indicadores/detalleIndicadores4T';
-    return this.http.post<any>(url, {idIndicador: idPrograma, opcion: 2});
+    return this.http.post<any>(url, {idIndicador: idIndicador, opcion: opcion});
   }
 }
 
