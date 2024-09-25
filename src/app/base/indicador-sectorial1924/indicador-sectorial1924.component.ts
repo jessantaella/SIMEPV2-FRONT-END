@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Sector } from '../Models/Sector';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { ProgramaSectorial } from '../Models/ProgramaSectorial';
+import { Indicadores1924Service } from '../services/indicadores1924.service';
 
 @Component({
   selector: 'app-indicador-sectorial1924',
@@ -32,6 +33,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
   esTablet = false;
   esEscritorio = false;
   idSector: string | null = null;
+  previousIdSector: string | null = null; 
   plantilla = '';
 
   listaSectores: Sector[] = [
@@ -66,21 +68,8 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     },
   ];
 
-  listaProgramasSectoriales: ProgramaSectorial[] =[
-    {
-      URL_ICONO: 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/LogosPS20192024/iconos-simeps2020_05agriculturayrural.jpg',
-      NOMBRE: 'Programa Sectorial de Agricultura y Desarrollo Rural',
-      ID_PROG_SECTORIAL: 5,
-      ID_SECTOR: 1,
-    },
-    {
-      URL_ICONO: 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/LogosPS20192024/iconos-simeps2020_17desruralsustentable.jpg',
-      NOMBRE: 'Programa Especial Concurrente para el Desarrollo Rural Sustentable',
-      ID_PROG_SECTORIAL: 15,
-      ID_SECTOR: 1,
-    },
-    
-  ];
+  listaProgramasSectoriales: ProgramaSectorial[] =[];
+  loadingProgramasSectoriales = true;
   
 
   constructor(
@@ -93,6 +82,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     private route: ActivatedRoute,
     
     private breakpointObserver: BreakpointObserver,
+    private indicadores1924Service: Indicadores1924Service,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
@@ -135,13 +125,17 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
       }
     }
     this.route.queryParams.subscribe(params => {
-      this.idSector = params['idSector'];
+      const newIdSector = params['idSector'];
+      if (newIdSector !== this.previousIdSector) {
+        this.previousIdSector = newIdSector; 
+        this.idSector = newIdSector; 
+        this.getProgramasSectoriales(this.idSector!); 
+      }
     });
   }
   consultarData() {
     if (this.isBrowser) {
       this.servicio.getInformacion().subscribe((res) => {
-        console.log(res);
         this.nombreSistema = res?.simeps?.opciones[1].titulo;
         this.redes = res.generales.redes;
       });
@@ -153,8 +147,35 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
       relativeTo: this.route,
       queryParams: { idSector: this.idSector },
     });
+  }
 
-    //TODO: AGREGAR LLAMADA A SERVICIO PARA CAMBIAR LA INFORMACION DEL SECTOR
+  getProgramasSectoriales(idSector: string){
+    this.loadingProgramasSectoriales = true;
+    this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).subscribe(
+      (res) => {
+        const response = res;
+
+        (response as ProgramaSectorial[]).map(programa =>{
+          return this.respuestaAProgramaSector(programa);
+        });
+
+        this.listaProgramasSectoriales = response;
+        this.loadingProgramasSectoriales = false;
+      },
+      (err) => {
+        console.log({err});
+        this.loadingProgramasSectoriales = false;
+      }
+    )
+  }
+
+  respuestaAProgramaSector(programa: ProgramaSectorial){
+    let programaSectorial =new ProgramaSectorial();
+    programaSectorial.URL_ICONO = programa.URL_ICONO;
+    programaSectorial.NOMBRE = programa.NOMBRE;
+    programaSectorial.ID_PROGRAMA = programa.ID_PROGRAMA;
+    programaSectorial.ID_SECTOR = programa.ID_SECTOR;
+    return programaSectorial;
   }
 
   

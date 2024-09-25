@@ -52,3 +52,10 @@
   .carousel button:last-of-type {
     right: 0;
   }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }

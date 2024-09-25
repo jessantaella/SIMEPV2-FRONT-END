@@ -23,6 +23,7 @@ import { CarruselComponent } from './base/shared/carrusel/carrusel.component';
 import { DetallesInd1924Component } from './base/indicador-sectorial1924/detalles-ind1924/detalles-ind1924.component';
 import { MenuDesplegableComponent } from './base/shared/menu-desplegable/menu-desplegable.component';
 import { GraficaComponent } from './base/shared/grafica/grafica.component';
+import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GraficaComponent } from './base/shared/grafica/grafica.component';
     CarruselComponent,
     DetallesInd1924Component,
     MenuDesplegableComponent,
-    GraficaComponent
+    GraficaComponent,
+    PreLoaderComponent
   ],
   imports: [
     BrowserModule,

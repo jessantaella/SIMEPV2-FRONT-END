@@ -7,6 +7,7 @@ import { WINDOW } from '../services/window.service';
 import { environment } from 'src/environments/environment';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { Sector } from '../Models/Sector';
+import { Indicadores1924Service } from '../services/indicadores1924.service';
 
 @Component({
   selector: 'app-programas-indicadores1924',
@@ -77,6 +78,8 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     private router: Router,
     
     private breakpointObserver: BreakpointObserver,
+
+    private indicadores1924Service: Indicadores1924Service
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
@@ -114,6 +117,7 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     if (this.isBrowser) {
       document.body.scrollTop = 0;
       let pos = this.scroller.getScrollPosition();
+      this.getConteoSectores();
       if (pos[1] > 0) {
         this.scroller.scrollToPosition([0, 0]);
       }
@@ -122,12 +126,24 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
   consultarData() {
     if (this.isBrowser) {
       this.servicio.getInformacion().subscribe((res) => {
-        console.log(res);
         this.nombreSistema = res?.simeps?.opciones[1].titulo;
         this.redes = res.generales.redes;
       });
     }
   }
+
+  getConteoSectores(){
+    this.indicadores1924Service.consultaEstadisticaBasica4T(1).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+
+      }
+    )
+  }
+  
+  
 
   
 }

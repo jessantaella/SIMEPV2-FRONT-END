@@ -39,8 +39,12 @@ export class ServerConfService {
   
           this.http.get<any>(url,{ headers: headers })
             .subscribe(response => {
-              console.log('Configuración del servidor:', response.servidor);
-              this.serverConfig = response.servidor;
+              // Conexion a nuevo servidor 156, cambiar cuando sea necesario
+              if(hostname.includes('localhost')){
+                this.serverConfig = 'http://10.1.15.156:8080/';
+              }else{
+                this.serverConfig = response.servidor;
+              }
               if(this.storage.getItem('srv') !== this.serverConfig){
                   this.storage.setItem('srv',this.serverConfig)
               }

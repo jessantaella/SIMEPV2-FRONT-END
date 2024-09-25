@@ -1,5 +1,6 @@
 export class ProgramaSectorial {
     ID_PROG_SECTORIAL?: number;
+    ID_PROGRAMA?: number;
     ID_SECTOR?: number;
     CLASIFICACION?: number;
     NOMBRE?: string;
@@ -17,6 +18,7 @@ export class ProgramaSectorial {
 
     constructor() {
         this.ID_PROG_SECTORIAL = 0;
+        this.ID_PROGRAMA = 0;
         this.ID_SECTOR = 0;
         this.CLASIFICACION = 0;
         this.NOMBRE = '';

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CarruselComponent {
   @Input() listaProgramasSectoriales: ProgramaSectorial[] = [];
+  @Input() loading: boolean = true;
 
   currentIndex: number = 0;
   imageWidth: number = 160;
