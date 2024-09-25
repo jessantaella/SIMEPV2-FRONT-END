@@ -16,9 +16,24 @@ export class Indicadores1924Service {
     return this.http.get<any>(url);
   }
 
-  getConsultaProgramasSectoriales4T(idPrograma:string):Observable<any>{
-    let url = this.serverConfigService.getServerConfig()+'api/simeps/api/sectores/consultaProgramasSectoriales4T?idPrograma='+idPrograma;
+  getConsultaProgramasSectoriales4T(idSector:string):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps/api/sectores/consultaProgramasSectoriales4T?idPrograma='+idSector;
     return this.http.get<any>(url);
+  }
+
+  getObjetivosSectoriales4T(idPrograma:string):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadoresSectoriales/getSPMPAEMIndicadores4T?idIndicador='+idPrograma+'&opcion=1&objetivo=0';
+    return this.http.get<any>(url);
+  }
+
+  getDetallesIndicador4T(idProgramaSectorial: number, opcion: number, descObjetivo: string):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadoresSectoriales/getSPMPAEMIndicadores4T?idIndicador='+idProgramaSectorial+'&opcion='+ opcion + '&objetivo='+ descObjetivo;
+    return this.http.get<any>(url);
+  }
+
+  getHistorico4T(idPrograma:string):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps/api/indicadores/detalleIndicadores4T';
+    return this.http.post<any>(url, {idIndicador: idPrograma, opcion: 2});
   }
 }
 

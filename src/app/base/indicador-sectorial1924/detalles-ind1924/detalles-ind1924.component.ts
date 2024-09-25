@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Meta } from '../../Models/Meta';
 import { GraficaModel } from '../../Models/GraficaModel';
 import { ChartDataset } from 'chart.js';
+import { Indicadores1924Service } from '../../services/indicadores1924.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class DetallesInd1924Component {
   idProgramaSector: string | null = null;
   screenWidth: number;
   chartData: GraficaModel = {};
+  loadingDetallesIndicador = false;
   listaDerechosSocialesAsociados: DerechoSocialInd[] = [
     {
       DER_DESCRIPCION: 'Educación',
@@ -170,6 +172,7 @@ export class DetallesInd1924Component {
 
   constructor(
     private route: ActivatedRoute,
+    private indicadores1924Service: Indicadores1924Service,
   ) {
     this.screenWidth = window.innerWidth; // Inicializa con el tamaño actual de la pantalla
   }
@@ -182,6 +185,7 @@ export class DetallesInd1924Component {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.idProgramaSector = params['idProgramaSect'];
+      this.getObjetivosSectoriales(this.idProgramaSector!);
     }); 
     this.formatearChartData(this.listaHistorico)
   }
@@ -258,6 +262,62 @@ export class DetallesInd1924Component {
     return dataset
   }
 
+  async getObjetivosSectoriales(idPrograma: string) {
+    this.loadingDetallesIndicador = true;
+  
+    try {
+      const res = await this.indicadores1924Service.getObjetivosSectoriales4T(idPrograma).toPromise();
+      
+      const objetivos = await Promise.all((res as ObjetivoSectorial[]).map(async (objetivo) => {
+        const listaIndicadores = await this.getIndicadorSectorial(objetivo.ID_PROGRAMA_SEC, 2, objetivo.OBJETIVO, objetivo.NUM_OBJETIVO);
+        return this.respuestaAObjetivoSectorial(objetivo, listaIndicadores);
+      }));
+  
+      this.listaObjetivosSectoriales4T = objetivos;
+
+      setTimeout(() => {
+        this.loadingDetallesIndicador = false;
+      }, 500);
+  
+    } catch (err) {
+      console.error("Error al obtener los objetivos sectoriales:", err);
+      this.loadingDetallesIndicador = false;
+    }
+  }
+
+  respuestaAObjetivoSectorial(objetivo: ObjetivoSectorial, listaIndicadores: IndicadorSectorial[]){
+    let objetivoSectorial =new ObjetivoSectorial();
+    objetivoSectorial.ID_PROGRAMA_SEC = objetivo.ID_PROGRAMA_SEC;
+    objetivoSectorial.NUM_OBJETIVO = objetivo.NUM_OBJETIVO;
+    objetivoSectorial.OBJETIVO = objetivo.OBJETIVO;
+    objetivoSectorial.INDICADORES_SECTORIALES = listaIndicadores;
+    return objetivoSectorial;
+  }
+
+
+  async getIndicadorSectorial(idProgramaSectorial: number, opcion: number, descObjetivo: string, numObjetivo: number): Promise<IndicadorSectorial[]> {
+    try {
+      const res = await this.indicadores1924Service.getDetallesIndicador4T(idProgramaSectorial, opcion, descObjetivo).toPromise();
+      const response = (res as IndicadorSectorial[]).map(indicador => 
+        this.respuestaAIndicadorSectorial(indicador, numObjetivo)
+      );
+      return response;
+    } catch (err) {
+      console.error("Error al obtener los detalles del indicador:", err);
+      return []; // Retorna un arreglo vacío en caso de error
+    }
+  }
+
+  respuestaAIndicadorSectorial(indicador: IndicadorSectorial, numObjetivo: number){
+    let indicadorSectorial =new IndicadorSectorial();
+    indicadorSectorial.ID_INDICADOR = indicador.ID_INDICADOR;
+    indicadorSectorial.INDICADOR = indicador.INDICADOR;
+    indicadorSectorial.NUM_INDICADOR = indicador.NUM_INDICADOR;
+    indicadorSectorial.TIPO = indicador.TIPO;
+    indicadorSectorial.NUM_OBJETIVO = numObjetivo;
+    return indicadorSectorial;
+  }
+  
   
 
   
