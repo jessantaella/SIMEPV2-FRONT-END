@@ -7,5 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PreLoaderComponent {
   @Input() type: number = 1;
+  @Input() height: number = 20;
+  @Input() width: number = 120;
 
 }
