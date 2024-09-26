@@ -10,6 +10,9 @@ import { Indicadores1924Service } from '../../services/indicadores1924.service';
 import { IndicadorSectorialResponse } from '../../ModelsResponse/IndicadorSectorialResponse';
 import { MetaResponse } from '../../ModelsResponse/MetaResponse';
 import { DerechoSocialIndResponse } from '../../ModelsResponse/DerechoSocialIndResponse';
+import { ContadorIndObj4T } from '../../Models/ContadorIndObj4T';
+import { ContadorIndObj4TResponse } from '../../ModelsResponse/ContadorIndObj4TResponse';
+
 
 
 @Component({
@@ -28,7 +31,7 @@ export class DetallesInd1924Component {
   listaHistorico: Meta[]=[];
   indicadorSectorial: IndicadorSectorial = {};
   listaObjetivosSectoriales4T: ObjetivoSectorial[] = [];
-  
+  contadorObjetivos: ContadorIndObj4T = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -133,7 +136,9 @@ export class DetallesInd1924Component {
       if(objetivos.length > 0 && objetivos[0].INDICADORES_SECTORIALES && objetivos[0].INDICADORES_SECTORIALES?.length > 0){
         await this.cargarIndicador(objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!);
       }
-  
+
+      const contadorObjetivos = await this.getContadorObjetivos(idPrograma);
+      this.contadorObjetivos = contadorObjetivos;
       this.listaObjetivosSectoriales4T = objetivos;
       this.loadingObjetivosPrograma = false;
   
@@ -294,6 +299,28 @@ export class DetallesInd1924Component {
     let derechoSocial =new DerechoSocialInd();
     derechoSocial.DER_DESCRIPCION =derechoSocialResponse.DER_DESCRIPCION;
     return derechoSocial;
+  }
+
+  async getContadorObjetivos(idPrograma: string): Promise<ContadorIndObj4T> {
+    try {
+      const res = await this.indicadores1924Service.getSPMPAEMContadorIndicadores4T(idPrograma).toPromise();
+      const response = (res as ContadorIndObj4TResponse[]).map(contadorObjetivo => 
+        this.respuestaAContadorObjetivo(contadorObjetivo)
+      );
+      return response[0];
+    } catch (err) {
+      console.error("Error al obtener los Derechos Sociales vinculados:", err);
+      return new ContadorIndObj4T(); 
+    }
+  }
+
+
+  respuestaAContadorObjetivo(contadorObjetivoResponse: ContadorIndObj4TResponse){
+    let contadorObjetivo =new ContadorIndObj4T();
+    contadorObjetivo.COUNT_META = contadorObjetivoResponse.COUNT_MET;
+    contadorObjetivo.COUNT_OBJ = contadorObjetivoResponse.COUNT_OBJ;
+    contadorObjetivo.COUNT_PARAM = contadorObjetivoResponse.COUNT_PARAM;
+    return contadorObjetivo;
   }
   
 

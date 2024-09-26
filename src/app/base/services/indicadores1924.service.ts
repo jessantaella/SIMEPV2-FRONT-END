@@ -40,6 +40,11 @@ export class Indicadores1924Service {
     let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadores/derechoSocialInd4T?idIndicador=' +idIndicador ;
     return this.http.get<any>(url);
   }
+
+  getSPMPAEMContadorIndicadores4T(idPrograma:string):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadoresSectoriales/getSPMPAEMContadorIndicadores4T?idProgramaSectorial=' +idPrograma ;
+    return this.http.get<any>(url);
+  }
 }
 
     
