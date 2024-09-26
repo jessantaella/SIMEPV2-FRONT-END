@@ -78,10 +78,10 @@ export class DetallesInd1924Component {
     
     const graficaLabels = metas.map(meta =>(meta.CICLO ? meta.CICLO.toString(): ''));
 
-    const lineaBaseDatos = metas.map(meta =>(meta.VALOR == meta.VALORLB ? meta.VALORLB : null));
+    const lineaBaseDatos = metas.map(meta =>(meta.METASHISTORICO.includes('LineaBase') ? meta.VALORLB : null));
     const datsetLineaBase = this.construirDataSet('#E0F1DA', lineaBaseDatos, 'Línea Base');
     
-    const metaDatos = metas.map(meta =>(meta.MI == meta.META ? meta.META : null));
+    const metaDatos = metas.map(meta =>(meta.METASHISTORICO.includes('Meta2018') ? meta.META : null));
     const datsetMeta = this.construirDataSet('#a2a2a2',metaDatos,'Meta Planteada');
 
     const metaAlcanzadaDatos = metas.map(meta =>(meta.VALOR));
@@ -252,6 +252,7 @@ export class DetallesInd1924Component {
     let indicador = await this.getDetallesIndicadorSectorial(idIndicador);
     this.indicadorSectorial = indicador;
     let metas = await this.getHistorialIndicadores(idIndicador);
+    console.log({metas});
     this.cargarGrafica(metas);
     this.loadingDetallesIndicador = false;
   }
