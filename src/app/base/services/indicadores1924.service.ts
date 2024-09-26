@@ -35,6 +35,11 @@ export class Indicadores1924Service {
     let url = this.serverConfigService.getServerConfig()+'api/simeps/api/indicadores/detalleIndicadores4T';
     return this.http.post<any>(url, {idIndicador: idIndicador, opcion: opcion});
   }
+
+  getSPDerechoSocialInd4T(idIndicador:number):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadores/derechoSocialInd4T?idIndicador=' +idIndicador ;
+    return this.http.get<any>(url);
+  }
 }
 
     

@@ -9,6 +9,7 @@ import { ChartDataset } from 'chart.js';
 import { Indicadores1924Service } from '../../services/indicadores1924.service';
 import { IndicadorSectorialResponse } from '../../ModelsResponse/IndicadorSectorialResponse';
 import { MetaResponse } from '../../ModelsResponse/MetaResponse';
+import { DerechoSocialIndResponse } from '../../ModelsResponse/DerechoSocialIndResponse';
 
 
 @Component({
@@ -23,13 +24,8 @@ export class DetallesInd1924Component {
   chartData: GraficaModel = {};
   loadingObjetivosPrograma = false;
   loadingDetallesIndicador = false;
-  listaDerechosSocialesAsociados: DerechoSocialInd[] = [
-    {
-      DER_DESCRIPCION: 'Educación',
-      DER_ID: 1
-    }
-  ]
-  listaHistorico: Meta[]=[]
+  listaDerechosSocialesAsociados: DerechoSocialInd[] = [];
+  listaHistorico: Meta[]=[];
   indicadorSectorial: IndicadorSectorial = {};
   listaObjetivosSectoriales4T: ObjetivoSectorial[] = [];
   
@@ -252,8 +248,9 @@ export class DetallesInd1924Component {
     let indicador = await this.getDetallesIndicadorSectorial(idIndicador);
     this.indicadorSectorial = indicador;
     let metas = await this.getHistorialIndicadores(idIndicador);
-    console.log({metas});
     this.cargarGrafica(metas);
+    let derechosSociales = await this.getDerechosSocicalesVinculados(idIndicador);
+    this.listaDerechosSocialesAsociados = derechosSociales;
     this.loadingDetallesIndicador = false;
   }
 
@@ -279,6 +276,24 @@ export class DetallesInd1924Component {
     meta.VALOR = metaResponse.VALOR;
     meta.VALORLB = metaResponse.VALOR_LB;
     return meta;
+  }
+  async getDerechosSocicalesVinculados(idIndicador: number,): Promise<DerechoSocialInd[]> {
+    try {
+      const res = await this.indicadores1924Service.getSPDerechoSocialInd4T(idIndicador).toPromise();
+      const response = (res as DerechoSocialIndResponse[]).map(derchoSocial => 
+        this.respuestaADerechoSocial(derchoSocial)
+      );
+      return response;
+    } catch (err) {
+      console.error("Error al obtener los Derechos Sociales vinculados:", err);
+      return []; 
+    }
+  }
+
+  respuestaADerechoSocial(derechoSocialResponse: DerechoSocialInd){
+    let derechoSocial =new DerechoSocialInd();
+    derechoSocial.DER_DESCRIPCION =derechoSocialResponse.DER_DESCRIPCION;
+    return derechoSocial;
   }
   
 
