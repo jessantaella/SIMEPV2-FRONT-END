@@ -28,6 +28,7 @@ export class GraficaComponent {
         labels: this.chartData.LABELS,
         datasets: this.chartData.DATASETS!.map(dataset => {
           return {
+            spanGaps: true,
             label: dataset.label || '', // O un valor por defecto
             data: dataset.data || [], // O un array vacío como valor por defecto
             borderColor: dataset.borderColor || 'gray', // O un color por defecto

@@ -8,6 +8,7 @@ import { GraficaModel } from '../../Models/GraficaModel';
 import { ChartDataset } from 'chart.js';
 import { Indicadores1924Service } from '../../services/indicadores1924.service';
 import { IndicadorSectorialResponse } from '../../ModelsResponse/IndicadorSectorialResponse';
+import { MetaResponse } from '../../ModelsResponse/MetaResponse';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class DetallesInd1924Component {
   idProgramaSector: string | null = null;
   screenWidth: number;
   chartData: GraficaModel = {};
+  loadingObjetivosPrograma = false;
   loadingDetallesIndicador = false;
   listaDerechosSocialesAsociados: DerechoSocialInd[] = [
     {
@@ -27,149 +29,10 @@ export class DetallesInd1924Component {
       DER_ID: 1
     }
   ]
-  listaHistorico: Meta[]=[
-    {
-      CICLO: 2013,
-      MI: null,
-      VALOR: 81.50,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2013","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"81.50"}'
-    },
-    {
-      CICLO: 2014,
-      MI: null,
-      VALOR: 80.30,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2014","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"80.30"}'
-    },
-    {
-      CICLO: 2015,
-      MI: null,
-      VALOR: 79.00,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2015","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"79.00"}'
-    },
-    {
-      CICLO: 2016,
-      MI: null,
-      VALOR: 78.30,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2016","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"78.30"}'
-    },
-    {
-      CICLO: 2017,
-      MI: null,
-      VALOR: 76.90,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2017","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"76.90"}'
-    },
-    {
-      CICLO: 2018,
-      MI: null,
-      VALOR: 75.00,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2018","DOF_META":"1","DOF_LB":"1","LineaBase":"75.00","MetaAlcanzada":"75.00"}'
-    },
-    {
-      CICLO: 2019,
-      MI: null,
-      VALOR: 73.70,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2019","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"73.70"}'
-    },
-    {
-      CICLO: 2020,
-      MI: 76.70,
-      VALOR: 73.50,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2020","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"73.50","MetaIntermedia":"76.70"}'
-    },
-    {
-      CICLO: 2021,
-      MI: 77.50,
-      VALOR: 70.80,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2021","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"70.80","MetaIntermedia":"77.50"}'
-    },
-    {
-      CICLO: 2022,
-      MI: 78.30,
-      VALOR: 69.50,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2022","DOF_META":"1","DOF_LB":"1","MetaAlcanzada":"69.50","MetaIntermedia":"78.30"}'
-    },
-    {
-      CICLO: 2023,
-      MI: 79.20,
-      VALOR: null,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2023","DOF_META":"1","DOF_LB":"1","MetaIntermedia":"79.20"}'
-    },
-    {
-      CICLO: 2024,
-      MI: 80.00,
-      VALOR: null,
-      VALORLB: 75.00,
-      META: 80.00,
-      METASHISTORICO: '{"CICLO":"2024","DOF_META":"1","DOF_LB":"1","MetaIntermedia":"80.00","Meta2018":"80.00"}'
-    }
-  ]
-  indicadorSectorial: IndicadorSectorial = new IndicadorSectorial();
-  listaObjetivosSectoriales4T: ObjetivoSectorial[] = [
-    {
-        NUM_OBJETIVO: 1,
-        OBJETIVO: "Mejorar la educación",
-        ID_INDICADOR: "EDU123",
-        ID_PROGRAMA_SEC: 101,
-        TIPO_INDICADOR: "Cualitativo",
-        INDICADORES_SECTORIALES: [
-          {
-            TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
-            ID_INDICADOR: 12
-          }
-        ],
-    },
-    {
-        NUM_OBJETIVO: 2,
-        OBJETIVO: "Incrementar el acceso a la salud",
-        ID_INDICADOR: "SAL456",
-        ID_PROGRAMA_SEC: 102,
-        TIPO_INDICADOR: "Cuantitativo",
-        INDICADORES_SECTORIALES: [
-          {
-            TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
-            ID_INDICADOR: 22,
-          }
-        ],
-    },
-    {
-        NUM_OBJETIVO: 3,
-        OBJETIVO: "Fomentar la cultura",
-        ID_INDICADOR: "CUL789",
-        ID_PROGRAMA_SEC: 103,
-        TIPO_INDICADOR: "Cualitativo",
-        INDICADORES_SECTORIALES: [
-          {
-            TIPO_INDICADOR: 'M',
-            INDICADOR: '1.1 Coeficiente de Autosuficiencia Alimentaria',
-            ID_INDICADOR: 43,
-          }
-        ],
-    }
-  ];
+  listaHistorico: Meta[]=[]
+  indicadorSectorial: IndicadorSectorial = {};
+  listaObjetivosSectoriales4T: ObjetivoSectorial[] = [];
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -186,9 +49,10 @@ export class DetallesInd1924Component {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.idProgramaSector = params['idProgramaSect'];
-      this.getObjetivosSectoriales(this.idProgramaSector!);
+      if(params['idProgramaSect']){
+        this.getObjetivosSectoriales(this.idProgramaSector!);
+      }
     }); 
-    this.formatearChartData(this.listaHistorico)
   }
 
   @HostListener('window:resize', ['$event'])
@@ -208,11 +72,7 @@ export class DetallesInd1924Component {
 
   }
 
-  cargarIndicador(idIndicador: number){
-    console.log({idIndicador});
-  }
-
-  formatearChartData(metas: Meta[]){
+  cargarGrafica(metas: Meta[]){
     
     const {minValorFinal, maxValorFinal} = this.obtenerMinMax(metas);
     
@@ -245,10 +105,10 @@ export class DetallesInd1924Component {
 
   obtenerMinMax(metas: Meta[]) {
     const minValor = Math.min(...metas.map(meta => (meta.MI !== null ? meta.MI! : Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : Infinity)));
-    const minValorFinal = minValor % 5 != 0 ? minValor - (minValor % 5) : minValor;
+    const minValorFinal = minValor;
     
     const maxValor = Math.max(...metas.map(meta => (meta.MI !== null ? meta.MI! : -Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : -Infinity)));
-    const maxValorFinal = maxValor % 5 != 0 ? maxValor - (maxValor % 5) + 5 : maxValor;
+    const maxValorFinal = maxValor;
     return {minValorFinal, maxValorFinal};
   }
 
@@ -264,7 +124,7 @@ export class DetallesInd1924Component {
   }
 
   async getObjetivosSectoriales(idPrograma: string) {
-    this.loadingDetallesIndicador = true;
+    this.loadingObjetivosPrograma = true;
   
     try {
       const res = await this.indicadores1924Service.getObjetivosSectoriales4T(idPrograma).toPromise();
@@ -275,20 +135,18 @@ export class DetallesInd1924Component {
       }));
 
       if(objetivos.length > 0 && objetivos[0].INDICADORES_SECTORIALES && objetivos[0].INDICADORES_SECTORIALES?.length > 0){
-        console.log({id: objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!})
-        const primerIndicador = await this.getDetallesIndicadorSectorial(objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!);
-        this.indicadorSectorial = primerIndicador;
+        await this.cargarIndicador(objetivos[0].INDICADORES_SECTORIALES[0].ID_INDICADOR!);
       }
   
       this.listaObjetivosSectoriales4T = objetivos;
 
       setTimeout(() => {
-        this.loadingDetallesIndicador = false;
-      }, 500);
+        this.loadingObjetivosPrograma = false;
+      }, 200);
   
     } catch (err) {
       console.error("Error al obtener los objetivos sectoriales:", err);
-      this.loadingDetallesIndicador = false;
+      this.loadingObjetivosPrograma = false;
     }
   }
 
@@ -311,7 +169,7 @@ export class DetallesInd1924Component {
       return response;
     } catch (err) {
       console.error("Error al obtener los detalles del indicador:", err);
-      return []; // Retorna un arreglo vacío en caso de error
+      return []; 
     }
   }
 
@@ -328,12 +186,11 @@ export class DetallesInd1924Component {
   async getDetallesIndicadorSectorial(idIndicador: number,): Promise<IndicadorSectorial> {
     try {
       const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 1).toPromise();
-      console.log({res});
       const response = this.respuestaADetalleIndicadorSectorial(res[0]);
       return response;
     } catch (err) {
       console.error("Error al obtener los detalles del indicador:", err);
-      return new IndicadorSectorial(); // Retorna un arreglo vacío en caso de error
+      return new IndicadorSectorial(); 
     }
   }
   
@@ -391,6 +248,41 @@ export class DetallesInd1924Component {
     }
 
     return indicadorSectorial;
+  }
+
+  async cargarIndicador(idIndicador: number){
+    this.loadingDetallesIndicador = true;
+    let indicador = await this.getDetallesIndicadorSectorial(idIndicador);
+    this.indicadorSectorial = indicador;
+    let metas = await this.getHistorialIndicadores(idIndicador);
+    this.cargarGrafica(metas);
+    setTimeout(() =>{
+      this.loadingDetallesIndicador = false;
+    }, 200);
+  }
+
+  async getHistorialIndicadores(idIndicador: number,): Promise<Meta[]> {
+    try {
+      const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 2).toPromise();
+      const response = (res as MetaResponse[]).map(meta => 
+        this.respuestaAMetas(meta)
+      );
+      return response;
+    } catch (err) {
+      console.error("Error al obtener el historico del indicador:", err);
+      return []; 
+    }
+  }
+
+  respuestaAMetas(metaResponse: MetaResponse){
+    let meta =new Meta();
+    meta.CICLO = metaResponse.CICLO;
+    meta.META = metaResponse.META;
+    meta.METASHISTORICO = metaResponse.METAS_HISTORICO;
+    meta.MI = metaResponse.MI;
+    meta.VALOR = metaResponse.VALOR;
+    meta.VALORLB = metaResponse.VALOR_LB;
+    return meta;
   }
   
 
