@@ -160,9 +160,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         });
 
         this.listaProgramasSectoriales = response;
-        setTimeout(() =>{
-          this.loadingProgramasSectoriales = false;
-        }, 200)
+        this.loadingProgramasSectoriales = false;
       },
       (err) => {
         console.log({err});

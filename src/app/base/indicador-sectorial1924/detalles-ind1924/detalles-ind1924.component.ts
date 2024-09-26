@@ -139,10 +139,7 @@ export class DetallesInd1924Component {
       }
   
       this.listaObjetivosSectoriales4T = objetivos;
-
-      setTimeout(() => {
-        this.loadingObjetivosPrograma = false;
-      }, 200);
+      this.loadingObjetivosPrograma = false;
   
     } catch (err) {
       console.error("Error al obtener los objetivos sectoriales:", err);
@@ -256,9 +253,7 @@ export class DetallesInd1924Component {
     this.indicadorSectorial = indicador;
     let metas = await this.getHistorialIndicadores(idIndicador);
     this.cargarGrafica(metas);
-    setTimeout(() =>{
-      this.loadingDetallesIndicador = false;
-    }, 200);
+    this.loadingDetallesIndicador = false;
   }
 
   async getHistorialIndicadores(idIndicador: number,): Promise<Meta[]> {
