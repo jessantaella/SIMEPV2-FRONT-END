@@ -54,29 +54,34 @@ export class DetallesInd1924Component {
     }); 
   }
 
+  // ---------------------------------------- MENU DESPLEGABLE ------------------------------------------------------------
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.screenWidth = (event.target as Window).innerWidth;
     this.changeCollapseMode(this.screenWidth);
   }
   
+  //Cambia el tipo de colapso del menu dependiendo del tamano de la pantalla
   changeCollapseMode(innerWidth: number) {
     if(this.menuDesplegable != null){
-      if(innerWidth > 992){
+      if(innerWidth > 1200){
         this.menuDesplegable.nativeElement.classList.add('collapse-horizontal');
       }else{
         this.menuDesplegable.nativeElement.classList.remove('collapse-horizontal');
       }
     }
-
   }
+
+  // ------------------------------------------ GRAFICA ---------------------------------------------------------------------
 
   cargarGrafica(metas: Meta[]){
     
+    //Obteniendo valor minimos y maximos
     const {minValorFinal, maxValorFinal} = this.obtenerMinMax(metas);
-    
+    //Obteniendo etiquetas para eje x
     const graficaLabels = metas.map(meta =>(meta.CICLO ? meta.CICLO.toString(): ''));
 
+    //Obtencion de datos principales
     const lineaBaseDatos = metas.map(meta =>(meta.METASHISTORICO.includes('LineaBase') ? meta.VALORLB : null));
     const datsetLineaBase = this.construirDataSet('#E0F1DA', lineaBaseDatos, 'Línea Base');
     
@@ -89,6 +94,7 @@ export class DetallesInd1924Component {
     const metaIntermediaDatos = metas.map(meta =>(meta.MI));
     const datsetMetaIntermedia = this.construirDataSet('#83BA2B', metaIntermediaDatos, 'Meta Intermedia');
     
+    // Carga de informacion
     this.chartData.TITULO = this.indicadorSectorial.NOMBRE ? this.indicadorSectorial.NOMBRE : '';
     this.chartData.MAX_VALOR = maxValorFinal;
     this.chartData.MIN_VALOR = minValorFinal;
@@ -102,6 +108,7 @@ export class DetallesInd1924Component {
 
   }
 
+  //Obtiene el valor maximo y minimo dentro de los datos de la grafica
   obtenerMinMax(metas: Meta[]) {
     const minValor = Math.min(...metas.map(meta => (meta.MI !== null ? meta.MI! : Infinity)), ...metas.map(meta => (meta.VALOR !== null ? meta.VALOR! : Infinity)));
     const minValorFinal = minValor;
@@ -111,6 +118,7 @@ export class DetallesInd1924Component {
     return {minValorFinal, maxValorFinal};
   }
 
+  // Devuelve un objeto ChartDataset
   construirDataSet (color: string, data: (number | null)[], titulo: string){
     const dataset: ChartDataset<'line', (number | null)[]> = {
       backgroundColor: color,
@@ -120,6 +128,19 @@ export class DetallesInd1924Component {
       pointRadius: 4,
     }
     return dataset
+  }
+
+  // -------------------------------------------- OBTENCIO DE DATOS ------------------------------------------------------
+
+  async cargarIndicador(idIndicador: number){
+    this.loadingDetallesIndicador = true;
+    let indicador = await this.getDetallesIndicadorSectorial(idIndicador);
+    this.indicadorSectorial = indicador;
+    let metas = await this.getHistorialIndicadores(idIndicador);
+    this.cargarGrafica(metas);
+    let derechosSociales = await this.getDerechosSocicalesVinculados(idIndicador);
+    this.listaDerechosSocialesAsociados = derechosSociales;
+    this.loadingDetallesIndicador = false;
   }
 
   async getObjetivosSectoriales(idPrograma: string) {
@@ -148,16 +169,6 @@ export class DetallesInd1924Component {
     }
   }
 
-  respuestaAObjetivoSectorial(objetivo: ObjetivoSectorial, listaIndicadores: IndicadorSectorial[]){
-    let objetivoSectorial =new ObjetivoSectorial();
-    objetivoSectorial.ID_PROGRAMA_SEC = objetivo.ID_PROGRAMA_SEC;
-    objetivoSectorial.NUM_OBJETIVO = objetivo.NUM_OBJETIVO;
-    objetivoSectorial.OBJETIVO = objetivo.OBJETIVO;
-    objetivoSectorial.INDICADORES_SECTORIALES = listaIndicadores;
-    return objetivoSectorial;
-  }
-
-
   async getIndicadoresSectoriales(idProgramaSectorial: number, opcion: number, descObjetivo: string, numObjetivo: number): Promise<IndicadorSectorial[]> {
     try {
       const res = await this.indicadores1924Service.getIndicadorObjetivos4T(idProgramaSectorial, opcion, descObjetivo).toPromise();
@@ -171,16 +182,6 @@ export class DetallesInd1924Component {
     }
   }
 
-  respuestaAIndicadorSectorial(indicador: IndicadorSectorial, numObjetivo: number){
-    let indicadorSectorial =new IndicadorSectorial();
-    indicadorSectorial.ID_INDICADOR = indicador.ID_INDICADOR;
-    indicadorSectorial.INDICADOR = indicador.INDICADOR;
-    indicadorSectorial.NUM_INDICADOR = indicador.NUM_INDICADOR;
-    indicadorSectorial.TIPO = indicador.TIPO;
-    indicadorSectorial.NUM_OBJETIVO = numObjetivo;
-    return indicadorSectorial;
-  }
-
   async getDetallesIndicadorSectorial(idIndicador: number,): Promise<IndicadorSectorial> {
     try {
       const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 1).toPromise();
@@ -191,7 +192,68 @@ export class DetallesInd1924Component {
       return new IndicadorSectorial(); 
     }
   }
-  
+
+  async getHistorialIndicadores(idIndicador: number,): Promise<Meta[]> {
+    try {
+      const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 2).toPromise();
+      const response = (res as MetaResponse[]).map(meta => 
+        this.respuestaAMetas(meta)
+      );
+      return response;
+    } catch (err) {
+      console.error("Error al obtener el historico del indicador:", err);
+      return []; 
+    }
+  }
+
+  async getDerechosSocicalesVinculados(idIndicador: number,): Promise<DerechoSocialInd[]> {
+    try {
+      const res = await this.indicadores1924Service.getSPDerechoSocialInd4T(idIndicador).toPromise();
+      const response = (res as DerechoSocialIndResponse[]).map(derchoSocial => 
+        this.respuestaADerechoSocial(derchoSocial)
+      );
+      return response;
+    } catch (err) {
+      console.error("Error al obtener los Derechos Sociales vinculados:", err);
+      return []; 
+    }
+  }
+
+  async getContadorObjetivos(idPrograma: string): Promise<ContadorIndObj4T> {
+    try {
+      const res = await this.indicadores1924Service.getSPMPAEMContadorIndicadores4T(idPrograma).toPromise();
+      const response = (res as ContadorIndObj4TResponse[]).map(contadorObjetivo => 
+        this.respuestaAContadorObjetivo(contadorObjetivo)
+      );
+      return response[0];
+    } catch (err) {
+      console.error("Error al obtener los Derechos Sociales vinculados:", err);
+      return new ContadorIndObj4T(); 
+    }
+  }
+
+
+  // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+
+  respuestaAObjetivoSectorial(objetivo: ObjetivoSectorial, listaIndicadores: IndicadorSectorial[]){
+    let objetivoSectorial =new ObjetivoSectorial();
+    objetivoSectorial.ID_PROGRAMA_SEC = objetivo.ID_PROGRAMA_SEC;
+    objetivoSectorial.NUM_OBJETIVO = objetivo.NUM_OBJETIVO;
+    objetivoSectorial.OBJETIVO = objetivo.OBJETIVO;
+    objetivoSectorial.INDICADORES_SECTORIALES = listaIndicadores;
+    return objetivoSectorial;
+  }
+
+  respuestaAIndicadorSectorial(indicador: IndicadorSectorial, numObjetivo: number){
+    let indicadorSectorial =new IndicadorSectorial();
+    indicadorSectorial.ID_INDICADOR = indicador.ID_INDICADOR;
+    indicadorSectorial.INDICADOR = indicador.INDICADOR;
+    indicadorSectorial.NUM_INDICADOR = indicador.NUM_INDICADOR;
+    indicadorSectorial.TIPO = indicador.TIPO;
+    indicadorSectorial.NUM_OBJETIVO = numObjetivo;
+    return indicadorSectorial;
+  }
+
   respuestaADetalleIndicadorSectorial(indicador: IndicadorSectorialResponse){
     let indicadorSectorial = new IndicadorSectorial();
 
@@ -248,30 +310,6 @@ export class DetallesInd1924Component {
     return indicadorSectorial;
   }
 
-  async cargarIndicador(idIndicador: number){
-    this.loadingDetallesIndicador = true;
-    let indicador = await this.getDetallesIndicadorSectorial(idIndicador);
-    this.indicadorSectorial = indicador;
-    let metas = await this.getHistorialIndicadores(idIndicador);
-    this.cargarGrafica(metas);
-    let derechosSociales = await this.getDerechosSocicalesVinculados(idIndicador);
-    this.listaDerechosSocialesAsociados = derechosSociales;
-    this.loadingDetallesIndicador = false;
-  }
-
-  async getHistorialIndicadores(idIndicador: number,): Promise<Meta[]> {
-    try {
-      const res = await this.indicadores1924Service.getDetallesIndicador4T(idIndicador, 2).toPromise();
-      const response = (res as MetaResponse[]).map(meta => 
-        this.respuestaAMetas(meta)
-      );
-      return response;
-    } catch (err) {
-      console.error("Error al obtener el historico del indicador:", err);
-      return []; 
-    }
-  }
-
   respuestaAMetas(metaResponse: MetaResponse){
     let meta =new Meta();
     meta.CICLO = metaResponse.CICLO;
@@ -282,38 +320,12 @@ export class DetallesInd1924Component {
     meta.VALORLB = metaResponse.VALOR_LB;
     return meta;
   }
-  async getDerechosSocicalesVinculados(idIndicador: number,): Promise<DerechoSocialInd[]> {
-    try {
-      const res = await this.indicadores1924Service.getSPDerechoSocialInd4T(idIndicador).toPromise();
-      const response = (res as DerechoSocialIndResponse[]).map(derchoSocial => 
-        this.respuestaADerechoSocial(derchoSocial)
-      );
-      return response;
-    } catch (err) {
-      console.error("Error al obtener los Derechos Sociales vinculados:", err);
-      return []; 
-    }
-  }
 
   respuestaADerechoSocial(derechoSocialResponse: DerechoSocialInd){
     let derechoSocial =new DerechoSocialInd();
     derechoSocial.DER_DESCRIPCION =derechoSocialResponse.DER_DESCRIPCION;
     return derechoSocial;
   }
-
-  async getContadorObjetivos(idPrograma: string): Promise<ContadorIndObj4T> {
-    try {
-      const res = await this.indicadores1924Service.getSPMPAEMContadorIndicadores4T(idPrograma).toPromise();
-      const response = (res as ContadorIndObj4TResponse[]).map(contadorObjetivo => 
-        this.respuestaAContadorObjetivo(contadorObjetivo)
-      );
-      return response[0];
-    } catch (err) {
-      console.error("Error al obtener los Derechos Sociales vinculados:", err);
-      return new ContadorIndObj4T(); 
-    }
-  }
-
 
   respuestaAContadorObjetivo(contadorObjetivoResponse: ContadorIndObj4TResponse){
     let contadorObjetivo =new ContadorIndObj4T();

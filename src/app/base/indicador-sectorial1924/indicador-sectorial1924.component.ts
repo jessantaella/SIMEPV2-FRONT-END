@@ -124,12 +124,13 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.scroller.scrollToPosition([0, 0]);
       }
     }
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(async params => {
       const newIdSector = params['idSector'];
       if (newIdSector !== this.previousIdSector) {
         this.previousIdSector = newIdSector; 
         this.idSector = newIdSector; 
-        this.getProgramasSectoriales(this.idSector!); 
+        let programasSectoriales = await this.getProgramasSectoriales(this.idSector!); 
+        this.listaProgramasSectoriales = programasSectoriales;
       }
     });
   }
@@ -142,6 +143,8 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     }
   }
 
+  // ---------------------------------- CARGA DE SECTOR ---------------------------------------------------------
+
   cambiarSector() {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -149,26 +152,29 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     });
   }
 
-  getProgramasSectoriales(idSector: string){
+  //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
+
+  async getProgramasSectoriales(idSector: string) {
     this.loadingProgramasSectoriales = true;
-    this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).subscribe(
-      (res) => {
-        const response = res;
+  
+    try {
+      const res = await this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).toPromise();
 
-        (response as ProgramaSectorial[]).map(programa =>{
-          return this.respuestaAProgramaSector(programa);
-        });
+      const response = (res as ProgramaSectorial[]).map(programa => 
+        this.respuestaAProgramaSector(programa)
+      );
 
-        this.listaProgramasSectoriales = response;
-        this.loadingProgramasSectoriales = false;
-      },
-      (err) => {
-        console.log({err});
-        this.loadingProgramasSectoriales = false;
-      }
-    )
+      return response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+      return [];
+    } finally {
+      this.loadingProgramasSectoriales = false;
+    }
   }
 
+  // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+  
   respuestaAProgramaSector(programa: ProgramaSectorial){
     let programaSectorial =new ProgramaSectorial();
     programaSectorial.URL_ICONO = programa.URL_ICONO;

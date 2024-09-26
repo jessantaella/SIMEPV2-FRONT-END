@@ -117,7 +117,6 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     if (this.isBrowser) {
       document.body.scrollTop = 0;
       let pos = this.scroller.getScrollPosition();
-      this.getConteoSectores();
       if (pos[1] > 0) {
         this.scroller.scrollToPosition([0, 0]);
       }
@@ -132,16 +131,6 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     }
   }
 
-  getConteoSectores(){
-    this.indicadores1924Service.consultaEstadisticaBasica4T(1).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-
-      }
-    )
-  }
   
   
 
