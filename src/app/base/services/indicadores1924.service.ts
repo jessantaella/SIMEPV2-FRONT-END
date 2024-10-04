@@ -40,6 +40,16 @@ export class Indicadores1924Service {
     let url = this.serverConfigService.getServerConfig()+'api/simeps-reportes/api/indicadoresSectoriales/getSPMPAEMContadorIndicadores4T?idProgramaSectorial=' +idPrograma ;
     return this.http.get<any>(url);
   }
+
+  getConteoSectores4T(idIndicador:number):Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps/api/catalogos/conteoSectores4T?id=' +idIndicador ;
+    return this.http.get<any>(url);
+  }
+  getSectores4T():Observable<any>{
+    let url = this.serverConfigService.getServerConfig()+'api/simeps/api/catalogos/sectores4T';
+    return this.http.get<any>(url);
+  }
+  
 }
 
     

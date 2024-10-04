@@ -1,14 +1,14 @@
 import { DOCUMENT, isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DataDynamic } from '../services/dinamic-data.services';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WINDOW } from '../services/window.service';
-import { environment } from 'src/environments/environment';
 import { Sector } from '../Models/Sector';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { ProgramaSectorial } from '../Models/ProgramaSectorial';
 import { Indicadores1924Service } from '../services/indicadores1924.service';
+import { ProgramaSectorialResponse } from '../ModelsResponse/ProgramaSectorialResponse';
 
 @Component({
   selector: 'app-indicador-sectorial1924',
@@ -160,7 +160,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
     try {
       const res = await this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).toPromise();
 
-      const response = (res as ProgramaSectorial[]).map(programa => 
+      const response = (res as ProgramaSectorialResponse[]).map(programa => 
         this.respuestaAProgramaSector(programa)
       );
 
@@ -175,7 +175,7 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
 
   // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
   
-  respuestaAProgramaSector(programa: ProgramaSectorial){
+  respuestaAProgramaSector(programa: ProgramaSectorialResponse){
     let programaSectorial =new ProgramaSectorial();
     programaSectorial.URL_ICONO = programa.URL_ICONO;
     programaSectorial.NOMBRE = programa.NOMBRE;

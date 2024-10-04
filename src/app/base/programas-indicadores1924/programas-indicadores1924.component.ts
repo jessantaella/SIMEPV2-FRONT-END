@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { Sector } from '../Models/Sector';
 import { Indicadores1924Service } from '../services/indicadores1924.service';
+import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasicasResponse';
+import { SectorResponse } from '../ModelsResponse/SectorResponse';
 
 @Component({
   selector: 'app-programas-indicadores1924',
@@ -36,23 +38,23 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
   // Objetos utilizados en vista
   listaEstadisticasBasicas: EstadisticasBasicas[] =[
     {
-      CONTEO: 10,
+      CONTEO: 0,
       TIPO: 'SECTORES'
     },
     {
-      CONTEO: 10,
+      CONTEO: 0,
       TIPO: 'PROGRAMAS DERIVADOS'
     },
     {
-      CONTEO: 10,
+      CONTEO: 0,
       TIPO: 'OBJETIVOS'
     },
     {
-      CONTEO: 10,
+      CONTEO: 0,
       TIPO: 'METAS PARA EL BIENESTAR'
     },
     {
-      CONTEO: 10,
+      CONTEO: 0,
       TIPO: 'PARÁMETROS'
     },
   ];
@@ -121,6 +123,8 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
         this.scroller.scrollToPosition([0, 0]);
       }
     }
+    this.getEstadisticasBasicas();
+    this.getSectores();
   }
   consultarData() {
     if (this.isBrowser) {
@@ -130,6 +134,76 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
       });
     }
   }
+
+  //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
+
+  async getEstadisticasBasicas() {
+  
+    try {
+      const res = await this.indicadores1924Service.getConteoSectores4T(0).toPromise();
+      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse => 
+        this.respuestaAEstadisticaBasica(estadisticaResponse)
+      );
+
+      this.listaEstadisticasBasicas = response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+    } finally {
+    }
+  }
+
+  async getSectores() {
+  
+    try {
+      const res = await this.indicadores1924Service.getSectores4T().toPromise();
+      const response = (res as SectorResponse[]).map(sectorResponse => 
+        this.respuestaASector(sectorResponse)
+      );
+
+      this.listaSectores = response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+    } finally {
+    }
+  }
+
+  // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+  
+  respuestaAEstadisticaBasica(estadisticaResponse: EstadisticasBasicasResponse){
+    let esatdisticaBasica = new EstadisticasBasicas();
+    esatdisticaBasica.CONTEO = estadisticaResponse.CONTEO;
+    esatdisticaBasica.TIPO = estadisticaResponse.TIPO;
+
+    this.iniciarAnimacionConteo(esatdisticaBasica, estadisticaResponse.CONTEO || 0);
+    return esatdisticaBasica;
+  }
+
+  respuestaASector(sectorResponse: SectorResponse){
+    let sector = new Sector();
+    sector.ID_SECTOR = sectorResponse.ID_SECTOR;
+    sector.NOMBRE = sectorResponse.SECTOR;
+    const partes = sectorResponse.ICONO?.split('/') || [];
+    sector.ICONO = partes[partes?.length -1];
+    return sector;
+  }
+
+  iniciarAnimacionConteo(estadistica: EstadisticasBasicas, valorFinal: number) {
+    const duracion = 2500;
+    const incremento = valorFinal / (duracion / 16); 
+    let valorActual = 0;
+
+    const animarConteo = () => {
+        valorActual += incremento;
+        if (valorActual < valorFinal) {
+            estadistica.CONTEO = Math.floor(valorActual); 
+            requestAnimationFrame(animarConteo); 
+        } else {
+            estadistica.CONTEO = valorFinal; 
+        }
+    };
+
+    requestAnimationFrame(animarConteo);
+}
 
   
   
