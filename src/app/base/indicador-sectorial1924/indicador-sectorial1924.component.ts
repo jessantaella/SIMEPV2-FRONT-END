@@ -9,6 +9,8 @@ import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { ProgramaSectorial } from '../Models/ProgramaSectorial';
 import { Indicadores1924Service } from '../services/indicadores1924.service';
 import { ProgramaSectorialResponse } from '../ModelsResponse/ProgramaSectorialResponse';
+import { SectorResponse } from '../ModelsResponse/SectorResponse';
+import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasicasResponse';
 
 @Component({
   selector: 'app-indicador-sectorial1924',
@@ -36,37 +38,9 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
   previousIdSector: string | null = null; 
   plantilla = '';
 
-  listaSectores: Sector[] = [
-    { ID_SECTOR: 1, NOMBRE: 'Desarrollo Agropecuario', ICONO: 'icono_desarrolloagropecuario.jpg' },
-    { ID_SECTOR: 2, NOMBRE: 'Desarrollo Económico', ICONO: 'icono_desarrolloeconomico.jpg' },
-    { ID_SECTOR: 3, NOMBRE: 'Desarrollo Social', ICONO: 'icono_desarrollosocial.jpg' },
-    { ID_SECTOR: 4, NOMBRE: 'Desarrollo Urbano', ICONO: 'icono_desarrollourbano.jpg' },
-    { ID_SECTOR: 5, NOMBRE: 'Educación', ICONO: 'icono_educacion.jpg' },
-    { ID_SECTOR: 6, NOMBRE: 'Igualdad de Género', ICONO: 'icono_igualdadgenero.jpg' },
-    { ID_SECTOR: 7, NOMBRE: 'Medio Ambiente', ICONO: 'icono_medioambiente.jpg' },
-    { ID_SECTOR: 8, NOMBRE: 'Otros', ICONO: 'icono_otros.jpg' },
-    { ID_SECTOR: 9, NOMBRE: 'Salud', ICONO: 'icono_salud.jpg' },
-    { ID_SECTOR: 10, NOMBRE: 'Trabajo y Previsión Social', ICONO: 'icono_trabajo.jpg' }
-  ];
+  listaSectores: Sector[] = [];
 
-  listaEstadisticasBasicasSector: EstadisticasBasicas[] =[
-    {
-      CONTEO: 10,
-      TIPO: 'SECTORES'
-    },
-    {
-      CONTEO: 10,
-      TIPO: 'PROGRAMAS DERIVADOS'
-    },
-    {
-      CONTEO: 10,
-      TIPO: 'METAS PARA EL BIENESTAR'
-    },
-    {
-      CONTEO: 10,
-      TIPO: 'PARÁMETROS'
-    },
-  ];
+  listaEstadisticasBasicasSector: EstadisticasBasicas[] =[];
 
   listaProgramasSectoriales: ProgramaSectorial[] =[];
   loadingProgramasSectoriales = true;
@@ -124,11 +98,13 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
         this.scroller.scrollToPosition([0, 0]);
       }
     }
+    this.getSectores();
     this.route.queryParams.subscribe(async params => {
       const newIdSector = params['idSector'];
       if (newIdSector !== this.previousIdSector) {
         this.previousIdSector = newIdSector; 
         this.idSector = newIdSector; 
+        this.getEstadisticasBasicas(parseInt(this.idSector || '0'));
         let programasSectoriales = await this.getProgramasSectoriales(this.idSector!); 
         this.listaProgramasSectoriales = programasSectoriales;
       }
@@ -154,6 +130,36 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
 
   //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
 
+  async getEstadisticasBasicas(sector: number) {
+  
+    try {
+      const res = await this.indicadores1924Service.getConteoSectores4T(sector).toPromise();
+      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse => 
+        this.respuestaAEstadisticaBasica(estadisticaResponse)
+      );
+
+      this.listaEstadisticasBasicasSector = response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+    } finally {
+    }
+  }
+
+  async getSectores() {
+  
+    try {
+      const res = await this.indicadores1924Service.getSectores4T().toPromise();
+      const response = (res as SectorResponse[]).map(sectorResponse => 
+        this.respuestaASector(sectorResponse)
+      );
+
+      this.listaSectores = response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+    } finally {
+    }
+  }
+
   async getProgramasSectoriales(idSector: string) {
     this.loadingProgramasSectoriales = true;
   
@@ -174,6 +180,42 @@ export class IndicadorSectorial1924Component implements OnInit, AfterViewInit{
   }
 
   // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+
+  respuestaAEstadisticaBasica(estadisticaResponse: EstadisticasBasicasResponse){
+    let esatdisticaBasica = new EstadisticasBasicas();
+    esatdisticaBasica.CONTEO = estadisticaResponse.CONTEO;
+    esatdisticaBasica.TIPO = estadisticaResponse.TIPO;
+
+    this.iniciarAnimacionConteo(esatdisticaBasica, estadisticaResponse.CONTEO || 0);
+    return esatdisticaBasica;
+  }
+
+  respuestaASector(sectorResponse: SectorResponse){
+    let sector = new Sector();
+    sector.ID_SECTOR = sectorResponse.ID_SECTOR;
+    sector.NOMBRE = sectorResponse.SECTOR;
+    const partes = sectorResponse.ICONO?.split('/') || [];
+    sector.ICONO = partes[partes?.length -1];
+    return sector;
+  }
+
+  iniciarAnimacionConteo(estadistica: EstadisticasBasicas, valorFinal: number) {
+    const duracion = 2500;
+    const incremento = valorFinal / (duracion / 16); 
+    let valorActual = 0;
+
+    const animarConteo = () => {
+        valorActual += incremento;
+        if (valorActual < valorFinal) {
+            estadistica.CONTEO = Math.floor(valorActual); 
+            requestAnimationFrame(animarConteo); 
+        } else {
+            estadistica.CONTEO = valorFinal; 
+        }
+    };
+
+    requestAnimationFrame(animarConteo);
+}
   
   respuestaAProgramaSector(programa: ProgramaSectorialResponse){
     let programaSectorial =new ProgramaSectorial();

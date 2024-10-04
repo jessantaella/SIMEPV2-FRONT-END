@@ -1,22 +1,24 @@
 import { DOCUMENT, isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DataDynamic } from '../services/dinamic-data.services';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WINDOW } from '../services/window.service';
-import { environment } from 'src/environments/environment';
-import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
 import { Sector } from '../Models/Sector';
+import { EstadisticasBasicas } from '../Models/EstadisticasBasicass';
+import { ProgramaSectorial } from '../Models/ProgramaSectorial';
 import { Indicadores1924Service } from '../services/indicadores1924.service';
-import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasicasResponse';
+import { ProgramaSectorialResponse } from '../ModelsResponse/ProgramaSectorialResponse';
 import { SectorResponse } from '../ModelsResponse/SectorResponse';
+import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasicasResponse';
 
 @Component({
-  selector: 'app-programas-indicadores1924',
-  templateUrl: './programas-indicadores1924.component.html',
-  styleUrls: ['./programas-indicadores1924.component.scss']
+  selector: 'app-indicador-sectorial1318',
+  templateUrl: './indicador-sectorial1318.component.html',
+  styleUrls: ['./indicador-sectorial1318.component.scss']
 })
-export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
+  
+export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
   nivelSeleccionado: any;
   menuSeleccionado = 1;
   redes: any;
@@ -32,12 +34,17 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
-
+  idSector: string | null = null;
+  previousIdSector: string | null = null; 
   plantilla = '';
 
-  // Objetos utilizados en vista
-  listaEstadisticasBasicas: EstadisticasBasicas[] =[];
   listaSectores: Sector[] = [];
+
+  listaEstadisticasBasicasSector: EstadisticasBasicas[] =[];
+
+  listaProgramasSectoriales: ProgramaSectorial[] =[];
+  loadingProgramasSectoriales = true;
+  
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -46,10 +53,10 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private router: Router,
+    private route: ActivatedRoute,
     
     private breakpointObserver: BreakpointObserver,
-
-    private indicadores1924Service: Indicadores1924Service
+    private indicadores1924Service: Indicadores1924Service,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
@@ -82,7 +89,7 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
       }, 10);
     }
   }
-
+  
   ngOnInit(): void {
     if (this.isBrowser) {
       document.body.scrollTop = 0;
@@ -91,8 +98,17 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
         this.scroller.scrollToPosition([0, 0]);
       }
     }
-    this.getEstadisticasBasicas();
     this.getSectores();
+    this.route.queryParams.subscribe(async params => {
+      const newIdSector = params['idSector'];
+      if (newIdSector !== this.previousIdSector) {
+        this.previousIdSector = newIdSector; 
+        this.idSector = newIdSector; 
+        this.getEstadisticasBasicas(parseInt(this.idSector || '0'));
+        let programasSectoriales = await this.getProgramasSectoriales(this.idSector!); 
+        this.listaProgramasSectoriales = programasSectoriales;
+      }
+    });
   }
   consultarData() {
     if (this.isBrowser) {
@@ -103,17 +119,26 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     }
   }
 
+  // ---------------------------------- CARGA DE SECTOR ---------------------------------------------------------
+
+  cambiarSector() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { idSector: this.idSector },
+    });
+  }
+
   //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
 
-  async getEstadisticasBasicas() {
+  async getEstadisticasBasicas(sector: number) {
   
     try {
-      const res = await this.indicadores1924Service.getConteoSectores4T(0).toPromise();
+      const res = await this.indicadores1924Service.getConteoSectores4T(sector).toPromise();
       const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse => 
         this.respuestaAEstadisticaBasica(estadisticaResponse)
       );
 
-      this.listaEstadisticasBasicas = response;
+      this.listaEstadisticasBasicasSector = response;
     } catch (err) {
       console.error('Error al obtener los programas sectoriales:', err);
     } finally {
@@ -135,8 +160,27 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
     }
   }
 
-  // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+  async getProgramasSectoriales(idSector: string) {
+    this.loadingProgramasSectoriales = true;
   
+    try {
+      const res = await this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).toPromise();
+
+      const response = (res as ProgramaSectorialResponse[]).map(programa => 
+        this.respuestaAProgramaSector(programa)
+      );
+
+      return response;
+    } catch (err) {
+      console.error('Error al obtener los programas sectoriales:', err);
+      return [];
+    } finally {
+      this.loadingProgramasSectoriales = false;
+    }
+  }
+
+  // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
+
   respuestaAEstadisticaBasica(estadisticaResponse: EstadisticasBasicasResponse){
     let esatdisticaBasica = new EstadisticasBasicas();
     esatdisticaBasica.CONTEO = estadisticaResponse.CONTEO;
@@ -172,9 +216,16 @@ export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
 
     requestAnimationFrame(animarConteo);
 }
+  
+  respuestaAProgramaSector(programa: ProgramaSectorialResponse){
+    let programaSectorial =new ProgramaSectorial();
+    programaSectorial.URL_ICONO = programa.URL_ICONO;
+    programaSectorial.NOMBRE = programa.NOMBRE;
+    programaSectorial.ID_PROGRAMA = programa.ID_PROGRAMA;
+    programaSectorial.ID_SECTOR = programa.ID_SECTOR;
+    return programaSectorial;
+  }
 
   
-  
-
   
 }

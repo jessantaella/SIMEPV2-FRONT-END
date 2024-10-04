@@ -1,0 +1,61 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<!-- Titulo ventana -->
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
+    <div class="text-center">
+        <div class="my-2" [ngStyle]="{'background-color' : '#fff'}">
+            <h2 class="titulo" >Programas derivados del PND 2013-2018</h2>
+        </div>
+    </div>
+    <div class="my-2 row flex-row-reverse " [ngStyle]="{'background-color' : '#fff'}">
+        <div class="col-lg-4 d-flex gap-3 justify-content-center align-items-center">
+            <img class="download-svg" src="../../../assets/img/NUBE.svg" alt="DESCARGA">
+            <p class="texto" >Base de datos de los indicadores derivados del PND 2013-2018</p>
+        </div>
+    </div>
+
+    <!-- Estadisticas Basicas  -->
+    <div class="text-center">
+        <div class="tituloContenedor my-2" [ngStyle]="{'background-color' : '#fff'}">
+            <span class="titulo" >Estadísticas Básicas</span>
+        </div>
+        <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly" [ngStyle]="{'background-color': '#E8E8E8'}">
+            <div *ngFor="let estadistica of listaEstadisticasBasicas">
+                <p class="texto">{{estadistica.TIPO}}</p>
+                <div [class]="'texto circulo-estadisticas ' + estadistica.TIPO?.toLowerCase()?.replace(',', '')">
+                    {{estadistica.CONTEO}}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Iconos Sectores  -->
+    <div class="text-center">
+        <div class="tituloContenedor my-2" [ngStyle]="{'background-color' : '#fff'}">
+            <span class="titulo" >Monitoreo de indicadores de la política social por sector</span>
+        </div>
+        <div class="mt-4 d-flex justify-content-evenly flex-wrap">
+            <a *ngFor="let sector of listaSectores" class="p-1 link-sectores" [routerLink]="['/IndicadorSectorial']" [queryParams]="{ idSector: sector.ID_SECTOR }" style="flex: 1 1 20%;">
+                <img class="sectores-icon-svg" [src]="'../../../assets/img/'+ sector.ICONO?.replace('.jpg', '') + '.svg'" [alt]="sector.ICONO?.replace('.jpg', '') + '.svg'">
+                <p class="texto text-center">{{sector.NOMBRE}}</p>
+            </a>
+        </div>
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    <div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>

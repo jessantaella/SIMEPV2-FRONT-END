@@ -18,9 +18,12 @@ import { WINDOW_PROVIDERS } from './base/services/window.service';
 import { ModuloPlaneacionComponent } from './base/modulo-planeacion/modulo-planeacion.component';
 import { PndPlaneacionComponent } from './base/modulo-planeacion/pnd-planeacion/pnd-planeacion.component';
 import { ProgramasIndicadores1924Component } from './base/programas-indicadores1924/programas-indicadores1924.component';
+import { ProgramasIndicadores1318Component } from './base/programas-indicadores1318/programas-indicadores1318.component';
 import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
+import { IndicadorSectorial1318Component } from './base/indicador-sectorial1318/indicador-sectorial1318.component';
 import { CarruselComponent } from './base/shared/carrusel/carrusel.component';
 import { DetallesInd1924Component } from './base/indicador-sectorial1924/detalles-ind1924/detalles-ind1924.component';
+import { DetallesInd1318Component } from './base/indicador-sectorial1318/detalles-ind1318/detalles-ind1318.component';
 import { MenuDesplegableComponent } from './base/shared/menu-desplegable/menu-desplegable.component';
 import { GraficaComponent } from './base/shared/grafica/grafica.component';
 import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.component';
@@ -35,9 +38,12 @@ import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.componen
     ModuloPlaneacionComponent,
     FooterComponent,
     ProgramasIndicadores1924Component,
+    ProgramasIndicadores1318Component,
     IndicadorSectorial1924Component,
+    IndicadorSectorial1318Component,
     CarruselComponent,
     DetallesInd1924Component,
+    DetallesInd1318Component,
     MenuDesplegableComponent,
     GraficaComponent,
     PreLoaderComponent

@@ -12,11 +12,11 @@ import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasic
 import { SectorResponse } from '../ModelsResponse/SectorResponse';
 
 @Component({
-  selector: 'app-programas-indicadores1924',
-  templateUrl: './programas-indicadores1924.component.html',
-  styleUrls: ['./programas-indicadores1924.component.scss']
+  selector: 'app-programas-indicadores1318',
+  templateUrl: './programas-indicadores1318.component.html',
+  styleUrls: ['./programas-indicadores1318.component.scss']
 })
-export class ProgramasIndicadores1924Component implements OnInit, AfterViewInit{
+export class ProgramasIndicadores1318Component implements OnInit, AfterViewInit{
   nivelSeleccionado: any;
   menuSeleccionado = 1;
   redes: any;

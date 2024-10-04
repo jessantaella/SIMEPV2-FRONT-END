@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './base/inicio/inicio.component';
 import { ModuloPlaneacionComponent } from './base/modulo-planeacion/modulo-planeacion.component';
 import { ProgramasIndicadores1924Component } from './base/programas-indicadores1924/programas-indicadores1924.component';
+import { ProgramasIndicadores1318Component } from './base/programas-indicadores1318/programas-indicadores1318.component';
 import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
+import { IndicadorSectorial1318Component } from './base/indicador-sectorial1318/indicador-sectorial1318.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -21,13 +23,17 @@ const routes: Routes = [
     component:ProgramasIndicadores1924Component,
   },
   {
-    path:'MosaicoSectores19-24',
-    component:ProgramasIndicadores1924Component,
+    path:'MosaicoSectores',
+    component:ProgramasIndicadores1318Component,
   },
   {
     path:'IndicadorSectorial19-24',
     component:IndicadorSectorial1924Component,
-  }
+  },
+  {
+    path:'IndicadorSectorial',
+    component:IndicadorSectorial1318Component,
+  },
 ];
 
 @NgModule({
