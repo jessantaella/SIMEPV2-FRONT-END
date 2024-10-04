@@ -1,9 +1,9 @@
 import { ChartDataset } from "chart.js";
 
 export class GraficaModel {
-    LABELS?: String[];
+    LABELS?: string[];
     DATASETS?: ChartDataset<'line', (number | null)[]>[];
-    TITULO?: String;
+    TITULO?: string;
     MIN_VALOR?: number;
     MAX_VALOR?: number;
 
