@@ -6,6 +6,7 @@ import { ProgramasIndicadores1924Component } from './base/programas-indicadores1
 import { ProgramasIndicadores1318Component } from './base/programas-indicadores1318/programas-indicadores1318.component';
 import { IndicadorSectorial1924Component } from './base/indicador-sectorial1924/indicador-sectorial1924.component';
 import { IndicadorSectorial1318Component } from './base/indicador-sectorial1318/indicador-sectorial1318.component';
+import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -34,6 +35,11 @@ const routes: Routes = [
     path:'IndicadorSectorial',
     component:IndicadorSectorial1318Component,
   },
+  },
+  {
+    path:'PlanNacionalDesarrollo2013-2018',
+    component:Pnd2013Component,
+  }
 ];
 
 @NgModule({

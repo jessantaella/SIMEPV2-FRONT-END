@@ -1,0 +1,63 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+    
+
+<div class="m-auto d-flex flex-column" [ngStyle]="{'padding-top':alto+'px', 'width':'85%', 'min-height':'90vh'}" id="total">
+
+
+
+    <div class="row justify-content-end mt-3">
+        <!-- Botón con imagen -->
+        <div class="col-1">
+          <button class="btn p-0">
+            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" class="img-fluid w-100">
+          </button>
+        </div>
+        <!-- Texto a la derecha del botón -->
+        <div class="col-3">
+          <span class="ms-1">Base de datos de los indicadores derivados del PND 2013-2018</span>
+        </div>
+      </div>
+      
+
+    <!-- Fila con 5 botones de imágenes -->
+    <div class="row text-center mb-3">
+      <div class="col" *ngFor="let meta of metas">
+        <button class="btn w-100" (click)="seleccionarMeta(meta?.ID_META)">
+          <img [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL" class="img-fluid" alt="Imagen 1">
+        </button>
+      </div>
+    </div>
+  
+    <!-- Botón con 90% de ancho de la fila superior -->
+    <div class="d-flex justify-content-center mb-3">
+      <button class="btn w-75">
+        <img [src]="servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'" class="ms-2 w-100" alt="Estrategias Imagen">
+      </button>
+    </div>
+  
+    <div class="container mt-5 flex-grow-1" *ngIf="metaSeleccionada !== 0">
+      <!-- Tabla -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center text-white">Objetivos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let objetivo of objetivos">
+            <td class="text-center text-black">{{objetivo?.DESC_OBJETIVO}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

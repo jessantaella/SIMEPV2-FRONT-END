@@ -27,6 +27,7 @@ import { DetallesInd1318Component } from './base/indicador-sectorial1318/detalle
 import { MenuDesplegableComponent } from './base/shared/menu-desplegable/menu-desplegable.component';
 import { GraficaComponent } from './base/shared/grafica/grafica.component';
 import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.component';
+import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.componen
     DetallesInd1318Component,
     MenuDesplegableComponent,
     GraficaComponent,
-    PreLoaderComponent
+    PreLoaderComponent,
+    Pnd2013Component
   ],
   imports: [
     BrowserModule,
