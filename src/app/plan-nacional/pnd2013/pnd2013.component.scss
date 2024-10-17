@@ -1,13 +1,86 @@
-th{
+.objetivoTitulo{
     background-color: rgb(61, 111, 200);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 19.5;
+    font-size: 19.5px;
+    color:#ffffff;
+    margin: auto;
 }
 
-td{
+.objetivos{
     background-color: rgb(161, 161, 161) !important;
     font-size: 15px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.subtitulo{
+    color :#00a94f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+    font-weight: bold;
+    margin: 10px;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+
+.contenido-subtitulo{
+    color: #337ab7;
+    text-decoration: none;
+}
+
+
+.accordion-item{
+    background-color: rgb(161, 161, 161) !important;
+    color: #000000;
+}
+
+.custom-accordion {
+    background-color: rgb(161, 161, 161) !important; /* Cambia el color de fondo del acordeón */
+  }
+  
+  .custom-button {
+    background-color: rgb(161, 161, 161) !important; /* Cambia el color del botón del acordeón */
+    color: #000000; /* Cambia el color del texto */
+  }
+  
+  .custom-button.collapsed {
+    background-color: rgb(161, 161, 161) !important; /* Cambia el color del botón cuando está colapsado */
+  }
+  
+  .custom-body {
+    background-color: #ffffff !important; /* Cambia el color de fondo del cuerpo del acordeón */
+    color: black; /* Cambia el color del texto */
+  }
+
+  .textoTituloAcordeon{
+    width: 100%;
+    text-align:center;
+  }
+
+  .urlIndicador{
+    color:#337ab7;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .urlIndicador:hover{
+    color:#318dde;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .custom-button {
+    background-image: none; /* Oculta las flechas por defecto */
+  }
+  
+  .custom-button::after {
+    display: none; /* Evita que se muestre el ícono de la flecha */
+  }
+  

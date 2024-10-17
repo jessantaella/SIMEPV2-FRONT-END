@@ -28,6 +28,9 @@ import { MenuDesplegableComponent } from './base/shared/menu-desplegable/menu-de
 import { GraficaComponent } from './base/shared/grafica/grafica.component';
 import { PreLoaderComponent } from './base/shared/pre-loader/pre-loader.component';
 import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
+import { LineChartComponent } from './graficas/line-chart/line-chart.component';
+import { VistaObjetivoComponent } from './plan-nacional/vista-objetivo/vista-objetivo.component';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
     MenuDesplegableComponent,
     GraficaComponent,
     PreLoaderComponent,
-    Pnd2013Component
+    Pnd2013Component,
+    VistaObjetivoComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

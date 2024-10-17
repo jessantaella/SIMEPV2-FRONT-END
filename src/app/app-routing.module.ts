@@ -35,7 +35,6 @@ const routes: Routes = [
     path:'IndicadorSectorial',
     component:IndicadorSectorial1318Component,
   },
-  },
   {
     path:'PlanNacionalDesarrollo2013-2018',
     component:Pnd2013Component,

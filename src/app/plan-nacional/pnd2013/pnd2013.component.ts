@@ -12,6 +12,7 @@ export class Pnd2013Component implements OnInit{
 
   metas :any [] = [];
   objetivos: any [] = [];
+  listadoIndicadorObjetivo : any = [];
 
   metaSeleccionada : number = 0;
   isBrowser = false;
@@ -20,6 +21,8 @@ export class Pnd2013Component implements OnInit{
   nombreSistema: any;
   @ViewChild('planeacion')
   planeacion!: ElementRef;
+  mostrarTransversales:boolean = false;
+  expandedRowIndex :number = 0;
 
   servidorImg = 'http://devnet.coneval.org.mx:84/_SIMEPS/img/';
 
@@ -71,8 +74,40 @@ traerObjetivosxMeta(id:number){
   this.pndServices.getObjetivosMetasNacionales(id).subscribe(
     res=>{
       console.log(res);
+      this.mostrarTransversales = false;
       this.objetivos = res?.Data;
     });
+}
+
+traerObjetivosTransversales(){
+  this.pndServices.getObjetivosTransversales().subscribe(
+    res=>{
+      console.log(res);
+      this.mostrarTransversales = true;
+      this.metaSeleccionada = 0;
+      this.objetivos = res?.Data;
+    });
+}
+
+obtenerIndicadoresObjetivo(idMetaNacional:number){
+  this.listadoIndicadorObjetivo = [];
+  this.pndServices.getIndicadoresObjetivoDeMeta(idMetaNacional).subscribe(
+    res=>{
+      console.log(res);
+      this.listadoIndicadorObjetivo = res?.Data;
+
+      console.log(this.listadoIndicadorObjetivo.length)
+      if(this.listadoIndicadorObjetivo.length==0){
+        this.listadoIndicadorObjetivo.push({
+          NOMBRE:'Sin indicadores asociados'
+        })
+      }
+    }
+  )
+}
+
+seleccionarVistaObjetivo(indicador:any){
+console.log(indicador)
 }
 
 }

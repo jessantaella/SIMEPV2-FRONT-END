@@ -24,4 +24,14 @@ export class Pnd2013Service {
     return this.http.get<any>(url);
   }
 
+  getObjetivosTransversales():Observable<any>{
+    let url = this.servidor+'/PND1318/IndicadoresTransversales';
+    return this.http.get<any>(url);
+  }
+
+  getIndicadoresObjetivoDeMeta(idMetaNacional:number):Observable<any>{
+    let url = this.servidor+'/PND1318/IndicadoresObjetivoDeMeta?idMetaNacional='+idMetaNacional;
+    return this.http.get<any>(url);
+  }
+
 }

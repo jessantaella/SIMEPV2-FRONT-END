@@ -40,24 +40,38 @@
     <!-- Botón con 90% de ancho de la fila superior -->
     <div class="d-flex justify-content-center mb-3">
       <button class="btn w-75">
-        <img [src]="servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'" class="ms-2 w-100" alt="Estrategias Imagen">
+        <img [src]="metaSeleccionada!= 0 && !mostrarTransversales ? servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg':  servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'" class="ms-2 w-100" alt="Estrategias Imagen">
       </button>
     </div>
   
     <div class="container mt-5 flex-grow-1" *ngIf="metaSeleccionada !== 0">
-      <!-- Tabla -->
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col" class="text-center text-white">Objetivos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let objetivo of objetivos">
-            <td class="text-center text-black">{{objetivo?.DESC_OBJETIVO}}</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item custom-accordion" *ngFor="let objetivo of objetivos; let i = index">
+        <h2 class="accordion-header" [id]="'heading' + i">
+          <button class="accordion-button custom-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="obtenerIndicadoresObjetivo(objetivo?.ID_OBJETIVO_M)">
+           <div class="text-center textoTituloAcordeon">{{objetivo?.DESC_OBJETIVO}}</div>
+          </button>
+        </h2>
+        <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
+          <div class="accordion-body custom-body">
+            <table class="table table-borderless m-0">
+              <tbody>
+                <tr *ngFor="let indicador of listadoIndicadorObjetivo" class="text-center">
+                  <th scope="row" class="urlIndicador" (click)="seleccionarVistaObjetivo(indicador)">
+                    {{indicador?.NOMBRE}}
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+    
+
+    <app-vista-objetivo></app-vista-objetivo>
+
+
   </div>
   
