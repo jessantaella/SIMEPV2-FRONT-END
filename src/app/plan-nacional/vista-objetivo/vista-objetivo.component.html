@@ -1,56 +1,96 @@
 <div class="container my-4">
+
+  <div class="row">
+    <div class="col-6">
     <!-- Título Objetivo e Indicador -->
     <div class="row mb-3">
       <div class="col">
-        <h5 class="text-success">Objetivo: Mejorar las condiciones de seguridad pública</h5>
-        <h5 class="text-success">Indicador: Número de víctimas de la delincuencia por cada 100,000</h5>
+        <h5 class="text-success" style="display: inline;">Objetivo: </h5>{{objetivo}}
       </div>
     </div>
-  
-    <!-- Definición del Indicador -->
     <div class="row mb-3">
       <div class="col">
+        <h5 class="text-success" style="display: inline;">Indicador: </h5> {{datoObjetivo?.NOMBRE}}
+      </div>
+    </div>
+   
+  
+    <!-- Definición del Indicador -->
+    <div class="row mb-1">
+      <div class="col">
         <h6 class="text-success">Definición del Indicador:</h6>
-        <p>Este indicador recaba información a nivel nacional y estatal, que permita llevar a cabo estimaciones de la incidencia delictiva que afecta a los hogares y a las personas integrantes del hogar, la cifra negra, las características del delito, las víctimas y el contexto de la victimización. Asimismo, busca obtener información sobre la percepción de la seguridad pública y sobre el desempeño y experiencias con las instituciones a cargo de la seguridad pública y la justicia. Es elaborado con base en los resultados de la Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública, realizada por el Instituto Nacional de Estadística y Geografía.</p>
+        <p>{{datoObjetivo?.DEFINICION}}</p>
       </div>
     </div>
   
     <!-- Unidad de Medida y Calificación del Indicador -->
     <div class="row mb-3">
       <div class="col-md-6">
-        <h6 class="text-success">Unidad de medida: Tasa</h6>
-  
-        <!-- Calificación del Indicador -->
-        <h6 class="text-success">Calificación del Indicador:</h6>
-        <ul class="list-unstyled">
-          <li><i class="bi bi-check-circle-fill text-success"></i> Claridad</li>
-          <li><i class="bi bi-check-circle-fill text-success"></i> Relevancia</li>
-          <li><i class="bi bi-check-circle-fill text-success"></i> Monitoreabilidad</li>
-          <li><i class="bi bi-check-circle-fill text-success"></i> Pertinencia</li>
-        </ul>
+        <h6 class="text-success" style="display: inline;">Unidad de medida:</h6> {{datoObjetivo?.UNIDAD_MEDIDA}}
       </div>
-  
-      <!-- Gráfica (Componente Angular) -->
-      <div class="col-md-6 text-center">
-        <h6 class="fw-bold">Historico</h6>
-        <app-line-chart></app-line-chart> <!-- Componente Angular para la gráfica -->
-        <div class="mt-2">
-          <i class="bi bi-circle-fill text-success"></i> Meta Alcanzada
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+         <!-- Calificación del Indicador -->
+         <h6 class="text-success">Calificación del Indicador:</h6>
+         <ul class="list-unstyled">
+           <li>
+             <i class="bi bi-check-circle-fill text-success fs-3" *ngIf="datoObjetivo?.CALIF_CLARIDAD"></i> 
+             <i class="bi bi-exclamation-circle-fill text-warning fs-3" *ngIf="!datoObjetivo?.CALIF_CLARIDAD"></i> 
+             Claridad
+           </li>
+           <li>
+             <i class="bi bi-check-circle-fill text-success fs-3" *ngIf="datoObjetivo?.CALIF_RELEVANCIA"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-3" *ngIf="!datoObjetivo?.CALIF_RELEVANCIA"></i>
+              Relevancia
+           </li>
+           <li>
+             <i class="bi bi-check-circle-fill text-success fs-3" *ngIf="datoObjetivo?.CALIF_MONITOREABILIDAD"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-3" *ngIf="!datoObjetivo?.CALIF_MONITOREABILIDAD"></i> 
+             Monitoreabilidad
+           </li>
+           <li>
+             <i class="bi bi-check-circle-fill text-success fs-3" *ngIf="datoObjetivo?.CALIF_PERTINENCIA"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-3" *ngIf="!datoObjetivo?.CALIF_PERTINENCIA"></i>
+             Pertinencia
+           </li>
+         </ul>
+      </div>
+
+    </div>
+
+
+
+      <!-- Calidad y Enfoque del Indicador -->
+      <div class="row mb-3">
+        <div class="col">
+          <h6 class="text-success">Calidad:</h6>
+          <p class="ml-3">{{datoObjetivo?.CATEGORIA_CALIDAD}}</p>
         </div>
       </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <h6 class="text-success" style="display: inline;">Enfoque del Indicador:</h6>
+          <p>{{datoObjetivo?.ENFOQUE_INDICADOR}}</p>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-6">
+      <!-- Gráfica (Componente Angular) -->
+      <div class="col-md-12 text-center">
+        <h6 class="fw-bold">Historico</h6>
+        <app-line-chart [data]="data"></app-line-chart> <!-- Componente Angular para la gráfica -->
+      </div>
     </div>
+  </div>
+
   
-    <!-- Calidad y Enfoque del Indicador -->
-    <div class="row mb-3">
-      <div class="col">
-        <h6 class="text-success">Calidad:</h6>
-        <p>Adecuado</p>
-      </div>
-      <div class="col">
-        <h6 class="text-success">Enfoque del Indicador:</h6>
-        <p>Resultados</p>
-      </div>
-    </div>
+
+  
+  
   
     <!-- Botón de Regresar -->
     <div class="row">

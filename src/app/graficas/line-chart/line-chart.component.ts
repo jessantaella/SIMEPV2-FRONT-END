@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
@@ -9,115 +9,125 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 })
 export class LineChartComponent implements OnInit, OnDestroy {
 
+
+  @Input() data: { Ciclo: number, MetaAlcanzada: string }[] = [];
+
   private chart: am4charts.XYChart | undefined;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.createChart();
   }
 
-  createChart() {
+  ngOnChanges(changes: SimpleChanges) {
+    // Verificar si el valor de 'data' ha cambiado
+    if (changes['data'] && changes['data'].currentValue) {
+      // Llamar a createChart con los nuevos datos
+      this.createChart(changes['data'].currentValue);
+    }
+  }
+
+  createChart(data: { Ciclo: number, MetaAlcanzada: string }[]) {
     // Crear la instancia del gráfico
     let chart = am4core.create('chartdiv', am4charts.XYChart);
     
-    // Definir los datos
-    chart.data = [
-      { "date": "2010", "value": 23993 },
-      { "date": "2011", "value": 24317 },
-      { "date": "2012", "value": 27337 },
-      { "date": "2013", "value": 28224 },
-      { "date": "2014", "value": 28200 },
-      { "date": "2015", "value": 28202 },
-      { "date": "2016", "value": 29000 }
-    ];
-  
+    // Asignar los datos recibidos al gráfico
+    chart.data = data.map(item => ({
+        date: item.Ciclo.toString(),
+        value: parseFloat(item.MetaAlcanzada) // Convertir el valor de MetaAlcanzada a número
+    }));
+
     // Crear ejes
     let dateAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-
     dateAxis.dataFields.category = "date";
-    dateAxis.renderer.grid.template.disabled = true; // Activar líneas verticales
+    dateAxis.renderer.grid.template.disabled = true; // Desactivar líneas verticales
     dateAxis.renderer.grid.template.strokeOpacity = 0.5; // Opacidad de las líneas de la cuadrícula vertical
-    
-    // Configuración de axisFills (rellenos en las áreas del eje de categorías)
-    dateAxis.renderer.axisFills.template.disabled = false; // Activar los rellenos
-    dateAxis.renderer.axisFills.template.fillOpacity = 0.1; // Definir opacidad del relleno
-    dateAxis.renderer.axisFills.template.fill = am4core.color("gray"); // Color rojo con transparencia en las columnas de fondo
-    
+
+    // Mostrar todas las etiquetas del eje X
+    dateAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+        return 0; // Asegurarse de que las etiquetas estén centradas
+    });
+    dateAxis.renderer.minGridDistance = 30; // Ajustar la distancia mínima entre las etiquetas
+
+    // Reducir el tamaño de la fuente de las etiquetas en el eje X
+    dateAxis.renderer.labels.template.fontSize = 10; // Cambiar el valor según el tamaño deseado
+
+
+    // Configuración de axisFills
+    dateAxis.renderer.axisFills.template.disabled = false;
+    dateAxis.renderer.axisFills.template.fillOpacity = 0.1;
+    dateAxis.renderer.axisFills.template.fill = am4core.color("gray");
+
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+    valueAxis.renderer.labels.template.fontSize = 15; // Cambiar el valor según el tamaño deseado
+
     valueAxis.renderer.grid.template.disabled = true; // Desactivar líneas horizontales
     valueAxis.tooltip!.disabled = true;
 
-  
     // Crear serie
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
     series.dataFields.categoryX = "date";
     series.strokeWidth = 2; // Ancho de línea
-    series.stroke = am4core.color("#00A94F"); // Cambiar color a azul
-    series.tensionX = 0.8; // Suavizado de la línea
-    
-    // Añadir puntos grandes en la línea
+    series.stroke = am4core.color("#00A94F"); // Cambiar color
+    series.tensionX = 1; // Suavizado de la línea
+
+    // Añadir puntos en la línea
     let bullet = series.bullets.push(new am4charts.CircleBullet());
     bullet.circle.strokeWidth = 2;
-    bullet.circle.radius = 5; // Tamaño más pequeño para los puntos
-    bullet.circle.fill = am4core.color("#00A94F"); // Color blanco para los puntos
-    bullet.circle.stroke = am4core.color("#00A94F"); // Bordes de los puntos en azul
-    
-    // Añadir etiquetas sobre los puntos con formato de miles
+    bullet.circle.radius = 5;
+    bullet.circle.fill = am4core.color("#00A94F");
+    bullet.circle.stroke = am4core.color("#00A94F");
+
+    // Añadir etiquetas sobre los puntos
     let labelBullet = series.bullets.push(new am4charts.LabelBullet());
     labelBullet.label.text = "{valueY.formatNumber('#,###')}";
-    labelBullet.label.dy = -10; // Ajustar la posición de la etiqueta por encima del punto
-    labelBullet.label.fontSize = 10; // Tamaño de fuente ajustado
-
+    labelBullet.label.dy = -10;
+    labelBullet.label.fontSize = 10;
 
     // Añadir tooltip personalizado
-series.tooltipText = "{name}[/]: {categoryX} Valor: {valueY.formatNumber('#,###')}";
-
-// Personalizar el borde del tooltip, quitar fondo y agregar la punta
-series.tooltip!.background.stroke = am4core.color("#00A94F"); // Borde verde
-series.tooltip!.background.strokeWidth = 2;
-series.tooltip!.background.fillOpacity = 0; // Fondo transparente
-series.tooltip!.pointerOrientation = "down"; // Orientación de la punta hacia abajo (apuntando al punto)
-//series.tooltip!.pointerLength = 10; // Ajustar el tamaño de la punta
+    series.tooltipText = "{name}[/] {categoryX}:[bold]{valueY.formatNumber('#,###')}";
+    series.tooltip!.background.stroke = am4core.color("#00A94F");
+    series.tooltip!.background.strokeWidth = 2;
+    series.tooltip!.background.fillOpacity = 0;
+    series.tooltip!.pointerOrientation = "left";
 
     // Añadir una leyenda para la serie
     chart.legend = new am4charts.Legend();
     series.name = "Meta Alcanzada";
-  
+
     // Añadir un cursor
     let cursor = new am4charts.XYCursor();
-    cursor.lineY.disabled = true; // Desactivar la línea horizontal
-
-
+    cursor.lineY.disabled = true;
     cursor.xAxis = dateAxis;
-    cursor.lineX.stroke = am4core.color("#cf1010"); // Cambiar la línea vertical a rojo
-    cursor.lineX.strokeWidth = 2; 
-    cursor.lineX.strokeDasharray = ""; 
-    cursor.lineX.strokeOpacity = 0; 
+    cursor.lineX.stroke = am4core.color("#cf1010");
+    cursor.lineX.strokeWidth = 2;
+    cursor.lineX.strokeOpacity = 0;
     cursor.behavior = "none"; 
     chart.cursor = cursor;
 
     // Mostrar la línea vertical solo cuando se pase el cursor sobre un punto
     cursor.events.on("cursorpositionchanged", function(ev) {
-      let dataItem = dateAxis.getSeriesDataItem(series, cursor.xPosition);
-      if (dataItem) {
-        cursor.lineX.strokeOpacity = 1; // Mostrar línea roja si está sobre un punto
-      } else {
-        cursor.lineX.strokeOpacity = 0; // Ocultar la línea cuando no esté sobre un punto
-      }
+        let dataItem = dateAxis.getSeriesDataItem(series, cursor.xPosition);
+        if (dataItem) {
+            cursor.lineX.strokeOpacity = 1;
+        } else {
+            cursor.lineX.strokeOpacity = 0;
+        }
     });
 
     // Cambiar el color de la etiqueta del año a rojo en el tooltip
-    dateAxis.tooltip!.background.fill = am4core.color("#cf1010"); // Color de fondo rojo claro
-    dateAxis.tooltip!.background.stroke = am4core.color("#cf1010"); // Borde del tooltip rojo
-    dateAxis.tooltip!.label.fill = am4core.color("#ffffff"); // Cambiar el color del texto del año a blanco
-    dateAxis.tooltip!.label.fontSize = 12; // Ajustar el tamaño de fuente si es necesario
-    dateAxis.tooltip!.label.padding(5, 5, 5, 5); // Añadir un padding más pequeño
-    
+    dateAxis.tooltip!.background.fill = am4core.color("#cf1010");
+    dateAxis.tooltip!.background.stroke = am4core.color("#cf1010");
+    dateAxis.tooltip!.label.fill = am4core.color("#ffffff");
+    dateAxis.tooltip!.label.fontSize = 12;
+    dateAxis.tooltip!.label.padding(5, 5, 5, 5);
+
     // Guardar referencia al gráfico para su destrucción posterior
     this.chart = chart;
 }
+
 
   
   

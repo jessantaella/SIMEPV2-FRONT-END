@@ -34,4 +34,10 @@ export class Pnd2013Service {
     return this.http.get<any>(url);
   }
 
+
+  obtenerHistoricoIndicadoresObjetivo(idMetaNacional:number,idObjetivo:number,unidadMedida:string):Observable<any>{
+    let url = this.servidor+'/PND1318/HistoricoIndicadoresObjetivo?idMetaNacional='+idMetaNacional+'&idObjetivo='+idObjetivo+'&unidadMedida='+unidadMedida;
+    return this.http.get<any>(url);
+  }
+
 }

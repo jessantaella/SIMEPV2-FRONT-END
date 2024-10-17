@@ -23,8 +23,13 @@ export class Pnd2013Component implements OnInit{
   planeacion!: ElementRef;
   mostrarTransversales:boolean = false;
   expandedRowIndex :number = 0;
+  objetivoSeleccionado :any = null;
+  nombreObjetivoSeleccionado : string = '' ;
+  dataGrafica : any [] = [];
 
   servidorImg = 'http://devnet.coneval.org.mx:84/_SIMEPS/img/';
+
+  mostrarVistaObjetivo :boolean = false;
 
 constructor( @Inject(PLATFORM_ID) private platformId: any,
  private servicio: DataDynamic,private pndServices: Pnd2013Service){
@@ -95,8 +100,6 @@ obtenerIndicadoresObjetivo(idMetaNacional:number){
     res=>{
       console.log(res);
       this.listadoIndicadorObjetivo = res?.Data;
-
-      console.log(this.listadoIndicadorObjetivo.length)
       if(this.listadoIndicadorObjetivo.length==0){
         this.listadoIndicadorObjetivo.push({
           NOMBRE:'Sin indicadores asociados'
@@ -106,8 +109,22 @@ obtenerIndicadoresObjetivo(idMetaNacional:number){
   )
 }
 
-seleccionarVistaObjetivo(indicador:any){
+seleccionarVistaObjetivo(indicador:any,objetivo:string){
+  this.objetivoSeleccionado = indicador;
+  this.nombreObjetivoSeleccionado = objetivo;
+  this.obtenerDatosGrafica();
+  this.mostrarVistaObjetivo = true;
+
 console.log(indicador)
+}
+
+obtenerDatosGrafica(){
+  this.pndServices.obtenerHistoricoIndicadoresObjetivo(this.metaSeleccionada,this.objetivoSeleccionado.ID_OBJETIVO_M,this.objetivoSeleccionado.UNIDAD_MEDIDA).subscribe(
+    res=>{
+      this.dataGrafica  = res?.Data;
+      console.log(res);
+    }
+  )
 }
 
 }
