@@ -1,64 +1,93 @@
 <div class="position-fixed w-100 bg-white" #planeacion>
-    <div
-        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
-        <div id="divOcultarRedes" class="social-icons redesInternas">
-            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
-                    [alt]="red?.alt" class="iconoRed" /></a>
-        </div>
-        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+  <div class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+    <div id="divOcultarRedes" class="social-icons redesInternas">
+      <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+          [alt]="red?.alt" class="iconoRed" /></a>
     </div>
+    <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+  </div>
 </div>
-    
 
-<div class="m-auto d-flex flex-column" [ngStyle]="{'padding-top':alto+'px', 'width':'85%', 'min-height':'90vh'}" id="total">
 
-    <div class="row justify-content-end mt-3">
-        <!-- Botón con imagen -->
-        <div class="col-1">
-          <button class="btn p-0">
-            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" class="img-fluid w-75">
-          </button>
-        </div>
-        <!-- Texto a la derecha del botón -->
-        <div class="col-3">
-          <span class="ms-1">Base de datos de los indicadores derivados del PND 2013-2018</span>
-        </div>
-      </div>
-      
+<div class="m-auto d-flex flex-column" [ngStyle]="{'padding-top':alto+'px', 'width':'85%', 'min-height':'90vh'}"
+  id="total">
 
-    <!-- Fila con 5 botones de imágenes -->
-    <div class="row text-center mb-3">
-      <div class="col" *ngFor="let meta of metas">
-        <button class="btn w-100" (click)="seleccionarMeta(meta?.ID_META)">
-          <img [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL" class="img-fluid" alt="Imagen 1">
-        </button>
-      </div>
-    </div>
-  
-    <!-- Botón con 90% de ancho de la fila superior -->
-    <div class="d-flex justify-content-center mb-3">
-      <button class="btn w-75">
-        <img [src]="metaSeleccionada!= 0 && !mostrarTransversales ? servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg':  servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'" class="ms-2 w-100" alt="Estrategias Imagen">
+  <div class="row justify-content-end mt-3">
+    <!-- Botón con imagen -->
+    <div class="col-1">
+      <button class="btn p-0">
+        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
+          class="img-fluid w-75">
       </button>
     </div>
-  
-    <div class="container mt-1 flex-grow-1" *ngIf="metaSeleccionada !== 0">
+    <!-- Texto a la derecha del botón -->
+    <div class="col-3">
+      <span class="ms-1">Base de datos de los indicadores derivados del PND 2013-2018</span>
+    </div>
+  </div>
 
-      <div class="objetivoTitulo text-center p-3" *ngIf="!mostrarVistaObjetivo"> Objetivos</div>
 
+  <!-- Fila con 5 botones de imágenes -->
+  <div class="row text-center mb-3">
+    <div class="col" *ngFor="let meta of metas">
+      <button class="btn w-100" (click)="seleccionarMeta(meta?.ID_META)">
+        <img
+          [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL"
+          class="img-fluid" alt="Imagen 1">
+      </button>
+    </div>
+  </div>
+
+  <!-- Botón con 90% de ancho de la fila superior -->
+  <div class="d-flex justify-content-center mb-3">
+    <button class="btn w-75" (click)="traerObjetivosTransversales()">
+      <img
+        [src]="metaSeleccionada!= 0 && !mostrarTransversales ? servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg':  servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'"
+        class="ms-2 w-100" alt="Estrategias Imagen">
+    </button>
+  </div>
+
+  <div class="container mt-1 flex-grow-1" *ngIf="mostrarTransversales && !mostrarVistaObjetivo">
+     <table class="table table-borderless m-0" >
+    <tbody>
+      <tr class="text-center">
+        <th class="titulo-indicadores">Indicadores</th>
+      </tr>
+      <tr *ngFor="let objetivo of objetivos" class="text-center">
+        <th scope="row" class="urlIndicador" (click)="seleccionarVistaObjetivoTransversal(objetivo)">
+          {{objetivo?.NOMBRE}}
+        </th>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+
+  <div class="container mt-1 flex-grow-1" *ngIf="metaSeleccionada !== 0">
+    <div class="objetivoTitulo text-center p-3" *ngIf="!mostrarVistaObjetivo"> Objetivos</div>
     <div class="accordion" id="accordionExample" *ngIf="!mostrarVistaObjetivo">
-      <div class="accordion-item custom-accordion" *ngFor="let objetivo of objetivos; let i = index">
+      <div class="accordion-item custom-accordion m-1" *ngFor="let objetivo of objetivos; let i = index">
         <h2 class="accordion-header" [id]="'heading' + i">
-          <button class="accordion-button custom-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="obtenerIndicadoresObjetivo(objetivo?.ID_OBJETIVO_M)">
-           <div class="text-center textoTituloAcordeon">{{objetivo?.DESC_OBJETIVO}}</div>
+          <button class="accordion-button custom-button" type="button" [attr.data-bs-toggle]="'collapse'"
+            [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i"
+            (click)="obtenerIndicadoresObjetivo(objetivo?.ID_OBJETIVO_M)">
+            <div class="text-center textoTituloAcordeon">{{objetivo?.DESC_OBJETIVO}} </div>
           </button>
         </h2>
-        <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
+        <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
+          data-bs-parent="#accordionExample">
           <div class="accordion-body custom-body">
             <table class="table table-borderless m-0">
               <tbody>
                 <tr *ngFor="let indicador of listadoIndicadorObjetivo" class="text-center">
-                  <th scope="row" class="urlIndicador" (click)="seleccionarVistaObjetivo(indicador,objetivo?.DESC_OBJETIVO)">
+
+                  <th scope="row" class="urlIndicador"
+                    (click)="seleccionarVistaObjetivo(indicador,objetivo?.DESC_OBJETIVO)"
+                    *ngIf="indicador?.NOMBRE !== 'Sin indicadores asociados'">
+                    {{indicador?.NOMBRE}}
+                  </th>
+
+                  <th scope="row" class="text-dark m-0 p-0"
+                    *ngIf="listadoIndicadorObjetivo.length===1 && indicador?.NOMBRE === 'Sin indicadores asociados'">
                     {{indicador?.NOMBRE}}
                   </th>
                 </tr>
@@ -68,18 +97,17 @@
         </div>
       </div>
     </div>
-    
-
-    <app-vista-objetivo [datoObjetivo] = "objetivoSeleccionado" [objetivo]="nombreObjetivoSeleccionado" [data]="dataGrafica" *ngIf="mostrarVistaObjetivo"></app-vista-objetivo>
-
-    <!-- Botón de Regresar -->
-    <div class="row m-2" *ngIf="mostrarVistaObjetivo">
-      <div class="col text-center">
-        <button type="button" class="btn btn-light border" (click)="regresar()">Regresar</button>
-      </div>
-    </div>
   </div>
-  
 
+  <app-vista-objetivo [datoObjetivo]="objetivoSeleccionado" [objetivo]="nombreObjetivoSeleccionado"
+  [data]="dataGrafica" *ngIf="mostrarVistaObjetivo"></app-vista-objetivo>
+
+<!-- Botón de Regresar -->
+<div class="row m-2" *ngIf="mostrarVistaObjetivo">
+  <div class="col text-center">
+    <button type="button" class="btn btn-light border" (click)="regresar()">Regresar</button>
   </div>
-  
+</div>
+
+
+</div>

@@ -12,6 +12,7 @@ export class Pnd2013Component implements OnInit{
 
   metas :any [] = [];
   objetivos: any [] = [];
+  todoListadoIndicadorObjetivo : any = [];
   listadoIndicadorObjetivo : any = [];
 
   metaSeleccionada : number = 0;
@@ -73,6 +74,9 @@ constructor( @Inject(PLATFORM_ID) private platformId: any,
 seleccionarMeta(opcion:number){
   this.metaSeleccionada = opcion;
   this.traerObjetivosxMeta(opcion);
+  this.objetivoSeleccionado = null;
+  this.nombreObjetivoSeleccionado = '';
+  this.mostrarVistaObjetivo = false;
 }
 
 traerObjetivosxMeta(id:number){
@@ -81,7 +85,18 @@ traerObjetivosxMeta(id:number){
       console.log(res);
       this.mostrarTransversales = false;
       this.objetivos = res?.Data;
+      this.traerTodoslosIndicadoresObjetivo(id);
     });
+}
+
+traerTodoslosIndicadoresObjetivo(idMetaNacional:number){
+  this.todoListadoIndicadorObjetivo = [];
+  this.pndServices.getIndicadoresObjetivoDeMeta(idMetaNacional).subscribe(
+    res=>{
+      console.log(res);
+      this.todoListadoIndicadorObjetivo = res?.Data;
+    }
+  )
 }
 
 traerObjetivosTransversales(){
@@ -94,19 +109,16 @@ traerObjetivosTransversales(){
     });
 }
 
-obtenerIndicadoresObjetivo(idMetaNacional:number){
+obtenerIndicadoresObjetivo(ID_OBJETIVO_M:number){
   this.listadoIndicadorObjetivo = [];
-  this.pndServices.getIndicadoresObjetivoDeMeta(idMetaNacional).subscribe(
-    res=>{
-      console.log(res);
-      this.listadoIndicadorObjetivo = res?.Data;
+
+  console.log('busca aqui '+ID_OBJETIVO_M,this.todoListadoIndicadorObjetivo)
+  this.listadoIndicadorObjetivo = this.todoListadoIndicadorObjetivo.filter((e: { ID_OBJETIVO_M: number; })=>e.ID_OBJETIVO_M === ID_OBJETIVO_M);
       if(this.listadoIndicadorObjetivo.length==0){
         this.listadoIndicadorObjetivo.push({
           NOMBRE:'Sin indicadores asociados'
         })
       }
-    }
-  )
 }
 
 seleccionarVistaObjetivo(indicador:any,objetivo:string){
@@ -118,13 +130,41 @@ seleccionarVistaObjetivo(indicador:any,objetivo:string){
 console.log(indicador)
 }
 
+seleccionarVistaObjetivoTransversal(indicador:any){
+  this.objetivoSeleccionado = indicador;
+  this.nombreObjetivoSeleccionado = '';
+  this.obtenerDatosGraficaTransversal();
+  this.mostrarVistaObjetivo = true;
+
+console.log(indicador)
+}
+
 obtenerDatosGrafica(){
+  console.log('datos consulta',{metaSeleccionada:this.metaSeleccionada,ID_OBJETIVO_M:this.objetivoSeleccionado.ID_OBJETIVO_M,UNIDAD_MEDIDA:this.objetivoSeleccionado.UNIDAD_MEDIDA});
   this.pndServices.obtenerHistoricoIndicadoresObjetivo(this.metaSeleccionada,this.objetivoSeleccionado.ID_OBJETIVO_M,this.objetivoSeleccionado.UNIDAD_MEDIDA).subscribe(
     res=>{
-      this.dataGrafica  = res?.Data;
+      let datosSalida = Object.values(
+        res.Data.reduce((acc: { [x: string]: any; }, current: { Ciclo: any; MetaAlcanzada: string; }) => {
+            const ciclo = current.Ciclo;
+            if (!acc[ciclo] || parseFloat(current.MetaAlcanzada) > parseFloat(acc[ciclo].MetaAlcanzada)) {
+                acc[ciclo] = current;
+            }
+            return acc;
+        }, {})
+    );
+      this.dataGrafica  = datosSalida;
       console.log(res);
     }
   )
+}
+
+obtenerDatosGraficaTransversal(){
+    this.pndServices.obtenerHistoricoIndicadoresTransversal(this.objetivoSeleccionado.NOMBRE).subscribe(
+      res=>{
+        console.log(res);
+        this.dataGrafica = res?.Data;
+      }
+    )
 }
 
 regresar(){

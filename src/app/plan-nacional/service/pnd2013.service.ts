@@ -40,4 +40,9 @@ export class Pnd2013Service {
     return this.http.get<any>(url);
   }
 
+  obtenerHistoricoIndicadoresTransversal(nombreIndicador:string):Observable<any>{
+    let url = this.servidor+'/PND1318/HistoricoIndicadoresTransversales?nombreIndicador='+nombreIndicador;
+    return this.http.get<any>(url);
+  }
+
 }
