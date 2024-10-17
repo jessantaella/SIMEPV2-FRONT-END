@@ -102,8 +102,8 @@ export class LineChartComponent implements OnInit, OnDestroy {
     cursor.lineY.disabled = true;
     cursor.xAxis = dateAxis;
     cursor.lineX.stroke = am4core.color("#cf1010");
-    cursor.lineX.strokeWidth = 2;
-    cursor.lineX.strokeOpacity = 0;
+    cursor.lineX.strokeWidth = 1;
+    cursor.lineX.strokeOpacity = 1;
     cursor.behavior = "none"; 
     chart.cursor = cursor;
 

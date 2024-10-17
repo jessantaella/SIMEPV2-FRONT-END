@@ -16,7 +16,7 @@
         <!-- Botón con imagen -->
         <div class="col-1">
           <button class="btn p-0">
-            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" class="img-fluid w-100">
+            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" class="img-fluid w-75">
           </button>
         </div>
         <!-- Texto a la derecha del botón -->
@@ -72,6 +72,14 @@
 
     <app-vista-objetivo [datoObjetivo] = "objetivoSeleccionado" [objetivo]="nombreObjetivoSeleccionado" [data]="dataGrafica" *ngIf="mostrarVistaObjetivo"></app-vista-objetivo>
 
+    <!-- Botón de Regresar -->
+    <div class="row m-2" *ngIf="mostrarVistaObjetivo">
+      <div class="col text-center">
+        <button type="button" class="btn btn-light border" (click)="regresar()">Regresar</button>
+      </div>
+    </div>
+  </div>
+  
 
   </div>
   

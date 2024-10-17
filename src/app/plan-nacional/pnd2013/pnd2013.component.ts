@@ -127,4 +127,10 @@ obtenerDatosGrafica(){
   )
 }
 
+regresar(){
+  this.objetivoSeleccionado = null;
+  this.nombreObjetivoSeleccionado = '';
+  this.mostrarVistaObjetivo = false;
+}
+
 }
