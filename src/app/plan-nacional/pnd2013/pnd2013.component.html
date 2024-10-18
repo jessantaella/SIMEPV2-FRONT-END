@@ -21,8 +21,8 @@
       </button>
     </div>
     <!-- Texto a la derecha del botón -->
-    <div class="col-3">
-      <span class="ms-1">Base de datos de los indicadores derivados del PND 2013-2018</span>
+    <div class="col-2">
+      <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
     <div class="col" *ngFor="let meta of metas">
       <button class="btn w-100" (click)="seleccionarMeta(meta?.ID_META)">
         <img
-          [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL"
+          [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 && !mostrarTransversales ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL"
           class="img-fluid" alt="Imagen 1">
       </button>
     </div>

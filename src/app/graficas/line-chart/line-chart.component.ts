@@ -91,8 +91,38 @@ export class LineChartComponent implements OnInit, OnDestroy {
     series.tooltipText = "{name}[/] {categoryX}:[bold]{valueY.formatNumber('#,###')}";
     series.tooltip!.background.stroke = am4core.color("#00A94F");
     series.tooltip!.background.strokeWidth = 2;
-    series.tooltip!.background.fillOpacity = 0;
-    series.tooltip!.pointerOrientation = "left";
+    series.tooltip!.background.fill = am4core.color("#ffffff"); // Cambiar el color de fondo (blanco en este caso)
+    series.tooltip!.background.fillOpacity = 0.1;
+    series.tooltip!.pointerOrientation = "down";
+    series.tooltip!.label.fontSize = 12; // Ajusta el tamaño según tu necesidad
+
+
+    series.adapter.add("tooltipX", (tooltipX, target) => {
+      // Obtener la posición del tooltip en base a la posición del punto de la serie
+      let dataItem = target.tooltipDataItem;
+      let categoryIndex = chart.data.indexOf(dataItem.dataContext); // Índice del dato en la serie
+      let totalItems = chart.data.length; // Total de elementos en la serie
+  
+      // Obtener el ancho del gráfico
+      let chartWidth = chart.plotContainer.pixelWidth;
+  
+      // Calcular posición del tooltip según el índice del dato
+      if (categoryIndex < totalItems * 0.25) {
+          // Si el punto está en el primer 25% del gráfico, orientamos el tooltip a la derecha
+          target.tooltip!.pointerOrientation = "left";
+          target.tooltip!.align = "right"; // Tooltip alineado a la derecha del punto
+      } else if (categoryIndex > totalItems * 0.75) {
+          // Si el punto está en el último 25% del gráfico, orientamos el tooltip a la izquierda
+          target.tooltip!.pointerOrientation = "right";
+          target.tooltip!.align = "left"; // Tooltip alineado a la izquierda del punto
+      } else {
+          // Si el punto está en el centro del gráfico, orientamos el tooltip hacia abajo
+          target.tooltip!.pointerOrientation = "down";
+          target.tooltip!.align = "left"; // Tooltip centrado en el punto
+      }
+  
+      return tooltipX; // Devolver la posición original del tooltip en X
+  });
 
     // Añadir una leyenda para la serie
     chart.legend = new am4charts.Legend();

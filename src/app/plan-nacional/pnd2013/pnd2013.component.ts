@@ -2,6 +2,7 @@ import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@
 import { Pnd2013Service } from '../service/pnd2013.service';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { isPlatformBrowser } from '@angular/common';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-pnd2013',
@@ -33,7 +34,9 @@ export class Pnd2013Component implements OnInit{
   mostrarVistaObjetivo :boolean = false;
 
 constructor( @Inject(PLATFORM_ID) private platformId: any,
- private servicio: DataDynamic,private pndServices: Pnd2013Service){
+ private servicio: DataDynamic,
+ private pndServices: Pnd2013Service,
+private titleService: Title){
   this.isBrowser = isPlatformBrowser(this.platformId);
   this.consultarData();
 }
@@ -56,6 +59,7 @@ constructor( @Inject(PLATFORM_ID) private platformId: any,
     if (this.isBrowser) {
       this.servicio.getInformacion().subscribe((res) => {
         console.log(res);
+        this.titleService.setTitle("SIMEPS | " + 'Plan Nacional de Desarrollo 2013 - 2018 Metas Nacionales');
         this.nombreSistema = 'Plan Nacional de Desarrollo 2013 - 2018 Metas Nacionales'//res?.simeps?.opciones[1].titulo;
         this.redes = res.generales.redes;
       });
@@ -140,18 +144,9 @@ console.log(indicador)
 }
 
 obtenerDatosGrafica(){
-  console.log('datos consulta',{metaSeleccionada:this.metaSeleccionada,ID_OBJETIVO_M:this.objetivoSeleccionado.ID_OBJETIVO_M,UNIDAD_MEDIDA:this.objetivoSeleccionado.UNIDAD_MEDIDA});
-  this.pndServices.obtenerHistoricoIndicadoresObjetivo(this.metaSeleccionada,this.objetivoSeleccionado.ID_OBJETIVO_M,this.objetivoSeleccionado.UNIDAD_MEDIDA).subscribe(
+  this.pndServices.obtenerHistoricoIndicadoresObjetivo(this.metaSeleccionada,this.objetivoSeleccionado.ID_OBJETIVO_M,this.objetivoSeleccionado.UNIDAD_MEDIDA,this.objetivoSeleccionado?.NOMBRE).subscribe(
     res=>{
-      let datosSalida = Object.values(
-        res.Data.reduce((acc: { [x: string]: any; }, current: { Ciclo: any; MetaAlcanzada: string; }) => {
-            const ciclo = current.Ciclo;
-            if (!acc[ciclo] || parseFloat(current.MetaAlcanzada) > parseFloat(acc[ciclo].MetaAlcanzada)) {
-                acc[ciclo] = current;
-            }
-            return acc;
-        }, {})
-    );
+      let datosSalida = res.Data;
       this.dataGrafica  = datosSalida;
       console.log(res);
     }

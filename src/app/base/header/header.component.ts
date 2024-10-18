@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from "@angular/platform-browser";
 import { DataDynamic } from '../services/dinamic-data.services';
-import { tap } from 'rxjs/operators';
+import { find, tap } from 'rxjs/operators';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 
@@ -99,8 +99,26 @@ export class HeaderComponent {
     }else if(this.currentRoute === '/' && pos ===0){
       return true
     }
-    return false;
+    return this.validarPLANEACION(this.currentRoute,pos);
+    //return false;
   }
+
+
+  validarPLANEACION(url:string,pos: number) {
+    const planeacionNacional = [{
+        ruta: '/PlanNacionalDesarrollo2013-2018'
+    }];
+    var resultado ;
+    if(pos === 1 ){
+      resultado = planeacionNacional.find(e => e.ruta === url);
+    }else{
+      resultado = false;
+    }
+
+    // Retornar el resultado encontrado, o null si no se encuentra
+    return resultado || false;
+}
+
 
   otraFuncion() {
 
