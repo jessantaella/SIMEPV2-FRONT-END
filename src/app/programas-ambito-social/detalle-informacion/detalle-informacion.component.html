@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-3">
+        <div class="row justify-content-end mt-3">
+            <!-- Botón con imagen -->
+            <div class="col-6">
+              <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+                 download="Metas_Nacionales_PND20132018.csv">
+                <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+                     class="img-fluid w-75">
+              </a>
+            </div>    
+            <!-- Texto a la derecha del botón -->
+            <div class="col-6">
+              <span class="ms-1 impresion">Fichas técnicas de los indicadores</span>
+            </div>
+          </div>
+    </div>
+    <div class="col-3">
+        <div class="row justify-content-end mt-3">
+            <!-- Botón con imagen -->
+            <div class="col-6">
+              <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+                 download="Metas_Nacionales_PND20132018.csv">
+                <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+                     class="img-fluid w-75">
+              </a>
+            </div>    
+            <!-- Texto a la derecha del botón -->
+            <div class="col-6">
+              <span class="ms-1 impresion">Ficha técnica del indicador</span>
+            </div>
+          </div>
+    </div>
+    <div class="col-3">
+        <div class="row justify-content-end mt-3">
+            <!-- Botón con imagen -->
+            <div class="col-6">
+              <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+                 download="Metas_Nacionales_PND20132018.csv">
+                <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+                     class="img-fluid w-75">
+              </a>
+            </div>    
+            <!-- Texto a la derecha del botón -->
+            <div class="col-6">
+              <span class="ms-1 impresion">Base de datos de excel</span>
+            </div>
+          </div>
+    </div>
+    <div class="col-3">
+        <div class="row justify-content-end mt-3">
+            <!-- Botón con imagen -->
+            <div class="col-6">
+              <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+                 download="Metas_Nacionales_PND20132018.csv">
+                <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+                     class="img-fluid w-75">
+              </a>
+            </div>    
+            <!-- Texto a la derecha del botón -->
+            <div class="col-6">
+              <span class="ms-1 impresion">Base de datos csv</span>
+            </div>
+          </div>
+    </div>
+</div>
+
+<p>
+  Nombre del indicador: 
+</p>
+<h5>Información general del indicador</h5>
+<div class="row mt-4">
+  <div class="col-6 text-justify">
+    <p class="border-bottom">
+      <span class="objetivo">Objetivo: </span>
+      <span>{{getInfo()?.OBJETIVO}}</span>
+    </p>
+    <p>
+      <span class="indicador">Indicador: </span>
+      <span>{{this.informacion?.NOMBRE}}</span>
+    </p>
+    <p>
+      <span class="descripcion">Descripción: </span>
+      <span>{{informacion?.DESCRIPCION}}</span>
+    </p>
+    <p>
+      <span class="mCalculo">Método de cálculo: </span>
+      <span>{{informacion?.METODO}}</span>
+    </p>
+    <p>
+      <span class="fInformacion">Fuentes de Información: </span>
+      <span>{{informacion?.FUENTE}}</span>
+    </p>
+    <p>
+      <span class="periodicidad">Periodicidad: </span> {{informacion?.PERIODICIDAD}}<br>
+      <span class="uMedidad">Unidad de medida: </span> {{informacion?.UDM}}
+    </p>
+  </div>
+  <div class="col-6"></div>
+</div>

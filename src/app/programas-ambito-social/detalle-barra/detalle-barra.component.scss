@@ -1,0 +1,78 @@
+.header-menu{
+    background-color: #013360;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.header-submenu{
+    background-color:#A6A6A6 ;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0%;
+    //height: 50px;
+    padding: 0;
+}
+.card {
+    position: relative; /* Necesario para posicionar el divisor */
+}
+
+.index {
+    font-weight: bold; /* Opcional: hacer el índice más prominente */
+}
+
+.divider {
+    width: 2px;
+    background-color: #ffffff;
+    height: 30px;
+    margin-right: 2%;
+}
+
+.divider2{
+    width: 2px;
+    background-color: #A6A6A6;
+    height: 30px;
+    margin-right: 2%;
+}
+
+
+//en donde esta esta linea: (AQUICOLOCAELCOLOR) tienen que colocar el color en haxadecimal sin el #
+.accordion-button:is(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='1.5'><g transform='rotate(-90, 8, 8)'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></g></svg>") !important;
+}
+//ejemplo de como colocar en color blanco la flecha
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='1.5'><g transform='rotate(180, 8, 8)'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></g></svg>") !important;
+}
+
+.opcionSecundaria{
+    background-color: #F0F2F9;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    margin: 0%;
+    height: 50px;
+    padding: 0;
+    width: 100%;
+    box-shadow: 0 3px 2px #666;
+
+}
+.circle {
+    width: 100px;
+    height: 100px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.objetivos{
+    background-color: blue;
+}
+
+.indicadores{
+    background-color: green;
+}

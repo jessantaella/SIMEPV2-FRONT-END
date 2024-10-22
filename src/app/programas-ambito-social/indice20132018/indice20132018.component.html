@@ -1,0 +1,77 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<!-- Titulo ventana -->
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
+
+
+<div class="row justify-content-end mt-3">
+    <!-- Botón con imagen -->
+    <div class="col-1">
+      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+         download="Metas_Nacionales_PND20132018.csv">
+        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+             class="img-fluid w-75">
+      </a>
+    </div>    
+    <!-- Texto a la derecha del botón -->
+    <div class="col-2">
+      <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+    </div>
+    
+  </div>
+
+    <!-- Estadisticas Basicas  -->
+    <div class="text-center mb-3">
+        <div class="my-2 text-start">
+          <span class="subtitulo">Estadísticas Básicas</span>
+        </div>
+        <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
+          <div *ngFor="let estadistica of listaEstadisticasBasicas; let i = index">
+            <p class="fw-bold">{{ estadistica?.Tipo }}</p>
+            <div class="circle" [ngStyle]="{'background-color': getColor(i)}">
+              <span>{{ estadistica.currentCount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <!-- Iconos Sectores  -->
+    <div class="text-center mt-3">
+        <div class="my-2 text-start" [ngStyle]="{'background-color' : '#fff'}">
+            <span class="subtitulo" >Monitoreo de indicadores de la política social por sector</span>
+        </div>
+        <div class="mt-4 d-flex justify-content-evenly flex-wrap">
+            <div *ngFor="let sector of listaSectores" class="p-1 link-sectores" style="flex: 1 1 20%;">
+                <img class="sectores-icon-svg" [src]="sector.ICONO" [alt]="sector.ICONO" (click)="redirigirAIndicador(sector?.ID_SECTOR)">
+                <p class="texto text-center fw-bold nombreIndicador" (click)="redirigirAIndicador(sector?.ID_SECTOR)">{{sector.NOMBRE}}</p>
+            </div>
+        </div>      
+        
+    </div>
+
+
+    <div class="text-center mt-3 mb-3">
+        <div class="mt-4 d-flex justify-content-evenly flex-wrap">
+            <div class="p-1 link-sectores" style="flex: 1 1 20%;">
+                <img class="sectores-icon-svg" src="https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSectores/indicadoresprogramas.jpg" alt="https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSectores/indicadoresprogramas.jpg">
+                <p class="texto text-center nombreIndicador2">Indicadores de fin de los programas y acciones sociales</p>
+            </div>
+            <div class="p-1 link-sectores" style="flex: 1 1 20%;">
+                <img class="sectores-icon-svg" src="https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSectores/fichasmonitoreo.jpg" alt="https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSectores/indicadoresprogramas.jpg">
+                <p class="texto text-center nombreIndicador2">Fichas de Monitoreo de Políticas Sociales</p>
+            </div>
+        </div>      
+    </div>
+    
+    
+    <div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>

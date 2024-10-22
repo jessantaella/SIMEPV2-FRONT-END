@@ -1,0 +1,44 @@
+.subtitulo{
+    color: #BD5636;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.areaGraficas{
+    background-color: #eeeeee;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+img{
+    cursor: pointer;
+}
+
+.link-sectores:hover p {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+.nombreIndicador, .nombreIndicador2{
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nombreIndicador2{
+        max-width: 150px; /* Ajusta el ancho máximo del texto */
+        word-wrap: break-word; /* Permite que el texto se divida en varias líneas si es necesario */
+        white-space: normal; /* Permite que el texto sea de varias líneas */
+        margin: 0 auto; /* Centra el texto dentro del div */    
+}

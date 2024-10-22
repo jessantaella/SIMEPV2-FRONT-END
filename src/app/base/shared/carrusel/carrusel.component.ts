@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ProgramaSectorial } from '../../Models/ProgramaSectorial';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./carrusel.component.scss']
 })
 export class CarruselComponent {
-  @Input() listaProgramasSectoriales: ProgramaSectorial[] = [];
+  @Input() listaProgramasSectoriales: any[] = [];
   @Input() loading: boolean = true;
 
   currentIndex: number = 0;

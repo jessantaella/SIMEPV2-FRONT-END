@@ -1,0 +1,53 @@
+.select-sectores{
+    background-color: #f78e33;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+.circulo-estadisticas{
+    color: #0000CC;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.valores{
+    font-size: 40px;
+}
+
+.tipo{
+    font-size: 13px;
+}
+
+
+/* Contenedor para la barra lateral */
+.toggle-bar {
+    position: relative;
+  }
+  
+  /* Botón flotante */
+  .toggle-btn {
+    position: absolute;
+    top: 10px; /* Ajusta según tu preferencia */
+    right: -20px; /* Asegura que el botón esté sobre el borde de la barra */
+    z-index: 1000; /* Asegúrate de que esté por encima del contenido */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .arrow-left::before {
+    content: '◀'; /* Flecha hacia la izquierda */
+  }
+  
+  .arrow-right::before {
+    content: '▶'; /* Flecha hacia la derecha */
+  }
+  
+  /* Contenedor del contenido de la barra */
+  .detalle-barra-content {
+    height: 85vh;
+    background-color: #D8DDE0; /* Ejemplo de fondo para la barra */
+  }
+  

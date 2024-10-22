@@ -40,7 +40,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   cambiarImagen_3 = false;
   cambiarImagen_4 = false;
   direccion_1 = "PlanNacionalDesarrollo2013-2018";
-  direccion_2 = "";
+  direccion_2 = "ProgramasDerivados2013-2018";
   direccion_3 = "";
   esMovil = false;
   esTablet = false;
@@ -116,7 +116,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
 
     //Direcciones
     //this.direccion_1 = this.servicio.getURLSimepsViejito('_SIMEPS/MetasNacionales.aspx');
-    this.direccion_2 = this.servicio.getURLSimepsViejito('_SIMEPS/MosaicoSectores.aspx');
+    //this.direccion_2 = this.servicio.getURLSimepsViejito('_SIMEPS/MosaicoSectores.aspx');
     this.direccion_3 = 'MosaicoSectores19-24';
 
   }

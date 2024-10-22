@@ -1,0 +1,87 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
+
+
+    <div class="row justify-content-end mt-3">
+        <div class="col-8 mt-2">
+            <select class="form-select select-sectores w-100" [(ngModel)]="idSector"  (change)="onSectorChange($event)">
+                <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR">
+                  {{ sector.NOMBRE }}
+                </option>
+              </select> 
+        </div>
+
+        <!-- Botón con imagen -->
+        <div class="col-1">
+          <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+             download="Metas_Nacionales_PND20132018.csv">
+            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+                 class="img-fluid w-75">
+          </a>
+        </div>    
+        <!-- Texto a la derecha del botón -->
+        <div class="col-2">
+          <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+        </div>
+        
+      </div>
+
+
+    <!-- Estadisticas Sector -->
+    <div class="text-center row d-flex justify-content-center">
+        <div class=" col-md-9 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-75">
+            <div *ngFor="let estadistica of listaEstadisticasBasicasSector" class="circulo-estadisticas">
+                <div class="valores">
+                    {{estadistica.Conteo}}
+                </div>
+                <p class="tipo text-center">{{estadistica.Tipo}}</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <app-carrusel 
+    [listaProgramasSectoriales]="listaProgramasSectoriales"
+    [loading]="loadingProgramasSectoriales">
+    </app-carrusel> 
+
+
+
+    <div class="row">
+        <!-- Componente lateral -->
+        <div [ngClass]="{'col-4': barraVisible, 'col-1': !barraVisible, 'toggle-bar': true}" class="position-relative">
+          <!-- Botón para ocultar/mostrar la barra, que estará sobre la barra -->
+          <button class="btn btn-primary toggle-btn" (click)="toggleBarra()">
+            <span [ngClass]="barraVisible ? 'arrow-left' : 'arrow-right'"></span>
+          </button>
+      
+          <!-- Componente barra -->
+          <div *ngIf="barraVisible" class="detalle-barra-content">
+            <app-detalle-barra></app-detalle-barra>
+          </div>
+        </div>
+      
+        <!-- Componente de información -->
+        <div [ngClass]="barraVisible ? 'col-8' : 'col-11'">
+          <app-detalle-informacion></app-detalle-informacion>
+        </div>
+      </div>
+      
+      
+      
+    
+  
+    
+    
+    
+    <div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>
