@@ -16,6 +16,11 @@ export class AmbitosocialService {
     return this.http.get<any>(url);
   }
 
+  getEstadisticasBasicasDetalleIndicador(idProgramaSectorial:number):Observable<any>{
+    let url = this.servidor+'/PAS1318/ContadorIndicadoresObjetivos?idProgramaSectorial='+idProgramaSectorial;
+    return this.http.get<any>(url); 
+  }
+
   getSectores(idSector:number):Observable<any>{
     let url = this.servidor+'/PAS1318/Sectores?idSector='+idSector;
     return this.http.get<any>(url);

@@ -51,15 +51,15 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     margin: 0%;
-    height: 50px;
+    min-height: 50px;
     padding: 0;
     width: 100%;
     box-shadow: 0 3px 2px #666;
 
 }
 .circle {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -75,4 +75,9 @@
 
 .indicadores{
     background-color: green;
+}
+
+.textoGraficas{
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
 }

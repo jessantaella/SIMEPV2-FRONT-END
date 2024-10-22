@@ -34,6 +34,7 @@ import { Indice20132018Component } from './programas-ambito-social/indice2013201
 import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-indicador/detalle-indicador.component';
 import { DetalleBarraComponent } from './programas-ambito-social/detalle-barra/detalle-barra.component';
 import { DetalleInformacionComponent } from './programas-ambito-social/detalle-informacion/detalle-informacion.component';
+import { LineChartMultiserieComponent } from './graficas/line-chart-multiserie/line-chart-multiserie.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { DetalleInformacionComponent } from './programas-ambito-social/detalle-i
     Pnd2013Component,
     VistaObjetivoComponent,
     LineChartComponent,
+    LineChartMultiserieComponent,
     Indice20132018Component,
     DetalleIndicadorComponent,
     DetalleBarraComponent,

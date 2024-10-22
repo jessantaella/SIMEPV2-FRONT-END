@@ -13,6 +13,9 @@ export class DetalleBarraComponent {
  opcionesSecundarias:{ objetivo: number; info: any }[] = [] ;
   @Input() cargarIndicador!: (id: number) => void;
   idProgramaSect: number | null = null;
+
+  totalIndicadores:number = 0;
+  totalObjetivos:number = 0;
  
   constructor(private ambitosocialService:AmbitosocialService,private route: ActivatedRoute,private router: Router
   ){}
@@ -22,6 +25,7 @@ export class DetalleBarraComponent {
       this.idProgramaSect = params.get('idProgramaSect') ? parseInt(params.get('idProgramaSect')!) : 0;
       console.log('Valor de idProgramaSect:', this.idProgramaSect);
       this.consultaObjetivosSectoriales(this.idProgramaSect);
+      this.obtenerEstadisticas(this.idProgramaSect);
     });
   }
 
@@ -68,6 +72,19 @@ obtenerInfo(numObjetivo: number): any | undefined {
     if (this.cargarIndicador) {
       this.cargarIndicador(idIndicador);
     }
+  }
+
+  /**
+   *  Obtiene las estadisticas basicas
+   */
+
+  obtenerEstadisticas(idProgramaSectorial:number){
+    this.ambitosocialService.getEstadisticasBasicasDetalleIndicador(idProgramaSectorial).subscribe(
+      res=>{
+        console.log('estadisticas basicas ',res);
+        this.totalIndicadores =res?.Data[0].COUNT_IND;
+        this.totalObjetivos = res?.Data[0].COUNT_OBJ;
+    })
   }
 
 }
