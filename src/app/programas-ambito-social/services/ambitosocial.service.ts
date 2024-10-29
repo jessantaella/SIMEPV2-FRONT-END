@@ -45,4 +45,14 @@ export class AmbitosocialService {
     let url = this.servidor+`/PAS1318/DetalleIndicador?idIndicador=${idIndicador}&opcion=1`;
     return this.http.get<any>(url);
   }
+
+  getGraficaIndicadores(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/MetasIndicador?idIndicador=${idIndicador}&opcion=2`;
+    return this.http.get<any>(url);
+  }
+
+  getDerechoSocialIndicador(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/DerechoSocialIndicador?idIndicador=${idIndicador}`;
+    return this.http.get<any>(url);
+  }
 }

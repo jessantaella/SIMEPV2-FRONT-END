@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CarruselComponent {
   @Input() listaProgramasSectoriales: any[] = [];
   @Input() loading: boolean = true;
+  @Output() idProgramaSectChange = new EventEmitter<number | null>(); // No se necesita un argumento en el constructor
 
   currentIndex: number = 0;
   imageWidth: number = 160;
@@ -42,9 +43,10 @@ export class CarruselComponent {
   agregarQueryParam(idProgramaSect: number) {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { idProgramaSect: idProgramaSect },
+      queryParams: { idProgramaSect: idProgramaSect,idIndicador:null },
       queryParamsHandling: 'merge' // Esto mantiene los queryParams existentes
     });
+    this.idProgramaSectChange.emit(idProgramaSect); // Emitir el valor
   }
 
 }
