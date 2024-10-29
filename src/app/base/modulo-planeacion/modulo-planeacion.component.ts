@@ -41,7 +41,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   cambiarImagen_4 = false;
   direccion_1 = "PlanNacionalDesarrollo2013-2018";
   direccion_2 = "ProgramasDerivados2013-2018";
-  direccion_3 = "";
+  direccion_3 = "ProgramasDerivados2019-2024";
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
@@ -55,7 +55,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private router: Router,
-    
+
     private breakpointObserver: BreakpointObserver,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -117,7 +117,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     //Direcciones
     //this.direccion_1 = this.servicio.getURLSimepsViejito('_SIMEPS/MetasNacionales.aspx');
     //this.direccion_2 = this.servicio.getURLSimepsViejito('_SIMEPS/MosaicoSectores.aspx');
-    this.direccion_3 = 'MosaicoSectores19-24';
+    //this.direccion_3 = 'MosaicoSectores19-24';no
 
   }
 
@@ -153,7 +153,7 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
           this.cambiarImagen_4 = false;
           this.cambiarImagen_2 = false;
         } else {
-          this.cambiarImagen_1 = false;	
+          this.cambiarImagen_1 = false;
           this.cambiarImagen_3 = false;
           this.cambiarImagen_4 = false
           this.cambiarImagen_2 = true;

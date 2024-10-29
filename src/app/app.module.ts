@@ -35,6 +35,11 @@ import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-ind
 import { DetalleBarraComponent } from './programas-ambito-social/detalle-barra/detalle-barra.component';
 import { DetalleInformacionComponent } from './programas-ambito-social/detalle-informacion/detalle-informacion.component';
 import { LineChartMultiserieComponent } from './graficas/line-chart-multiserie/line-chart-multiserie.component';
+import { Indice20192024Component } from './programas-ambito-social/indice20192024/indice20192024.component';
+import { DetalleIndicador20192024Component } from './programas-ambito-social/detalle-indicador20192024/detalle-indicador20192024.component';
+import { DetalleInformacion20192024Component } from './programas-ambito-social/detalle-informacion20192024/detalle-informacion20192024.component';
+import { DetalleBarra20192024Component } from './programas-ambito-social/detalle-barra20192024/detalle-barra20192024.component';
+import { Carrusel1924Component } from './base/shared/carrusel1924/carrusel1924.component';
 
 
 @NgModule({
@@ -63,7 +68,12 @@ import { LineChartMultiserieComponent } from './graficas/line-chart-multiserie/l
     Indice20132018Component,
     DetalleIndicadorComponent,
     DetalleBarraComponent,
-    DetalleInformacionComponent
+    DetalleInformacionComponent,
+    Indice20192024Component,
+    DetalleIndicador20192024Component,
+    DetalleInformacion20192024Component,
+    DetalleBarra20192024Component,
+    Carrusel1924Component
   ],
   imports: [
     BrowserModule,

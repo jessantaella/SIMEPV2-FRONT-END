@@ -1,0 +1,71 @@
+
+<!-- Estadísticas Básicas -->
+<div class="text-center mb-1">
+  <div class="d-flex p-3 flex-wrap gap-3 pt-4 align-items-center justify-content-center areaGraficas">
+    <div class="estadistica-item">
+      <div class="circle objetivos">
+        <span>{{totalObjetivos}}</span>
+      </div>
+      <p class="textoGraficas fw-bold">Objetivos prioritarios</p>
+    </div>
+    <div class="estadistica-item">
+      <div class="circle indicadores">
+        <span>{{totalMetas}}</span>
+      </div>
+      <p class="textoGraficas fw-bold">Metas para el bienestar (M)</p>
+    </div>
+    <div class="estadistica-item">
+      <div class="circle indicadores">
+        <span>{{totalParametros}}</span>
+      </div>
+      <p class="textoGraficas fw-bold">Parámetros (P)</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="accordion pt-2 pb-4">
+  <div class="accordion-item">
+      <button class="header-menu d-flex justify-content-between gap-2 collapsed accordion-button link-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#submenu"
+          aria-controls="submenu">
+          <strong>
+              Indicadores derivados del Plan Nacional de Desarrollo
+          </strong>
+      </button>
+
+      <div class="collapse accordion-item mb-2" id="submenu">
+          <div *ngFor="let objetivo of listaObjetivosSectoriales; let i = index" class="mb-2">
+              <button
+                  class="card card-body header-submenu d-flex flex-row justify-content-between align-items-center collapsed accordion-button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#indicadores' + objetivo.NUM_OBJETIVO"
+                  [attr.aria-controls]="'#indicadores' + objetivo.NUM_OBJETIVO"
+                  (click)="obtenerOpcionesSecundarias(objetivo?.ID_PROGRAMA_SEC, objetivo?.OBJETIVO, objetivo?.NUM_OBJETIVO)">
+                  <span class="index m-2">{{ i + 1 }}</span> <!-- Índice -->
+
+                  <div class="divider"></div> <!-- Línea divisoria -->
+                  <p class="m-2 fw-bold text-start">
+                      {{ objetivo.OBJETIVO }}
+                  </p>
+              </button>
+
+              <div class="collapse multi-collapse"
+                   [attr.id]="'indicadores' + objetivo.NUM_OBJETIVO">
+                   <div *ngFor="let opcion of obtenerInfo(objetivo.NUM_OBJETIVO); let i = index" class="mt-2 mb-2">
+                      <button class="card card-body d-flex flex-row justify-content-start align-items-center opcionSecundaria ">
+                          <span class="index m-2 invisible">{{ i + 1 }}</span> <!-- Índice -->
+                          <div class="divider2"></div> <!-- Línea divisoria -->
+                          <p class="m-0 text-start">
+                              {{ opcion.INDICADOR }}
+                          </p>
+                      </button>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
