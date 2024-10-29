@@ -9,6 +9,7 @@ import { IndicadorSectorial1318Component } from './base/indicador-sectorial1318/
 import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
 import { Indice20132018Component } from './programas-ambito-social/indice20132018/indice20132018.component';
 import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-indicador/detalle-indicador.component';
+import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path:'DetalleIndicador/:idSector',
     component:DetalleIndicadorComponent,
+  },
+  {
+    path:'indicadorFin',
+    component:IndicadoresFinComponent,
   }
 ];
 
