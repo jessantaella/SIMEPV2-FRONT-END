@@ -47,19 +47,20 @@
 
     <app-carrusel1924
     [listaProgramasSectoriales]="listaProgramasSectoriales"
-    [loading]="loadingProgramasSectoriales">
+    [loading]="loadingProgramasSectoriales"
+    (idProgramaSectChange)="onIdProgramaSectChange($event)">
     </app-carrusel1924>
 
-    <div class="row">
+    <div class="row" *ngIf="mostrarDetalles">
       <!-- Componente lateral -->
       <div [ngClass]="{'col-4': barraVisible, 'col-1': !barraVisible, 'toggle-bar': true}" class="position-relative">
         <!-- Botón para ocultar/mostrar la barra, que estará sobre la barra -->
-        <button class="btn btn-primary toggle-btn" (click)="toggleBarra()">
+        <button class="btn btn-light toggle-btn" (click)="toggleBarra()">
           <span [ngClass]="barraVisible ? 'arrow-left' : 'arrow-right'"></span>
         </button>
 
         <!-- Componente barra CBRP10-->
-        <div *ngIf="barraVisible" class="detalle-barra-content">
+        <div *ngIf="barraVisible" class="detalle-barra-content rounded">
           <app-detalle-barra20192024></app-detalle-barra20192024>
         </div>
       </div>

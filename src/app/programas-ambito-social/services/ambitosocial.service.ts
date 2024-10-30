@@ -103,4 +103,14 @@ export class AmbitosocialService {
     let url = this.servidor+'/PAS1924/ContadorIndicadoresObjetivos?idProgramaSectorial='+idProgramaSectorial;
     return this.http.get<any>(url);
   }
+
+  getGraficaIndicadores1924(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1924/MetasIndicador?idIndicador=${idIndicador}&opcion=2`;
+    return this.http.get<any>(url);
+  }
+
+  getDerechoSocialIndicador1924(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1924/DerechoSocialIndicador?idIndicador=${idIndicador}`;
+    return this.http.get<any>(url);
+  }
 }

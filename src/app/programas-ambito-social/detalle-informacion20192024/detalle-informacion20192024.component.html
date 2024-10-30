@@ -3,7 +3,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
-        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
+        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.csv"
           download="Metas_Nacionales_PND20132018.csv">
           <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
             class="img-fluid w-75">
@@ -15,9 +15,7 @@
       </div>
     </div>
   </div>
-  <div class="col-3">
-    <div class="row justify-content-end mt-3">
-      <!-- Botón con imagen -->
+  <!--<div class="col-3">
       <div class="col-6">
         <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
           download="Metas_Nacionales_PND20132018.csv">
@@ -25,15 +23,13 @@
             class="img-fluid w-75">
         </a>
       </div>
-      <!-- Texto a la derecha del botón -->
+
       <div class="col-6">
         <span class="ms-1 impresion">Ficha técnica del indicador</span>
       </div>
     </div>
   </div>
   <div class="col-3">
-    <div class="row justify-content-end mt-3">
-      <!-- Botón con imagen -->
       <div class="col-6">
         <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
           download="Metas_Nacionales_PND20132018.csv">
@@ -41,7 +37,6 @@
             class="img-fluid w-75">
         </a>
       </div>
-      <!-- Texto a la derecha del botón -->
       <div class="col-6">
         <span class="ms-1 impresion">Base de datos de excel</span>
       </div>
@@ -49,7 +44,7 @@
   </div>
   <div class="col-3">
     <div class="row justify-content-end mt-3">
-      <!-- Botón con imagen -->
+
       <div class="col-6">
         <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
           download="Metas_Nacionales_PND20132018.csv">
@@ -57,29 +52,33 @@
             class="img-fluid w-75">
         </a>
       </div>
-      <!-- Texto a la derecha del botón -->
+
       <div class="col-6">
         <span class="ms-1 impresion">Base de datos csv</span>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 <p class="nombreIndicador fw-bold">
-  Nombre del indicador: {{informacion?.INDICADOR}}
+  Nombre del indicador: {{informacion?.NOMBRE}}
 </p>
 <h5>Información general del indicador</h5>
 <div class="row mt-4">
   <div class="col-6 text-justify">
     <p class="pObjetivo">
-      <span class="objetivo">Objetivo: </span>
+      <span class="objetivo">Objetivo Prioritario: </span>
       <span>{{this.informacion?.OBJETIVO}}</span>
     </p>
-    <p class="pIndicador">
+    <!--<p class="pIndicador">
       <span class="indicador">Indicador: </span>
       <span>{{this.informacion?.NOMBRE}}</span>
+    </p>-->
+    <p class="pDescripcion">
+      <span class="resultados">Enfoque de Resultados del objetivo: </span>
+      <span>{{informacion?.ENFOQUE_RES}}</span>
     </p>
     <p class="pDescripcion">
-      <span class="descripcion">Descripción: </span>
+      <span class="indicador">Definición: </span>
       <span>{{informacion?.DESCRIPCION}}</span>
     </p>
     <p class="pCalculo">
@@ -87,16 +86,49 @@
       <span>{{informacion?.METODO}}</span>
     </p>
     <p class="pInformacion">
-      <span class="fInformacion">Fuentes de Información: </span>
+      <span class="fInformacion">Medio de verificación:  </span>
       <span>{{informacion?.FUENTE}}</span>
     </p>
-    <p>
+    <p class="pInformacion">
+      <span class="resultados">Enfoque de Resultados del Indicador:  </span>
+      <span>{{informacion?.ENFOQUE_INDICADOR}}</span>
+    </p>
+    <div *ngIf="mostrarMas">
+      <p class="pInformacion">
+        <span class="periodicidad">Frecuencia de Medición:  </span>
+        <span>{{informacion?.PERIODICIDAD}}</span>
+      </p>
+      <p class="pInformacion">
+        <span class="periodicidad">Tipo:  </span>
+        <span>{{informacion?.TIPO_INDICADOR_GRAFICA}}</span>
+      </p>
+      <p class="pInformacion">
+        <span class="uMedida">Unidad de medida:  </span>
+        <span>{{informacion?.UDM}}</span>
+      </p>
+      <p class="pInformacion">
+        <span class="uMedida">Tendencia Esperada:  </span>
+        <span>{{informacion?.TENDENCIA}}</span>
+      </p>
+      <p class="pInformacion">
+        <span class="uMedida">Nivel de desagregación:  </span>
+        <span>{{informacion?.NIVEL_DESAGREGACION}}</span>
+      </p>
+      <p class="pInformacion">
+        <span class="uMedida">Acumulado o periódico:  </span>
+        <span>{{informacion?.ACUM_PER}}</span>
+      </p>
+    </div>
+    <span (click)="toggleMostrarMas()" class="ver-mas">
+      {{ mostrarMas ? 'Ver menos' : 'Ver más' }}
+    </span>
+    <!--<p>
       <span class="periodicidad">Periodicidad: </span> {{informacion?.PERIODICIDAD}}<br>
       <span class="uMedida">Unidad de medida: </span> {{informacion?.UDM}}
-    </p>
+    </p>-->
   </div>
   <div class="col-6">
-    <app-line-chart-multiserie></app-line-chart-multiserie><!--CBRP10-->
+    <app-line-chart-multiserie [data]="data"></app-line-chart-multiserie>
   </div>
 </div>
 <div class="row">
@@ -110,20 +142,20 @@
       <div class="row align-items-center justify-content-evenly">
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor máximo</p>
-          <div class="circle m-auto planeadas">
+          <div class="circle m-auto planeadas" [ngClass]="{'expand': (metaPlaneada?.vMax + '').length > 7}">
             <span>{{metaPlaneada?.vMax}}</span>
           </div>
 
         </div>
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor mínimo</p>
-          <div class="circle m-auto planeadas">
+          <div class="circle m-auto planeadas" [ngClass]="{'expand': (metaPlaneada?.vMin + '').length > 7}">
             <span>{{metaPlaneada?.vMin}}</span>
           </div>
         </div>
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor promedio</p>
-          <div class="circle m-auto planeadas">
+          <div class="circle m-auto planeadas"  [ngClass]="{'expand': (metaPlaneada?.vPromedio + '').length > 7}">
             <span>{{metaPlaneada?.vPromedio}}</span>
           </div>
 
@@ -139,20 +171,20 @@
       <div class="row align-items-center justify-content-evenly">
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor máximo</p>
-          <div class="circle m-auto alcanzadas">
+          <div class="circle m-auto alcanzadas" [ngClass]="{'expand': (metaAlcanzada?.vMax + '').length > 7}">
             <span>{{metaAlcanzada?.vMax}}</span>
           </div>
 
         </div>
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor mínimo</p>
-          <div class="circle m-auto alcanzadas">
+          <div class="circle m-auto alcanzadas" [ngClass]="{'expand': (metaAlcanzada?.vMin + '').length > 7}">
             <span>{{metaAlcanzada?.vMin}}</span>
           </div>
         </div>
         <div class="col-4">
           <p class="textoGraficas m-auto text-center">Valor promedio</p>
-          <div class="circle m-auto alcanzadas">
+          <div class="circle m-auto alcanzadas" [ngClass]="{'expand': (metaAlcanzada?.vPromedio + '').length > 7}">
             <span>{{metaAlcanzada?.vPromedio}}</span>
           </div>
 
@@ -169,28 +201,28 @@
       </span>
       <div class="row align-items-center justify-content-evenly ">
         <div class="col-3">
-          <div class="circle m-auto lineaBase">
+          <div class="circle m-auto lineaBase" [ngClass]="{'expand': (desempenio?.lB + '').length > 7}">
             <span>{{desempenio?.lB}}</span>
           </div>
           <p class="textoGraficas fw-bold m-auto text-center">Línea Base</p>
         </div>
         <div class="col-3">
-          <div class="circle m-auto ultimoValor">
+          <div class="circle m-auto ultimoValor" [ngClass]="{'expand': (desempenio?.uVA + '').length > 7}">
             <span>{{desempenio?.uVA}}</span>
           </div>
           <p class="textoGraficas fw-bold m-auto text-center">Último valor alcanzado</p>
         </div>
         <div class="col-3">
-          <div class="circle m-auto meta2018">
+          <div class="circle m-auto meta2018" [ngClass]="{'expand': (desempenio?.meta + '').length > 7}">
             <span>{{desempenio?.meta}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Meta 2018</p>
+          <p class="textoGraficas fw-bold m-auto text-center">Meta 2024</p>
         </div>
         <div class="col-3">
-          <div class="circle m-auto porcentaje">
+          <div class="circle m-auto porcentaje" [ngClass]="{'expand': (desempenio?.porcentaje + '').length > 7}">
             <span>{{desempenio?.porcentaje}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Porcentaje de avance con respecto al 2018</p>
+          <p class="textoGraficas fw-bold m-auto text-center">Porcentaje de avance con respecto al 2024</p>
         </div>
       </div>
     </div>
@@ -201,6 +233,11 @@
     <span class="fw-bold text-start subtitulosMetasIndicador">Calidad del indicador</span>
 
     <ul class="list-unstyled">
+      <li>
+        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="adecuacion"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!adecuacion"></i>
+        Adecuación
+      </li>
       <li>
         <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.claridad"></i>
         <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.claridad"></i>
@@ -225,9 +262,21 @@
 
 
   </div>
-  <div class="col-6">
-    <span class="fw-bold text-start subtitulosMetasIndicador">Derecho social vinculado</span>
+<div class="col-6">
+  <span class="fw-bold text-start subtitulosMetasIndicador">Derechos sociales vinculados</span>
+  <div *ngIf="derechosSociales; else noDerecho" class="d-flex flex-wrap gap-3 mt-2">
+    <div *ngFor="let derecho of derechosSociales" class="d-flex align-items-center">
+      <p class="me-2 mb-0">{{ derecho.DER_DESCRIPCION }}</p>
+     <!-- <img src="path/to/imagen.png" alt="Imagen relacionada" class="icono-imagen" />-->
+    </div>
   </div>
+  <ng-template #noDerecho>
+    <p>El indicador no se encuentra vinculado a algún derecho social.</p>
+  </ng-template>
+</div>
+
+
+
 </div>
 
 </div>

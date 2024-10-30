@@ -40,11 +40,14 @@ p{
 .mCalculo{
   color:dodgerblue;
 }
-.fInformacion{
+.fInformacion,.resultados{
   color:blue;
 }
-.periodicidad,.uMedida{
+/*.periodicidad,.uMedida{
   color:#39508A;
+}*/
+.periodicidad,.uMedida{
+  color: dodgerblue;
 }
 .pObjetivo{
   border-bottom: solid 1px dimgray;
@@ -58,13 +61,16 @@ p{
 .pCalculo{
   border-bottom: solid 1px dodgerblue;
 }
-.pInformacion{
+.pInformacion, .pResultados{
   border-bottom: solid 1px blue;
+  word-wrap: break-word; /* Permite que las palabras se dividan y se ajusten a la siguiente línea */
+  overflow-wrap: break-word; /* Similar a word-wrap, pero se recomienda usar este para mayor compatibilidad */
+  width: 100%; /* Ajusta el ancho según sea necesario */
 }
 
 
 .circle {
-  width: 60px;
+  width: 60px; /* Tama por defecto */
   height: 60px;
   color: white;
   border-radius: 50%;
@@ -73,7 +79,14 @@ p{
   align-items: center;
   font-size: 13px;
   font-weight: bold;
+
+  &.expand {
+    min-width: 100px; /* Ajusta tamaño cant larga */
+    min-height: 60px; /*dejar s altura constante */
+    //transition: min-width 0.3s ease; /* Añade una transición suave */
+  }
 }
+
 
 .planeadas{
   background-color: #0A9E71;
@@ -98,4 +111,24 @@ li{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: bold;
+}
+.tituloFinal{
+  color: #00a94f;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  text-align: left;
+}
+
+.ver-mas {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  color: #337ab7;
+  cursor: pointer;
+  //margin-top: 1px;
+  margin-bottom: 10px;
+  padding: 6px 12px;// quitar para alinear a los demans elementos y ste prav ver como eje
+  &:hover {
+    color: black;
+  }
 }

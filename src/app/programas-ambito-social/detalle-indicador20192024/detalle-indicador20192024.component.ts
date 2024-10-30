@@ -18,6 +18,10 @@ export class DetalleIndicador20192024Component {
   alto=100;
   idSector: string | null = null;
 
+
+  idProgramaSect: number | null = null;
+  mostrarDetalles : boolean = false;
+
   listaEstadisticasBasicasSector: any[] =[];
   listaSectores: any[] = [];
   listaProgramasSectoriales: any[] =[];
@@ -55,9 +59,19 @@ export class DetalleIndicador20192024Component {
       this.consultaEstadisticasBasicas(this.idSector ? parseInt(this.idSector) : 0);
       this.consultaProgramasSectoriales(this.idSector ? parseInt(this.idSector) : 0);
     });
+
+    this.route.queryParamMap.subscribe(p=>{
+      let idIndicador= p.get('idIndicador');
+        console.info(idIndicador)
+        if(idIndicador){
+          console.warn('si debe mostrarse')
+          this.mostrarDetalles = true;
+        }
+    });
   }
 
   onSectorChange(event: Event) {
+    this.mostrarDetalles = false;
     // Si necesitas el valor seleccionado
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log('Sector seleccionado:', selectedValue);
@@ -102,6 +116,15 @@ export class DetalleIndicador20192024Component {
         console.log(this.listaProgramasSectoriales);
       }
     )
+  }
+
+  onIdProgramaSectChange(newIdProgramaSect: number | null) {
+    if(newIdProgramaSect !== this.idProgramaSect){
+      this.mostrarDetalles = true;
+      this.idProgramaSect = newIdProgramaSect;
+    }
+
+    console.log('Nuevo idProgramaSect:', this.idProgramaSect);
   }
 
   toggleBarra() {

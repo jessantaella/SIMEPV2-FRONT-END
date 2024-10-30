@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class Carrusel1924Component {
   @Input() listaProgramasSectoriales: any[] = [];
   @Input() loading: boolean = true;
+  @Output() idProgramaSectChange = new EventEmitter<number | null>(); // No se necesita un argumento en el constructor
 
   currentIndex: number = 0;
   imageWidth: number = 160;
@@ -43,11 +44,10 @@ export class Carrusel1924Component {
     console.log('Agregando idProSectorial:', idProSectorial);
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { idProSectorial: idProSectorial },
+      queryParams: { idProSectorial: idProSectorial, idIndicador:null },
       queryParamsHandling: 'merge' // Solo actualiza el query param sin cambiar de ruta
-    }).then(() => {
-      console.log('Navegación completada, URL actual:', this.router.url);
     });
+    this.idProgramaSectChange.emit(idProSectorial); // Emitir el valor
   }
 
 
