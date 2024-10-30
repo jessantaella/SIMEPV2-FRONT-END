@@ -11,6 +11,10 @@ export class DetalleInformacionComponent implements OnInit {
 
   idIndicador: number = 0;
   informacion: any;
+  data:any;
+  nombreIndicador:string = '';
+
+  derechosSociales:any;
 
   metaPlaneada: { vMax: number; vMin: number; vPromedio: number; } | undefined;
   metaAlcanzada: { vMax: number; vMin: number; vPromedio: number; } | undefined;
@@ -23,9 +27,15 @@ export class DetalleInformacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.idIndicador = params.get('idIndicador') ? parseInt(params.get('idIndicador')!) : 0;
-      console.log('Valor de idIndicador:', this.idIndicador);
-      this.obtenerInformacionIndicadorDetalle();
+      let idIndicadorProv = params.get('idIndicador');
+      if( idIndicadorProv){
+        this.idIndicador = params.get('idIndicador') ? parseInt(params.get('idIndicador')!) : 0;
+        this.obtenerInformacionIndicadorDetalle();
+        this.obtenerInformacionGrafica();
+      }else{
+        let idProgramaSect = params.get('idProgramaSect') ? parseInt(params.get('idProgramaSect')!) : 0;
+        this.consultaObjetivosSectoriales(idProgramaSect);
+      }
     });
   }
 
@@ -41,6 +51,52 @@ export class DetalleInformacionComponent implements OnInit {
       }
     )
   }
+
+  obtenerInformacionGrafica(){
+    this.ambitosocialService.getGraficaIndicadores(this.idIndicador).subscribe(
+      res=>{
+        this.data = res?.Data;
+      }
+    )
+  }
+
+
+  consultaObjetivosSectoriales(idProgramaSectorial:number){
+    this.ambitosocialService.getObjetivosSectoriales(idProgramaSectorial).subscribe(
+      res=>{
+        console.log(res);
+        let arregloAux = res?.Data;
+       if(arregloAux.length>0){
+        this.obtenerOpcionesSecundarias(arregloAux[0].ID_PROGRAMA_SEC,arregloAux[0].OBJETIVO,arregloAux[0].NUM_OBJETIVO);
+       }
+      }
+    )
+  }
+
+  obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
+    this.ambitosocialService.getOpcionesObjetivosSectoriales(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
+      res=>{
+        console.info(res);
+        this.nombreIndicador = res?.Data[0]?.INDICADOR      ;
+        this.idIndicador = res?.Data[0]?.ID_INDICADOR;
+        this.obtenerInformacionIndicadorDetalle();
+        this.obtenerInformacionGrafica();
+      }
+    )
+  }
+
+
+  obtenerDerechoSocialIndicador(){
+    this.ambitosocialService.getDerechoSocialIndicador(this.idIndicador).subscribe(
+      res=>{
+          this.derechosSociales = res?.Data;
+      }
+    )
+  }
+  
+
+
+  
 
 
 

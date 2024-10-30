@@ -66,7 +66,7 @@
 </div>
 
 <p class="nombreIndicador fw-bold">
-  Nombre del indicador: {{informacion?.INDICADOR}}
+  Nombre del indicador: {{informacion?.NOMBRE}}
 </p>
 <h5>Información general del indicador</h5>
 <div class="row mt-4">
@@ -97,7 +97,7 @@
     </p>
   </div>
   <div class="col-6">
-    <app-line-chart-multiserie></app-line-chart-multiserie>
+    <app-line-chart-multiserie [data]="data"></app-line-chart-multiserie>
   </div>
 </div>
 
@@ -229,6 +229,20 @@
   </div>
   <div class="col-6">
     <span class="fw-bold text-start subtitulosMetasIndicador">Derecho social vinculado</span>
+    <p *ngIf="!derechosSociales">El indicador no se encuentra vinculado a algún derecho social.</p>
+    <div class="row" *ngIf="derechosSociales">
+      <div class="col-4" *ngFor="let derecho of derechosSociales">
+        <img [src]="'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/'+derecho.DER_DESCRIPCION" [alt]="derecho.DER_DESCRIPCION" class="img-fluid" />
+        <p class="text-center">{{ derecho.DER_DESCRIPCION }}</p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <span class="fw-bold text-start tituloFinal">Programas y acciones sociales vinculados</span>
+    <p class="ms-3">A continuación se presentan los programas y acciones sociales cuyo nivel de Fin se encuentra asociado al presente indicador</p>
   </div>
 </div>
 

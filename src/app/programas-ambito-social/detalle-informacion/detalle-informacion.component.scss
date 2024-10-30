@@ -60,6 +60,9 @@ p{
 }
 .pInformacion{
     border-bottom: solid 1px blue;
+    word-wrap: break-word; /* Permite que las palabras se dividan y se ajusten a la siguiente línea */
+    overflow-wrap: break-word; /* Similar a word-wrap, pero se recomienda usar este para mayor compatibilidad */
+    width: 100%; /* Ajusta el ancho según sea necesario */
 }
 
 
@@ -98,4 +101,11 @@ li{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     font-weight: bold;
+}
+
+.tituloFinal{
+    color: #00a94f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    text-align: left;
 }

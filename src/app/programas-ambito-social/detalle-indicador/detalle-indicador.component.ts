@@ -26,6 +26,10 @@ export class DetalleIndicadorComponent {
   esTablet = false;
   esEscritorio = false;
   idSector: string | null = null;
+
+  idProgramaSect: number | null = null;
+  mostrarDetalles : boolean = false;
+
   previousIdSector: string | null = null; 
   plantilla = '';
 
@@ -66,6 +70,15 @@ export class DetalleIndicadorComponent {
       this.consultaEstadisticasBasicas(this.idSector ? parseInt(this.idSector) : 0);
       this.consultaProgramasSectoriales(this.idSector ? parseInt(this.idSector) : 0);
     });
+
+  this.route.queryParamMap.subscribe(p=>{
+    let idIndicador= p.get('idIndicador');
+      console.info(idIndicador)
+      if(idIndicador){
+        console.warn('si debe mostrarse')
+        this.mostrarDetalles = true;
+      }
+  })
   }
 
 
@@ -83,6 +96,7 @@ export class DetalleIndicadorComponent {
    */
 
   onSectorChange(event: Event) {
+    this.mostrarDetalles = false;
     // Si necesitas el valor seleccionado
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log('Sector seleccionado:', selectedValue);
@@ -128,6 +142,16 @@ consultaProgramasSectoriales(idSector:number){
 
 toggleBarra() {
   this.barraVisible = !this.barraVisible;
+}
+
+
+onIdProgramaSectChange(newIdProgramaSect: number | null) {
+  if(newIdProgramaSect !== this.idProgramaSect){
+    this.mostrarDetalles = true;
+    this.idProgramaSect = newIdProgramaSect;
+  }
+
+  console.log('Nuevo idProgramaSect:', this.idProgramaSect);
 }
   
 }

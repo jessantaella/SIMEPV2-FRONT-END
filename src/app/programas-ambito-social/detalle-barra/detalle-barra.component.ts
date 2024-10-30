@@ -45,6 +45,7 @@ consultaObjetivosSectoriales(idProgramaSectorial:number){
   )
 }
 
+
 obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
   this.ambitosocialService.getOpcionesObjetivosSectoriales(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
     res=>{
@@ -53,11 +54,6 @@ obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObj
       if (!existe) {
         this.opcionesSecundarias.push({ objetivo: numObjetivo, info: res?.Data });
       }
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: { idIndicador: this.opcionesSecundarias[0].info[0].ID_INDICADOR },
-        queryParamsHandling: 'merge' // Esto mantiene los queryParams existentes
-      });
     }
   )
 }
@@ -87,4 +83,12 @@ obtenerInfo(numObjetivo: number): any | undefined {
     })
   }
 
+
+  seleccionarNuevoIndicador(idIndicador:number){
+    this.router.navigate([],{
+      relativeTo:this.route,
+      queryParams: { idIndicador: idIndicador },
+      queryParamsHandling: 'merge' // Esto mantiene los queryParams existentes
+    });
+  }
 }

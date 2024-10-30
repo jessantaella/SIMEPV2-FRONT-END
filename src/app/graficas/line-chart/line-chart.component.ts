@@ -85,7 +85,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
     let labelBullet = series.bullets.push(new am4charts.LabelBullet());
     labelBullet.label.text = "{valueY.formatNumber('#,###')}";
     labelBullet.label.dy = -10;
-    labelBullet.label.fontSize = 10;
+    labelBullet.label.fontSize = 9;
 
     // Añadir tooltip personalizado
     series.tooltipText = "{name}[/] {categoryX}:[bold]{valueY.formatNumber('#,###')}";

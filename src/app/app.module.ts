@@ -40,6 +40,7 @@ import { DetalleIndicador20192024Component } from './programas-ambito-social/det
 import { DetalleInformacion20192024Component } from './programas-ambito-social/detalle-informacion20192024/detalle-informacion20192024.component';
 import { DetalleBarra20192024Component } from './programas-ambito-social/detalle-barra20192024/detalle-barra20192024.component';
 import { Carrusel1924Component } from './base/shared/carrusel1924/carrusel1924.component';
+import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { Carrusel1924Component } from './base/shared/carrusel1924/carrusel1924.c
     DetalleIndicador20192024Component,
     DetalleInformacion20192024Component,
     DetalleBarra20192024Component,
-    Carrusel1924Component
+    Carrusel1924Component,
+    IndicadoresFinComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { Carrusel1924Component } from './base/shared/carrusel1924/carrusel1924.c
     FontAwesomeModule,
     HttpClientModule,
     AccordionModule,
-    FormsModule  
+    FormsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/SIMEPS/'},WINDOW_PROVIDERS],
   bootstrap: [AppComponent]

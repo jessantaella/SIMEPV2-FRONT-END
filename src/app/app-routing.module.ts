@@ -11,6 +11,7 @@ import { Indice20132018Component } from './programas-ambito-social/indice2013201
 import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-indicador/detalle-indicador.component';
 import { Indice20192024Component } from './programas-ambito-social/indice20192024/indice20192024.component';
 import { DetalleIndicador20192024Component } from './programas-ambito-social/detalle-indicador20192024/detalle-indicador20192024.component';
+import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path:'DetalleIndicador/:idSector',
     component:DetalleIndicadorComponent,
+  },
+  {
+    path:'indicadorFin',
+    component:IndicadoresFinComponent,
   },
   {
     path:'DetalleIndicador19-24/:idSector',

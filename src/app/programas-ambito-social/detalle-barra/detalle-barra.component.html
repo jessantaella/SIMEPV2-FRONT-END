@@ -48,7 +48,7 @@
                 <div class="collapse multi-collapse" 
                      [attr.id]="'indicadores' + objetivo.NUM_OBJETIVO">
                      <div *ngFor="let opcion of obtenerInfo(objetivo.NUM_OBJETIVO); let i = index" class="mt-2 mb-2">
-                        <button class="card card-body d-flex flex-row justify-content-start align-items-center opcionSecundaria ">
+                        <button class="card card-body d-flex flex-row justify-content-start align-items-center opcionSecundaria " (click)="seleccionarNuevoIndicador(opcion?.ID_INDICADOR)">
                             <span class="index m-2 invisible">{{ i + 1 }}</span> <!-- Índice -->
                             <div class="divider2"></div> <!-- Línea divisoria -->
                             <p class="m-0 text-start">
