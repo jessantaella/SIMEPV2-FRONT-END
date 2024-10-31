@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AmbitosocialService } from '../services/ambitosocial.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 
 @Component({
@@ -27,7 +27,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   calidadIndicador: {claridad:boolean,relevancia:boolean,monitoreo:boolean,pertinencia:boolean} | undefined;
   adecuacion:boolean | undefined;
 
-  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef,     private servicio: DataDynamic ) {
+  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef,     private servicio: DataDynamic, private router: Router ) {
 
   }
 
@@ -77,6 +77,7 @@ export class DetalleInformacion20192024Component implements OnInit{
         console.log(res);
         let arregloAux = res?.Data;
        if(arregloAux.length>0){
+        console.log("ENTROOOOO ")
         this.obtenerOpcionesSecundarias(arregloAux[0].ID_PROGRAMA_SEC,arregloAux[0].OBJETIVO,arregloAux[0].NUM_OBJETIVO);
        }
       }
@@ -87,8 +88,15 @@ export class DetalleInformacion20192024Component implements OnInit{
     this.ambitosocialService.getOpcionesObjetivosSectoriales1924(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
       res=>{
         console.info("CBB" + res);
+              // Actualiza la URL con el nuevo idIndicador
+
         this.nombreIndicador = res?.Data[0]?.INDICADOR      ;
         this.idIndicador = res?.Data[0]?.ID_INDICADOR;
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { idIndicador: this.idIndicador },
+          queryParamsHandling: 'merge' // Merge con otros parámetros existentes
+        });
         this.obtenerInformacionIndicadorDetalle();
         this.obtenerInformacionGrafica();
       }
