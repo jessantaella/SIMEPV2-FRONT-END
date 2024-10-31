@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { ActivatedRoute } from '@angular/router';
+import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 
 @Component({
   selector: 'app-detalle-informacion20192024',
@@ -26,7 +27,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   calidadIndicador: {claridad:boolean,relevancia:boolean,monitoreo:boolean,pertinencia:boolean} | undefined;
   adecuacion:boolean | undefined;
 
-  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef ) {
+  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef,     private servicio: DataDynamic ) {
 
   }
 
@@ -85,7 +86,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
     this.ambitosocialService.getOpcionesObjetivosSectoriales1924(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
       res=>{
-        console.info(res);
+        console.info("CBB" + res);
         this.nombreIndicador = res?.Data[0]?.INDICADOR      ;
         this.idIndicador = res?.Data[0]?.ID_INDICADOR;
         this.obtenerInformacionIndicadorDetalle();
@@ -93,7 +94,6 @@ export class DetalleInformacion20192024Component implements OnInit{
       }
     )
   }
-
 
   /*obtenerDerechoSocialIndicador(){
     console.log(this.idIndicador);
@@ -108,9 +108,19 @@ export class DetalleInformacion20192024Component implements OnInit{
       this.ambitosocialService.getDerechoSocialIndicador1924(this.idIndicador).subscribe(
         res => {
           if (res?.Data && res.Data.length > 0) {
-            this.derechosSociales = res.Data; // Asigna todos los derechos sociales
+            const baseUrl = this.servicio.getInfoImg('');
+            this.derechosSociales = res.Data.map((derecho: { DER_DESCRIPCION: string }) => {
+              console.log('Derecho:', derecho);
+              const descripcion = derecho.DER_DESCRIPCION;
+              const imagenUrl = `${baseUrl}derecho_${encodeURIComponent(descripcion)}.jpg`;
+              console.log('URL de imagen:', imagenUrl);
+              return {
+                ...derecho,
+                imagenUrl: imagenUrl // asig ulr de la img  construida
+              };
+            });
           } else {
-            this.derechosSociales = null; // No hay datos
+            this.derechosSociales = [];
           }
         },
         error => {

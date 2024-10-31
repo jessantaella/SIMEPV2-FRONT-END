@@ -262,18 +262,21 @@
 
 
   </div>
-<div class="col-6">
-  <span class="fw-bold text-start subtitulosMetasIndicador">Derechos sociales vinculados</span>
-  <div *ngIf="derechosSociales; else noDerecho" class="d-flex flex-wrap gap-3 mt-2">
-    <div *ngFor="let derecho of derechosSociales" class="d-flex align-items-center">
-      <p class="me-2 mb-0">{{ derecho.DER_DESCRIPCION }}</p>
-     <!-- <img src="path/to/imagen.png" alt="Imagen relacionada" class="icono-imagen" />-->
+  <div class="col-6">
+    <span class="fw-bold text-start subtitulosMetasIndicador">Derechos sociales vinculados</span>
+    <div *ngIf="derechosSociales && derechosSociales.length > 0; else noDerecho" class="d-flex flex-wrap align-items-center gap-3 mt-2">
+      <div *ngFor="let derecho of derechosSociales" class="d-flex flex-column align-items-center">
+        <img [src]="derecho.imagenUrl" alt="Imagen relacionada" class="icono-imagen" style="width: 60px; height: auto;" />
+        <p class="text-center mb-0 fw-bold">{{ derecho.DER_DESCRIPCION }}</p>
+      </div>
     </div>
+    <ng-template #noDerecho>
+      <p>El indicador no se encuentra vinculado a algún derecho social.</p>
+    </ng-template>
   </div>
-  <ng-template #noDerecho>
-    <p>El indicador no se encuentra vinculado a algún derecho social.</p>
-  </ng-template>
-</div>
+
+
+
 
 
 
