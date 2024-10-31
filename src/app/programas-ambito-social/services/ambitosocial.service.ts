@@ -108,9 +108,26 @@ export class AmbitosocialService {
     let url = this.servidor+`/PAS1924/MetasIndicador?idIndicador=${idIndicador}&opcion=2`;
     return this.http.get<any>(url);
   }
-
   getDerechoSocialIndicador1924(idIndicador:number):Observable<any>{
     let url = this.servidor+`/PAS1924/DerechoSocialIndicador?idIndicador=${idIndicador}`;
+    return this.http.get<any>(url);
+  }
+  obtenerlistadoIndicadoresPoliticaSocial(pCiclo:string,ramo:string,pUnidad:string):Observable<any>{
+    let url = this.servidor+`/PAS1318/ProgramasFin?pCiclo=${pCiclo}&pRamo=${ramo}&pUnidad=${pUnidad}`;
+    return this.http.get<any>(url);
+  }
+  obtenerAniosFichas():Observable<any>{
+    let url = this.servidor+`/PAS1318/CiclosFichasMonitoreo`;
+    return this.http.get<any>(url);
+  }
+
+  obtenerFichasxAnio(iCiclo:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/FichasMonitoreo?iCiclo=${iCiclo}`;
+    return this.http.get<any>(url);
+  }
+
+  obtenerHistoricoFin(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/Historico?dIndicador=${idIndicador}`;
     return this.http.get<any>(url);
   }
 }

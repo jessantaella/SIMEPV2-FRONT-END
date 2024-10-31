@@ -1,0 +1,46 @@
+<div class="position-fixed w-100 bg-white" #planeacion>
+    <div
+        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+        <div id="divOcultarRedes" class="social-icons redesInternas">
+            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                    [alt]="red?.alt" class="iconoRed" /></a>
+        </div>
+        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+    </div>
+</div>
+<!-- Titulo ventana -->
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
+
+
+<div class="container my-4">
+    <div class="fw-bold text-brown fs-4">Indicadores de Fin de los programas y acciones sociales, 2024</div>
+    <div class="fw-bold text-primary fs-5">Secretaría de Agricultura y Desarrollo Rural</div>
+
+    <div class="fw-bold text-success fs-6 mt-3">Producción para el Bienestar</div>
+    <div class="fs-6 text-dark mt-2">
+        <p>F1. Contribuir a incrementar el grado de autosuficiencia alimentaria nacional de maíz, frijol, trigo panificable y arroz.</p>
+        <p>F1.1 Tasa de variación del grado de autosuficiencia alimentaria</p>
+    </div>
+
+    <div class="d-flex align-items-center mt-4">
+        <img src="download-icon.png" alt="Descargar ficha" class="me-2" style="width: 40px; height: 40px;">
+        <span>Descargar ficha indicador</span>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-3">{{metaPlaneada?.vM}}</div>
+    <div class="col-md-3">{{metaPlaneada?.vMin}}</div>
+    <div class="col-md-3">{{metaPlaneada?.vP}}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">{{metaAlcnazada?.vM}}</div>
+    <div class="col-md-3">{{metaAlcnazada?.vMin}}</div>
+    <div class="col-md-3">{{metaAlcnazada?.vP}}</div>
+</div>
+
+
+<div *ngIf="this.esTablet" style="height: 145px;"></div>
+</div>

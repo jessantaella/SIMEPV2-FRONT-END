@@ -105,12 +105,12 @@ export class HeaderComponent {
 
 
   validarPLANEACION(url:string,pos: number) {
-    const planeacionNacional = [{
-        ruta: '/PlanNacionalDesarrollo2013-2018'
-    }];
+    const planeacionNacional = [
+      {ruta: '/PlanNacionalDesarrollo2013-2018'},{ruta:'/ProgramasDerivados2013-2018'},{ruta:'/indicadorFin'},{ruta:'/listado-fin/'},
+      {ruta: '/fichasMonitoreo'}, {ruta: '/DetalleIndicador'}];
     var resultado ;
     if(pos === 1 ){
-      resultado = planeacionNacional.find(e => e.ruta === url);
+      resultado = planeacionNacional.find(e => e.ruta === url || url.includes(e.ruta));
     }else{
       resultado = false;
     }

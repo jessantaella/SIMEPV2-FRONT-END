@@ -41,6 +41,10 @@ import { DetalleInformacion20192024Component } from './programas-ambito-social/d
 import { DetalleBarra20192024Component } from './programas-ambito-social/detalle-barra20192024/detalle-barra20192024.component';
 import { Carrusel1924Component } from './base/shared/carrusel1924/carrusel1924.component';
 import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
+import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
+import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
+import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
+import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-indicadores-fin/datos-indicadores-fin.component';
 
 
 @NgModule({
@@ -75,7 +79,11 @@ import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-f
     DetalleInformacion20192024Component,
     DetalleBarra20192024Component,
     Carrusel1924Component,
-    IndicadoresFinComponent
+    IndicadoresFinComponent,
+    ListadoFinIndicadoresComponent,
+    Indice201312018Component,
+    FichasMonitoreoComponent,
+    DatosIndicadoresFinComponent
   ],
   imports: [
     BrowserModule,

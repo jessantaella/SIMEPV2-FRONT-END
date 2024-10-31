@@ -12,6 +12,10 @@ import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-ind
 import { Indice20192024Component } from './programas-ambito-social/indice20192024/indice20192024.component';
 import { DetalleIndicador20192024Component } from './programas-ambito-social/detalle-indicador20192024/detalle-indicador20192024.component';
 import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
+import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
+import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
+import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
+import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-indicadores-fin/datos-indicadores-fin.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -63,6 +67,22 @@ const routes: Routes = [
   {
     path:'DetalleIndicador19-24/:idSector',
     component:DetalleIndicador20192024Component,
+  },
+  {
+    path:'listado-fin/:pCiclo/:pRamo/:pUnidad',
+    component:ListadoFinIndicadoresComponent,
+  },
+  {
+    path:'test',
+    component:Indice201312018Component,
+  },
+  {
+    path:'fichasMonitoreo',
+    component:FichasMonitoreoComponent,
+  },
+  {
+    path:'DetalleIndicadorFin/:idIndicador',
+    component:DatosIndicadoresFinComponent,
   }
 ];
 

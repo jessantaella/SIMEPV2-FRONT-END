@@ -17,7 +17,6 @@ export class Indice20132018Component {
   menuSeleccionado = 1;
   redes: any;
   nombreSistema: any;
-  auxMascara = false;
   fontSizeTitulo = '24px';
   fontSizeTituloNormal = '20px';
   isBrowser = false;
