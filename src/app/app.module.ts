@@ -39,6 +39,7 @@ import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-f
 import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
 import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
 import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
+import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-indicadores-fin/datos-indicadores-fin.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monit
     IndicadoresFinComponent,
     ListadoFinIndicadoresComponent,
     Indice201312018Component,
-    FichasMonitoreoComponent
+    FichasMonitoreoComponent,
+    DatosIndicadoresFinComponent
   ],
   imports: [
     BrowserModule,

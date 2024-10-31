@@ -13,6 +13,7 @@ import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-f
 import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
 import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
 import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
+import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-indicadores-fin/datos-indicadores-fin.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path:'fichasMonitoreo',
     component:FichasMonitoreoComponent,
+  },
+  {
+    path:'DetalleIndicadorFin/:idIndicador',
+    component:DatosIndicadoresFinComponent,
   }
 ];
 

@@ -80,4 +80,9 @@ export class AmbitosocialService {
     let url = this.servidor+`/PAS1318/FichasMonitoreo?iCiclo=${iCiclo}`;
     return this.http.get<any>(url);
   }
+
+  obtenerHistoricoFin(idIndicador:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/Historico?dIndicador=${idIndicador}`;
+    return this.http.get<any>(url);
+  }
 }

@@ -65,4 +65,9 @@ export class ListadoFinIndicadoresComponent implements OnInit {
       }
     )
   }
+
+
+  redirigiraDetalle(idIndicador:number){
+    this.router.navigate(['/DetalleIndicadorFin',idIndicador]);
+  }
 }

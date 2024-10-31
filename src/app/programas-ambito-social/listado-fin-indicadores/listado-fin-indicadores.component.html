@@ -48,7 +48,7 @@
                     [id]="'collapseSub' + i" 
                     class="accordion-collapse collapse show"
                     [attr.aria-labelledby]="'headingSub' + i">
-                    <div class="accordion-body hijos m-2 ms-2 rounded" *ngFor="let pIndicador of programa?.INDICADORES">
+                    <div class="accordion-body hijos m-2 ms-2 rounded" *ngFor="let pIndicador of programa?.INDICADORES" (click)="redirigiraDetalle(pIndicador?.ID_INDICADOR)">
                       {{ pIndicador?.NOMBRE_IND }}
                     </div>
                   </div>
