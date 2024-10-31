@@ -42,3 +42,21 @@ img{
         white-space: normal; /* Permite que el texto sea de varias líneas */
         margin: 0 auto; /* Centra el texto dentro del div */    
 }
+
+
+.button-image {
+    max-width: 100%; /* Asegura que la imagen sea responsiva */
+}
+
+@media (max-width: 576px) { /* Para dispositivos móviles */
+    .button-image {
+        max-width: 100px; /* Establece el ancho máximo para dispositivos móviles */
+    }
+}
+
+.tituloPND{
+    color:#2D3E97;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}

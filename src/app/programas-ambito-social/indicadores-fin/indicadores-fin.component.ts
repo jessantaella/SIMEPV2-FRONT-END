@@ -65,7 +65,7 @@ obtenerCiclos(){
 obtenerMosaico(){
   this.ambitoService.obtenerImagenesFin(this.anioSeleccionado).subscribe(
     res=>{
-        this.mosaico = res?.Data.filter((item: { NOM_ARCHIVO: string | string[]; }) => !item.NOM_ARCHIVO.includes("33-100.png"));
+        this.mosaico = res?.Data.filter((item: { RAMO: string; }) => item.RAMO !== "33");
 
     }
   )
@@ -76,7 +76,7 @@ seleccionarCiclo(ciclo:string){
   this.anioSeleccionado = ciclo;
   this.ambitoService.obtenerImagenesFin(ciclo).subscribe(
     res=>{
-      this.mosaico = res?.Data.filter((item: { NOM_ARCHIVO: string | string[]; }) => !item.NOM_ARCHIVO.includes("33-100.png"));
+      this.mosaico = res?.Data.filter((item: { RAMO: string; }) => item.RAMO !== "33");
 
     }
   )

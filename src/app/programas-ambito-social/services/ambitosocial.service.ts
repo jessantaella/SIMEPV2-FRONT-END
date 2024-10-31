@@ -66,4 +66,18 @@ export class AmbitosocialService {
     let url = this.servidor+`/PAS1318/Mosaicos?pCiclo=${pCiclo}&pCamino=A&pMosaicoFin=true`;
     return this.http.get<any>(url);
   }
+
+  obtenerlistadoIndicadoresPoliticaSocial(pCiclo:string,ramo:string,pUnidad:string):Observable<any>{
+    let url = this.servidor+`/PAS1318/ProgramasFin?pCiclo=${pCiclo}&pRamo=${ramo}&pUnidad=${pUnidad}`;
+    return this.http.get<any>(url);
+  }
+  obtenerAniosFichas():Observable<any>{
+    let url = this.servidor+`/PAS1318/CiclosFichasMonitoreo`;
+    return this.http.get<any>(url);
+  }
+
+  obtenerFichasxAnio(iCiclo:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/FichasMonitoreo?iCiclo=${iCiclo}`;
+    return this.http.get<any>(url);
+  }
 }

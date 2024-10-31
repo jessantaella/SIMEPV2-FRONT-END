@@ -36,6 +36,9 @@ import { DetalleBarraComponent } from './programas-ambito-social/detalle-barra/d
 import { DetalleInformacionComponent } from './programas-ambito-social/detalle-informacion/detalle-informacion.component';
 import { LineChartMultiserieComponent } from './graficas/line-chart-multiserie/line-chart-multiserie.component';
 import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
+import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
+import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
+import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
 
 
 @NgModule({
@@ -65,7 +68,10 @@ import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-f
     DetalleIndicadorComponent,
     DetalleBarraComponent,
     DetalleInformacionComponent,
-    IndicadoresFinComponent
+    IndicadoresFinComponent,
+    ListadoFinIndicadoresComponent,
+    Indice201312018Component,
+    FichasMonitoreoComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,9 @@ import { Pnd2013Component } from './plan-nacional/pnd2013/pnd2013.component';
 import { Indice20132018Component } from './programas-ambito-social/indice20132018/indice20132018.component';
 import { DetalleIndicadorComponent } from './programas-ambito-social/detalle-indicador/detalle-indicador.component';
 import { IndicadoresFinComponent } from './programas-ambito-social/indicadores-fin/indicadores-fin.component';
+import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listado-fin-indicadores/listado-fin-indicadores.component';
+import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
+import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -53,6 +56,18 @@ const routes: Routes = [
   {
     path:'indicadorFin',
     component:IndicadoresFinComponent,
+  },
+  {
+    path:'listado-fin/:pCiclo/:pRamo/:pUnidad',
+    component:ListadoFinIndicadoresComponent,
+  },
+  {
+    path:'test',
+    component:Indice201312018Component,
+  },
+  {
+    path:'fichasMonitoreo',
+    component:FichasMonitoreoComponent,
   }
 ];
 
