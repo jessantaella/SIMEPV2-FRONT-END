@@ -39,16 +39,16 @@ getImagen(imagen:string){
     let url = window.location.hostname;
     if(url === 'localhost'){
       url = '10.1.15.102'
-      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen; 
+      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen;
     }else if(url.includes('qa') || url.includes('sistemas')){
       return "https://"+url + '/conf/SIMEPS/img/'+imagen;
 
     }else{
-      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen; 
+      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen;
     }
   } else {
     return '';
-  } 
+  }
 }
 
 getURLSimepsViejito(rute:string){
@@ -56,29 +56,56 @@ getURLSimepsViejito(rute:string){
     let url = window.location.hostname;
     if(url === 'localhost'){
       url = 'devnet.coneval.org.mx'
-      return 'HTTP://' + url + ':84/' + rute; 
+      return 'HTTP://' + url + ':84/' + rute;
     }else if(url.includes('qa') || url.includes('sistemas')){
       return "https://"+url + '/'+rute;
 
     }else{
       url = 'devnet.coneval.org.mx'
-      return 'HTTP://' + url + ':84/' + rute; 
+      return 'HTTP://' + url + ':84/' + rute;
     }
   } else {
     return '';
-  } 
+  }
 }
 
 isProduccion(){
   if (this.isBrowser) {
     let url = window.location.hostname;
     if(url.includes('sistemas')){
-      return true; 
+      return true;
     }else{
-      return false; 
+      return false;
     }
   } else {
     return false;
-  } 
+  }
 }
+
+getInfoImg(imagen: string): string {
+  // Verificamos si estamos en el navegador
+  if (this.isBrowser) {
+    const hostname = window.location.hostname; // Obtenemos el hostname actual
+    let baseUrl: string;
+
+    // Definimos la URL base de acuerdo al hostname
+    if (hostname.includes('qa')) {
+      baseUrl = 'https://qa.coneval.org.mx/_SIMEPS/img/';
+    } else if (hostname.includes('sistemas')) {
+      baseUrl = 'https://sistemas.coneval.org.mx/_SIMEPS/img/';
+    } else {
+      // Ruta local para entorno de desarrollo
+      return `assets/img/derechosSociales/${imagen}`; // Ruta local a la imagen
+    }
+
+    // Retornamos la URL completa de la imagen
+    return `${baseUrl}${imagen}`;
+  } else {
+    return ''; // Retornamos vacío si no estamos en el navegador
+  }
 }
+
+
+
+}
+
