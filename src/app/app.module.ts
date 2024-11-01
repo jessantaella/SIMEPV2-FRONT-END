@@ -78,7 +78,7 @@ import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-in
     ListadoFinIndicadoresComponent,
     Indice201312018Component,
     FichasMonitoreoComponent,
-    DatosIndicadoresFinComponent
+    DatosIndicadoresFinComponent,
     Indice20192024Component,
     DetalleIndicador20192024Component,
     DetalleInformacion20192024Component,
