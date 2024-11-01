@@ -12,19 +12,26 @@
 <!-- Titulo ventana -->
  <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
 
+
+<div class="text-left tituloPND">
+  Programas derivados del PND 2019-2024
+</div>
+
   <div class="row justify-content-end mt-3">
     <!-- Botón con imagen -->
-    <div class="col-1">
+    <div class="col-sm-3 col-md-1">
       <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
-         download="Metas_Nacionales_PND20132018.csv">
-        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
-             class="img-fluid w-75">
-      </a>
+      download="Metas_Nacionales_PND20132018.csv">
+      <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg" alt="Imagen del botón"
+      class="img-fluid button-image">
+   </a>
     </div>
     <!-- Texto a la derecha del botón -->
-    <div class="col-2">
+    <div class="col-sm-9 col-md-2">
       <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
     </div>
+
+  </div>
 
         <!-- Estadisticas Basicas  -->
         <div class="text-center mb-3">
@@ -55,5 +62,7 @@
 
   </div>
 
-  </div>
+
+
+      <div *ngIf="this.esTablet" style="height: 145px;"></div>
 </div>

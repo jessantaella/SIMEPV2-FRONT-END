@@ -1,8 +1,9 @@
-import { Component, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { isPlatformBrowser } from '@angular/common';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-detalle-indicador20192024',
@@ -18,7 +19,13 @@ export class DetalleIndicador20192024Component {
   alto=100;
   idSector: string | null = null;
 
-
+  nivelSeleccionado: any;
+  menuSeleccionado = 1;
+  auxMascara = false;
+  fontSizeTitulo = '24px';
+  fontSizeTituloNormal = '20px';
+  celular = false;
+  @ViewChild('planeacion')
   idProgramaSect: number | null = null;
   mostrarDetalles : boolean = false;
 
@@ -28,15 +35,18 @@ export class DetalleIndicador20192024Component {
   listaObjetivosSectoriales : any[] = [];
   loadingProgramasSectoriales = true;
   barraVisible: boolean = true; // Inicialmente visible
+  esMovil = false;
   esTablet = false;
-
+  esEscritorio = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     private servicio: DataDynamic,
     private router: Router,
     private route: ActivatedRoute,
-    private ambitosocialService:AmbitosocialService
+    private ambitosocialService:AmbitosocialService,
+    private breakpointObserver: BreakpointObserver,
+
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();

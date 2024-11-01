@@ -50,3 +50,13 @@
   height:100%;
   background-color: #D8DDE0; /* Ejemplo de fondo para la barra */
 }
+.image-mobile {
+  width: 65px;
+
+  }
+
+  @media (max-width: 576px) {
+    .image-mobile {
+      width: 100px;
+    }
+  }
