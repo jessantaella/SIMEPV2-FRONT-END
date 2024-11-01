@@ -11,7 +11,7 @@
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
 
   <div class="row justify-content-end mt-3">
-    <div class="col-8 mt-2">
+    <div class="col-12 col-md-8 mt-2">
       <select class="form-select select-sectores w-100" [(ngModel)]="idSector"  (change)="onSectorChange($event)">
           <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR">
             {{ sector.NOMBRE }}
@@ -19,17 +19,17 @@
         </select>
   </div>
 
-  <div class="col-1">
+  <div class="col-12 col-md-1 justify-content-center">
     <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
        download="Metas_Nacionales_PND20132018.csv">
-      <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
-           class="img-fluid w-75">
+       <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg" alt="Imagen del botón"
+       class="img-fluid image-mobile">
     </a>
   </div>
-  <!-- Texto a la derecha del botón -->
-  <div class="col-2">
-    <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
-  </div>
+    <!-- Texto a la derecha del botón -->
+    <div class="col-12 col-md-2">
+      <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
+    </div>
   </div>
 
       <!-- Estadisticas Sector -->
