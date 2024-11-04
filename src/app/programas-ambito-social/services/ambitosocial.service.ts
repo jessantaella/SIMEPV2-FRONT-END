@@ -67,24 +67,12 @@ export class AmbitosocialService {
     return this.http.get<any>(url);
   }
 
-  obtenerlistadoIndicadoresPoliticaSocial(pCiclo:string,ramo:string,pUnidad:string):Observable<any>{
-    let url = this.servidor+`/PAS1318/ProgramasFin?pCiclo=${pCiclo}&pRamo=${ramo}&pUnidad=${pUnidad}`;
-    return this.http.get<any>(url);
-  }
-  obtenerAniosFichas():Observable<any>{
-    let url = this.servidor+`/PAS1318/CiclosFichasMonitoreo`;
+
+  obtenerDatosFinTabla(dIndicador:number,idMatriz:number,nivel:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/Indicador?idMatriz=${idMatriz}&nivel=${nivel}&idNivel=0&dIndicador=${dIndicador}`;
     return this.http.get<any>(url);
   }
 
-  obtenerFichasxAnio(iCiclo:number):Observable<any>{
-    let url = this.servidor+`/PAS1318/FichasMonitoreo?iCiclo=${iCiclo}`;
-    return this.http.get<any>(url);
-  }
-
-  obtenerHistoricoFin(idIndicador:number):Observable<any>{
-    let url = this.servidor+`/PAS1318/Historico?dIndicador=${idIndicador}`;
-    return this.http.get<any>(url);
-  }
 
    //endpoint 2019-2024
 

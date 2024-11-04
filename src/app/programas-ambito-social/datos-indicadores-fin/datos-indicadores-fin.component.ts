@@ -4,6 +4,8 @@ import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { ActivatedRoute } from '@angular/router';
+import { faChartSimple, faChartLine} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-datos-indicadores-fin',
@@ -21,6 +23,10 @@ export class DatosIndicadoresFinComponent {
   @ViewChild('planeacion')
   planeacion!: ElementRef;
   idIndicador: number = 0;
+  idMatriz: number = 0;
+  nivel: number = 0;
+  faChartSimple = faChartSimple;
+  faChartLine = faChartLine;
 
   graficasValores: {
     NO: number,
@@ -37,8 +43,15 @@ export class DatosIndicadoresFinComponent {
     GRAFICA: string
   }[] = [];
 
+  anios:any[] = [];
+
   metaPlaneada : {vM:number,vMin:number,vP:number} = {vM:0,vMin:0,vP:0};
   metaAlcnazada : {vM:number,vMin:number,vP:number} = {vM:0,vMin:0,vP:0};
+  datosIndicador :any ;
+  dependencia:string='';
+
+graficaSeleccionada : number = 1;
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
@@ -72,7 +85,11 @@ export class DatosIndicadoresFinComponent {
 
     this.route.paramMap.subscribe(params => {
       this.idIndicador = Number(params.get('idIndicador'));
+      this.idMatriz = Number(params.get('idMatriz'));
+      this.nivel =  Number(params.get('nivel'));
+      this.dependencia = params.get('dependencia') || '';
       this.obtenerGraficasRapidas();
+      this.obtenerInformacionIndicador();
     });
 
   }
@@ -145,5 +162,21 @@ export class DatosIndicadoresFinComponent {
         this.metaPlaneada.vP = promedioMetaPlaneada;
       }
     )
+  }
+
+
+  obtenerInformacionIndicador(){
+    this.ambitoService.obtenerDatosFinTabla(this.idIndicador,this.idMatriz,this.nivel).subscribe(
+      res=>{
+        this.datosIndicador =  res?.Data[0];
+        this.anios = this.datosIndicador?.HISTORICOS;
+        console.warn(this.anios);
+        console.log(res);
+      }
+    )
+  }
+
+  cambiarGraficaSeleccionada(tipo:number){
+    this.graficaSeleccionada = tipo;
   }
 }

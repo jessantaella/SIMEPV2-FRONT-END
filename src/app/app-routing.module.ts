@@ -77,7 +77,7 @@ const routes: Routes = [
     component:FichasMonitoreoComponent,
   },
   {
-    path:'DetalleIndicadorFin/:idIndicador',
+    path:'DetalleIndicadorFin/:idIndicador/:idMatriz/:nivel/:dependencia',
     component:DatosIndicadoresFinComponent,
   },
   {

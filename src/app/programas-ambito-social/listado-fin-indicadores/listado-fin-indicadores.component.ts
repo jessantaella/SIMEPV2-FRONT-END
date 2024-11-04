@@ -67,7 +67,7 @@ export class ListadoFinIndicadoresComponent implements OnInit {
   }
 
 
-  redirigiraDetalle(idIndicador:number){
-    this.router.navigate(['/DetalleIndicadorFin',idIndicador]);
+  redirigiraDetalle(idIndicador:number,idMatriz:number,nivel:number,dependencia:string){
+    this.router.navigate(['/DetalleIndicadorFin',idIndicador,idMatriz,nivel,dependencia]);
   }
 }
