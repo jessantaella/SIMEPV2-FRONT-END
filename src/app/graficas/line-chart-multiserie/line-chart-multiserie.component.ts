@@ -119,13 +119,17 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
 
       // Configuración del fondo, borde y color del texto del tooltip
     series.tooltip!.background.fill = am4core.color("#ffffff"); // Fondo blanco
-    series.tooltip!.background.fillOpacity = 0; // Fondo sólido
+    series.tooltip!.background.fillOpacity = 1; // Fondo sólido
     series.tooltip!.background.stroke = color; // Borde del color de la serie
     series.tooltip!.background.strokeWidth = 2; // Ancho del borde
 
     // Cambiar el color del texto del tooltip
     series.tooltip!.label.fill = am4core.color("#000000"); // Texto negro
     series.tooltip!.label.fontSize = 12;
+
+    series.tooltip!.label.adapter.add("fill", () => am4core.color("#000000")); // Texto negro
+    series.tooltip!.getFillFromObject = false; // fsle para no heredar el color
+    series.tooltip!.getStrokeFromObject = false;
 
     // Asegurarte de que el tooltip no cambie de color inesperadamente
     series.tooltip!.background.adapter.add("fill", () => am4core.color("#ffffff")); // Fondo blanco constante
