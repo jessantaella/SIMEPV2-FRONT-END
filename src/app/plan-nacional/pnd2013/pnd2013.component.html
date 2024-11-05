@@ -64,6 +64,13 @@
     </table>
   </div>
 
+  <!-- Botón de Regresar -->
+<div class="row m-2" *ngIf="mostrarVistaObjetivo">
+  <div class="col text-end">
+    <button type="button" class="btn btn-light border" (click)="regresar()">Regresar</button>
+  </div>
+</div>
+
   <div class="container mt-1 flex-grow-1" *ngIf="metaSeleccionada !== 0">
     <div class="objetivoTitulo text-center p-3" *ngIf="!mostrarVistaObjetivo"> Objetivos</div>
     <div class="accordion" id="accordionExample" *ngIf="!mostrarVistaObjetivo">
@@ -103,13 +110,5 @@
 
   <app-vista-objetivo [datoObjetivo]="objetivoSeleccionado" [objetivo]="nombreObjetivoSeleccionado"
   [data]="dataGrafica" *ngIf="mostrarVistaObjetivo"></app-vista-objetivo>
-
-<!-- Botón de Regresar -->
-<div class="row m-2" *ngIf="mostrarVistaObjetivo">
-  <div class="col text-center">
-    <button type="button" class="btn btn-light border" (click)="regresar()">Regresar</button>
-  </div>
-</div>
-
 
 </div>

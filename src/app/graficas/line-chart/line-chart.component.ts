@@ -31,6 +31,8 @@ export class LineChartComponent implements OnInit, OnDestroy {
   createChart(data: { Ciclo: number, MetaAlcanzada: string }[]) {
     // Crear la instancia del gráfico
     let chart = am4core.create('chartdiv', am4charts.XYChart);
+       // Deshabilitar el logo de amCharts
+       chart.logo.disabled = true;
     
     // Asignar los datos recibidos al gráfico
     chart.data = data.map(item => ({
@@ -44,11 +46,12 @@ export class LineChartComponent implements OnInit, OnDestroy {
     dateAxis.renderer.grid.template.disabled = true; // Desactivar líneas verticales
     dateAxis.renderer.grid.template.strokeOpacity = 0.5; // Opacidad de las líneas de la cuadrícula vertical
 
+    
     // Mostrar todas las etiquetas del eje X
     dateAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
         return 0; // Asegurarse de que las etiquetas estén centradas
     });
-    dateAxis.renderer.minGridDistance = 30; // Ajustar la distancia mínima entre las etiquetas
+    dateAxis.renderer.minGridDistance = 10; // Ajustar la distancia mínima entre las etiquetas
 
     // Reducir el tamaño de la fuente de las etiquetas en el eje X
     dateAxis.renderer.labels.template.fontSize = 10; // Cambiar el valor según el tamaño deseado
@@ -102,9 +105,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
       let dataItem = target.tooltipDataItem;
       let categoryIndex = chart.data.indexOf(dataItem.dataContext); // Índice del dato en la serie
       let totalItems = chart.data.length; // Total de elementos en la serie
-  
-      // Obtener el ancho del gráfico
-      let chartWidth = chart.plotContainer.pixelWidth;
+
   
       // Calcular posición del tooltip según el índice del dato
       if (categoryIndex < totalItems * 0.25) {

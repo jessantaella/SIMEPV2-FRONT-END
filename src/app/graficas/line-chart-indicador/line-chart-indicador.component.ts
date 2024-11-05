@@ -47,6 +47,8 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
 
       // Crear el gráfico
       let chart = am4core.create("chartdivLine", am4charts.XYChart);
+         // Deshabilitar el logo de amCharts
+    chart.logo.disabled = true;
 
       // Configurar los ejes
       let valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
