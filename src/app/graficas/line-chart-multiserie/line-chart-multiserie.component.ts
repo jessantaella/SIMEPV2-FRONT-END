@@ -124,9 +124,8 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
     series.tooltip!.label.fill = am4core.color("#000000"); // Texto negro
     series.tooltip!.label.fontSize = 12;
 
-    series.tooltip!.label.adapter.add("fill", () => am4core.color("#000000")); // Adaptador para forzar texto negro
-    // Desactivar la herencia del color del objeto para evitar cambios inesperados
-    series.tooltip!.getFillFromObject = false; // No heredar color del objeto
+    series.tooltip!.label.adapter.add("fill", () => am4core.color("#000000"));
+    series.tooltip!.getFillFromObject = false; // fsle para no heredar el color
     series.tooltip!.getStrokeFromObject = false;
 
     // Asegurarte de que el tooltip no cambie de color inesperadamente
