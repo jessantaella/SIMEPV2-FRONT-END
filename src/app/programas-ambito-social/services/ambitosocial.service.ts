@@ -130,4 +130,35 @@ export class AmbitosocialService {
     let url = this.servidor+`/PAS1318/Historico?dIndicador=${idIndicador}`;
     return this.http.get<any>(url);
   }
+
+    descargarExcel(): Observable<Blob> {
+      let url = 'http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND';
+      return this.http.get(url, {
+        responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
+      });
+    }
+
+    descargarBDExcelID(id: number): Observable<Blob> {
+      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND?id=${id}`;
+      return this.http.get(url, {
+        responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
+      });
+    }
+
+    descargarBDCsvID(id: number): Observable<Blob> {
+      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND?id=${id}&type=2`;
+      return this.http.get(url, {
+        responseType: 'blob'
+      });
+    }
+
+    descargarFichaTecnica1924(id: number, idIndicador: number): Observable<Blob> {
+    let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+    return this.http.get(url, { responseType: 'blob' });
+    }
+
+    descargarFichaTecnica1318(id: number, idIndicador: number) {
+      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
 }

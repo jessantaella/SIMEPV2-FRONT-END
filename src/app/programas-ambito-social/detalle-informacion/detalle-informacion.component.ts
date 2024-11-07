@@ -13,6 +13,7 @@ export class DetalleInformacionComponent implements OnInit {
   informacion: any;
   data:any;
   nombreIndicador:string = '';
+  idProgramaSectorial: number = 0;
 
   derechosSociales:any;
 
@@ -35,6 +36,7 @@ export class DetalleInformacionComponent implements OnInit {
       }else{
         let idProgramaSect = params.get('idProgramaSect') ? parseInt(params.get('idProgramaSect')!) : 0;
         this.consultaObjetivosSectoriales(idProgramaSect);
+        this.idProgramaSectorial=idProgramaSect;
       }
     });
   }
@@ -93,11 +95,44 @@ export class DetalleInformacionComponent implements OnInit {
       }
     )
   }
-  
 
 
-  
+  descargarBdExcelConId() {
+    this.ambitosocialService.descargarBDExcelID(this.idProgramaSectorial).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `archivo_${this.idProgramaSectorial}.xlsx`; // Nombre del archivo con el ID del programa sectorial
+      console.log('URL generada:', url); // Log de la URL generada
+      console.log('Nombre del archivo a descargar:', link.download); // Log del nombre del archivo
+      link.click();
+      window.URL.revokeObjectURL(url); // Limpia el objeto URL
+    });
+  }
 
-
-
+  descargarBdCsv() {
+    this.ambitosocialService.descargarBDCsvID(this.idProgramaSectorial).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `archivo_${this.idProgramaSectorial}.csv`;
+      link.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+  descargarFichaTecnica1318() {
+    this.ambitosocialService.descargarFichaTecnica1318(this.idProgramaSectorial, this.idIndicador)
+      .subscribe((response: Blob) => {
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `FichaTecnica_${this.idIndicador}.pdf`; // Asigna un nombre al archivo
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error("Error al descargar la ficha técnica", error);
+      });
+  }
 }

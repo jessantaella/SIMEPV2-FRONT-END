@@ -1,10 +1,16 @@
+
+<!--<div *ngIf="loading" >
+  <div class="loading1"></div>
+  <p>Cargando...</p>
+</div>-->
+
 <div class="row">
   <div class="col-3">
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
-        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
-          download="Metas_Nacionales_PND20132018.csv">
+        <a (click)="descargarFichaTecnica()"
+          download="Programas_derivados_PND.xls">
           <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
             class="img-fluid w-75">
         </a>
@@ -16,6 +22,7 @@
     </div>
   </div>
 </div>
+<!--<div *ngIf="!loading">-->
 <p class="nombreIndicador fw-bold">
   Nombre del indicador: {{informacion?.NOMBRE}}
 </p>
@@ -240,3 +247,4 @@
 </div>
 
 </div>
+<!--</div>-->

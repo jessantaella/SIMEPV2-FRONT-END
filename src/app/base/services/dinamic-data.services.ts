@@ -83,29 +83,23 @@ isProduccion(){
 }
 
 getInfoImg(imagen: string): string {
-  // Verificamos si estamos en el navegador
   if (this.isBrowser) {
     const hostname = window.location.hostname; // Obtenemos el hostname actual
     let baseUrl: string;
 
-    // Definimos la URL base de acuerdo al hostname
     if (hostname.includes('qa')) {
       baseUrl = 'https://qa.coneval.org.mx/_SIMEPS/img/';
     } else if (hostname.includes('sistemas')) {
       baseUrl = 'https://sistemas.coneval.org.mx/_SIMEPS/img/';
     } else {
-      // Ruta local para entorno de desarrollo
-      return `assets/img/derechosSociales/${imagen}`; // Ruta local a la imagen
+      // Ruta  de desarrollo en `webdev`
+      baseUrl = 'http://webdev.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
     }
 
-    // Retornamos la URL completa de la imagen
     return `${baseUrl}${imagen}`;
   } else {
-    return ''; // Retornamos vacío si no estamos en el navegador
+    return ''; //
   }
-}
-
-
-
+ }
 }
 

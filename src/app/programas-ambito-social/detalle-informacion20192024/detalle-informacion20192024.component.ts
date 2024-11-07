@@ -16,6 +16,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   data:any;
   nombreIndicador:string = '';
 
+
   //derechosSociales:any;
   derechosSociales: any[] | null = null;
 
@@ -27,6 +28,9 @@ export class DetalleInformacion20192024Component implements OnInit{
   calidadIndicador: {claridad:boolean,relevancia:boolean,monitoreo:boolean,pertinencia:boolean} | undefined;
   adecuacion:boolean | undefined;
 
+  loading: boolean = false;
+
+
   constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef,     private servicio: DataDynamic, private router: Router ) {
 
   }
@@ -36,15 +40,23 @@ export class DetalleInformacion20192024Component implements OnInit{
       let idIndicadorProv = params.get('idIndicador');
       if( idIndicadorProv){
         this.idIndicador = params.get('idIndicador') ? parseInt(params.get('idIndicador')!) : 0;
-        this.obtenerInformacionIndicadorDetalle();
-       this.obtenerInformacionGrafica();
-       this.obtenerDerechoSocialIndicador(); // Llama al método aquí
+       //this.obtenerInformacionIndicadorDetalle();
+       //this.obtenerInformacionGrafica();
+       //this.obtenerDerechoSocialIndicador();
+       this.cargarDatos();
       }else{
         let idProgramaSect = params.get('idProSectorial') ? parseInt(params.get('idProSectorial')!) : 0;
         this.consultaObjetivosSectoriales(idProgramaSect);
       }
     });
   }
+  cargarDatos() {
+    this.loading = true;
+    this.obtenerInformacionIndicadorDetalle();
+    this.obtenerInformacionGrafica();
+    this.obtenerDerechoSocialIndicador();
+  }
+
   obtenerInformacionIndicadorDetalle() {
     console.log(this.idIndicador);
     this.ambitosocialService.getinformacionIndicador1924(this.idIndicador).subscribe(
@@ -58,6 +70,7 @@ export class DetalleInformacion20192024Component implements OnInit{
         this.calidadIndicador = {claridad:this.informacion?.CLARIDAD,relevancia:this.informacion?.RELEVANCIA,monitoreo:this.informacion?.MONITOREABILIDAD,pertinencia:this.informacion?.PERTINENCIA}
         this.adecuacion = this.informacion?.ADECUACION; // Asegúrate de que ADECUACION está en el objeto
         console.log("Adecuación:", this.adecuacion);
+        this.loading = false;
       }
     )
   }
@@ -66,6 +79,7 @@ export class DetalleInformacion20192024Component implements OnInit{
     this.ambitosocialService.getGraficaIndicadores1924(this.idIndicador).subscribe(
       res=>{
         this.data = res?.Data;
+        this.loading = false;
       }
     )
   }
@@ -80,6 +94,7 @@ export class DetalleInformacion20192024Component implements OnInit{
         console.log("ENTROOOOO ")
         this.obtenerOpcionesSecundarias(arregloAux[0].ID_PROGRAMA_SEC,arregloAux[0].OBJETIVO,arregloAux[0].NUM_OBJETIVO);
        }
+       this.loading = false;
       }
     )
   }
@@ -120,7 +135,7 @@ export class DetalleInformacion20192024Component implements OnInit{
             this.derechosSociales = res.Data.map((derecho: { DER_DESCRIPCION: string }) => {
               console.log('Derecho:', derecho);
               const descripcion = derecho.DER_DESCRIPCION;
-              const imagenUrl = `${baseUrl}derecho_${encodeURIComponent(descripcion)}.jpg`;
+              const imagenUrl = `${baseUrl}${encodeURIComponent(descripcion)}.jpg`;
               console.log('URL de imagen:', imagenUrl);
               return {
                 ...derecho,
@@ -130,12 +145,33 @@ export class DetalleInformacion20192024Component implements OnInit{
           } else {
             this.derechosSociales = [];
           }
+          this.loading = false;
         },
         error => {
           console.error("Error al obtener el derecho social", error);
         }
       );
     }
+
+      descargarFichaTecnica() {
+        const id = this.route.snapshot.queryParamMap.get('idProSectorial') ? parseInt(this.route.snapshot.queryParamMap.get('idProSectorial')!) : 0;
+        const idIndicador = this.idIndicador;
+
+        this.ambitosocialService.descargarFichaTecnica1924(id, idIndicador).subscribe({
+          next: blob => {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `FichaTecnica_${id}_${idIndicador}.xlsx`; // Nombre del archivo a descargar
+            link.click();
+            window.URL.revokeObjectURL(url); // Limpia el objeto URL
+          },
+          error: error => {
+            console.error('Error al descargar la ficha técnica:', error);
+            alert('Hubo un problema al intentar descargar la ficha técnica. Intenta nuevamente.');
+          }
+        });
+      }
 
     toggleMostrarMas() {
       this.mostrarMas = !this.mostrarMas; // Cambia el estado de mostrar más

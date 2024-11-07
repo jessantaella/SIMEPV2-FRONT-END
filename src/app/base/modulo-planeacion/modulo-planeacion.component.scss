@@ -30,10 +30,10 @@
 }
 
 .estilo-encabezado{
-    height: 2rem; 
+    height: 2rem;
     background: white;
     border-radius: 7px;
-    border: 3px solid #008D6C;
+    border: 3px solid #009169 ;
 }
 
 .estilo-boton{
@@ -51,7 +51,7 @@
 }
 
 .estilo-texto-div{
-    color: #008D6C;
+    color: #009169 ;
 }
 
 .texto-marcado{
@@ -68,7 +68,7 @@
   color: #008D6C;
   padding: 20px;
   border-radius: 30px;
-  border: 3px solid #008D6C;
+  border: 3px solid #009169 ;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -97,24 +97,24 @@
 }
 
 @media ( min-width: 1200px){
-    .imagen-principal{  
+    .imagen-principal{
         width: 80%;
     }
-    
+
     .subimagen{
         width: 100%;
-    }  
+    }
 
     .subimagen-1{
         width: 110%;
-    }  
+    }
 }
 
 @media (min-width: 768px) and ( max-width: 1199px){
-    .imagen-principal{  
+    .imagen-principal{
         width: 80%;
     }
-    
+
     .subimagen{
         width: 80%;
     }
@@ -124,29 +124,29 @@
 }
 
 @media (min-width: 576px) and ( max-width: 767px){
-    .imagen-principal{  
+    .imagen-principal{
         width: 80%;
     }
-    
+
     .subimagen{
         width: 80%;
-    }  
+    }
     .subimagen-1{
         width: 80%;
-    } 
+    }
 }
 
 @media (max-width: 575px){
-    .imagen-principal{  
+    .imagen-principal{
         width: 80%;
     }
-    
+
     .subimagen{
         width: 70%;
-    }  
+    }
     .subimagen-1{
         width: 70%;
-    } 
+    }
 }
 
 
@@ -168,7 +168,7 @@
     z-index: 100;
     padding-top: 10px;
   }
-  
+
 .separador{
     margin-top: 7%!important;
 }
@@ -186,7 +186,7 @@
     width: 100%;
     margin: auto;
   }
-  
+
   .contenido{
     padding-top: 5%;
   }
@@ -194,26 +194,26 @@
     margin-top: 2%;
     margin-bottom: 2%;
   }
-  
+
   .diagrama{
     margin: auto;
   }
-  
+
   .resalteNormal{
     color:#2e3e97 !important;
     font-weight: bold;
   }
-  
+
   .resaltePND{
     color:#4caf62 !important;
     font-weight: bold;
   }
-  
+
   .resaltePlan{
     color:#8285e0 !important;
     font-weight: bold;
   }
-  
+
   .resalteRamo33{
     color:#17b0ba !important;
     font-weight: bold;
@@ -319,3 +319,10 @@
   .instrumentos{
     cursor: pointer;
   }
+
+  .tituloP{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #009169;
+}

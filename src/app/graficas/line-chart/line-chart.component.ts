@@ -31,7 +31,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
   createChart(data: { Ciclo: number, MetaAlcanzada: string }[]) {
     // Crear la instancia del gráfico
     let chart = am4core.create('chartdiv', am4charts.XYChart);
-    
+
     // Asignar los datos recibidos al gráfico
     chart.data = data.map(item => ({
         date: item.Ciclo.toString(),
@@ -87,12 +87,16 @@ export class LineChartComponent implements OnInit, OnDestroy {
     labelBullet.label.dy = -10;
     labelBullet.label.fontSize = 9;
 
+    series.tooltip!.label.adapter.add("fill", () => am4core.color("#000000")); // Texto negro
+    series.tooltip!.getFillFromObject = false; // fsle para no heredar el color
+    series.tooltip!.getStrokeFromObject = false;
+
     // Añadir tooltip personalizado
     series.tooltipText = "{name}[/] {categoryX}:[bold]{valueY.formatNumber('#,###')}";
     series.tooltip!.background.stroke = am4core.color("#00A94F");
     series.tooltip!.background.strokeWidth = 2;
     series.tooltip!.background.fill = am4core.color("#ffffff"); // Cambiar el color de fondo (blanco en este caso)
-    series.tooltip!.background.fillOpacity = 0.1;
+    series.tooltip!.background.fillOpacity = 1;
     series.tooltip!.pointerOrientation = "down";
     series.tooltip!.label.fontSize = 12; // Ajusta el tamaño según tu necesidad
 
@@ -102,10 +106,10 @@ export class LineChartComponent implements OnInit, OnDestroy {
       let dataItem = target.tooltipDataItem;
       let categoryIndex = chart.data.indexOf(dataItem.dataContext); // Índice del dato en la serie
       let totalItems = chart.data.length; // Total de elementos en la serie
-  
+
       // Obtener el ancho del gráfico
       let chartWidth = chart.plotContainer.pixelWidth;
-  
+
       // Calcular posición del tooltip según el índice del dato
       if (categoryIndex < totalItems * 0.25) {
           // Si el punto está en el primer 25% del gráfico, orientamos el tooltip a la derecha
@@ -120,7 +124,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
           target.tooltip!.pointerOrientation = "down";
           target.tooltip!.align = "left"; // Tooltip centrado en el punto
       }
-  
+
       return tooltipX; // Devolver la posición original del tooltip en X
   });
 
@@ -135,7 +139,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
     cursor.lineX.stroke = am4core.color("#cf1010");
     cursor.lineX.strokeWidth = 1;
     cursor.lineX.strokeOpacity = 1;
-    cursor.behavior = "none"; 
+    cursor.behavior = "none";
     chart.cursor = cursor;
 
     // Mostrar la línea vertical solo cuando se pase el cursor sobre un punto
@@ -157,11 +161,13 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
     // Guardar referencia al gráfico para su destrucción posterior
     this.chart = chart;
+
+    chart.logo.disabled = true;
 }
 
 
-  
-  
+
+
   ngOnDestroy(): void {
     // Destruir la instancia del gráfico para evitar problemas de memoria
     if (this.chart) {
