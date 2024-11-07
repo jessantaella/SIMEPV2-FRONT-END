@@ -65,10 +65,6 @@ const routes: Routes = [
     component:IndicadoresFinComponent,
   },
   {
-    path:'DetalleIndicador19-24/:idSector',
-    component:DetalleIndicador20192024Component,
-  },
-  {
     path:'listado-fin/:pCiclo/:pRamo/:pUnidad',
     component:ListadoFinIndicadoresComponent,
   },
@@ -81,8 +77,12 @@ const routes: Routes = [
     component:FichasMonitoreoComponent,
   },
   {
-    path:'DetalleIndicadorFin/:idIndicador',
+    path:'DetalleIndicadorFin/:idIndicador/:idMatriz/:nivel/:dependencia',
     component:DatosIndicadoresFinComponent,
+  },
+  {
+    path:'DetalleIndicador19-24/:idSector',
+    component:DetalleIndicador20192024Component,
   }
 ];
 

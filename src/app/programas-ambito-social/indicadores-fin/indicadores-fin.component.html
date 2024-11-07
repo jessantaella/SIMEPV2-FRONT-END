@@ -46,14 +46,14 @@
         </div>
     </div>
     
-    <div class="row w-75 m-auto">
-        <div class="col-md-4 cuadro d-flex justify-content-center align-items-center" *ngFor="let cuadro of mosaico" 
-        [routerLink]="['/listado-fin', cuadro.CICLO,cuadro.RAMO,cuadro.UNIDAD]">
-            <img [src]="cuadro?.NOM_ARCHIVO" width="100%" >
+    <div class="row w-100 m-auto justify-content-center">
+        <div class="col-12 col-md-4 cuadro d-flex justify-content-center align-items-center" *ngFor="let cuadro of mosaico" 
+             [routerLink]="['/listado-fin', cuadro.CICLO, cuadro.RAMO, cuadro.UNIDAD]">
+            <img [src]="cuadro?.NOM_ARCHIVO" class="img-fluid imagen-ajustada" alt="Imagen">
         </div>
     </div>
     
-
+    
 
 
     <div *ngIf="this.esTablet" style="height: 145px;"></div>

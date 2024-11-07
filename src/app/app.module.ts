@@ -45,6 +45,8 @@ import { ListadoFinIndicadoresComponent } from './programas-ambito-social/listad
 import { Indice201312018Component } from './base/indice201312018/indice201312018.component';
 import { FichasMonitoreoComponent } from './programas-ambito-social/fichas-monitoreo/fichas-monitoreo.component';
 import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-indicadores-fin/datos-indicadores-fin.component';
+import { BarChartComponent } from './graficas/bar-chart/bar-chart.component';
+import { LineChartIndicadorComponent } from './graficas/line-chart-indicador/line-chart-indicador.component';
 
 
 @NgModule({
@@ -74,16 +76,19 @@ import { DatosIndicadoresFinComponent } from './programas-ambito-social/datos-in
     DetalleIndicadorComponent,
     DetalleBarraComponent,
     DetalleInformacionComponent,
+    IndicadoresFinComponent,
+    ListadoFinIndicadoresComponent,
+    Indice201312018Component,
+    FichasMonitoreoComponent,
+    DatosIndicadoresFinComponent,
     Indice20192024Component,
     DetalleIndicador20192024Component,
     DetalleInformacion20192024Component,
     DetalleBarra20192024Component,
     Carrusel1924Component,
     IndicadoresFinComponent,
-    ListadoFinIndicadoresComponent,
-    Indice201312018Component,
-    FichasMonitoreoComponent,
-    DatosIndicadoresFinComponent
+    BarChartComponent,
+    LineChartIndicadorComponent
   ],
   imports: [
     BrowserModule,

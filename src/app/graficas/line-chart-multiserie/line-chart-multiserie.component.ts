@@ -34,6 +34,9 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
   createChart(data: { METASHISTORICO: string }[]) {
     let chart = am4core.create('chartdiv', am4charts.XYChart);
 
+       // Deshabilitar el logo de amCharts
+       chart.logo.disabled = true;
+
     // Procesar solo los datos dentro de METASHISTORICO
     chart.data = data.map(item => {
       let metaHistorico;

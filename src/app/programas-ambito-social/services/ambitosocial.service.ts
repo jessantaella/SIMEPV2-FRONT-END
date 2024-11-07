@@ -67,6 +67,13 @@ export class AmbitosocialService {
     return this.http.get<any>(url);
   }
 
+
+  obtenerDatosFinTabla(dIndicador:number,idMatriz:number,nivel:number):Observable<any>{
+    let url = this.servidor+`/PAS1318/Indicador?idMatriz=${idMatriz}&nivel=${nivel}&idNivel=0&dIndicador=${dIndicador}`;
+    return this.http.get<any>(url);
+  }
+
+
    //endpoint 2019-2024
 
    getEstadisticasBasicas1924(nSector:number):Observable<any>{

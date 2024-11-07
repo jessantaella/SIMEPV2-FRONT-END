@@ -76,6 +76,13 @@
           <p>{{datoObjetivo?.ENFOQUE_INDICADOR}}</p>
         </div>
       </div>
+
+      <div class="row mb-3" *ngIf="datoObjetivo?.COMENTARIO">
+        <div class="col">
+          <h6 class="text-success" style="display: inline;">Comentario:</h6>
+          <p class="text-justify">{{datoObjetivo?.COMENTARIO}}</p>
+        </div>
+      </div>
   </div>
 
   <div class="col-6">

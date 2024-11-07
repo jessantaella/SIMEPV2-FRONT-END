@@ -1,0 +1,74 @@
+.circle {
+    width: 60px;
+    height: 60px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.planeadas{
+    background-color: #0A9E71;
+}
+
+.alcanzadas{
+    background-color: #076AA8;
+}
+
+.titulos{
+    background-color: #2a5bff;
+}
+.planeadasTabla{
+    background-color: #7e015b;
+}
+.alcanzadasTabla{
+    background-color: #3c1559;
+}
+.titulos,.planeadasTabla,.alcanzadasTabla{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 10pts;
+}
+
+.tablaDatos{
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tituloFila{
+    width: 30%;
+}
+.tituloTablaDatos{
+    background-color: rgb(2,20,127);
+    color: #ffffff;
+}
+
+.fondoClaro{
+    background-color: #C7DCE2;
+}
+.fondoOscuro{
+    background-color: #F0EDEE;
+}
+
+.table-sin-padding th,
+.table-sin-padding td {
+    padding: 5px;  /* Elimina el padding dentro de las celdas */
+    margin: 0;   /* Asegúrate de que no haya márgenes */
+}
+.fuente{
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+.btn-grafica{
+    cursor: pointer;
+}
+
+.tituloGrafica{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}

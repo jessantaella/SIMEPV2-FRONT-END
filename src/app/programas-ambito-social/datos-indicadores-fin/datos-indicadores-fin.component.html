@@ -12,34 +12,164 @@
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
 
 
-<div class="container my-4">
-    <div class="fw-bold text-brown fs-4">Indicadores de Fin de los programas y acciones sociales, 2024</div>
-    <div class="fw-bold text-primary fs-5">Secretaría de Agricultura y Desarrollo Rural</div>
-
-    <div class="fw-bold text-success fs-6 mt-3">Producción para el Bienestar</div>
-    <div class="fs-6 text-dark mt-2">
-        <p>F1. Contribuir a incrementar el grado de autosuficiencia alimentaria nacional de maíz, frijol, trigo panificable y arroz.</p>
-        <p>F1.1 Tasa de variación del grado de autosuficiencia alimentaria</p>
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <div class="fw-bold fs-5" style="color: #bd4c1b; font-family: Arial, Helvetica, sans-serif;">Indicadores de Fin de los programas y acciones sociales, 2024</div>
     </div>
-
-    <div class="d-flex align-items-center mt-4">
-        <img src="download-icon.png" alt="Descargar ficha" class="me-2" style="width: 40px; height: 40px;">
+    <div class="col-sm-12 col-md-4">
+        <img src="https://qa.coneval.org.mx/_SIMEPS/img/descarga_datos2.jpg" alt="Descargar ficha" class="me-2" style="width: 40px; height: 40px;">
         <span>Descargar ficha indicador</span>
     </div>
 </div>
 
 
-<div class="row">
-    <div class="col-md-3">{{metaPlaneada?.vM}}</div>
-    <div class="col-md-3">{{metaPlaneada?.vMin}}</div>
-    <div class="col-md-3">{{metaPlaneada?.vP}}</div>
+<div class="container my-4">
+    <div class="fw-bold text-primary fs-5">{{dependencia}}</div>
+
+    <div class="fw-bold text-success fs-6 mt-3" style="color:#21a542">{{this.datosIndicador?.NOMBRE_MATRIZ}}</div>
+    <div class="fs-6 text-dark mt-2">
+        <p>{{this.datosIndicador?.DESC_NIVEL}}</p>
+        <p class="ps-3">{{this.datosIndicador?.NOMBRE_IND}}</p>
+    </div>
+
+  
+</div>
+<!--Grafica y tabla-->
+<div class="text-center align-middle fw-bold">
+    Tipo de Gráfica: 
+    <button class="btn btn-sm btn-grafica" (click)="cambiarGraficaSeleccionada(1)">
+        <fa-icon [icon]="faChartSimple" *ngIf="graficaSeleccionada !== 1"></fa-icon>
+        <img src="https://sistemas.coneval.org.mx/_SIMEPS/img/Grafica/barras.png" width="30px" *ngIf="graficaSeleccionada === 1" alt="icono grafica barras">
+    </button>
+    <button class="btn btn-sm btn-grafica" (click)="cambiarGraficaSeleccionada(2)">
+        <fa-icon [icon]="faChartLine" *ngIf="graficaSeleccionada!==2"></fa-icon>
+        <img src="https://sistemas.coneval.org.mx/_SIMEPS/img/Grafica/lineal.png" width="30px" *ngIf="graficaSeleccionada===2" alt="icono grafica lineal">
+    </button>
+    <p class="tituloGrafica">{{this.datosIndicador?.NOMBRE_IND}}</p>
 </div>
 
-<div class="row">
-    <div class="col-md-3">{{metaAlcnazada?.vM}}</div>
-    <div class="col-md-3">{{metaAlcnazada?.vMin}}</div>
-    <div class="col-md-3">{{metaAlcnazada?.vP}}</div>
+<app-bar-chart [data]="anios" *ngIf="graficaSeleccionada === 1"></app-bar-chart>
+<app-line-chart-indicador [data]="anios" *ngIf="graficaSeleccionada ===2"></app-line-chart-indicador>
+
+
+<p class="text-center fuente">Fuente: Elaboración CONEVAL con base en información del Portal Aplicativo de​ la Secretaría de Hacienda y Crédito Público (PASH)</p>
+
+
+<div class="table-responsive w-100">
+<table class="table table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th scope="col" class="titulos">Año</th>
+        <th scope="col" class="titulos" *ngFor="let anio of anios">{{anio?.ANIO}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="planeadasTabla">Meta Relativa Planeada</th>
+        <th scope="row" class="text-center planeadasTabla" *ngFor="let anio of anios">{{anio?.META_PLANEADA}}</th>
+      </tr>
+      <tr>
+        <th scope="row" class="alcanzadasTabla">Meta Relativa Alcanzada</th>
+        <th scope="row" class="text-center alcanzadasTabla" *ngFor="let anio of anios">{{anio?.META_ALCANZADA}}</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
+<!--Tabla de información del indicador-->
+<div class="table-responsive w-100">
+    <table class="table table-bordered table-sin-padding">
+        <thead>
+          <tr class="text-center">
+            <th scope="col"  colspan="2" class="text-center tituloTablaDatos">Características principales del indicador</th>
+          </tr>
+        </thead>
+        <tbody  class="tablaDatos">
+          <tr>
+            <th scope="row" class="tituloFila fondoClaro">Objetivo</th>
+            <td class="text-justify fondoOscuro m-1">{{this.datosIndicador?.DESC_NIVEL}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="tituloFila fondoOscuro">Definción</th>
+            <td class="text-justify fondoClaro m-1">{{this.datosIndicador?.DEFINICION_IND}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="tituloFila fondoClaro">Método de Cálculo</th>
+            <td class="text-justify fondoOscuro m-1">{{this.datosIndicador?.METODO_CALCULO_IND}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="tituloFila fondoOscuro">Frecuencia de Medición</th>
+            <td class="text-justify fondoClaro m-1">{{this.datosIndicador?.FRECUENCIA_MEDICION}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="tituloFila fondoClaro">Unidad de Medida</th>
+            <td class="text-justify fondoOscuro m-1">{{this.datosIndicador?.UNIDAD_MEDIDA}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="tituloFila fondoOscuro">Liena Base</th>
+            <td class="text-justify fondoClaro m-1">{{this.datosIndicador?.LINEA_BASE}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <span class="fw-bold">Calidad del Indicador</span>
+            <p class="m-3 ps-3">El indicador no cuenta con valoración para este año</p>
+        </div>
+        <div class="col-sm-12 col-md-6">
+             <!-- Estadisticas Basicas  -->
+ <div class="text-center mb-1">
+    <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
+      <div>
+        <p class="textoGraficas fw-bold">Valor máximo</p>
+        <div class="circle m-auto planeadas">
+          <span>{{metaPlaneada.vM}}</span>
+        </div>
+      </div>
+      <div>
+        <p class="textoGraficas fw-bold">Valor mínimo</p>
+        <div class="circle m-auto planeadas">
+          <span>{{metaPlaneada.vMin}}</span>
+        </div>
+      </div>
+      <div>
+        <p class="textoGraficas fw-bold">Valor promedio</p>
+        <div class="circle m-auto planeadas">
+          <span>{{metaPlaneada.vP}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="text-center mb-1">
+    <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
+      <div>
+        <p class="textoGraficas fw-bold">Valor máximo</p>
+        <div class="circle m-auto alcanzadas">
+          <span>{{metaAlcnazada.vM}}</span>
+        </div>
+      </div>
+      <div>
+        <p class="textoGraficas fw-bold">Valor mínimo</p>
+        <div class="circle m-auto alcanzadas">
+          <span>{{metaAlcnazada.vMin}}</span>
+        </div>
+      </div>
+      <div>
+        <p class="textoGraficas fw-bold">Valor promedio</p>
+        <div class="circle m-auto alcanzadas">
+          <span>{{metaAlcnazada.vP}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+    </div>
+
+
 
 
 <div *ngIf="this.esTablet" style="height: 145px;"></div>
