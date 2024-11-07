@@ -87,10 +87,10 @@ getInfoImg(imagen: string): string {
     const hostname = window.location.hostname; // Obtenemos el hostname actual
     let baseUrl: string;
 
-    if (hostname.includes('qa')) {
-      baseUrl = 'https://qa.coneval.org.mx/_SIMEPS/img/';
-    } else if (hostname.includes('sistemas')) {
-      baseUrl = 'https://sistemas.coneval.org.mx/_SIMEPS/img/';
+    if (hostname.includes('sistemas')) {
+      baseUrl = 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
+    } else if (hostname.includes('qa')) {
+      baseUrl = 'https://webqa.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
     } else {
       // Ruta  de desarrollo en `webdev`
       baseUrl = 'http://webdev.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
