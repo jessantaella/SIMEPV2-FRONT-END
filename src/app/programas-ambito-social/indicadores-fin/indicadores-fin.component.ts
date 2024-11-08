@@ -82,4 +82,54 @@ seleccionarCiclo(ciclo:string){
   )
 }
 
+descargarArchivo(fileType: string) {
+  this.ambitoService.obtenerUrlReporteHistorico1318().subscribe({
+    next: (response) => {
+      if (response.Success && response.Data.length > 0) {
+        const urlBase = response.Data[0].VALOR;  // Obtienes la URL base
+        const urlCompleta = `${urlBase}Base_historica_fin_${this.anioSeleccionado}.${fileType}`;
+        console.log('urlCompleta'+ urlCompleta);
+
+        const link = document.createElement('a');
+        link.href = urlCompleta;  // URL completa para la descarga
+        link.download = `Base_historica_fin_${this.anioSeleccionado}..${fileType}`;
+        link.click();
+      } else {
+        console.error('Error: No se pudo obtener la URL base');
+      }
+    },
+    error: (err) => {
+      console.error('Error al obtener la URL base:', err);
+    }
+  });
+}
+
+descargarArchivo2(tipoArchivo: 'xls' | 'csv') {
+  this.ambitoService.descargarFichaIndicadores(this.anioSeleccionado).subscribe({
+    next: (blob) => {
+      const fileURL = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+            if (tipoArchivo === 'xls') {
+        link.href = `${fileURL}`;
+        link.download = `Detalle_Ficha_Indicador_${this.anioSeleccionado}_14_E_005_1_24003322.xls`;
+        console.log("link" + link.download);
+      } else if (tipoArchivo === 'csv') {
+        link.href = `${fileURL}`;
+        link.download = `Detalle_Ficha_Indicador_${this.anioSeleccionado}_14_E_005_1_24003322.csv`;
+        console.log("link" + link.download);
+
+      }
+
+      link.click();
+      window.URL.revokeObjectURL(fileURL);
+    },
+    error: (err) => {
+      console.error('Error al descargar el archivo:', err);
+    }
+  });
+}
+
+
+
+
 }

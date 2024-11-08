@@ -16,7 +16,7 @@ export class DetalleIndicador20192024Component {
   nombreSistema: any;
 
   planeacion!: ElementRef;
-  alto=100;
+  alto=70;
   idSector: string | null = null;
 
   nivelSeleccionado: any;

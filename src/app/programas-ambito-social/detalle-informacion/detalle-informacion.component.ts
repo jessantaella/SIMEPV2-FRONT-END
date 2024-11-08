@@ -126,7 +126,7 @@ export class DetalleInformacionComponent implements OnInit {
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `FichaTecnica_${this.idIndicador}.pdf`; // Asigna un nombre al archivo
+        a.download = `FichaTecnica_${this.idIndicador}.xls`; // Asigna un nombre al archivo
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
