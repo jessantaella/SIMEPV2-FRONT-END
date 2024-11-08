@@ -168,7 +168,7 @@ export class DetalleInformacion20192024Component implements OnInit{
           },
           error: error => {
             console.error('Error al descargar la ficha técnica:', error);
-            alert('Hubo un problema al intentar descargar la ficha técnica. Intenta nuevamente.');
+            //alert('Hubo un problema al intentar descargar la ficha técnica. Intenta nuevamente.');
           }
         });
       }
