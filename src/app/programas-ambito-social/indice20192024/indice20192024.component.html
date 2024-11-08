@@ -40,14 +40,15 @@
             <span class="subtitulo">Estadísticas Básicas</span>
           </div>
         </div>
-          <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
-            <div *ngFor="let estadistica of listaEstadisticasBasicas; let i = index">
-              <p class="fw-bold">{{ estadistica?.Tipo }}</p>
-              <div class="circle" [ngStyle]="{'background-color': getColor(i)}">
-                <span>{{ estadistica.currentCount }}</span>
-              </div>
+        <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
+          <div *ngFor="let estadistica of listaEstadisticasBasicas; let i = index" class="d-flex flex-column align-items-center justify-content-center">
+            <p class="subtitulo text-center">{{ estadistica?.Tipo }}</p>
+            <div class="circle" [ngStyle]="{'background-color': getColor(i)}">
+              <span>{{ estadistica.currentCount }}</span>
             </div>
           </div>
+        </div>
+
         </div>
 
             <!-- Iconos Sectores  -->

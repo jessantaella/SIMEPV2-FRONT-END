@@ -69,7 +69,7 @@ const routes: Routes = [
     component:ListadoFinIndicadoresComponent,
   },
   {
-    path:'test',
+    path:'PlanNacional-ProgramaDerivados',
     component:Indice201312018Component,
   },
   {

@@ -39,8 +39,8 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   cambiarImagen_2 = false;
   cambiarImagen_3 = false;
   cambiarImagen_4 = false;
-  direccion_1 = "PlanNacionalDesarrollo2013-2018";
-  direccion_2 = "ProgramasDerivados2013-2018";
+  direccion_1 = "PlanNacional-ProgramaDerivados";//"PlanNacionalDesarrollo2013-2018";
+  direccion_2 = "PlanNacional-ProgramaDerivados";//"ProgramasDerivados2013-2018";
   direccion_3 = "ProgramasDerivados2019-2024";
   esMovil = false;
   esTablet = false;

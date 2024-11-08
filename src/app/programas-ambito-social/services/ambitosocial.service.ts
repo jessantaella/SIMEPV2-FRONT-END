@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -138,34 +138,51 @@ export class AmbitosocialService {
     return this.http.get<any>(url);
   }
 
-    descargarExcel(): Observable<Blob> {
-      let url = 'http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND';
-      return this.http.get(url, {
-        responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
-      });
-    }
+  descargarExcel(): Observable<Blob> {
+    let url = this.servidor+`/PAS1318/DescargarBasePND`;
+
+    // Configuramos los headers, aunque 'Access-Control-Allow-Origin' generalmente se configura en el servidor
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    return this.http.get(url, {
+      headers: headers,
+      responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
+    });
+  }
 
     descargarBDExcelID(id: number): Observable<Blob> {
-      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND?id=${id}`;
+      let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}`;
       return this.http.get(url, {
         responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
       });
     }
 
     descargarBDCsvID(id: number): Observable<Blob> {
-      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarBasePND?id=${id}&type=2`;
+      let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}&type=2`;
       return this.http.get(url, {
         responseType: 'blob'
       });
     }
 
     descargarFichaTecnica1924(id: number, idIndicador: number): Observable<Blob> {
-    let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+    let url = this.servidor+`/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
     return this.http.get(url, { responseType: 'blob' });
     }
 
     descargarFichaTecnica1318(id: number, idIndicador: number) {
-      let url = `http://devnet.coneval.org.mx:93/MS-SIMEPS/api/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
+
+    obtenerUrlReporteHistorico1318(): Observable<any> {
+      let url = this.servidor+`/PAS1318/Parametros?sNombreParametro=URL_REPORTE_HISTORICO_IND_FIN`;
+      return this.http.get<any>(url);
+    }
+
+    descargarFichaIndicadores(anioSeleccionado: String): Observable<Blob> {
+      const url = this.servidor+`/PAS1318/DescargarFichaIndicadores?parametros.ramo=14&parametros.ciclo=${anioSeleccionado}&parametros.matriz=24000070&parametros.indicador=24003322&parametros.nivel=1`;
       return this.http.get(url, { responseType: 'blob' });
     }
 }

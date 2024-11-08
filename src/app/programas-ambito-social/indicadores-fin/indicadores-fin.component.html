@@ -13,7 +13,7 @@
 
     <div class="row w-100 text-center m-2 mb-2">
         <div class="col-4 col-sm-4 col-md-2" *ngFor="let ciclo of ciclos">
-            <button class="btn btn-sm ciclobtn mt-2" 
+            <button class="btn btn-sm ciclobtn mt-2"
                 [ngClass]="{'cicloSeleccionado': ciclo?.CICLO_VALUE === anioSeleccionado}"
                 (click)="seleccionarCiclo(ciclo?.CICLO_VALUE || '')">
                 {{ ciclo?.CICLO_VALUE }}
@@ -25,8 +25,8 @@
         <div class="col-sm-12 col-md-6">
             <div class="row align-items-center">
                 <div class="col-4 d-flex flex-column">
-                    <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" width="50px" class="mb-1">
-                    <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_csv.jpg" width="50px" class="mb-1">
+                    <img (click)="descargarArchivo('xls')" src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" width="50px" class="mb-1">
+                    <img (click)="descargarArchivo('csv')" src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_csv.jpg" width="50px" class="mb-1">
                 </div>
                 <div class="col-8 text-center">
                     <span class="descarga">Descargar base histórica de indicadores</span>
@@ -36,8 +36,8 @@
         <div class="col-sm-12 col-md-6">
             <div class="row align-items-center">
                 <div class="col-4 d-flex flex-column">
-                    <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" width="50px" class="mb-1">
-                    <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_csv.jpg" width="50px" class="mb-1">
+                    <img (click)="descargarArchivo2('xls')" src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" width="50px" class="mb-1">
+                    <img (click)="descargarArchivo2('csv')" src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_csv.jpg" width="50px" class="mb-1">
                 </div>
                 <div class="col-8 text-center">
                     <span class="descarga">Descargar base de datos de todos los indicadores</span>
@@ -45,15 +45,15 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row w-100 m-auto justify-content-center">
-        <div class="col-12 col-md-4 cuadro d-flex justify-content-center align-items-center" *ngFor="let cuadro of mosaico" 
+        <div class="col-12 col-md-4 cuadro d-flex justify-content-center align-items-center" *ngFor="let cuadro of mosaico"
              [routerLink]="['/listado-fin', cuadro.CICLO, cuadro.RAMO, cuadro.UNIDAD]">
             <img [src]="cuadro?.NOM_ARCHIVO" class="img-fluid imagen-ajustada" alt="Imagen">
         </div>
     </div>
-    
-    
+
+
 
 
     <div *ngIf="this.esTablet" style="height: 145px;"></div>

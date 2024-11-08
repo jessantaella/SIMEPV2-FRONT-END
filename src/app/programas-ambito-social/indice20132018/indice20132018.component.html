@@ -18,21 +18,31 @@
 </div>
 </div>
 </div>
-<div class="row justify-content-end mt-3">
-    <!-- Botón con imagen -->
-    <div class="col-sm-3 col-md-1">
-      <a (click)="descargarExcel()"
-         download="Metas_Nacionales_PND20132018.csv">
-        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg" alt="Imagen del botón"
-             class="img-fluid button-image">
-      </a>
-    </div>
-    <!-- Texto a la derecha del botón -->
-    <div class="col-sm-9 col-md-2">
-      <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
-    </div>
 
+<div class="row justify-content-center align-items-center mt-3">
+  <!-- Contenedor para el texto centrado -->
+  <div class="col-12 col-md-8 d-flex flex-column text-center mb-2">
+    <p class="texto-central me-4">
+      Consulta los resultados de los indicadores de los programas del
+      <br>
+      <span class="texto-secundario">ámbito social derivados del PND 2013-2018</span>
+    </p>
   </div>
+
+  <!-- Botón con imagen -->
+  <div class="col-sm-3 col-md-1">
+    <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv">
+      <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg"
+           alt="Imagen del botón" class="img-fluid button-image">
+    </a>
+  </div>
+
+  <!-- Texto a la derecha del botón -->
+  <div class="col-sm-9 col-md-2">
+    <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+  </div>
+</div>
+
 
     <!-- Estadisticas Basicas  -->
     <div class="text-center mb-3">

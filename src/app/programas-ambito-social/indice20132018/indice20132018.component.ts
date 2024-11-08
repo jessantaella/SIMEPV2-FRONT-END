@@ -135,19 +135,28 @@ export class Indice20132018Component {
   }
 
   descargarExcel() {
-    this.ambitosocialService.descargarExcel().subscribe(blob => {
-      const url = window.URL.createObjectURL(blob);
-      console.log('URL generada:', url); // Log de la URL generada
+    this.ambitosocialService.descargarExcel().subscribe(
+      (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        console.log('URL generada:', url); // Log para verificar la URL generada
 
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Base_de_Datos_del_PND.xlsx';
-      console.log('Nombre del archivo a descargar:', link.download);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Base_de_Datos_del_PND.xlsx';
+        console.log('Nombre del archivo a descargar:', link.download); // Log para verificar el nombre del archivo
 
-      link.click();
-      window.URL.revokeObjectURL(url);
-    });
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        console.error('Error en la descarga del archivo:', error); // Manejo de errores
+      }
+    );
   }
+
 
 
 }
