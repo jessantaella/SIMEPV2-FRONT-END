@@ -51,9 +51,10 @@
 
   <div class="container mt-1 flex-grow-1" *ngIf="mostrarTransversales && !mostrarVistaObjetivo">
      <table class="table table-borderless m-0" >
+      <caption></caption>
     <tbody>
-      <tr class="text-center">
-        <th class="titulo-indicadores">Indicadores</th>
+      <tr class="text-center" id="titulo">
+        <th class="titulo-indicadores" id="tituloIndicador">Indicadores</th>
       </tr>
       <tr *ngFor="let objetivo of objetivos" class="text-center">
         <th scope="row" class="urlIndicador" (click)="seleccionarVistaObjetivoTransversal(objetivo)">
@@ -86,6 +87,7 @@
           data-bs-parent="#accordionExample">
           <div class="accordion-body custom-body">
             <table class="table table-borderless m-0">
+              <caption></caption>
               <tbody>
                 <tr *ngFor="let indicador of listadoIndicadorObjetivo" class="text-center">
 

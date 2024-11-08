@@ -33,14 +33,27 @@ export class HeaderComponent {
 
   constructor(private servicio: DataDynamic, private router: Router, private titleService: Title,@Inject(DOCUMENT) private document: Document,@Inject(PLATFORM_ID) private platformId:any) {
     this.isBrowser = isPlatformBrowser(this.platformId);
-    if(this.isBrowser){
+    /*if(this.isBrowser){
       this.consultarData();
       this.router.events.subscribe((event: any) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = event.url;
         }
       });
-    }
+    }*/
+      if (this.isBrowser) {
+        if (this.currentRoute === '/') {
+          // Si la ruta es la raíz, establece el título al primero de la lista
+          this.cambiarTitulo(this.opciones[0]?.nombre);
+        } else {
+          // Si la ruta no es la raíz, busca la coincidencia en opciones
+          const opcion = this.opciones?.find((opc: any) => opc.url === this.currentRoute);
+          if (opcion) {
+            this.cambiarTitulo(opcion.nombre);
+          }
+        }
+      }
+      
   }
 
   consultarData() {

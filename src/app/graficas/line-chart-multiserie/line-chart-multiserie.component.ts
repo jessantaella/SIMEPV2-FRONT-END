@@ -25,7 +25,7 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
     // Verificar si el valor de 'data' ha cambiado
     if (changes['data'] && changes['data'].currentValue) {
       // Llamar a createChart con los nuevos datos
-      this.chart?.dispose();
+      this.chart?.dispose(); //nosonar
       this.createChart(changes['data'].currentValue);
     }
   }

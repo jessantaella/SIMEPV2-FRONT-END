@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-6 col-sm-3" *ngFor="let cosa of arregloVisible">
                     <a [href]="cosa?.URL_FICHA">
-                        <img [src]="cosa?.URL_PORTADA" class="img-fluid" style="width: 100%;" >
+                        <img [src]="cosa?.URL_PORTADA" class="img-fluid" style="width: 100%;" [alt]="cosa?.URL_PORTADA">
                     </a>
                 </div>
             </div>
