@@ -17,27 +17,27 @@
                 <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR">
                   {{ sector.NOMBRE }}
                 </option>
-              </select> 
+              </select>
         </div>
 
         <!-- Botón con imagen -->
         <div class="col-1">
-          <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+          <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
              download="Metas_Nacionales_PND20132018.csv">
-            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+            <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
                  class="img-fluid w-75">
           </a>
-        </div>    
+        </div>
         <!-- Texto a la derecha del botón -->
         <div class="col-2">
           <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
         </div>
-        
+
       </div>
 
 
     <!-- Estadisticas Sector -->
-    <div class="text-center row d-flex justify-content-center">
+    <div class="text-center row d-flex justify-content-center areaGraficas mt-4">
         <div class=" col-md-9 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-75">
             <div *ngFor="let estadistica of listaEstadisticasBasicasSector" class="circulo-estadisticas">
                 <div class="valores">
@@ -45,15 +45,15 @@
                 </div>
                 <p class="tipo text-center">{{estadistica.Tipo}}</p>
             </div>
-            
+
         </div>
     </div>
-    
-    <app-carrusel 
+
+    <app-carrusel
     [listaProgramasSectoriales]="listaProgramasSectoriales"
-    [loading]="loadingProgramasSectoriales" 
+    [loading]="loadingProgramasSectoriales"
     (idProgramaSectChange)="onIdProgramaSectChange($event)">
-    </app-carrusel> 
+    </app-carrusel>
 
 
 
@@ -64,18 +64,18 @@
           <button class="btn btn-light toggle-btn" (click)="toggleBarra()">
             <span [ngClass]="barraVisible ? 'arrow-left' : 'arrow-right'"></span>
           </button>
-      
+
           <!-- Componente barra -->
           <div *ngIf="barraVisible" class="detalle-barra-content rounded">
             <app-detalle-barra></app-detalle-barra>
           </div>
         </div>
-      
+
         <!-- Componente de información -->
         <div [ngClass]="barraVisible ? 'col-8' : 'col-11'">
           <app-detalle-informacion></app-detalle-informacion>
         </div>
       </div>
-    
+
     <div *ngIf="this.esTablet" style="height: 145px;"></div>
 </div>

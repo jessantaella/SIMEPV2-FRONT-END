@@ -3,7 +3,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
-        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
+        <a (click)="descargarFichaTecnica1318()"
           download="Metas_Nacionales_PND20132018.csv">
           <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
             class="img-fluid w-75">
@@ -35,7 +35,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
-        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
+        <a (click)="descargarBdExcelConId()"
           download="Metas_Nacionales_PND20132018.csv">
           <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
             class="img-fluid w-75">
@@ -51,7 +51,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
-        <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
+        <a (click)="descargarBdCsv()"
           download="Metas_Nacionales_PND20132018.csv">
           <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
             class="img-fluid w-75">
@@ -204,8 +204,8 @@
 
     <ul class="list-unstyled">
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.claridad"></i> 
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.claridad"></i> 
+        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.claridad"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.claridad"></i>
         Claridad
       </li>
       <li>
@@ -215,7 +215,7 @@
       </li>
       <li>
         <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.monitoreo"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.monitoreo"></i> 
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.monitoreo"></i>
         Monitoreabilidad
       </li>
       <li>
@@ -236,7 +236,7 @@
         <p class="text-center">{{ derecho.DER_DESCRIPCION }}</p>
       </div>
     </div>
-    
+
   </div>
 </div>
 <div class="row">

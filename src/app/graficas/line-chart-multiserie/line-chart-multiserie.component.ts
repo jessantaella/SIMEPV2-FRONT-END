@@ -160,6 +160,7 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
     dateAxis.tooltip!.label.fontSize = 12;
 
     this.chart = chart;
+    chart.logo.disabled = true;
   }
 
 

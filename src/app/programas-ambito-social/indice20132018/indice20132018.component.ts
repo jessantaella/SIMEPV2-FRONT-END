@@ -134,5 +134,20 @@ export class Indice20132018Component {
     this.router.navigate(['/DetalleIndicador', idSector]);
   }
 
-    
+  descargarExcel() {
+    this.ambitosocialService.descargarExcel().subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      console.log('URL generada:', url); // Log de la URL generada
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Base_de_Datos_del_PND.xlsx';
+      console.log('Nombre del archivo a descargar:', link.download);
+
+      link.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+
 }

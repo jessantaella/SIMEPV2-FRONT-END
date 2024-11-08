@@ -13,15 +13,15 @@
  <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
 
 
-<div class="text-left tituloPND">
+<div class="text-center tituloPND">
   Programas derivados del PND 2019-2024
 </div>
 
   <div class="row justify-content-end mt-3">
     <!-- Botón con imagen -->
-    <div class="col-sm-3 col-md-1">
+    <div class="col-sm-3 col-md-1 mt-1">
       <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
-      download="Metas_Nacionales_PND20132018.csv">
+      download="Programas_derivados_PND.xls">
       <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg" alt="Imagen del botón"
       class="img-fluid button-image">
    </a>
@@ -35,9 +35,11 @@
 
         <!-- Estadisticas Basicas  -->
         <div class="text-center mb-3">
-          <div class="my-2 text-start">
+          <div class="rectangulo-contenedor">
+          <div class="my-2 text-center">
             <span class="subtitulo">Estadísticas Básicas</span>
           </div>
+        </div>
           <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
             <div *ngFor="let estadistica of listaEstadisticasBasicas; let i = index">
               <p class="fw-bold">{{ estadistica?.Tipo }}</p>
@@ -50,8 +52,10 @@
 
             <!-- Iconos Sectores  -->
     <div class="text-center mt-3">
-      <div class="my-2 text-start" [ngStyle]="{'background-color' : '#fff'}">
+      <div class="rectangulo-contenedor">
+      <div class="my-2 text-center" [ngStyle]="{'background-color' : '#fff'}">
           <span class="subtitulo" >Monitoreo de indicadores de la política social por sector</span>
+      </div>
       </div>
       <div class="mt-4 d-flex justify-content-evenly flex-wrap">
           <div *ngFor="let sector of listaSectores" class="p-1 link-sectores" style="flex: 1 1 20%;">
