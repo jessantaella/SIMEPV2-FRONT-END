@@ -1,14 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ServerConfService } from '../../../app/server-confing.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AmbitosocialService {
-  servidor= 'http://devnet.coneval.org.mx:93/MS-SIMEPS/api';
+ // servidor= 'http://devnet.coneval.org.mx:93/MS-SIMEPS/api';
+ servidor = '';
+ constructor(private http:HttpClient,
+   private serverConfigService: ServerConfService
+ ) {
+   this.servidor = this.serverConfigService.getServerConfig()+'api/MS-SIMEPS/api';
 
-  constructor(private http:HttpClient) { }
+  }
 
 
   getEstadisticasBasicas(nSector:number):Observable<any>{

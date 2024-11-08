@@ -15,10 +15,12 @@ export class AppComponent{
   ga:any;
   isBrowser = false;
 
-  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any,  private url:ServerConfService){
+  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any,  private url:ServerConfService, private serverConfigService: ServerConfService){
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.url.loadServerConfig();
     this.consultarTags();
+    this.serverConfigService.loadServerConfig();
+
    }
 
    cargaGA() {
