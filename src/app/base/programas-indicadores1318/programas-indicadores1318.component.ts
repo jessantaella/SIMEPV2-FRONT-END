@@ -46,7 +46,7 @@ export class ProgramasIndicadores1318Component implements OnInit, AfterViewInit{
     private scroller: ViewportScroller,
     private servicio: DataDynamic,
     private router: Router,
-    
+
     private breakpointObserver: BreakpointObserver,
 
     private indicadores1924Service: Indicadores1924Service
@@ -106,37 +106,35 @@ export class ProgramasIndicadores1318Component implements OnInit, AfterViewInit{
   //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
 
   async getEstadisticasBasicas() {
-  
+
     try {
       const res = await this.indicadores1924Service.getConteoSectores4T(0).toPromise();
-      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse => 
+      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse =>
         this.respuestaAEstadisticaBasica(estadisticaResponse)
       );
 
       this.listaEstadisticasBasicas = response;
     } catch (err) {
       console.error('Error al obtener los programas sectoriales:', err);
-    } finally {
     }
   }
 
   async getSectores() {
-  
+
     try {
       const res = await this.indicadores1924Service.getSectores4T().toPromise();
-      const response = (res as SectorResponse[]).map(sectorResponse => 
+      const response = (res as SectorResponse[]).map(sectorResponse =>
         this.respuestaASector(sectorResponse)
       );
 
       this.listaSectores = response;
     } catch (err) {
       console.error('Error al obtener los programas sectoriales:', err);
-    } finally {
     }
   }
 
   // ---------------------------------------- CONVERSION DE RESPUESTA A MODELOS -----------------------------
-  
+
   respuestaAEstadisticaBasica(estadisticaResponse: EstadisticasBasicasResponse){
     let esatdisticaBasica = new EstadisticasBasicas();
     esatdisticaBasica.CONTEO = estadisticaResponse.CONTEO;
@@ -157,24 +155,24 @@ export class ProgramasIndicadores1318Component implements OnInit, AfterViewInit{
 
   iniciarAnimacionConteo(estadistica: EstadisticasBasicas, valorFinal: number) {
     const duracion = 2500;
-    const incremento = valorFinal / (duracion / 16); 
+    const incremento = valorFinal / (duracion / 16);
     let valorActual = 0;
 
     const animarConteo = () => {
         valorActual += incremento;
         if (valorActual < valorFinal) {
-            estadistica.CONTEO = Math.floor(valorActual); 
-            requestAnimationFrame(animarConteo); 
+            estadistica.CONTEO = Math.floor(valorActual);
+            requestAnimationFrame(animarConteo);
         } else {
-            estadistica.CONTEO = valorFinal; 
+            estadistica.CONTEO = valorFinal;
         }
     };
 
     requestAnimationFrame(animarConteo);
 }
 
-  
-  
 
-  
+
+
+
 }

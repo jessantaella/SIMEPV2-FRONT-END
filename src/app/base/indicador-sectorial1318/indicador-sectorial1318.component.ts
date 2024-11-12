@@ -17,7 +17,7 @@ import { EstadisticasBasicasResponse } from '../ModelsResponse/EstadisticasBasic
   templateUrl: './indicador-sectorial1318.component.html',
   styleUrls: ['./indicador-sectorial1318.component.scss']
 })
-  
+
 export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
   nivelSeleccionado: any;
   menuSeleccionado = 1;
@@ -35,7 +35,7 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
   esTablet = false;
   esEscritorio = false;
   idSector: string | null = null;
-  previousIdSector: string | null = null; 
+  previousIdSector: string | null = null;
   plantilla = '';
 
   listaSectores: Sector[] = [];
@@ -44,7 +44,7 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
 
   listaProgramasSectoriales: ProgramaSectorial[] =[];
   loadingProgramasSectoriales = true;
-  
+
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -54,7 +54,7 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
     private servicio: DataDynamic,
     private router: Router,
     private route: ActivatedRoute,
-    
+
     private breakpointObserver: BreakpointObserver,
     private indicadores1924Service: Indicadores1924Service,
   ) {
@@ -89,7 +89,7 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
       }, 10);
     }
   }
-  
+
   ngOnInit(): void {
     if (this.isBrowser) {
       document.body.scrollTop = 0;
@@ -102,10 +102,10 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
     this.route.queryParams.subscribe(async params => {
       const newIdSector = params['idSector'];
       if (newIdSector !== this.previousIdSector) {
-        this.previousIdSector = newIdSector; 
-        this.idSector = newIdSector; 
+        this.previousIdSector = newIdSector;
+        this.idSector = newIdSector;
         this.getEstadisticasBasicas(parseInt(this.idSector || '0'));
-        let programasSectoriales = await this.getProgramasSectoriales(this.idSector!); 
+        let programasSectoriales = await this.getProgramasSectoriales(this.idSector!);
         this.listaProgramasSectoriales = programasSectoriales;
       }
     });
@@ -131,42 +131,36 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
   //  -------------------------------- OBTENCION DE DATOS ---------------------------------------------------------
 
   async getEstadisticasBasicas(sector: number) {
-  
     try {
       const res = await this.indicadores1924Service.getConteoSectores4T(sector).toPromise();
-      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse => 
+      const response = (res as EstadisticasBasicasResponse[]).map(estadisticaResponse =>
         this.respuestaAEstadisticaBasica(estadisticaResponse)
       );
-
       this.listaEstadisticasBasicasSector = response;
     } catch (err) {
       console.error('Error al obtener los programas sectoriales:', err);
-    } finally {
     }
   }
 
   async getSectores() {
-  
     try {
       const res = await this.indicadores1924Service.getSectores4T().toPromise();
-      const response = (res as SectorResponse[]).map(sectorResponse => 
+      const response = (res as SectorResponse[]).map(sectorResponse =>
         this.respuestaASector(sectorResponse)
       );
-
       this.listaSectores = response;
     } catch (err) {
       console.error('Error al obtener los programas sectoriales:', err);
-    } finally {
     }
   }
 
   async getProgramasSectoriales(idSector: string) {
     this.loadingProgramasSectoriales = true;
-  
+
     try {
       const res = await this.indicadores1924Service.getConsultaProgramasSectoriales4T(idSector).toPromise();
 
-      const response = (res as ProgramaSectorialResponse[]).map(programa => 
+      const response = (res as ProgramaSectorialResponse[]).map(programa =>
         this.respuestaAProgramaSector(programa)
       );
 
@@ -201,22 +195,22 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
 
   iniciarAnimacionConteo(estadistica: EstadisticasBasicas, valorFinal: number) {
     const duracion = 2500;
-    const incremento = valorFinal / (duracion / 16); 
+    const incremento = valorFinal / (duracion / 16);
     let valorActual = 0;
 
     const animarConteo = () => {
         valorActual += incremento;
         if (valorActual < valorFinal) {
-            estadistica.CONTEO = Math.floor(valorActual); 
-            requestAnimationFrame(animarConteo); 
+            estadistica.CONTEO = Math.floor(valorActual);
+            requestAnimationFrame(animarConteo);
         } else {
-            estadistica.CONTEO = valorFinal; 
+            estadistica.CONTEO = valorFinal;
         }
     };
 
     requestAnimationFrame(animarConteo);
 }
-  
+
   respuestaAProgramaSector(programa: ProgramaSectorialResponse){
     let programaSectorial =new ProgramaSectorial();
     programaSectorial.URL_ICONO = programa.URL_ICONO;
@@ -226,6 +220,6 @@ export class IndicadorSectorial1318Component implements OnInit, AfterViewInit{
     return programaSectorial;
   }
 
-  
-  
+
+
 }
