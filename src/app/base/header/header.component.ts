@@ -53,7 +53,7 @@ export class HeaderComponent {
           }
         }
       }
-      
+
   }
 
   consultarData() {
@@ -73,9 +73,9 @@ export class HeaderComponent {
         next: (result) => {
           // La función "otraFuncion" se llamará después de completar la lógica en "tap".
           if (this.isBrowser) {
-         this.otraFuncion(); 
+         this.otraFuncion();
           }
-         
+
         },
         error: (error) => {
           // Manejo de errores si es necesario.
@@ -91,16 +91,17 @@ export class HeaderComponent {
   }
 
   cambiarPagina() {
-    if(this.isBrowser){
-      this.opciones?.forEach((opc: any) => {
-        if (opc.url === this.currentRoute) {
-          this.cambiarTitulo(opc.nombre);
-        }else if(this.currentRoute === '/'){
-            this.cambiarTitulo(this.opciones[0].nombre);
-        }
-      });
+    if (this.isBrowser) {
+      const rutaEncontrada = this.opciones?.find((opc: any) => opc.url === this.currentRoute);
+      if (rutaEncontrada) {
+        this.cambiarTitulo(rutaEncontrada.nombre);
+      } else if (this.currentRoute === '/') {
+        this.cambiarTitulo(this.opciones[0].nombre);
+      }
     }
   }
+
+
 
   cortarNombre(nombreCorto: string) {
     return nombreCorto?.substring(0, 11);
@@ -138,7 +139,7 @@ export class HeaderComponent {
 
     // Espera a que la vista se inicie antes de realizar las operaciones DOM.
     setTimeout(() => {
-      
+
 
       this.btn =  this.document.querySelector('.menu-priority');
       this.vlinks = this.document.querySelector('ul.links');
