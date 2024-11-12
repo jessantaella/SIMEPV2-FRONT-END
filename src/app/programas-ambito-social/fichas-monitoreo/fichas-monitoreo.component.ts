@@ -126,16 +126,19 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
 
   validarArreglosVisiblesDerecha(posIni: number) {
     this.arregloVisible = [];
-    let aux= [];
-    for(let a=0;a<4;a++){
-      if(posIni<0){
-        posIni = this.fichas.length-1;
+    let aux = [];
+    for (let a = 0; a < 4; a++) {
+      if (posIni < 0) {
+        posIni = this.fichas.length - 1;
       }
       aux.push(this.fichas[posIni]);
       posIni--;
     }
-    this.arregloVisible = aux.reverse();
+    // Primero construimos el arreglo, luego lo revertimos
+    aux.reverse();
+    this.arregloVisible = aux;
   }
+
 
 
   seleccionaCiclo(ciclo:number){
