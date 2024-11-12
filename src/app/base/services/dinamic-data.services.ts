@@ -51,23 +51,22 @@ getImagen(imagen:string){
   }
 }
 
-getURLSimepsViejito(rute:string){
+getURLSimepsViejito(rute: string) {
   if (this.isBrowser) {
     let url = window.location.hostname;
-    if(url === 'localhost'){
-      url = 'devnet.coneval.org.mx'
-      return 'HTTP://' + url + ':84/' + rute;
-    }else if(url.includes('qa') || url.includes('sistemas')){
-      return "https://"+url + '/'+rute;
-
-    }else{
-      url = 'devnet.coneval.org.mx'
+    // Si estamos en localhost, usar el servidor devnet en HTTP
+    if (url === 'localhost' || !url.includes('qa') && !url.includes('sistemas')) {
+      url = 'devnet.coneval.org.mx';
       return 'HTTP://' + url + ':84/' + rute;
     }
-  } else {
-    return '';
+    // Si estamos en qa o sistemas, usar el protocolo HTTPS
+    else if (url.includes('qa') || url.includes('sistemas')) {
+      return "https://" + url + '/' + rute;
+    }
   }
+  return '';  // Si no es el navegador, devolver vacío
 }
+
 
 isProduccion(){
   if (this.isBrowser) {

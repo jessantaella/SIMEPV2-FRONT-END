@@ -111,8 +111,6 @@ export class LineChartComponent implements OnInit, OnDestroy {
       let categoryIndex = chart.data.indexOf(dataItem.dataContext); // Índice del dato en la serie
       let totalItems = chart.data.length; // Total de elementos en la serie
 
-      // Obtener el ancho del gráfico
-      let chartWidth = chart.plotContainer.pixelWidth;
 
 
 

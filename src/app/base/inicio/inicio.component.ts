@@ -96,14 +96,10 @@ export class InicioComponent {
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     if (this.isBrowser) {
-      const offset =
-        this.window.pageYOffset ||
-        this.document.documentElement.scrollTop ||
-        this.document.body.scrollTop ||
-        0;
       this.obtenerPosicion();
     }
   }
+
 
   consultarData() {
     if (this.isBrowser) {
@@ -216,9 +212,9 @@ export class InicioComponent {
       }*/
       let opciones= ['seccion1', 'seccion2', 'seccion3'];
       let opcionVisible: string = '';
-  
+
       const windowHeight = window.innerHeight;
-  
+
       for (const opcion of opciones) {
         const element = document.getElementById(opcion.replace(' ', '-'));
         if (element) {
@@ -249,6 +245,6 @@ export class InicioComponent {
         this.auxMascara = false;
       }
     }
-   
+
   }
 }
