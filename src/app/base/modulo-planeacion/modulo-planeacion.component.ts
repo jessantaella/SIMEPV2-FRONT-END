@@ -39,14 +39,18 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   cambiarImagen_2 = false;
   cambiarImagen_3 = false;
   cambiarImagen_4 = false;
-  direccion_1 = "PlanNacional-ProgramaDerivados";//"PlanNacionalDesarrollo2013-2018";
-  direccion_2 = "PlanNacional-ProgramaDerivados";//"ProgramasDerivados2013-2018";
-  direccion_3 = "ProgramasDerivados2019-2024";
+  direccion_1 = "";//"PlanNacionalDesarrollo2013-2018";
+  direccion_2 = "";//"ProgramasDerivados2013-2018";
+  direccion_3 = "";
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
 
   plantilla = '';
+
+  imgDiana="";
+  imgPnd="";
+  imgProgramas="";
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -113,13 +117,18 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
     this.submodulo_2 = this.servicio.getImagen('diagrama-pnd/submodulo-2.png');
     this.submodulo_3 = this.servicio.getImagen('diagrama-pnd/submodulo-3.png');
     this.submodulo_4 = this.servicio.getImagen('diagrama-pnd/submodulo-4.png');
+    this.imgDiana = this.servicio.getImagen('DIANA.svg');
+    this.imgPnd=this.servicio.getImagen('PND.svg');
+    this.imgProgramas= this.servicio.getImagen('PROGRAMAS DERIVADOS.svg');
 
     //Direcciones
-    //this.direccion_1 = this.servicio.getURLSimepsViejito('_SIMEPS/MetasNacionales.aspx');
-    //this.direccion_2 = this.servicio.getURLSimepsViejito('_SIMEPS/MosaicoSectores.aspx');
-    //this.direccion_3 = 'MosaicoSectores19-24';no
+    this.direccion_1 = this.servicio.getRuta('PlanNacional-ProgramaDerivados');
+    this.direccion_2 = this.servicio.getRuta('PlanNacional-ProgramaDerivados');
+    this.direccion_3 = this.servicio.getRuta('ProgramasDerivados2019-2024');
 
   }
+
+
 
   consultarData() {
     if (this.isBrowser) {

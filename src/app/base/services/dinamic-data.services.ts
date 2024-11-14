@@ -39,12 +39,12 @@ getImagen(imagen:string){
     let url = window.location.hostname;
     if(url === 'localhost'){
       url = '10.1.15.102'
-      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen;
+      return 'http://' + url + ':81/conf/SIMEPS/assets/img/' + imagen;
     }else if(url.includes('qa') || url.includes('sistemas')){
       return "https://"+url + '/conf/SIMEPS/img/'+imagen;
 
     }else{
-      return 'HTTP://' + url + ':81/conf/SIMEPS/img/' + imagen;
+      return 'http://' + url + ':81/conf/SIMEPS/assets/img/' + imagen;
     }
   } else {
     return '';
@@ -101,5 +101,22 @@ getInfoImg(imagen: string): string {
     return ''; //
   }
  }
+
+ getRuta(ruta:string) {
+  if (this.isBrowser) {
+    let url = window.location.hostname;
+    if (url === 'localhost') {
+      return "http://" + url + ':4200/SIMEPS/' + ruta;
+    }else if(url.includes('10.1.15.102')){
+      return "https://" + url + ':4000/SIMEPS/' + ruta;
+    }else if (url.includes('qa') || url.includes('sistemas')) {
+      return "https://" + url + '/SIMEPS/' + ruta;
+    } else {
+      return 'HTTP://' + url + ':4000/SIMEPS/' + ruta;
+    }
+  }else{
+    return '';
+  }
+}
 }
 

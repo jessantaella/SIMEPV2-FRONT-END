@@ -9,7 +9,7 @@
       <ul>
         <li *ngFor="let programaSectorial of listaProgramasSectoriales; let i = index" [class.active]="i === currentIndex">
           <a>
-            <img class="imagen-indicador" [src]="'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/LogosPS20192024/'+programaSectorial?.URL_ICONO" [alt]="programaSectorial?.NOMBRE" (click)="agregarQueryParam(programaSectorial?.ID_PROG_SECTORIAL)">
+            <img class="imagen-indicador" [src]="programaSectorial?.URL_ICONO" [alt]="programaSectorial?.NOMBRE" (click)="agregarQueryParam(programaSectorial?.ID_PROG_SECTORIAL)">
           </a>
         </li>
       </ul>

@@ -29,7 +29,10 @@ export class Pnd2013Component implements OnInit{
   nombreObjetivoSeleccionado : string = '' ;
   dataGrafica : any [] = [];
 
+  imgObjTranversale="";
+  imgEstrategiaTransversal="";
   servidorImg = 'http://devnet.coneval.org.mx:84/_SIMEPS/img/';
+  servImgMetas='';
 
   mostrarVistaObjetivo :boolean = false;
 
@@ -39,11 +42,14 @@ constructor( @Inject(PLATFORM_ID) private platformId: any,
 private titleService: Title){
   this.isBrowser = isPlatformBrowser(this.platformId);
   this.consultarData();
+  if (this.isBrowser) {
+    this.cargarImg();
+  }
 }
 
   ngOnInit(): void {
     this.obtenerMetas();
-    
+
   }
 
   ngAfterViewInit(): void {
@@ -74,7 +80,7 @@ private titleService: Title){
       })
   }
 
-  
+
 seleccionarMeta(opcion:number){
   this.metaSeleccionada = opcion;
   this.traerObjetivosxMeta(opcion);
@@ -167,5 +173,12 @@ regresar(){
   this.nombreObjetivoSeleccionado = '';
   this.mostrarVistaObjetivo = false;
 }
+
+cargarImg() {
+  this.imgObjTranversale= this.servicio.getURLSimepsViejito('_SIMEPS/img/BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg');
+  this.imgEstrategiaTransversal= this.servicio.getURLSimepsViejito('_SIMEPS/img/BotonesMetasNacionales/btn_estrategias_transversales.jpg');
+  this.servImgMetas=this.servicio.getURLSimepsViejito('_SIMEPS/');
+}
+
 
 }

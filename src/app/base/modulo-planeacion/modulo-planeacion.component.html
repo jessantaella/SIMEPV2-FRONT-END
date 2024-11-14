@@ -44,14 +44,14 @@
         </div>
         <div class="row p-3 pt-4 align-items-center" [ngStyle]="{'background-color': '#E8E8E8'}">
             <div class="d-md-flex col-md-6 align-items-center">
-                <img class="img-svg" src="../../../assets/img/PND.svg" alt="programas">
+                <img class="img-svg" [src]="this.imgPnd" alt="programas">
                 <p class="texto" [ngStyle]="{'background-color': '#E8E8E8'}">
                     El <strong class="texto-marcado">Plan Nacional de Desarrollo</strong> es el documento rector de la administración donde se estipulan los <strong class="texto-marcado">objetivos prioritarios</strong>
                         en función del diagnóstico de los problemas nacionales y las soluciones a implementar en el <strong class="texto-marcado">sexenio.</strong>
                 </p>
             </div>
             <div class="d-md-flex col-md-6 align-items-center">
-                <img class="img-svg"  src="../../../assets/img/PROGRAMAS DERIVADOS.svg" alt="programas">
+                <img class="img-svg"  [src]="this.imgProgramas" alt="programas">
                 <p class="texto" [ngStyle]="{'background-color': '#E8E8E8'}">
                     Los programas derivados del PND que se dividen en <strong class="texto-marcado">sectoriales,
                     institucionales, espaciales</strong> y <strong class="texto-marcado">regionales</strong>, y determinan las prioridades de atención en cada uno de sus ámbitos.
@@ -100,7 +100,7 @@
             </div>
             <div class="my-1 d-flex">
                 <div class="my-2 d-flex align-items-center">
-                    <img class="img-svg" src="../../../assets/img/DIANA.svg" alt="programas">
+                    <img class="img-svg" [src]="this.imgDiana" alt="programas">
                 </div>
                 <div class="d-flex flex-column mx-2 justify-content-center align-items-center text-center">
                     <a class="btn p-0"  [href]="this.direccion_1" >
@@ -123,7 +123,7 @@
             </div>
             <div class="my-1 d-flex">
                 <div class="my-2">
-                    <img class="img-svg" src="../../../assets/img/DIANA.svg" alt="programas">
+                    <img class="img-svg" [src]="this.imgDiana" alt="programas">
                 </div>
                 <div class="d-flex flex-column mx-2 justify-content-center align-items-center text-center">
                     <a class="btn p-0" [href]="this.direccion_3">

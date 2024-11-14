@@ -4,16 +4,16 @@
       <!-- Aquí puedes agregar un ícono de carga o spinner -->
       <app-pre-loader [type]="1"></app-pre-loader>
     </div>
-    
+
     <div *ngIf="!loading">
         <ul>
           <li *ngFor="let programaSectorial of listaProgramasSectoriales; let i = index" [class.active]="i === currentIndex">
             <a>
-              <img class="imagen-indicador" [src]="'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosPS/'+programaSectorial?.URL_ICONO" [alt]="programaSectorial?.NOMBRE" (click)="agregarQueryParam(programaSectorial?.ID_PROG_SECTORIAL)">
+              <img class="imagen-indicador" [src]="programaSectorial?.URL_ICONO" [alt]="programaSectorial?.NOMBRE" (click)="agregarQueryParam(programaSectorial?.ID_PROG_SECTORIAL)">
             </a>
           </li>
         </ul>
     </div>
-    
+
     <button (click)="next()">&#10095;</button>
 </div>

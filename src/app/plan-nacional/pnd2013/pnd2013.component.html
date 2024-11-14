@@ -15,17 +15,17 @@
   <div class="row justify-content-end mt-3">
     <!-- Botón con imagen -->
     <div class="col-1">
-      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv" 
+      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
          download="Metas_Nacionales_PND20132018.csv">
-        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón" 
+        <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
              class="img-fluid w-75">
       </a>
-    </div>    
+    </div>
     <!-- Texto a la derecha del botón -->
     <div class="col-2">
       <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
     </div>
-    
+
   </div>
 
 
@@ -34,7 +34,7 @@
     <div class="col" *ngFor="let meta of metas">
       <button class="btn w-100" (click)="seleccionarMeta(meta?.ID_META)">
         <img
-          [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 && !mostrarTransversales ? 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_URL : 'http://devnet.coneval.org.mx:84/_SIMEPS'+meta?.PATH_IMAGEN_OVER_URL"
+          [src]="metaSeleccionada === meta?.ID_META || metaSeleccionada === 0 && !mostrarTransversales ? this.servImgMetas+meta?.PATH_IMAGEN_URL : this.servImgMetas+meta?.PATH_IMAGEN_OVER_URL"
           class="img-fluid" alt="Imagen 1">
       </button>
     </div>
@@ -44,7 +44,7 @@
   <div class="d-flex justify-content-center mb-3">
     <button class="btn w-75" (click)="traerObjetivosTransversales()">
       <img
-        [src]="metaSeleccionada!= 0 && !mostrarTransversales ? servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg':  servidorImg+'BotonesMetasNacionales/btn_estrategias_transversales.jpg'"
+        [src]="metaSeleccionada!= 0 && !mostrarTransversales ? this.imgObjTranversale :  this.imgEstrategiaTransversal"
         class="ms-2 w-100" alt="Estrategias Imagen">
     </button>
   </div>
