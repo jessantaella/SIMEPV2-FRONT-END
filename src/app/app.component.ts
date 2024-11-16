@@ -1,8 +1,9 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { DataDynamic } from './base/services/dinamic-data.services';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { ServerConfService } from './server-confing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,57 @@ export class AppComponent{
   ga:any;
   isBrowser = false;
 
-  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any,  private url:ServerConfService, private serverConfigService: ServerConfService){
+  constructor(private meta: Meta,private servicio:DataDynamic,@Inject(PLATFORM_ID) private platformId:any,  private url:ServerConfService, private serverConfigService: ServerConfService,  private router: Router,  @Inject(DOCUMENT) private document: Document){
+
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.url.loadServerConfig();
     this.consultarTags();
     this.serverConfigService.loadServerConfig();
 
+    if (this.isBrowser) {
+      this.addResourcesBasedOnUrl();
+    }
    }
 
+
+  private addResourcesBasedOnUrl() {
+    const currentUrl = this.router.url;
+    const baseUrl = currentUrl.includes('10.1.15.102:81')
+      ? 'http://10.1.15.102:81/conf/assets'
+      : 'https://qa.coneval.org.mx/conf/assets';
+
+      console.log(baseUrl);
+
+    const scripts = [
+      `${baseUrl}/js/menu.js`,
+      `${baseUrl}/js/aos.min.js`,
+      `${baseUrl}/js/bs-init.js`,
+      `${baseUrl}/js/ocultarRedes.js`
+    ];
+
+    // Hojas de estilo a agregar
+    const styles = [
+      `${baseUrl}/css/aos.min.css`,
+      `${baseUrl}/css/header-nuevo.css`,
+      `${baseUrl}/css/footer.css`
+    ];
+
+    // Agregar scripts al DOM
+    scripts.forEach(src => {
+      const scriptElement = this.document.createElement('script');
+      scriptElement.src = src;
+      scriptElement.async = true;
+      this.document.head.appendChild(scriptElement);
+    });
+
+    // Agregar hojas de estilo al DOM
+    styles.forEach(href => {
+      const linkElement = this.document.createElement('link');
+      linkElement.rel = 'stylesheet';
+      linkElement.href = href;
+      this.document.head.appendChild(linkElement);
+    });
+  }
    cargaGA() {
       return new Promise((resolve, reject) => {
       let body =  document.body;
@@ -61,4 +105,6 @@ export class AppComponent{
       });
     }
    }
+
+
 }
