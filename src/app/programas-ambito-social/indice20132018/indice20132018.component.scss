@@ -44,13 +44,10 @@ img{
 }
 
 
-.button-image {
-    max-width: 100%; /* Asegura que la imagen sea responsiva */
-}
 
-@media (max-width: 576px) { /* Para dispositivos móviles */
+@media (max-width: 576px) {
     .button-image {
-        max-width: 100px; /* Establece el ancho máximo para dispositivos móviles */
+        max-width: 100px;
     }
 }
 
@@ -121,4 +118,9 @@ img{
 
 .circle-indicadores {
   background-color: #83BA2B;
+}
+.sectores-icon-svg {
+  width: 150px;
+  height: 150px;
+  object-fit: contain; /* Ajusta la imagen para que mantenga su proporción */
 }

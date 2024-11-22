@@ -70,8 +70,8 @@ p{
 
 
 .circle {
-  width: 60px; /* Tama por defecto */
-  height: 60px;
+  width: 80px; /* Tama por defecto */
+  height: 80px;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -80,11 +80,7 @@ p{
   font-size: 13px;
   font-weight: bold;
 
-  &.expand {
-    min-width: 100px; /* Ajusta tamaño cant larga */
-    min-height: 60px; /*dejar s altura constante */
-    //transition: min-width 0.3s ease; /* Añade una transición suave */
-  }
+
 }
 
 
