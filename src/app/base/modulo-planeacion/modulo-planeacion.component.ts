@@ -106,17 +106,17 @@ export class ModuloPlaneacionComponent implements OnInit, AfterViewInit{
   }
 
   cargarDiagrama() {
-    this.parte_1_pnd = this.servicio.getImagen('diagrama-pnd/parte-1-pnd.png');
-    this.parte_2_pnd = this.servicio.getImagen('diagrama-pnd/parte-2-pnd.png');
-    this.parte_3_pnd = this.servicio.getImagen('diagrama-pnd/parte-3-pnd.png');
-    this.modulo_1 = this.servicio.getImagen('diagrama-pnd/modulo-1.png');
-    this.modulo_2 = this.servicio.getImagen('diagrama-pnd/modulo-2.png');
-    this.modulo_3 = this.servicio.getImagen('diagrama-pnd/modulo-3.png');
-    this.modulo_4 = this.servicio.getImagen('diagrama-pnd/modulo-4.png');
-    this.submodulo_1 = this.servicio.getImagen('diagrama-pnd/submodulo-1.png');
-    this.submodulo_2 = this.servicio.getImagen('diagrama-pnd/submodulo-2.png');
-    this.submodulo_3 = this.servicio.getImagen('diagrama-pnd/submodulo-3.png');
-    this.submodulo_4 = this.servicio.getImagen('diagrama-pnd/submodulo-4.png');
+    //this.parte_1_pnd = this.servicio.getImagen('parte-1-pnd.png');
+    //this.parte_2_pnd = this.servicio.getImagen('diagrama-pnd/parte-2-pnd.png');
+    this.parte_3_pnd = this.servicio.getImagen('parte-3-pnd.png');
+    this.modulo_1 = this.servicio.getImagen('modulo-1.png');
+    this.modulo_2 = this.servicio.getImagen('modulo-2.png');
+    this.modulo_3 = this.servicio.getImagen('modulo-3.png');
+    this.modulo_4 = this.servicio.getImagen('modulo-4.png');
+    this.submodulo_1 = this.servicio.getImagen('submodulo-1.png');
+    this.submodulo_2 = this.servicio.getImagen('submodulo-2.png');
+    this.submodulo_3 = this.servicio.getImagen('submodulo-3.png');
+    this.submodulo_4 = this.servicio.getImagen('submodulo-4.png');
     this.imgDiana = this.servicio.getImagen('DIANA.svg');
     this.imgPnd=this.servicio.getImagen('PND.svg');
     this.imgProgramas= this.servicio.getImagen('PROGRAMAS DERIVADOS.svg');
