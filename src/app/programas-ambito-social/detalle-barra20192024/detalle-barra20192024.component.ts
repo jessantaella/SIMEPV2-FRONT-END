@@ -61,20 +61,28 @@ export class DetalleBarra20192024Component {
 
   obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
     this.ambitosocialService.getOpcionesObjetivosSectoriales1924(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
-      res=>{
-        let existe = this.opcionesSecundarias.some((obj: { objetivo: number; }) => obj.objetivo === numObjetivo);
-
-        if (!existe) {
-          this.opcionesSecundarias.push({ objetivo: numObjetivo, info: res?.Data });
+      (res): any=>{
+        const otrasOpciones= this.opcionesSecundarias.filter(obj => obj.objetivo !== numObjetivo);
+        if (res?.Data?.length) {
+          this.opcionesSecundarias=[...otrasOpciones, {objetivo:numObjetivo, info: res.Data}];
+          //this.opcionesSecundarias.push({ objetivo: numObjetivo, info: res?.Data });
+        }else{
+          console.log('errpr');
         }
+      }, error=>{
+        console.error('error obte opc sec' +error);
       }
-    )
+       )
   }
-
   obtenerInfo(numObjetivo: number): any | undefined {
     let objetivo = this.opcionesSecundarias.find(obj => obj.objetivo === numObjetivo);
+    if (!objetivo) {
+      //console.warn(`No se encontró el objetivo con numObjetivo: ${numObjetivo}`);
+      console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
+    }
     return objetivo ? objetivo.info : undefined;
   }
+
 
   onClickCard (idIndicador: number) {
     if (this.cargarIndicador) {

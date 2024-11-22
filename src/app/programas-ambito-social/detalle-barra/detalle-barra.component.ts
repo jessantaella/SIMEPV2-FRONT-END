@@ -16,7 +16,7 @@ export class DetalleBarraComponent {
 
   totalIndicadores:number = 0;
   totalObjetivos:number = 0;
- 
+
   constructor(private ambitosocialService:AmbitosocialService,private route: ActivatedRoute,private router: Router
   ){}
 
@@ -30,9 +30,9 @@ export class DetalleBarraComponent {
   }
 
   /**
- * Trae objetivos sectoriales 
+ * Trae objetivos sectoriales
  */
-  
+
 consultaObjetivosSectoriales(idProgramaSectorial:number){
   this.ambitosocialService.getObjetivosSectoriales(idProgramaSectorial).subscribe(
     res=>{
@@ -46,7 +46,7 @@ consultaObjetivosSectoriales(idProgramaSectorial:number){
 }
 
 
-obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
+/*obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
   this.ambitosocialService.getOpcionesObjetivosSectoriales(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
     res=>{
       let existe = this.opcionesSecundarias.some((obj: { objetivo: number; }) => obj.objetivo === numObjetivo);
@@ -56,10 +56,31 @@ obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObj
       }
     }
   )
+}*/
+
+obtenerOpcionesSecundarias(idProgramaSectorial: number, descObjetivo: string, numObjetivo: number) {
+  this.ambitosocialService.getOpcionesObjetivosSectoriales(idProgramaSectorial, descObjetivo, numObjetivo).subscribe(
+    (res: any) => {
+      const otrasOpciones = this.opcionesSecundarias.filter(obj => obj.objetivo !== numObjetivo);
+      if (res?.Data?.length) {
+        this.opcionesSecundarias = [...otrasOpciones, { objetivo: numObjetivo, info: res.Data }];
+        console.log('Opciones secundarias actualizadas:', this.opcionesSecundarias);
+      } else {
+        console.warn(`No se recibieron datos para numObjetivo: ${numObjetivo}`);
+      }
+    },
+    error => {
+      console.error('Error al obtener opciones secundarias:', error);
+    }
+  );
 }
+
 
 obtenerInfo(numObjetivo: number): any | undefined {
   let objetivo = this.opcionesSecundarias.find(obj => obj.objetivo === numObjetivo);
+  if (!objetivo) {
+    console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
+  }
   return objetivo ? objetivo.info : undefined;
 }
 
@@ -91,4 +112,6 @@ obtenerInfo(numObjetivo: number): any | undefined {
       queryParamsHandling: 'merge' // Esto mantiene los queryParams existentes
     });
   }
+
+
 }
