@@ -18,7 +18,8 @@ export class IndicadoresFinComponent {
   esEscritorio = false;
   isBrowser = false;
   @ViewChild('planeacion') planeacion!: ElementRef;
-
+  imgDescarga='';
+  imgDescargaCsv='';
   ciclos:{CICLO_VALUE:string,CICLO_ID:number} []= [];
   anioSeleccionado: string = '';
   mosaico: { NOM_ARCHIVO:string,LVL:number,CICLO:string,RAMO:string,UNIDAD:string,LIGA:string,DESCRIPCION:string,DEPENDENCIA:string}[]=[];
@@ -36,6 +37,7 @@ constructor(
 
 consultarData() {
   if (this.isBrowser) {
+    this.cargarImg();
     this.servicio.getInformacion().subscribe((res) => {
       this.nombreSistema = res?.simeps?.opciones[1].titulo;
       this.redes = res.generales.redes;
@@ -129,7 +131,10 @@ descargarArchivo2(tipoArchivo: 'xls' | 'csv') {
   });
 }
 
-
+cargarImg() {
+  this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
+  this.imgDescargaCsv=this.servicio.getImagen('descarga_csv.jpg');
+  }
 
 
 }

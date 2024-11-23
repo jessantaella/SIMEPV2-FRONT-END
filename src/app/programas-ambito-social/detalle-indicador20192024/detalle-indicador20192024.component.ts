@@ -38,6 +38,7 @@ export class DetalleIndicador20192024Component {
   esMovil = false;
   esTablet = false;
   esEscritorio = false;
+  imdDescargaDatos='';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
@@ -51,6 +52,9 @@ export class DetalleIndicador20192024Component {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     this.consultaSectores();
+    if (this.isBrowser) {
+      this.generarUrlImagen();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -141,4 +145,9 @@ export class DetalleIndicador20192024Component {
     this.barraVisible = !this.barraVisible;
   }
 
+
+  generarUrlImagen() {
+    const baseUrl = this.servicio.getInfoImg('');
+    this.imdDescargaDatos= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
+  }
 }

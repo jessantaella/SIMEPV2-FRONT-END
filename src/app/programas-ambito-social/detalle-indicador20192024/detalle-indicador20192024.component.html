@@ -24,13 +24,13 @@
   <div class="col-12 col-md-1 justify-content-center">
     <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
        download="Programas_derivados_PND.xls">
-       <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_datos2.jpg" alt="Imagen del botón"
+       <img [src]="this.imdDescargaDatos" alt="Imagen del botón"
        class="img-fluid image-mobile">
     </a>
   </div>
     <!-- Texto a la derecha del botón -->
     <div class="col-12 col-md-2">
-      <span class="ms-1 impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
+      <span class=" impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
                   'circle-parametros': estadistica.Tipo === 'PARÁMETROS',
                   'circle-metas': estadistica.Tipo === 'METAS PARA EL BIENESTAR',
                   'circle-programas': estadistica.Tipo === 'PROGRAMAS DERIVADOS'
-                }" class=" circle valores">
+                }" class=" circle">
                     {{estadistica.Conteo}}
                 </div>
             </div>

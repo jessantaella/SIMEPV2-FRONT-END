@@ -5,7 +5,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-indice20192024',
   templateUrl: './indice20192024.component.html',
@@ -26,7 +25,7 @@ export class Indice20192024Component {
   esEscritorio = false;
   @ViewChild('planeacion')
   planeacion!: ElementRef;
-
+  imgNube='';
 
   listaEstadisticasBasicas: any[] =[];
   listaSectores: any[] = [];
@@ -41,6 +40,7 @@ export class Indice20192024Component {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     if (this.isBrowser) {
+        this.generarUrlImagen();
       this.breakpointObserver
         .observe(['(max-width: 576px)', '(min-width: 577px) and (max-width: 1200px)', '(min-width: 1201px)'])
         .subscribe((result: BreakpointState) => {
@@ -126,4 +126,10 @@ export class Indice20192024Component {
   redirigirAIndicador(idSector: string) {
     this.router.navigate(['/DetalleIndicador19-24', idSector]);
   }
+
+  generarUrlImagen() {
+    const baseUrl = this.servicio.getInfoImg('');
+    this.imgNube= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
+  }
+
 }

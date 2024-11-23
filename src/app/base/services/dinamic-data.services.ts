@@ -88,12 +88,12 @@ getInfoImg(imagen: string): string {
     let baseUrl: string;
 
     if (hostname.includes('sistemas')) {
-      baseUrl = 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
+      baseUrl = 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/';
     } else if (hostname.includes('qa')) {
-      baseUrl = 'https://webqa.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
+      baseUrl = 'https://webqa.coneval.org.mx/SiteCollectionImages/SIMEPS/';
     } else {
       // Ruta  de desarrollo en `webdev`
-      baseUrl = 'http://webdev.coneval.org.mx/SiteCollectionImages/SIMEPS/LogosSociales/';
+      baseUrl = 'http://webdev.coneval.org.mx/SiteCollectionImages/SIMEPS/';
     }
 
     return `${baseUrl}${imagen}`;
@@ -108,7 +108,7 @@ getInfoImg(imagen: string): string {
     if (url === 'localhost') {
       return "http://" + url + ':4200/SIMEPS/' + ruta;
     }else if(url.includes('10.1.15.102')){
-      return "https://" + url + ':4000/SIMEPS/' + ruta;
+      return "http://" + url + ':4000/SIMEPS/' + ruta;
     }else if (url.includes('qa') || url.includes('sistemas')) {
       return "https://" + url + '/SIMEPS/' + ruta;
     } else {

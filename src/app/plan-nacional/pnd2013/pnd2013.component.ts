@@ -15,7 +15,6 @@ export class Pnd2013Component implements OnInit{
   objetivos: any [] = [];
   todoListadoIndicadorObjetivo : any = [];
   listadoIndicadorObjetivo : any = [];
-
   metaSeleccionada : number = 0;
   isBrowser = false;
   redes: any;
@@ -33,6 +32,7 @@ export class Pnd2013Component implements OnInit{
   imgEstrategiaTransversal="";
   servidorImg = 'http://devnet.coneval.org.mx:84/_SIMEPS/img/';
   servImgMetas='';
+  imgDescarga='';
 
   mostrarVistaObjetivo :boolean = false;
 
@@ -44,7 +44,9 @@ private titleService: Title){
   this.consultarData();
   if (this.isBrowser) {
     this.cargarImg();
+    this.generarUrlImagen();
   }
+
 }
 
   ngOnInit(): void {
@@ -175,10 +177,15 @@ regresar(){
 }
 
 cargarImg() {
-  this.imgObjTranversale= this.servicio.getURLSimepsViejito('_SIMEPS/img/BotonesMetasNacionales/btn_estrategias_transversales_OVER.jpg');
-  this.imgEstrategiaTransversal= this.servicio.getURLSimepsViejito('_SIMEPS/img/BotonesMetasNacionales/btn_estrategias_transversales.jpg');
-  this.servImgMetas=this.servicio.getURLSimepsViejito('_SIMEPS/');
-}
+  this.imgObjTranversale= this.servicio.getImagen('btn_estrategias_transversales_OVER.jpg');
+  this.imgEstrategiaTransversal= this.servicio.getImagen('btn_estrategias_transversales.jpg');
+  this.servImgMetas= this.servicio.getImagen('');
+  //this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
 
+  }
 
+  generarUrlImagen() {
+    const baseUrl = this.servicio.getInfoImg('');
+    this.imgDescarga= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
+  }
 }
