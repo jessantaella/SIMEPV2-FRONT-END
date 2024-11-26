@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ServerConfService } from '../../../app/server-confing.service';
 
 @Injectable({
@@ -144,43 +144,47 @@ export class AmbitosocialService {
     return this.http.get<any>(url);
   }
 
-  descargarExcel(): Observable<Blob> {
-    let url = this.servidor+`/PAS1318/DescargarBasePND`;
+  /*descargarExcel() {
+    let url = this.servidor + `/PAS1318/DescargarBasePND`;
 
-    // Configuramos los headers, aunque 'Access-Control-Allow-Origin' generalmente se configura en el servidor
-    const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
+    // Crea un iframe invisible para realizar la descarga
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none'; // Hacer el iframe invisible
+    iframe.src = url; // Asignar la URL de descarga al iframe
+    document.body.appendChild(iframe); // Agregar el iframe al cuerpo del documento
 
-    return this.http.get(url, {
-      headers: headers,
-      responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
-    });
-  }
+    // Remover el iframe después de un corto tiempo para limpiar el DOM
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 1000); // Eliminar el iframe después de 1 segundo
+  }*/
+
+    obtenerUrlDescarga(): Observable<Blob> {
+      let url= `${this.servidor}/PAS1318/DescargarBasePND`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
 
     descargarBDExcelID(id: number): Observable<Blob> {
       let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}`;
       return this.http.get(url, {
-        responseType: 'blob' // Especifica que la respuesta es un blob (archivo binario)
-      });
+        responseType: 'blob'});
     }
 
     descargarBDCsvID(id: number): Observable<Blob> {
-      let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}&type=2`;
-      return this.http.get(url, {
-        responseType: 'blob'
-      });
+      let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}&tipo=2`;
+      return this.http.get(url, {responseType: 'blob'});
     }
 
     descargarFichaTecnica1924(id: number, idIndicador: number): Observable<Blob> {
-    let url = this.servidor+`/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
-    return this.http.get(url, { responseType: 'blob' });
-    }
-
-    descargarFichaTecnica1318(id: number, idIndicador: number) {
-      let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      let url = this.servidor+`/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
       return this.http.get(url, { responseType: 'blob' });
-    }
+      }
+
+
+      descargarFichaTecnica1318(id: number, idIndicador: number) {
+        let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+        return this.http.get(url, { responseType: 'blob' });
+      }
 
     obtenerUrlReporteHistorico1318(): Observable<any> {
       let url = this.servidor+`/PAS1318/Parametros?sNombreParametro=URL_REPORTE_HISTORICO_IND_FIN`;

@@ -11,7 +11,7 @@
       <div class="col-6">
         <a (click)="descargarFichaTecnica()"
           download="Programas_derivados_PND.xls">
-          <img src="http://devnet.coneval.org.mx:84/_SIMEPS/img/descarga_excel.jpg" alt="Imagen del botón"
+          <img [src]="this.imgDescarga" alt="Imagen del botón"
             class="img-fluid w-75">
         </a>
       </div>

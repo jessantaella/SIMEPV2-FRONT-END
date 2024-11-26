@@ -77,8 +77,7 @@ export class DetalleBarra20192024Component {
   obtenerInfo(numObjetivo: number): any | undefined {
     let objetivo = this.opcionesSecundarias.find(obj => obj.objetivo === numObjetivo);
     if (!objetivo) {
-      //console.warn(`No se encontró el objetivo con numObjetivo: ${numObjetivo}`);
-      console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
+      //console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
     }
     return objetivo ? objetivo.info : undefined;
   }

@@ -30,7 +30,7 @@ export class DetalleIndicadorComponent {
   idProgramaSect: number | null = null;
   mostrarDetalles : boolean = false;
 
-  previousIdSector: string | null = null; 
+  previousIdSector: string | null = null;
   plantilla = '';
 
   listaSectores: any[] = [];
@@ -39,7 +39,7 @@ export class DetalleIndicadorComponent {
   listaObjetivosSectoriales : any[] = [];
   loadingProgramasSectoriales = true;
   barraVisible: boolean = true; // Inicialmente visible
-
+  imgDescarga ='';
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     private servicio: DataDynamic,
@@ -50,6 +50,9 @@ export class DetalleIndicadorComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     this.consultaSectores();
+    if (this.isBrowser) {
+      this.cargarImg();
+    }
   }
 
 
@@ -62,11 +65,11 @@ export class DetalleIndicadorComponent {
       }, 10);
     }
   }
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.idSector = params.get('idSector');
-      console.log(this.idSector); // Aquí puedes ver el valor en la consola
+      console.log(this.idSector);
       this.consultaEstadisticasBasicas(this.idSector ? parseInt(this.idSector) : 0);
       this.consultaProgramasSectoriales(this.idSector ? parseInt(this.idSector) : 0);
     });
@@ -92,7 +95,7 @@ export class DetalleIndicadorComponent {
   }
 
   /**
-   *  Cambia opción de select 
+   *  Cambia opción de select
    */
 
   onSectorChange(event: Event) {
@@ -153,5 +156,34 @@ onIdProgramaSectChange(newIdProgramaSect: number | null) {
 
   console.log('Nuevo idProgramaSect:', this.idProgramaSect);
 }
-  
+
+descargarExcel() {
+  this.ambitosocialService.obtenerUrlDescarga().subscribe({
+    next: (blob: Blob) => {
+      console.log('Blob recibido:', blob);
+
+      // Crear una URL para el Blob
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      // Crear un enlace temporal
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'Base_de_Datos_del_PND';
+      document.body.appendChild(link);
+
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    },
+    error: (error) => {
+      console.error('Error al obtener el archivo de descarga:', error);
+    }
+  });
+}
+
+  cargarImg() {
+    const baseUrl = this.servicio.getInfoImg('');
+    this.imgDescarga = `${baseUrl}Icons-new%20DB/NUBE.jpg`;
+    }
+
 }

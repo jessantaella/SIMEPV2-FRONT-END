@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-informacion20192024',
@@ -30,9 +31,21 @@ export class DetalleInformacion20192024Component implements OnInit{
 
   loading: boolean = false;
 
+  imgDescarga='';
+  isBrowser = false;
 
-  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,     private cdr: ChangeDetectorRef,     private servicio: DataDynamic, private router: Router ) {
+  listaProgramasSectoriales: any[] =[];
+  loadingProgramasSectoriales = true;
+  nombreProgramaSeleccionado: string = '';
 
+  constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,     private servicio: DataDynamic, private router: Router,    @Inject(PLATFORM_ID) private platformId: any,
+  )
+  {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.cargarDiagrama();
+    }
   }
 
   ngOnInit(): void {
@@ -47,6 +60,7 @@ export class DetalleInformacion20192024Component implements OnInit{
       }else{
         let idProgramaSect = params.get('idProSectorial') ? parseInt(params.get('idProSectorial')!) : 0;
         this.consultaObjetivosSectoriales(idProgramaSect);
+        this.consultaProgramasSectoriales(idProgramaSect);
       }
     });
   }
@@ -58,7 +72,6 @@ export class DetalleInformacion20192024Component implements OnInit{
   }
 
   obtenerInformacionIndicadorDetalle() {
-    console.log(this.idIndicador);
     this.ambitosocialService.getinformacionIndicador1924(this.idIndicador).subscribe(
       res => {
         this.informacion = res?.Data[0];
@@ -102,9 +115,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   obtenerOpcionesSecundarias(idProgramaSectorial:number,descObjetivo:string,numObjetivo:number){
     this.ambitosocialService.getOpcionesObjetivosSectoriales1924(idProgramaSectorial,descObjetivo,numObjetivo).subscribe(
       res=>{
-        console.info("CBB" + res);
-              // Actualiza la URL con el nuevo idIndicador
-
+        // Actualiza la URL con el nuevo idIndicador
         this.nombreIndicador = res?.Data[0]?.INDICADOR      ;
         this.idIndicador = res?.Data[0]?.ID_INDICADOR;
         this.router.navigate([], {
@@ -135,7 +146,7 @@ export class DetalleInformacion20192024Component implements OnInit{
             this.derechosSociales = res.Data.map((derecho: { DER_DESCRIPCION: string }) => {
               console.log('Derecho:', derecho);
               const descripcion = derecho.DER_DESCRIPCION;
-              const imagenUrl = `${baseUrl}${encodeURIComponent(descripcion)}.jpg`;
+              const imagenUrl = `${baseUrl}LogosSociales/${encodeURIComponent(descripcion)}.jpg`;
               console.log('URL de imagen:', imagenUrl);
               return {
                 ...derecho,
@@ -153,28 +164,74 @@ export class DetalleInformacion20192024Component implements OnInit{
       );
     }
 
-      descargarFichaTecnica() {
-        const id = this.route.snapshot.queryParamMap.get('idProSectorial') ? parseInt(this.route.snapshot.queryParamMap.get('idProSectorial')!) : 0;
-        const idIndicador = this.idIndicador;
 
-        this.ambitosocialService.descargarFichaTecnica1924(id, idIndicador).subscribe({
-          next: blob => {
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `FichaTecnica_${id}_${idIndicador}.xlsx`; // Nombre del archivo a descargar
-            link.click();
-            window.URL.revokeObjectURL(url); // Limpia el objeto URL
-          },
-          error: error => {
-            console.error('Error al descargar la ficha técnica:', error);
-            //alert('Hubo un problema al intentar descargar la ficha técnica. Intenta nuevamente.');
-          }
-        });
-      }
+    descargarFichaTecnica(): void {
+      const id = this.route.snapshot.queryParamMap.get('idProSectorial')
+        ? parseInt(this.route.snapshot.queryParamMap.get('idProSectorial')!, 10)
+        : 0;
+      const idIndicador = this.idIndicador;
+
+      this.ambitosocialService.descargarFichaTecnica1924(id, idIndicador).subscribe({
+        next: blob => {
+          const url = window.URL.createObjectURL(blob);
+
+          const nombreSeguro = this.nombreProgramaSeleccionado
+            .replace(/[<>:"/\\|?*]/g, '')
+            .replace(/\s+/g, '_');
+
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `Fichas_Tecnicas_Indicadores_PND4T_Ficha_Tecnica_${nombreSeguro}.xlsx`; // Nombre dinámico
+          link.click();
+
+          window.URL.revokeObjectURL(url);
+        },
+        error: error => {
+          console.error('Error al descargar la ficha técnica:', error);
+        },
+      });
+    }
+
+
+
+
 
     toggleMostrarMas() {
       this.mostrarMas = !this.mostrarMas; // Cambia el estado de mostrar más
     }
+
+    cargarDiagrama() {
+      this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
+
+    }
+
+
+    consultaProgramasSectoriales(idProgramaSect: number): void {
+      this.ambitosocialService.getTodosProgramasSectoriales1924().subscribe({
+        next: res => {
+          // filtor  porID_PROG_SECTORIAL
+          const programasSectoriales = res?.Data.filter(
+            (programa: { ID_PROG_SECTORIAL: number }) => programa.ID_PROG_SECTORIAL === idProgramaSect
+          );
+          console.log('Programas sectoriales filtrados:', programasSectoriales);
+
+          // obt pro seleccionado
+          const programaSeleccionado = programasSectoriales.length > 0 ? programasSectoriales[0] : null;
+          console.log('Programa seleccionado:', programaSeleccionado);
+          this.nombreProgramaSeleccionado = programaSeleccionado?.NOMBRE || 'Nombre_Desconocido';
+          this.listaProgramasSectoriales = programasSectoriales;
+          this.loadingProgramasSectoriales = false;
+        },
+        error: error => {
+          console.error('Error al consultar los programas sectoriales:', error);
+        },
+      });
+    }
+
+
+
+
+
+
 
 }

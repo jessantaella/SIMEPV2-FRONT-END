@@ -31,6 +31,7 @@ export class Indice20132018Component {
   color :string[] = ['#0302C4','#1F5897','#2B82BA','#23B4AE'];
 
   plantilla = '';
+  imdDescargaDatos='';
 
   // Objetos utilizados en vista
   listaEstadisticasBasicas: any[] =[];
@@ -46,6 +47,7 @@ export class Indice20132018Component {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.consultarData();
     if (this.isBrowser) {
+      this.cargarDiagrama();
       this.breakpointObserver
         .observe(['(max-width: 576px)', '(min-width: 577px) and (max-width: 1200px)', '(min-width: 1201px)'])
         .subscribe((result: BreakpointState) => {
@@ -134,29 +136,36 @@ export class Indice20132018Component {
     this.router.navigate(['/DetalleIndicador', idSector]);
   }
 
+
   descargarExcel() {
-    this.ambitosocialService.descargarExcel().subscribe(
-      (blob) => {
-        const url = window.URL.createObjectURL(blob);
-        console.log('URL generada:', url); // Log para verificar la URL generada
+    this.ambitosocialService.obtenerUrlDescarga().subscribe({
+      next: (blob: Blob) => {
+        console.log('Blob recibido:', blob);
+
+
+        const blobUrl = window.URL.createObjectURL(blob);
+
 
         const link = document.createElement('a');
-        link.href = url;
-        link.download = 'Base_de_Datos_del_PND.xlsx';
-        console.log('Nombre del archivo a descargar:', link.download); // Log para verificar el nombre del archivo
-
+        link.href = blobUrl;
+        link.download = 'Base_de_Datos_del_PND';
         document.body.appendChild(link);
+
         link.click();
         document.body.removeChild(link);
-
-        window.URL.revokeObjectURL(url);
+        window.URL.revokeObjectURL(blobUrl);
       },
-      (error) => {
-        console.error('Error en la descarga del archivo:', error); // Manejo de errores
+      error: (error) => {
+        console.error('Error al obtener el archivo de descarga:', error);
       }
-    );
+    });
   }
 
 
+
+cargarDiagrama() {
+  const baseUrl = this.servicio.getInfoImg('');
+  this.imdDescargaDatos= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
+}
 
 }

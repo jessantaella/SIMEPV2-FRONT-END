@@ -79,7 +79,7 @@ obtenerOpcionesSecundarias(idProgramaSectorial: number, descObjetivo: string, nu
 obtenerInfo(numObjetivo: number): any | undefined {
   let objetivo = this.opcionesSecundarias.find(obj => obj.objetivo === numObjetivo);
   if (!objetivo) {
-    console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
+   // console.log('Opciones disponibles:', this.opcionesSecundarias.map(obj => obj.objetivo));
   }
   return objetivo ? objetivo.info : undefined;
 }
