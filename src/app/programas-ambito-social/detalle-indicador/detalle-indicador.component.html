@@ -14,7 +14,7 @@
     Programas derivados del PND 2013-2018
   </p>
 
-    <div class="row justify-content-end mt-3">
+  <div class="row justify-content-center align-items-center mt-3">
         <div class="col-8 mt-2">
             <select class="form-select select-sectores w-100" [(ngModel)]="idSector"  (change)="onSectorChange($event)">
                 <option *ngFor="let sector of listaSectores" [value]="sector.ID_SECTOR">
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Botón con imagen -->
-        <div class="col-1">
+        <div class="col-1 col-sm-3 col-md-1 text-center mb-2">
           <a (click)="descargarExcel()"
              download="Metas_Nacionales_PND20132018.csv">
             <img [src]="this.imgDescarga" alt="Imagen del botón"
@@ -32,7 +32,7 @@
           </a>
         </div>
         <!-- Texto a la derecha del botón -->
-        <div class="col-2">
+        <div class="col-2 col-sm-3 col-md-2 text-center mb-2">
           <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv" class="text-decoration-none no-select">
           <span class="impresion cursor-pointer">Base de datos de los indicadores derivados del PND 2013-2018</span>
           </a>
@@ -58,6 +58,7 @@
         </div>
       </div>
     </div>
+    
 
     <app-carrusel
     [listaProgramasSectoriales]="listaProgramasSectoriales"
