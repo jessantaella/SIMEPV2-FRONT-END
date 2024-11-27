@@ -9,9 +9,10 @@
     </div>
 </div>
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
-  <!--<p class="texto-indicadores me-6">
-    Indicadores de Fin de los programas y acciones sociales
-  </p>-->
+  <p class="texto-indicadores me-6">
+    Indicadores de Fin de los programas y acciones sociales, {{this.ciclo}}<br>
+    {{ this.dependencia }}
+  </p>
 
     <div class="accordion" id="mainAccordion">
         <div class="accordion-item">
