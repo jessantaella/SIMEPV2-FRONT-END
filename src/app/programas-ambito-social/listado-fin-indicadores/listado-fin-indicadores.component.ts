@@ -26,7 +26,9 @@ export class ListadoFinIndicadoresComponent implements OnInit {
   datos!: { pCiclo: string; pRamo: string; pUnidad: string; };
 
   listaPorgramas:any;
-
+  dependencia='';
+  ciclo='';
+  mosaico: { NOM_ARCHIVO:string,LVL:number,CICLO:string,RAMO:string,UNIDAD:string,LIGA:string,DESCRIPCION:string,DEPENDENCIA:string}[]=[];
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
     private ambitoService: AmbitosocialService,
@@ -45,6 +47,7 @@ export class ListadoFinIndicadoresComponent implements OnInit {
         pUnidad: params.get('pUnidad') ?? ''
       };
       this.consultaInformacion();
+      this.obtenerMosaico();
     });
   }
 
@@ -70,4 +73,29 @@ export class ListadoFinIndicadoresComponent implements OnInit {
   redirigiraDetalle(idIndicador:number,idMatriz:number,nivel:number,dependencia:string){
     this.router.navigate(['/DetalleIndicadorFin',idIndicador,idMatriz,nivel,dependencia]);
   }
+
+  obtenerMosaico() {
+    this.ambitoService.obtenerImagenesFin(this.datos.pCiclo).subscribe(
+      res => {
+        // Filtrar por CICLO y RAMO
+        this.mosaico = res?.Data.filter(
+          (item: { RAMO: string; CICLO: string }) =>
+            item.RAMO === this.datos.pRamo && item.CICLO === this.datos.pCiclo
+        );
+
+        // Mostrar la dependencia si hay datos
+        if (this.mosaico?.length > 0) {
+          this.dependencia = this.mosaico[0].DEPENDENCIA;
+          this.ciclo = this.mosaico[0].CICLO;
+          console.log('Dependencia:', this.dependencia);
+        } else {
+          this.dependencia = 'No se encontraron resultados.';
+        }
+      },
+      error => {
+        console.error('Error al obtener las imágenes:', error);
+      }
+    );
+  }
+
 }

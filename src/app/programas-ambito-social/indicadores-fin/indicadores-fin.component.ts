@@ -33,6 +33,7 @@ constructor(
   this.isBrowser = isPlatformBrowser(this.platformId);
   this.consultarData();
   this.obtenerCiclos();
+  this.scrollToTop();
 }
 
 consultarData() {
@@ -135,6 +136,8 @@ cargarImg() {
   this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
   this.imgDescargaCsv=this.servicio.getImagen('descarga_csv.jpg');
   }
-
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
 }
