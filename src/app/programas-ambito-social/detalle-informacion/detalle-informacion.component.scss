@@ -125,6 +125,151 @@ li{
 .contenedor-compacto {
   max-width: 91.5%;
   margin: auto;
+
+
+  
 }
 
+@media (max-width: 576px) {
+   
+    .row {
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+    }
+  
+    .col-lg-3 {
+      width: 100%; 
+      margin-bottom: 20px; 
+      text-align: center; 
+    }
+  
+   
+    .img-fluid {
+      max-width: 80px; 
+      margin: 0 auto; 
+      display: block;
+    }
+  
+    
+    .impresion {
+      font-size: 12px; 
+      margin-top: 10px;
+      text-align: center; 
+      line-height: 1.4; 
+    }
+  }
 
+
+  @media (max-width: 576px) {
+    .nombreIndicador {
+      font-size: 16px; 
+      text-align: center; 
+      padding: 10px;
+      margin-bottom: 20px; 
+      width: 90%; 
+      margin: 0 auto; 
+    }
+  
+   
+    .row {
+      flex-direction: column; 
+      align-items: center; 
+    }
+  
+    .col-6 {
+      width: 100%;
+      margin-bottom: 20px; 
+    }
+  
+    /* Ajustar los textos */
+    .pObjetivo,
+    .pIndicador,
+    .pDescripcion,
+    .pCalculo,
+    .pInformacion {
+      font-size: 14px; 
+      margin-bottom: 15px; 
+      text-align: justify; 
+      line-height: 1.5; 
+    }
+  
+    app-line-chart-multiserie {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    h5 {
+        text-align: center; 
+        margin-top: 15px; 
+        margin-bottom: 15px; 
+        font-size: 16px; 
+      }
+  }
+
+  @media (max-width: 576px) {
+    .subtitulosMetas,
+    .subtitulosMetasIndicador {
+      display: block; 
+      text-align: center!important;  
+      margin-top: 10px;
+      margin-bottom: 10px; 
+      font-size: 16px; 
+    }
+  
+    .subcentrado {
+      text-align: center !important; 
+    }
+  }
+
+  @media (max-width: 576px) {
+    .contenedor-compacto {
+      flex-direction: column; 
+      align-items: center; 
+    }
+  
+
+    .col-3 {
+      width: 100%; 
+      margin-bottom: 20px; 
+      text-align: center; 
+    }
+  
+
+  
+    /* Ajusta los círculos */
+    .circle {
+      width: 60px; 
+      height: 60px;
+      margin: 0 auto 10px; 
+    }
+
+    .list-unstyled {
+        padding: 0; 
+        margin: 0 auto; 
+        width: 90%; 
+      }
+
+      .centradro {
+        text-align: center !important
+      }
+
+      .tituloFinal {
+        display: block;
+        text-align: center; 
+        margin: 0 auto; 
+        font-size: 16px; 
+        margin-bottom: 15px; 
+      }
+    
+      .ms-3 {
+        text-align: center; 
+        margin: 0 auto; 
+        font-size: 14px; 
+        line-height: 1.5; 
+      }
+
+      
+  }
+
+  

@@ -79,3 +79,10 @@
  .indicadores {
      background-color: #83BA2B !important;
  }
+
+ @media only screen and (max-width: 450px) {
+    .redesInternas {
+      width: 50%;
+      margin: auto;
+    }
+  }

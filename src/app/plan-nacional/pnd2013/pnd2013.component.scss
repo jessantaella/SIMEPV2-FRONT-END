@@ -213,3 +213,91 @@ margin-bottom: 0;
   filter: grayscale(100%);
 }
 
+@media only screen and (max-width: 450px) {
+  .redesInternas {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .row.justify-content-center.align-items-center.mt-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espacio entre elementos */
+  }
+
+  .texto-central {
+    text-align: center;
+    margin-left: 0; /* Asegurarse de que no tenga margen lateral */
+  }
+
+  .button-image {
+    max-width: 80px; /* Ajustar el tamaño del botón de descarga */
+  }
+
+  .impresion {
+    font-size: 12px; /* Reducir el tamaño del texto */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Separar del botón */
+  }
+
+  /* Ajustar botones de las metas para que estén en filas */
+  .row.text-center.mb-3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .row.text-center.mb-3 .col {
+    flex: 1 1 calc(50% - 20px); /* Dos columnas por fila */
+    max-width: calc(50% - 20px);
+  }
+
+  .estrategias-transversales {
+    width: 100%; /* Botón de ancho completo */
+    padding: 15px; /* Mejorar apariencia */
+    font-size: 18px;
+    gap: 5px; /* Espaciado entre el texto y el ícono */
+  }
+
+  .imagen-dinamica {
+    width: 40px; /* Tamaño reducido del ícono */
+    height: 40px;
+  }
+
+  
+}
+
+@media (max-width: 576px) {
+  .col-sm-3 {
+    flex: 1 1 100%; /* Ocupa todo el ancho en móviles */
+    text-align: center; /* Centra el contenido */
+    margin-bottom: 10px; /* Espacio entre el botón y el texto */
+  }
+
+  .col-2 {
+    flex: 1 1 100%; /* Ocupa todo el ancho en móviles */
+    text-align: center; /* Centra el texto */
+  }
+
+  .button-image {
+    max-width: 80px; /* Ajusta el tamaño del botón para móviles */
+    margin: 0 auto; /* Centra la imagen */
+  }
+
+  .impresion {
+    font-size: 14px; /* Tamaño más pequeño para móviles */
+    text-align: center; /* Centra el texto */
+    white-space: normal; /* Permite saltos de línea */
+    word-wrap: break-word; /* Asegura que las palabras largas se ajusten */
+    line-height: 1.5; /* Espaciado entre líneas */
+    max-width: 200px; /* Ancho máximo para evitar despliegue vertical excesivo */
+    margin: 0 auto; /* Centra el texto */
+    display: block; /* Asegura que tome todo el espacio disponible */
+  }
+}
+

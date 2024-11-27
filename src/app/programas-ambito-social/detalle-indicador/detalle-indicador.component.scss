@@ -104,3 +104,112 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+@media (max-width: 576px) {
+  .col-sm-3 {
+    width: 100%; 
+    margin-bottom: 15px;
+  }
+
+  .img-fluid {
+    max-width: 80px;
+    margin: 0 auto;
+  }
+
+  .impresion {
+    font-size: 14px; 
+    text-align: center;
+    line-height: 1.5; 
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .redesInternas {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .col-8 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .select-sectores {
+    max-width: 90%;
+    margin: 0 auto; 
+    text-align: center;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .areaGraficas {
+    justify-content: center; 
+    align-items: center;
+    padding: 20px; 
+    min-height: auto; 
+    width: 100%; 
+  }
+
+  .circulo-estadisticas {
+    margin-bottom: 20px; 
+    text-align: center; 
+    width: 100%;
+  }
+
+  .tipo {
+    margin-bottom: 10px; 
+    font-size: 14px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto; 
+  }
+
+  .circle-planes {
+    background-color: #278148;
+  }
+
+  .circle-objetivos {
+    background-color: #53702D;
+  }
+
+  .circle-indicadores {
+    background-color: #83BA2B;
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+  .toggle-bar {
+    width: 100%; 
+  }
+
+  .detalle-barra-content {
+    width: 100%; 
+  }
+
+  .row {
+    flex-wrap: wrap; 
+  }
+
+  .col-4, .col-8 {
+    flex: 1 1 100%; 
+  }
+
+  .toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+}

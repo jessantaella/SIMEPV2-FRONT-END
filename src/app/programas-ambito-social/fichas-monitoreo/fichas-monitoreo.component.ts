@@ -55,13 +55,14 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
     COLOR_CICLO: string;
   }[] = [];
 
-  constructor(private ambitoService:AmbitosocialService,
+  constructor(
+    private ambitoService: AmbitosocialService,
     @Inject(PLATFORM_ID) private platformId: any,
     private servicio: DataDynamic
-  ){
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.obtenerAnios();
     this.validarArreglosVisiblesIzquierda(0);
-
   }
 
 
