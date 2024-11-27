@@ -150,4 +150,5 @@ export class DetalleIndicador20192024Component {
     const baseUrl = this.servicio.getInfoImg('');
     this.imdDescargaDatos= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
   }
+
 }

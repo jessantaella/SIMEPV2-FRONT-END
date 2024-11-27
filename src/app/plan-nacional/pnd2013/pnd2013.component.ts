@@ -33,6 +33,7 @@ export class Pnd2013Component implements OnInit{
   servidorImg = 'http://devnet.coneval.org.mx:84/_SIMEPS/img/';
   servImgMetas='';
   imgDescarga='';
+  lupa='';
 
   mostrarVistaObjetivo :boolean = false;
 
@@ -68,7 +69,8 @@ private titleService: Title){
       this.servicio.getInformacion().subscribe((res) => {
         console.log(res);
         this.titleService.setTitle("SIMEPS | " + 'Plan Nacional de Desarrollo 2013 - 2018 Metas Nacionales');
-        this.nombreSistema = 'Plan Nacional de Desarrollo 2013 - 2018 Metas Nacionales'//res?.simeps?.opciones[1].titulo;
+        //this.nombreSistema = 'Plan Nacional de Desarrollo 2013 - 2018 Metas Nacionales'//res?.simeps?.opciones[1].titulo;
+        this.nombreSistema = 'MÓDULO DE PLANEACIÓN NACIONAL';
         this.redes = res.generales.redes;
       });
     }
@@ -181,6 +183,7 @@ cargarImg() {
   this.imgEstrategiaTransversal= this.servicio.getImagen('btn_estrategias_transversales.jpg');
   this.servImgMetas= this.servicio.getImagen('');
   //this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
+  this.lupa=this.servicio.getImagen('LUPA.png');
 
   }
 

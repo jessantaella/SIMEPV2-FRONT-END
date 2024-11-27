@@ -9,24 +9,26 @@
     </div>
 </div>
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
-
+  <!--<p class="texto-indicadores me-6">
+    Indicadores de Fin de los programas y acciones sociales
+  </p>-->
 
     <div class="accordion" id="mainAccordion">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingMain">
-            <button 
-              class="accordion-button tituloAcordeon" 
-              type="button" 
-              data-bs-toggle="collapse" 
+            <button
+              class="accordion-button tituloAcordeon"
+              type="button"
+              data-bs-toggle="collapse"
               data-bs-target="#collapseMain"
-              aria-expanded="true" 
+              aria-expanded="true"
               aria-controls="collapseMain">
               Programas
             </button>
           </h2>
-          <div 
-            id="collapseMain" 
-            class="accordion-collapse collapse show" 
+          <div
+            id="collapseMain"
+            class="accordion-collapse collapse show"
             aria-labelledby="headingMain"
             data-bs-parent="#mainAccordion">
             <div class="accordion-body">
@@ -34,18 +36,18 @@
               <div class="accordion" id="nestedAccordion">
                 <div *ngFor="let programa of listaPorgramas; let i = index" class="accordion-item">
                   <h2 class="accordion-header" id="headingSub{{i}}">
-                    <button 
+                    <button
                       class="accordion-button subtituloAcordeon mb-2"
-                      type="button" 
-                      data-bs-toggle="collapse" 
-                      [attr.data-bs-target]="'#collapseSub' + i" 
-                      aria-expanded="true" 
+                      type="button"
+                      data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#collapseSub' + i"
+                      aria-expanded="true"
                       [attr.aria-controls]="'collapseSub' + i">
                       {{ programa.NOMBRE }}
                     </button>
                   </h2>
-                  <div 
-                    [id]="'collapseSub' + i" 
+                  <div
+                    [id]="'collapseSub' + i"
                     class="accordion-collapse collapse show"
                     [attr.aria-labelledby]="'headingSub' + i">
                     <div class="accordion-body hijos m-2 ms-2 rounded" *ngFor="let pIndicador of programa?.INDICADORES" (click)="redirigiraDetalle(pIndicador?.ID_INDICADOR,programa?.ID_MATRIZ,pIndicador?.NIVEL,programa?.DEPENDENCIA)">
@@ -58,8 +60,8 @@
           </div>
         </div>
       </div>
-      
-      
+
+
 
 
     <div *ngIf="this.esTablet" style="height: 145px;"></div>

@@ -136,6 +136,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
     // Añadir una leyenda para la serie
     chart.legend = new am4charts.Legend();
+    chart.legend.align = "left"; // Alinear a la izquierda
+    chart.legend.valign = "top"; // Asegurar que la leyenda se mantenga en la parte superior
+    chart.legend.marginLeft = -150;
     series.name = "Meta Alcanzada";
 
     // Añadir un cursor

@@ -23,12 +23,14 @@
       <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
       download="Programas_derivados_PND.xls">
       <img [src]="this.imgNube" alt="Imagen del botón"
-      class="img-fluid button-image">
+      class="img-fluid button-image w-75">
    </a>
     </div>
     <!-- Texto a la derecha del botón -->
     <div class="col-sm-9 col-md-2">
+      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"  class="text-decoration-none no-select">
       <span class=" impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
+    </a>
     </div>
 
   </div>
@@ -42,7 +44,7 @@
         </div>
         <div class="d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly areaGraficas">
           <div *ngFor="let estadistica of listaEstadisticasBasicas; let i = index" class="d-flex flex-column align-items-center justify-content-center">
-            <p class="subtitulo text-center">{{ estadistica?.Tipo }}</p>
+            <p class="subtituloEstadistica text-center">{{ estadistica?.Tipo }}</p>
             <div class="circle" [ngClass]="{
               'circle-sectores': estadistica.Tipo === 'SECTORES',
               'circle-programas-derivados': estadistica.Tipo === 'PROGRAMAS DERIVADOS',

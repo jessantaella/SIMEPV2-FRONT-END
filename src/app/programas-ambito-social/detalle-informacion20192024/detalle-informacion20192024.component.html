@@ -5,7 +5,9 @@
 </div>-->
 
 <div class="row">
+
   <div class="col-3">
+
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-6">
@@ -17,18 +19,22 @@
       </div>
       <!-- Texto a la derecha del botón -->
       <div class="col-6">
-        <span class="ms-1 impresion">Fichas técnicas de los indicadores</span>
+        <label class="ms-1 impresion">Fichas técnicas de los indicadores</label>
       </div>
     </div>
   </div>
 </div>
 <!--<div *ngIf="!loading">-->
-<p class="nombreIndicador fw-bold">
-  Nombre del indicador: {{informacion?.NOMBRE}}
-</p>
+
 <h5>Información general del indicador</h5>
 <div class="row mt-4">
-  <div class="col-6 text-justify">
+  <p class="nombreIndicador fw-bold">
+    {{informacion?.NOMBRE}}
+  </p>
+  <div class="col-12">
+    <app-line-chart-multiserie [data]="data"></app-line-chart-multiserie>
+  </div>
+  <div class="col-12 text-justify">
     <p class="pObjetivo">
       <span class="objetivo">Objetivo Prioritario: </span>
       <span>{{this.informacion?.OBJETIVO}}</span>
@@ -91,9 +97,9 @@
       <span class="uMedida">Unidad de medida: </span> {{informacion?.UDM}}
     </p>-->
   </div>
-  <div class="col-6">
+  <!--<div class="col-6">
     <app-line-chart-multiserie [data]="data"></app-line-chart-multiserie>
-  </div>
+  </div>-->
 </div>
 <div class="row">
   <h5>
@@ -159,11 +165,10 @@
 
 
   <div class="col-12">
-    <!-- Estadisticas Basicas  -->
+    <!-- Desempeño del Indicador -->
     <div class="mb-1">
-      <span class="fw-bold text-start subtitulosMetasIndicador">Desempeño del indicador
-      </span>
-      <div class="row align-items-center justify-content-evenly ">
+      <span class="fw-bold text-start subtitulosMetasIndicador">Desempeño del indicador</span>
+      <div class="row align-items-center justify-content-center contenedor-compacto">
         <div class="col-3">
           <div class="circle m-auto lineaBase" [ngClass]="{'expand': (desempenio?.lB + '').length > 7}">
             <span>{{desempenio?.lB}}</span>
@@ -183,7 +188,7 @@
           <p class="textoGraficas fw-bold m-auto text-center">Meta 2024</p>
         </div>
         <div class="col-3">
-          <div class="circle m-auto porcentaje" [ngClass]="{'expand': (desempenio?.porcentaje + '').length > 7}">
+          <div class="circle m-auto" [ngClass]="{'expand': (desempenio?.porcentaje + '').length > 7}" [ngStyle]="{'background-color': this.color}">
             <span>{{desempenio?.porcentaje}}</span>
           </div>
           <p class="textoGraficas fw-bold m-auto text-center">Porcentaje de avance con respecto al 2024</p>
@@ -198,28 +203,37 @@
 
     <ul class="list-unstyled">
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="adecuacion"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!adecuacion"></i>
+        <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="adecuacion" />
+        <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!adecuacion" />
         Adecuación
       </li>
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.claridad"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.claridad"></i>
+        <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.claridad"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.claridad"></i>-->
+        <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="calidadIndicador?.claridad"/>
+        <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!calidadIndicador?.claridad"/>
         Claridad
       </li>
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.relevancia"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.relevancia"></i>
+        <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.relevancia"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.relevancia"></i>-->
+        <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="calidadIndicador?.relevancia"/>
+        <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!calidadIndicador?.relevancia"/>
          Relevancia
       </li>
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.monitoreo"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.monitoreo"></i>
+
+        <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="calidadIndicador?.monitoreo"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.monitoreo"></i>-->
+        <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="calidadIndicador?.monitoreo"/>
+        <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!calidadIndicador?.monitoreo"/>
         Monitoreabilidad
       </li>
       <li>
-        <i class="bi bi-check-circle-fill text-success fs-4"  *ngIf="calidadIndicador?.pertinencia"></i>
-        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.pertinencia"></i>
+        <!--<i class="bi bi-check-circle-fill text-success fs-4"  *ngIf="calidadIndicador?.pertinencia"></i>
+        <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!calidadIndicador?.pertinencia"></i>-->
+        <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="calidadIndicador?.pertinencia"/>
+        <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!calidadIndicador?.pertinencia"/>
         Pertinencia
       </li>
     </ul>

@@ -5,54 +5,62 @@
     <!-- Título Objetivo e Indicador -->
     <div class="row mb-3">
       <div class="col">
-        <h5 class="text-success" style="display: inline;" *ngIf="objetivo">Objetivo: </h5>{{objetivo}}
+        <h5 class="enfoque" style="display: inline;" *ngIf="objetivo">Objetivo: </h5>{{objetivo}}
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <h5 class="text-success" style="display: inline;">Indicador: </h5> {{datoObjetivo?.NOMBRE}}
+        <h5 class="enfoque" style="display: inline;">Indicador: </h5> {{datoObjetivo?.NOMBRE}}
       </div>
     </div>
-   
-  
+
+
     <!-- Definición del Indicador -->
     <div class="row mb-1">
       <div class="col">
-        <h6 class="text-success">Definición del Indicador:</h6>
+        <h6 class="enfoque">Definición del Indicador:</h6>
         <p class="text-justify">{{datoObjetivo?.DEFINICION}}</p>
       </div>
     </div>
-  
+
     <!-- Unidad de Medida y Calificación del Indicador -->
     <div class="row mb-3">
       <div class="col-md-6">
-        <h6 class="text-success" style="display: inline;">Unidad de medida:</h6> {{datoObjetivo?.UNIDAD_MEDIDA}}
+        <h6 class="enfoque" style="display: inline;">Unidad de medida:</h6> <p style="display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 13px;"> {{datoObjetivo?.UNIDAD_MEDIDA}}</p>
       </div>
     </div>
 
     <div class="row mb-3">
       <div class="col-md-6">
          <!-- Calificación del Indicador -->
-         <h6 class="text-success">Calificación del Indicador:</h6>
+         <h6 class="enfoque">Calificación del Indicador:</h6>
          <ul class="list-unstyled">
-           <li>
-             <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_CLARIDAD"></i> 
-             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_CLARIDAD"></i> 
+           <li class="textoC">
+            <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="datoObjetivo?.CALIF_CLARIDAD"/>
+            <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40" *ngIf="!datoObjetivo?.CALIF_CLARIDAD"/>
+             <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_CLARIDAD"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_CLARIDAD"></i>-->
              Claridad
            </li>
-           <li>
-             <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_RELEVANCIA"></i>
-             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_RELEVANCIA"></i>
+           <li class="textoC">
+            <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="datoObjetivo?.CALIF_RELEVANCIA"/>
+            <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40"  *ngIf="!datoObjetivo?.CALIF_RELEVANCIA"/>
+             <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_RELEVANCIA"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_RELEVANCIA"></i>-->
               Relevancia
            </li>
-           <li>
-             <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_MONITOREABILIDAD"></i>
-             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_MONITOREABILIDAD"></i> 
+           <li class="textoC">
+            <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="datoObjetivo?.CALIF_MONITOREABILIDAD"/>
+            <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40"  *ngIf="!datoObjetivo?.CALIF_MONITOREABILIDAD"/>
+             <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_MONITOREABILIDAD"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_MONITOREABILIDAD"></i>-->
              Monitoreabilidad
            </li>
-           <li>
-             <i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_PERTINENCIA"></i>
-             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_PERTINENCIA"></i>
+           <li class="textoC">
+            <img [src]="this.imgCheck" alt="Check" class="img-fluid img-40x40" *ngIf="datoObjetivo?.CALIF_PERTINENCIA"/>
+            <img [src]="this.imgWarn" alt="Check" class="img-fluid img-40x40"  *ngIf="!datoObjetivo?.CALIF_PERTINENCIA"/>
+             <!--<i class="bi bi-check-circle-fill text-success fs-4" *ngIf="datoObjetivo?.CALIF_PERTINENCIA"></i>
+             <i class="bi bi-exclamation-circle-fill text-warning fs-4" *ngIf="!datoObjetivo?.CALIF_PERTINENCIA"></i>-->
              Pertinencia
            </li>
          </ul>
@@ -65,21 +73,21 @@
       <!-- Calidad y Enfoque del Indicador -->
       <div class="row mb-3">
         <div class="col">
-          <h6 class="text-success">Calidad:</h6>
+          <h6 class="enfoque">Calidad:</h6>
           <p class="ml-3">{{datoObjetivo?.CATEGORIA_CALIDAD}}</p>
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col">
-          <h6 class="text-success" style="display: inline;">Enfoque del Indicador:</h6>
-          <p>{{datoObjetivo?.ENFOQUE_INDICADOR}}</p>
+          <h6 class="enfoque" style="display: inline;">Enfoque del Indicador:</h6>
+          <span> {{datoObjetivo?.ENFOQUE_INDICADOR}}</span>
         </div>
       </div>
 
       <div class="row mb-3" *ngIf="datoObjetivo?.COMENTARIO">
         <div class="col">
-          <h6 class="text-success" style="display: inline;">Comentario:</h6>
+          <h6 class="enfoque" style="display: inline;">Comentario:</h6>
           <p class="text-justify">{{datoObjetivo?.COMENTARIO}}</p>
         </div>
       </div>
@@ -94,4 +102,3 @@
     </div>
   </div>
 
-  

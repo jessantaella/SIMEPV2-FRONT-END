@@ -23,7 +23,34 @@
 }
 
 .btnCarousel{
-    background-color: transparent; 
+    background-color: transparent;
     border: none;
     font-size: 30px;
+}
+
+.indicador {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicador.activo {
+  background-color: #007bff;
+}
+
+
+button:focus, .cicloSeleccionado:focus,
+button:active, .cicloSeleccionado:active {
+  background-color: #285333 !important; /* Fondo deseado */
+  color: #fff !important; /* Color del texto */
+  border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }

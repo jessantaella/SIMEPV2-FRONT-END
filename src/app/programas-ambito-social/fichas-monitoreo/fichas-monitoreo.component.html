@@ -1,12 +1,12 @@
 <div class="position-fixed w-100 bg-white" #planeacion>
-    <div
-        class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
-        <div id="divOcultarRedes" class="social-icons redesInternas">
-            <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
-                    [alt]="red?.alt" class="iconoRed" /></a>
-        </div>
-        <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
-    </div>
+  <div
+      class="container-fluid px-0 d-flex flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row  border-bottom">
+      <div id="divOcultarRedes" class="social-icons redesInternas">
+          <a class="img-red" target="_blank" [href]="red?.url" *ngFor="let red of redes"><img [src]="red?.img"
+                  [alt]="red?.alt" class="iconoRed" /></a>
+      </div>
+      <span id="divOcultarTitulo" class="w-100 text-center titulo-coneval">{{nombreSistema}}</span>
+  </div>
 </div>
 
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
@@ -19,7 +19,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-auto">
-                <button *ngFor="let a of anios" class="btn m-2 ciclos" 
+                <button *ngFor="let a of anios" class="btn m-2 ciclos"
                         [ngClass]="{'cicloSeleccionado': a?.CICLO === cicloSeleccionado}"
                         (click)="seleccionaCiclo(a?.CICLO ?? 2016)"
                         >
@@ -28,17 +28,17 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <div class="row align-items-center fichas" *ngIf="fichas.length>0">
         <!-- Botones en pantallas medianas en adelante -->
         <div class="col-auto d-none d-sm-flex justify-content-center">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
+            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()" >
                 <fa-icon [icon]="faChevronLeft"></fa-icon>
             </button>
         </div>
-    
+
         <!-- Contenido de la fila -->
         <div class="col">
             <div class="row">
@@ -49,32 +49,39 @@
                 </div>
             </div>
         </div>
-    
+
 
          <!-- Botones en pantallas medianas en adelante -->
          <div class="col-auto d-none d-sm-flex justify-content-center">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()">
+            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
                 <fa-icon [icon]="faChevronRight"></fa-icon>
             </button>
         </div>
-    
 
+               <!-- Indicadores por bloque -->
+               <div class="d-flex justify-content-center mt-3">
+                <div *ngFor="let bloque of bloques; let i = index"
+                  class="indicador"
+                  [class.activo]="i === bloqueActivo"
+                  (click)="irABloque(i)">
+                </div>
+              </div>
 
 
         <!-- Botones en pantallas pequeñas -->
         <div class="col-auto d-flex justify-content-center d-sm-none">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
+            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()">
                 <fa-icon [icon]="faChevronLeft"></fa-icon>
             </button>
         </div>
-    
+
         <div class="col-auto d-flex justify-content-center d-sm-none">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()">
+            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
                 <fa-icon [icon]="faChevronRight"></fa-icon>
             </button>
         </div>
     </div>
-    
+
 
 </div>
 

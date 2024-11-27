@@ -2,7 +2,8 @@
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
     margin: auto;
-    text-align: center;
+    //text-align: center;
+    line-height: 1.2; /* Reduce el espaciado entre líneas */
 }
 
 h5{
@@ -109,3 +110,21 @@ li{
     font-size: 11pt;
     text-align: left;
 }
+
+.img-40x40 {
+  width: 35px;
+  height: 35px;
+}
+
+@media (max-width: 768px) {
+  .textP {
+    text-align: center; /* Centra el texto horizontalmente */
+  }
+}
+
+.contenedor-compacto {
+  max-width: 91.5%;
+  margin: auto;
+}
+
+

@@ -65,28 +65,70 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
       seriesPlaneada.dataFields.valueY = "metaPlaneada";
       seriesPlaneada.dataFields.categoryX = "category";
       seriesPlaneada.strokeWidth = 2;
-      seriesPlaneada.tooltipText = "Meta Planeada {category}: [bold]{metaPlaneada}[/]";
+      //seriesPlaneada.tooltipText = "Meta Planeada {category}: [bold]{metaPlaneada}[/]";
       seriesPlaneada.stroke = am4core.color("#7E015B"); // Color para Meta Planeada
       seriesPlaneada.name = "Meta Planeada";
 
       // Agregar puntos (bullets) a Meta Planeada
       let bulletPlaneada = seriesPlaneada.bullets.push(new am4charts.CircleBullet());
+      bulletPlaneada.tooltipText = "Meta Planeada {category}: [bold]{metaPlaneada}[/]"; // Asocia el tooltip al bullet
       bulletPlaneada.circle.radius = 5;
       bulletPlaneada.circle.fill = am4core.color("#7E015B");
+
+      // Crear un tooltip independiente para los bullets
+      bulletPlaneada.tooltip = new am4core.Tooltip();
+      bulletPlaneada.tooltip.dy = -10; // Mueve el tooltip hacia arriba
+      bulletPlaneada.tooltip.dx = -20;
+      bulletPlaneada.tooltip.background.fill = am4core.color("#7E015B");
+      bulletPlaneada.tooltip.background.stroke = am4core.color("#7E015B");
+      bulletPlaneada.tooltip.label.fill = am4core.color("#FFFFFF");
+      bulletPlaneada.tooltip.getFillFromObject = false; // Deshabilitar herencia del color
+      bulletPlaneada.tooltip.getStrokeFromObject = false;
+
+
 
       // Serie de puntos para Meta Alcanzada
       let seriesAlcanzada = chart.series.push(new am4charts.LineSeries());
       seriesAlcanzada.dataFields.valueY = "metaAlcanzada";
       seriesAlcanzada.dataFields.categoryX = "category";
       seriesAlcanzada.strokeWidth = 2;
-      seriesAlcanzada.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";
+      //seriesAlcanzada.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";
       seriesAlcanzada.stroke = am4core.color("#3C1559"); // Color para Meta Alcanzada
       seriesAlcanzada.name = "Meta Alcanzada";
 
       // Agregar puntos (bullets) a Meta Alcanzada
       let bulletAlcanzada = seriesAlcanzada.bullets.push(new am4charts.CircleBullet());
+      bulletAlcanzada.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";
       bulletAlcanzada.circle.radius = 5;
       bulletAlcanzada.circle.fill = am4core.color("#3C1559");
+
+
+      bulletAlcanzada.tooltip = new am4core.Tooltip();
+      bulletAlcanzada.tooltip.dy = 30; // Mueve el tooltip hacia arriba
+      bulletAlcanzada.tooltip.dx = 10;
+      bulletAlcanzada.tooltip.background.fill = am4core.color("#3C1559");
+      bulletAlcanzada.tooltip.background.stroke = am4core.color("#3C1559");
+      bulletAlcanzada.tooltip.label.fill = am4core.color("#FFFFFF");
+      bulletAlcanzada.tooltip.getFillFromObject = false; // Deshabilitar herencia del color
+      bulletAlcanzada.tooltip.getStrokeFromObject = false;
+
+      let cursor = new am4charts.XYCursor();
+      cursor.behavior = "none"; // Desactiva el comportamiento predeterminado (sin zoom)
+      cursor.lineX.stroke = am4core.color("#FF0000"); // Línea roja para el eje X
+      cursor.lineX.strokeWidth = 0.8; // Ancho de la línea
+      cursor.lineX.strokeOpacity = 1; // Opacidad completa
+      cursor.lineX.strokeDasharray = ""; // Línea continua
+
+      // Ocultar la línea del eje Y
+      cursor.lineY.disabled = true;
+      valueAxisY.cursorTooltipEnabled = false;   // Deshabilitar tooltip para el eje Y
+
+      cursor.xAxis = categoryAxisX; // Vincula el cursor al eje X
+      chart.cursor = cursor; // Agrega el cursor al gráfico
+
+      categoryAxisX.cursorTooltipEnabled = true; // Habilitar tooltip para el eje X
+
+
 
       // Añadir leyenda
       chart.legend = new am4charts.Legend();

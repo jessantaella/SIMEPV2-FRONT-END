@@ -143,7 +143,7 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
     createSeries("MetaAlcanzada", "Meta Alcanzada", am4core.color("#00a94f"));
     createSeries("MetaIntermedia", "Meta Intermedia", am4core.color("#072a5f"));
     createSeries("LineaBase", "Línea Base", am4core.color("#c1c1c1"));
-    createSeries("Meta2018", "Meta", am4core.color("#868484"));
+    createSeries("Meta2018", "Meta Planeada", am4core.color("#868484"));
 
     // Configurar leyenda y cursor
     chart.legend = new am4charts.Legend();

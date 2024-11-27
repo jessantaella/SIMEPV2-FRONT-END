@@ -28,32 +28,35 @@
           <a (click)="descargarExcel()"
              download="Metas_Nacionales_PND20132018.csv">
             <img [src]="this.imgDescarga" alt="Imagen del botón"
-                 class="img-fluid w-75">
+                 class="img-fluid w-75 cursor-pointer">
           </a>
         </div>
         <!-- Texto a la derecha del botón -->
         <div class="col-2">
-          <span class="impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+          <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv" class="text-decoration-none no-select">
+          <span class="impresion cursor-pointer">Base de datos de los indicadores derivados del PND 2013-2018</span>
+          </a>
         </div>
 
       </div>
 
 
     <!-- Estadisticas Sector -->
-    <div class="text-center row d-flex justify-content-center areaGraficas mt-4">
-        <div class=" col-md-9 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-100">
-            <div *ngFor="let estadistica of listaEstadisticasBasicasSector" class="circulo-estadisticas">
-              <p class="tipo text-center">{{estadistica.Tipo}}</p>
-                <div class=" circle valores" [ngClass]="{
-                  'circle-planes': estadistica.Tipo === 'PLANES',
-                  'circle-objetivos': estadistica.Tipo === 'OBJETIVOS',
-                  'circle-indicadores': estadistica.Tipo === 'INDICADORES'
-                }">
-                    {{estadistica.Conteo}}
-                </div>
-            </div>
-
+    <div class="d-flex justify-content-center mt-4">
+      <div class="areaGraficas d-flex align-items-center">
+        <div
+          *ngFor="let estadistica of listaEstadisticasBasicasSector"
+          class="circulo-estadisticas d-flex flex-column align-items-center justify-content-between w-100">
+          <p class="tipo">{{estadistica.Tipo}}</p>
+          <div class="circle valores" [ngClass]="{
+            'circle-planes': estadistica.Tipo === 'PLANES',
+            'circle-objetivos': estadistica.Tipo === 'OBJETIVOS',
+            'circle-indicadores': estadistica.Tipo === 'INDICADORES'
+          }">
+            {{estadistica.Conteo}}
+          </div>
         </div>
+      </div>
     </div>
 
     <app-carrusel

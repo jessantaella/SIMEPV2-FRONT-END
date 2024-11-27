@@ -28,11 +28,13 @@ export class DetalleInformacion20192024Component implements OnInit{
   desempenio: { lB: number, uVA: number, meta: number, porcentaje: number } | undefined;
   calidadIndicador: {claridad:boolean,relevancia:boolean,monitoreo:boolean,pertinencia:boolean} | undefined;
   adecuacion:boolean | undefined;
-
+  color='';
   loading: boolean = false;
 
   imgDescarga='';
   isBrowser = false;
+  imgCheck='';
+  imgWarn='';
 
   listaProgramasSectoriales: any[] =[];
   loadingProgramasSectoriales = true;
@@ -76,6 +78,7 @@ export class DetalleInformacion20192024Component implements OnInit{
       res => {
         this.informacion = res?.Data[0];
         console.log('Información del indicador', this.informacion);
+        this.color= this.informacion.PORCENTAJE_COLOR;
         this.metaPlaneada = { vMax: this.informacion?.MAX_META_PLANEADA, vMin: this.informacion?.MIN_META_PLANEADA, vPromedio: this.informacion?.AVG_META_PLANEADA };
         console.log("CB" + this.metaPlaneada);
         this.metaAlcanzada = {vMax:this.informacion?.MAX_META_ALCANZADA, vMin: this.informacion?.MIN_META_ALCANZADA,vPromedio:this.informacion?.AVG_META_ALCANZADA};
@@ -201,8 +204,9 @@ export class DetalleInformacion20192024Component implements OnInit{
     }
 
     cargarDiagrama() {
-      this.imgDescarga = this.servicio.getImagen('descarga_excel.jpg');
-
+      this.imgDescarga = this.servicio.getImagen('descarga_datos3.jpg');
+      this.imgCheck= this.servicio.getImagen('iconoindicador_02.jpg');
+      this.imgWarn=this.servicio.getImagen('iconoindicador_01.jpg');
     }
 
 
@@ -219,8 +223,8 @@ export class DetalleInformacion20192024Component implements OnInit{
           const programaSeleccionado = programasSectoriales.length > 0 ? programasSectoriales[0] : null;
           console.log('Programa seleccionado:', programaSeleccionado);
           this.nombreProgramaSeleccionado = programaSeleccionado?.NOMBRE || 'Nombre_Desconocido';
-          this.listaProgramasSectoriales = programasSectoriales;
-          this.loadingProgramasSectoriales = false;
+         // this.listaProgramasSectoriales = programasSectoriales;
+          //this.loadingProgramasSectoriales = false;
         },
         error: error => {
           console.error('Error al consultar los programas sectoriales:', error);

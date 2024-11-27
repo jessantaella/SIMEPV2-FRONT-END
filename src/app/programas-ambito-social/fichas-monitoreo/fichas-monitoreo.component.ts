@@ -23,8 +23,13 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
   faChevronRight=faChevronRight;
   faChevronLeft=faChevronLeft;
   intervalo: any;
-  tiempo=2500;
+  tiempo=5150;
   cicloSeleccionado = 0;
+  indicadores: boolean[] = [];
+
+  tamanioBloque: number = 4; // Número de imágenes por bloque
+  bloques: number[] = []; // Arreglo para los indicadores
+  bloqueActivo: number = 0;
 
   anios: {
     CICLO: number;
@@ -56,11 +61,14 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
   ){
     this.obtenerAnios();
     this.validarArreglosVisiblesIzquierda(0);
+
   }
 
 
   ngOnInit(): void {
     this.iniciarIntervalo();
+    this.actualizarIndicadores();
+    this.consultarData();
   }
 
   ngOnDestroy(): void {
@@ -96,21 +104,23 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
     this.ambitoService.obtenerFichasxAnio(anio).subscribe(
       res=>{
           this.fichas = res?.Data;
+          this.calcularBloques(); // Recalcula bloques después de obtener las fichas
+    this.validarArreglosVisiblesIzquierda(this.posicionInicial);
       }
     )
   }
 
-  siguiente(){
-    this.posicionInicial = this.posicionInicial+1 === this.fichas.length ? 0 : this.posicionInicial+1;
+  siguiente() {
+    this.posicionInicial = (this.posicionInicial + 1) % this.fichas.length;
     this.validarArreglosVisiblesIzquierda(this.posicionInicial);
-    this.iniciarIntervalo();
-  }
+    this.actualizarIndicadores();
+}
 
-  anterior(){
-    this.posicionInicial = this.posicionInicial-1 <0 ? this.fichas.length-1:this.posicionInicial-1;
+anterior() {
+    this.posicionInicial = (this.posicionInicial - 1 + this.fichas.length) % this.fichas.length;
     this.validarArreglosVisiblesDerecha(this.posicionInicial);
-    this.iniciarIntervalo();
-  }
+    this.actualizarIndicadores();
+}
 
   validarArreglosVisiblesIzquierda(posIni:number){
     this.arregloVisible = [];
@@ -146,6 +156,29 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
 
 
 
+  actualizarIndicadores(): void {
+    this.bloqueActivo = Math.floor(this.posicionInicial / this.tamanioBloque);
+  }
 
 
+  calcularBloques() {
+    const totalImagenes = this.fichas.length;
+    const numBloques = Math.ceil(totalImagenes / this.tamanioBloque);
+    this.bloques = Array.from({ length: numBloques }, (_, i) => i);
+  }
+
+  irABloque(indice: number) {
+    this.bloqueActivo = indice;
+    this.posicionInicial = indice * this.tamanioBloque;
+    this.validarArreglosVisiblesIzquierda(this.posicionInicial);
+    this.actualizarIndicadores();
+    this.iniciarIntervalo(); // Reinicia el intervalo automático
+  }
+  consultarData() {
+    if (this.isBrowser) {
+      this.servicio.getInformacion().subscribe((res) => {
+        this.redes = res.generales.redes;
+      });
+    }
+  }
 }

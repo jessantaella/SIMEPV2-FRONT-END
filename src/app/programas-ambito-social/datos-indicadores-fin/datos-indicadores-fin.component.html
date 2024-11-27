@@ -24,19 +24,19 @@
 
 
 <div class="container my-4">
-    <div class="fw-bold text-primary fs-5">{{dependencia}}</div>
+    <div class="fw-bold fs-5" style="color: #2d3e97; font-family: Arial, Helvetica, sans-serif;">{{dependencia}}</div>
 
-    <div class="fw-bold text-success fs-6 mt-3" style="color:#21a542">{{this.datosIndicador?.NOMBRE_MATRIZ}}</div>
+    <div class="fw-bold text-success fs-6 mt-3" style="color:#21a542; font-family: Arial, Helvetica, sans-serif;">{{this.datosIndicador?.NOMBRE_MATRIZ}}</div>
     <div class="fs-6 text-dark mt-2">
-        <p>{{this.datosIndicador?.DESC_NIVEL}}</p>
-        <p class="ps-3">{{this.datosIndicador?.NOMBRE_IND}}</p>
+        <p style="font-family: Arial, Helvetica, sans-serif;">{{this.datosIndicador?.DESC_NIVEL}}</p>
+        <p class="ps-3" style="font-family: Arial, Helvetica, sans-serif;">{{this.datosIndicador?.NOMBRE_IND}}</p>
     </div>
 
-  
+
 </div>
 <!--Grafica y tabla-->
 <div class="text-center align-middle fw-bold">
-    Tipo de Gráfica: 
+    Tipo de Gráfica:
     <button class="btn btn-sm btn-grafica" (click)="cambiarGraficaSeleccionada(1)">
         <fa-icon [icon]="faChartSimple" *ngIf="graficaSeleccionada !== 1"></fa-icon>
         <img src="https://sistemas.coneval.org.mx/_SIMEPS/img/Grafica/barras.png" width="30px" *ngIf="graficaSeleccionada === 1" alt="icono grafica barras">
@@ -52,7 +52,7 @@
 <app-line-chart-indicador [data]="anios" *ngIf="graficaSeleccionada ===2"></app-line-chart-indicador>
 
 
-<p class="text-center fuente">Fuente: Elaboración CONEVAL con base en información del Portal Aplicativo de​ la Secretaría de Hacienda y Crédito Público (PASH)</p>
+<p class="text-center fuente" style="font-family: Arial, Helvetica, sans-serif;">Fuente: Elaboración CONEVAL con base en información del Portal Aplicativo de​ la Secretaría de Hacienda y Crédito Público (PASH)</p>
 
 
 <div class="table-responsive w-100">
@@ -125,19 +125,19 @@
       <div>
         <p class="textoGraficas fw-bold">Valor máximo</p>
         <div class="circle m-auto planeadas">
-          <span>{{metaPlaneada.vM}}</span>
+          <span>{{metaPlaneada.vM | number:'1.2-2'}}</span>
         </div>
       </div>
       <div>
         <p class="textoGraficas fw-bold">Valor mínimo</p>
         <div class="circle m-auto planeadas">
-          <span>{{metaPlaneada.vMin}}</span>
+          <span>{{metaPlaneada.vMin | number:'1.2-2'}}</span>
         </div>
       </div>
       <div>
         <p class="textoGraficas fw-bold">Valor promedio</p>
         <div class="circle m-auto planeadas">
-          <span>{{metaPlaneada.vP}}</span>
+          <span>{{metaPlaneada.vP | number:'1.2-2'}}</span>
         </div>
       </div>
     </div>
@@ -149,19 +149,19 @@
       <div>
         <p class="textoGraficas fw-bold">Valor máximo</p>
         <div class="circle m-auto alcanzadas">
-          <span>{{metaAlcnazada.vM}}</span>
+          <span>{{metaAlcnazada.vM | number:'1.2-2'}}</span>
         </div>
       </div>
       <div>
         <p class="textoGraficas fw-bold">Valor mínimo</p>
         <div class="circle m-auto alcanzadas">
-          <span>{{metaAlcnazada.vMin}}</span>
+          <span>{{metaAlcnazada.vMin | number:'1.2-2'}}</span>
         </div>
       </div>
       <div>
         <p class="textoGraficas fw-bold">Valor promedio</p>
         <div class="circle m-auto alcanzadas">
-          <span>{{metaAlcnazada.vP}}</span>
+          <span>{{metaAlcnazada.vP | number:'1.2-2'}}</span>
         </div>
       </div>
     </div>

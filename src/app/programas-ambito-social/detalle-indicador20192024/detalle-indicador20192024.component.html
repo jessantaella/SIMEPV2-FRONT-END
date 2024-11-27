@@ -25,18 +25,21 @@
     <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls"
        download="Programas_derivados_PND.xls">
        <img [src]="this.imdDescargaDatos" alt="Imagen del botón"
-       class="img-fluid image-mobile">
+       class="img-fluid image-mobile w-75">
     </a>
   </div>
     <!-- Texto a la derecha del botón -->
     <div class="col-12 col-md-2">
+      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/Bases_SIPOL/Sectoriales_19-20/Programas_derivados_PND.xls" class="text-decoration-none no-select">
       <span class=" impresion">Base de datos de los indicadores derivados del PND 2019-2024</span>
+    </a>
     </div>
   </div>
 
       <!-- Estadisticas Sector -->
-      <div class="text-center row d-flex justify-content-center areaGraficas mt-4">
-        <div class=" col-md-9 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-100">
+      <div class="d-flex justify-content-center mt-4">
+        <div class="areaGraficas d-flex align-items-center">
+        <div class=" col-md-12 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-100">
             <div *ngFor="let estadistica of listaEstadisticasBasicasSector" class="circulo-estadisticas">
               <p class="tipo text-center">{{estadistica.Tipo}}</p>
                 <div [ngClass]="{
@@ -51,13 +54,15 @@
 
         </div>
     </div>
-
+</div>
     <app-carrusel1924
     [listaProgramasSectoriales]="listaProgramasSectoriales"
     [loading]="loadingProgramasSectoriales"
     (idProgramaSectChange)="onIdProgramaSectChange($event)">
     </app-carrusel1924>
 
+    <div class="row" *ngIf="mostrarDetalles">
+    </div>
     <div class="row" *ngIf="mostrarDetalles">
       <!-- Componente lateral -->
       <div [ngClass]="{'col-4': barraVisible, 'col-1': !barraVisible, 'toggle-bar': true}" class="position-relative">

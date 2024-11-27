@@ -11,8 +11,19 @@
 
 <div class="m-auto d-flex flex-column" [ngStyle]="{'padding-top':alto+'px', 'width':'85%', 'min-height':'90vh'}"
   id="total">
-
-  <div class="row justify-content-end mt-3">
+  <div class="rectangulo-contenedor-titulo-wrapper">
+    <div class="text-center rectangulo-contenedor-titulo">
+    <div class="text-center tituloPND">
+      Planeación Nacional de Desarrollo 2013-2018
+    </div>
+    </div>
+    </div>
+  <div class="row justify-content-center align-items-center mt-2">
+    <div class="col-12 col-md-8 d-flex flex-column text-center mb-2">
+      <p class="texto-central me-0">
+        Consulta los resultados de los indicadores del PND 2013-2018
+      </p>
+    </div>
     <!-- Botón con imagen -->
     <div class="col-1">
       <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
@@ -23,7 +34,10 @@
     </div>
     <!-- Texto a la derecha del botón -->
     <div class="col-2">
+      <a href="https://www.coneval.org.mx/coordinacion/Documents/monitoreo/PND/Metas_Nacionales_PND20132018.csv"
+      download="Metas_Nacionales_PND20132018.csv" class="text-decoration-none no-select enlace-negro">
       <span class=" impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+      </a>
     </div>
 
   </div>
@@ -40,24 +54,34 @@
     </div>
   </div>
 
-  <!-- Botón con 90% de ancho de la fila superior -->
-  <div class="d-flex justify-content-center mb-3">
-    <button class="btn w-75" (click)="traerObjetivosTransversales()">
-      <img
-        [src]="metaSeleccionada!= 0 && !mostrarTransversales ? this.imgObjTranversale :  this.imgEstrategiaTransversal"
-        class="ms-2 w-100" alt="Estrategias Imagen">
-    </button>
-  </div>
+<!-- Botón con 90% de ancho de la fila superior -->
+<div class="d-flex justify-content-center mb-3">
+  <button class="btn w-75 estrategias-transversales"
+          (click)="traerObjetivosTransversales()"
+          [ngClass]="{'btn-gris': metaSeleccionada !== 0}">
+    <span class="texto">Estrategias Transversales</span>
+    <img [src]="this.lupa"
+         alt="Icono lupa y engranes"
+         class="icono imagen-dinamica"
+         [ngClass]="{'gris': metaSeleccionada !== 0}" />
+  </button>
+</div>
 
-  <div class="container mt-1 flex-grow-1" *ngIf="mostrarTransversales && !mostrarVistaObjetivo">
+
+
+  <div class="container  flex-grow-1" *ngIf="mostrarTransversales && !mostrarVistaObjetivo">
      <table class="table table-borderless m-0" >
     <tbody>
       <tr class="text-center">
         <th class="titulo-indicadores">Indicadores</th>
       </tr>
       <tr *ngFor="let objetivo of objetivos" class="text-center">
-        <th scope="row" class="urlIndicador" (click)="seleccionarVistaObjetivoTransversal(objetivo)">
+        <th scope="row" >
+          <span
+          (click)="seleccionarVistaObjetivoTransversal(objetivo)"
+          class="urlIndicador">
           {{objetivo?.NOMBRE}}
+        </span>
         </th>
       </tr>
     </tbody>

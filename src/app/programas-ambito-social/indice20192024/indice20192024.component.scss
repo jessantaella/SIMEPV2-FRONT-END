@@ -2,22 +2,23 @@
   color: #278148;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .areaGraficas {
-  background-color: #eeeeee;
+  background-color: #E8E8E8;
 }
 
 .circle {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -32,7 +33,7 @@ img{
 }
 
 .nombreIndicador, .nombreIndicador2{
-  font-size: 13px;
+  font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -94,4 +95,17 @@ img{
   width: 150px;
   height: 150px;
   object-fit: contain;
+}
+
+.impresion {
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.subtituloEstadistica {
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
