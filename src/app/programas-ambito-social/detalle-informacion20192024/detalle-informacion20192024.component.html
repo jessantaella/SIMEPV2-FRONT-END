@@ -173,25 +173,25 @@
           <div class="circle m-auto lineaBase" [ngClass]="{'expand': (desempenio?.lB + '').length > 7}">
             <span>{{desempenio?.lB}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Línea Base</p>
+          <p class="textoGraficas1 fw-bold m-auto text-center">Línea Base</p>
         </div>
         <div class="col-3">
           <div class="circle m-auto ultimoValor" [ngClass]="{'expand': (desempenio?.uVA + '').length > 7}">
             <span>{{desempenio?.uVA}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Último valor alcanzado</p>
+          <p class="textoGraficas1 fw-bold m-auto text-center">Último valor alcanzado</p>
         </div>
         <div class="col-3">
           <div class="circle m-auto meta2018" [ngClass]="{'expand': (desempenio?.meta + '').length > 7}">
             <span>{{desempenio?.meta}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Meta 2024</p>
+          <p class="textoGraficas1 fw-bold m-auto text-center">Meta 2024</p>
         </div>
         <div class="col-3">
           <div class="circle m-auto" [ngClass]="{'expand': (desempenio?.porcentaje + '').length > 7}" [ngStyle]="{'background-color': this.color}">
             <span>{{desempenio?.porcentaje}}</span>
           </div>
-          <p class="textoGraficas fw-bold m-auto text-center">Porcentaje de avance con respecto al 2024</p>
+          <p class="textoGraficas1 fw-bold m-auto text-center">Porcentaje de avance con respecto al 2024</p>
         </div>
       </div>
     </div>
