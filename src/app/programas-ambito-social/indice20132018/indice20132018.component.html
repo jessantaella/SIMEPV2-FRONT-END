@@ -9,8 +9,7 @@
     </div>
 </div>
 <!-- Titulo ventana -->
-<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%'}" id="total" id="padre">
-
+<div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'95%'}" id="total" id="padre">
   <div class="rectangulo-contenedor-titulo-wrapper">
 <div class="text-center rectangulo-contenedor-titulo">
 <div class="text-center tituloPND">
@@ -28,19 +27,13 @@
       <span class="texto-secundario">ámbito social derivados del PND 2013-2018</span>
     </p>
   </div>
-  <!-- Botón con imagen -->
-  <div class="col-sm-3 col-md-1 text-center mb-2">
-    <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv">
-      <img [src]="this.imdDescargaDatos"
-           alt="Imagen del botón" class="img-fluid button-image w-75">
-    </a>
-  </div>
-
   <!-- Texto a la derecha del botón -->
-  <div class="col-sm-9 col-md-2">
-    <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv" class="text-decoration-none no-select">
-    <span class=" impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
-  </a>
+  <div class="col-12 col-md-3 text-center d-flex flex-column flex-md-row justify-content-center">
+    <a  (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv">
+      <img [src]="this.imdDescargaDatos"
+      alt="Imagen del botón" class="img-fija">
+    </a>
+    <span class="mx-3 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
   </div>
 </div>
 

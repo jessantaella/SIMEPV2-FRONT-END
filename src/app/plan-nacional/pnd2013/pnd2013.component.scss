@@ -5,6 +5,7 @@ img{
 .impresion{
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
+  text-align: start;
 }
 
 .objetivoTitulo{
@@ -104,11 +105,15 @@ img{
 
   }
 
-  @media (max-width: 576px) {
-    .button-image {
-        max-width: 100px;
-    }
+img.img-fija{
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: cover;
+  align-items: end;
 }
+
 .enlace-negro {
   color: #000;
   cursor: pointer;
@@ -221,7 +226,7 @@ margin-bottom: 0;
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .row.justify-content-center.align-items-center.mt-2 {
     display: flex;
     flex-direction: column;
@@ -234,12 +239,8 @@ margin-bottom: 0;
     margin-left: 0; /* Asegurarse de que no tenga margen lateral */
   }
 
-  .button-image {
-    max-width: 80px; /* Ajustar el tamaño del botón de descarga */
-  }
-
   .impresion {
-    font-size: 12px; /* Reducir el tamaño del texto */
+    font-size: 14px; /* Reducir el tamaño del texto */
     text-align: center; /* Centrar el texto */
     margin-top: 10px; /* Separar del botón */
   }
@@ -269,7 +270,11 @@ margin-bottom: 0;
     height: 40px;
   }
 
-  
+  img.button-image{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 576px) {
@@ -284,20 +289,20 @@ margin-bottom: 0;
     text-align: center; /* Centra el texto */
   }
 
-  .button-image {
-    max-width: 80px; /* Ajusta el tamaño del botón para móviles */
-    margin: 0 auto; /* Centra la imagen */
-  }
-
   .impresion {
-    font-size: 14px; /* Tamaño más pequeño para móviles */
-    text-align: center; /* Centra el texto */
+    font-size: 14px; /* Reducir el tamaño del texto */
+    text-align: center; /* Centrar el texto */
+    margin: 0 auto; /* Separar del botón */
+    line-height: 1.5;
+    max-width: 600px;
     white-space: normal; /* Permite saltos de línea */
     word-wrap: break-word; /* Asegura que las palabras largas se ajusten */
-    line-height: 1.5; /* Espaciado entre líneas */
-    max-width: 200px; /* Ancho máximo para evitar despliegue vertical excesivo */
-    margin: 0 auto; /* Centra el texto */
-    display: block; /* Asegura que tome todo el espacio disponible */
+  }
+
+  img.button-image{
+    width: 10px;
+    height: 10px;
+    object-fit: cover;
   }
 }
 
