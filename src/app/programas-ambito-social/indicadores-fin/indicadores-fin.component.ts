@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { AmbitosocialService } from '../services/ambitosocial.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-indicadores-fin',
@@ -29,6 +30,7 @@ constructor(
   @Inject(PLATFORM_ID) private platformId: any,
   private ambitoService:AmbitosocialService,
   private servicio: DataDynamic,
+  private route: ActivatedRoute,
 ){
   this.isBrowser = isPlatformBrowser(this.platformId);
   this.consultarData();
@@ -107,17 +109,17 @@ descargarArchivo(fileType: string) {
 }
 
 descargarArchivo2(tipoArchivo: 'xls' | 'csv') {
-  this.ambitoService.descargarFichaIndicadores(this.anioSeleccionado).subscribe({
+  this.ambitoService.descargarIndicadoresFin(this.anioSeleccionado, tipoArchivo== 'xls' ? 1 : 2).subscribe({
     next: (blob) => {
       const fileURL = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
             if (tipoArchivo === 'xls') {
         link.href = `${fileURL}`;
-        link.download = `Detalle_Ficha_Indicador_${this.anioSeleccionado}_14_E_005_1_24003322.xls`;
+        link.download = `Base_Indicadores_Fin__${this.anioSeleccionado}.xls`;
         console.log("link" + link.download);
       } else if (tipoArchivo === 'csv') {
         link.href = `${fileURL}`;
-        link.download = `Detalle_Ficha_Indicador_${this.anioSeleccionado}_14_E_005_1_24003322.csv`;
+        link.download = `Base_Indicadores_Fin__${this.anioSeleccionado}.csv`;
         console.log("link" + link.download);
 
       }

@@ -39,7 +39,7 @@ export class DetalleIndicador20192024Component {
   esTablet = false;
   esEscritorio = false;
   imdDescargaDatos='';
-
+  programa : any;
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     private servicio: DataDynamic,
@@ -150,5 +150,9 @@ export class DetalleIndicador20192024Component {
     const baseUrl = this.servicio.getInfoImg('');
     this.imdDescargaDatos= `${baseUrl}Icons-new%20DB/NUBE.jpg`;
   }
+
+  onProgramaSeleccionado(programa : any){    
+    this.programa = programa
+  } 
 
 }

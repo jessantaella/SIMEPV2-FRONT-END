@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
@@ -34,6 +34,8 @@ export class DetalleInformacionComponent implements OnInit {
   listaProgramasSectoriales: any[] =[];
   loadingProgramasSectoriales = true;
   nombreProgramaSeleccionado: string = '';
+
+  @Output() programaSeleccionado = new EventEmitter<any>();
 
   constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,private servicio: DataDynamic,@Inject(PLATFORM_ID) private platformId: any) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -162,7 +164,29 @@ descargarFichaTecnica1318() {
 
       // Usar nombreProgramaSeleccionado para asignar el nombre al archivo
       a.href = url;
-      a.download = `Fichas_Tecnicas_Indicadores_${nombrePrograma}_${this.idIndicador}.xls`; // Nombre dinámico con el nombre del programa
+      a.download = `Ficha_Tecnica_Indicador_${nombrePrograma}_${this.idIndicador}.xls`; // Nombre dinámico con el nombre del programa
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error("Error al descargar la ficha técnica", error);
+    });
+}
+
+descargarFichasTecnicas1318() {
+  const nombrePrograma = this.nombreProgramaSeleccionado
+  ? this.nombreProgramaSeleccionado.replace(/\s+/g, '_')
+  : 'Nombre_Desconocido';
+
+  this.ambitosocialService.descargarFichasTecnicas1318(this.idProgramaSectorial, this.idIndicador)
+    .subscribe((response: Blob) => {
+      const url = window.URL.createObjectURL(response);
+      const a = document.createElement('a');
+
+      // Usar nombreProgramaSeleccionado para asignar el nombre al archivo
+      a.href = url;
+      a.download = `Fichas_Tecnicas_Indicadores_${nombrePrograma}_${this.idIndicador}.xlsx`; // Nombre dinámico con el nombre del programa
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -192,6 +216,7 @@ cargarImg() {
 
         // obt pro seleccionado
         const programaSeleccionado = programasSectoriales.length > 0 ? programasSectoriales[0] : null;
+        this.programaSeleccionado.emit(programaSeleccionado)
         console.log('Programa seleccionado:', programaSeleccionado);
         this.nombreProgramaSeleccionado = programaSeleccionado?.NOMBRE || 'Nombre_Desconocido';
         this.listaProgramasSectoriales = programasSectoriales;

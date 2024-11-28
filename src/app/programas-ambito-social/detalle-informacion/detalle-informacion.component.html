@@ -3,7 +3,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-lg-6 col-12">
-        <a (click)="descargarFichaTecnica1318()"
+        <a (click)="descargarFichasTecnicas1318()"
           download="Metas_Nacionales_PND20132018.csv">
           <img [src]="this.imgDesargaInd" alt="Imagen del botón"
             class="img-fluid w-75 ">
@@ -19,7 +19,7 @@
     <div class="row justify-content-end mt-3">
       <!-- Botón con imagen -->
       <div class="col-lg-6 col-12">
-        <a >
+        <a (click)="descargarFichaTecnica1318()">
           <img [src]="this.imgDescargaFicha" alt="Imagen del botón"
             class="img-fluid w-75">
         </a>
@@ -97,6 +97,10 @@
   </div>
   <div class="col-6">
     <app-line-chart-multiserie [data]="data"></app-line-chart-multiserie>
+    <div>
+      <p class="nota">*La información publicada fue verificada por las dependencias y entidades responsables de los programas.</p>
+      <p class="nota">Nota: La información fue actualizada en octubre de 2018.</p>
+    </div>
   </div>
 </div>
 

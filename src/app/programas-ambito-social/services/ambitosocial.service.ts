@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { map, Observable} from 'rxjs';
 import { ServerConfService } from '../../../app/server-confing.service';
 
 @Injectable({
@@ -178,21 +178,52 @@ export class AmbitosocialService {
     descargarFichaTecnica1924(id: number, idIndicador: number): Observable<Blob> {
       let url = this.servidor+`/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
       return this.http.get(url, { responseType: 'blob' });
-      }
+    }  
 
-
-      descargarFichaTecnica1318(id: number, idIndicador: number) {
-        let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
-        return this.http.get(url, { responseType: 'blob' });
-      }
+    descargarFichaTecnica1318(id: number, idIndicador: number) {      
+      let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
+    
+    descargarFichasTecnicas1318(id: number, idIndicador: number) {
+      let url = this.servidor+`/PAS1318/DescargarFichasTecnicas?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
 
     obtenerUrlReporteHistorico1318(): Observable<any> {
       let url = this.servidor+`/PAS1318/Parametros?sNombreParametro=URL_REPORTE_HISTORICO_IND_FIN`;
       return this.http.get<any>(url);
     }
 
-    descargarFichaIndicadores(anioSeleccionado: String): Observable<Blob> {
-      const url = this.servidor+`/PAS1318/DescargarFichaIndicadores?parametros.ramo=14&parametros.ciclo=${anioSeleccionado}&parametros.matriz=24000070&parametros.indicador=24003322&parametros.nivel=1`;
+    descargarIndicadoresFin(anioSeleccionado: String, tipo: number): Observable<Blob> {
+      const url = this.servidor+`/PAS1318/DescargarDBIndicadoresFin?parametros.ramo=0&parametros.ciclo=${anioSeleccionado}&parametros.matriz=0&parametros.indicador=0&parametros.nivel=1&parametros.tipo=${tipo}`;
       return this.http.get(url, { responseType: 'blob' });
+    }
+
+    descargarFichaIndicador(ramo: string, ciclo: number, matriz: number, idIndicador: number, nivel: number) {
+      let url = this.servidor+`/PAS1318/DescargarFichaIndicadores?parametros.ramo=${ramo}&parametros.ciclo=${ciclo}&parametros.matriz=${matriz}&parametros.indicador=${idIndicador}&parametros.nivel=${nivel}`;
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Extraer el nombre del archivo desde el header 'Content-Disposition'
+          const contentDisposition = response.headers.get('content-disposition');  
+          let fileName = 'Archivo desconocido'; // Valor por defecto
+  
+          if (contentDisposition) {
+            const fileNameMatch = contentDisposition.match(/filename=(.+)/);
+            if (fileNameMatch) {
+              fileName = fileNameMatch[1]; // Extraemos el nombre del archivo
+            }
+          }     
+  
+          // Retornar tanto el blob como el nombre del archivo
+          return {
+            fileName,
+            fileBlob: response.body
+          };
+        })
+      );
     }
 }
