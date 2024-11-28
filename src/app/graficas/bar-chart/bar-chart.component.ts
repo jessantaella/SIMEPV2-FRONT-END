@@ -78,7 +78,13 @@ export class BarChartComponent implements OnInit, OnDestroy, OnChanges{
       seriesAlcanzada.dataFields.valueY = "metaAlcanzada";
       seriesAlcanzada.dataFields.categoryX = "category";
       seriesAlcanzada.columns.template.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";
-      seriesAlcanzada.columns.template.fillOpacity = 0.8;
+      seriesAlcanzada.columns.template.fillOpacity = 0.8;      
+
+      chart.scrollbarX = new am4core.Scrollbar();
+
+      let cursor = new am4charts.XYCursor();
+      cursor.lineY.disabled = true;
+      chart.cursor = cursor;
 
       chart.logo.disabled = true;
 

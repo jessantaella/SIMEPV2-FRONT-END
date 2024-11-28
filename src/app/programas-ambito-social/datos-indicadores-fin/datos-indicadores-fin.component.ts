@@ -25,6 +25,8 @@ export class DatosIndicadoresFinComponent {
   idIndicador: number = 0;
   idMatriz: number = 0;
   nivel: number = 0;
+  ciclo: number = 0;
+  ramo : string = '';
   faChartSimple = faChartSimple;
   faChartLine = faChartLine;
 
@@ -88,8 +90,10 @@ graficaSeleccionada : number = 1;
       this.idMatriz = Number(params.get('idMatriz'));
       this.nivel =  Number(params.get('nivel'));
       this.dependencia = params.get('dependencia') || '';
+      this.ciclo = Number(params.get('ciclo'));
+      this.ramo = params.get('ramo') || '';
       this.obtenerGraficasRapidas();
-      this.obtenerInformacionIndicador();
+      this.obtenerInformacionIndicador();      
     });
 
   }
@@ -171,12 +175,30 @@ graficaSeleccionada : number = 1;
         this.datosIndicador =  res?.Data[0];
         this.anios = this.datosIndicador?.HISTORICOS;
         console.warn(this.anios);
-        console.log(res);
+        console.log({res});
       }
     )
   }
 
   cambiarGraficaSeleccionada(tipo:number){
     this.graficaSeleccionada = tipo;
+  }
+
+  descargarFichaIndicador() {
+  
+    this.ambitoService.descargarFichaIndicador(this.ramo, this.ciclo,this.idMatriz, this.idIndicador, this.nivel).subscribe(response => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
+      const link = document.createElement('a');
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
+      link.click();
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
+    }, error => {
+      console.error("Error al descargar la ficha técnica", error);
+    });      
   }
 }

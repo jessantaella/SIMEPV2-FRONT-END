@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
@@ -39,6 +39,8 @@ export class DetalleInformacion20192024Component implements OnInit{
   listaProgramasSectoriales: any[] =[];
   loadingProgramasSectoriales = true;
   nombreProgramaSeleccionado: string = '';
+
+  @Output() programaSeleccionado = new EventEmitter<any>();
 
   constructor(private ambitosocialService: AmbitosocialService, private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,     private servicio: DataDynamic, private router: Router,    @Inject(PLATFORM_ID) private platformId: any,
@@ -221,6 +223,7 @@ export class DetalleInformacion20192024Component implements OnInit{
 
           // obt pro seleccionado
           const programaSeleccionado = programasSectoriales.length > 0 ? programasSectoriales[0] : null;
+          this.programaSeleccionado.emit(programaSeleccionado)
           console.log('Programa seleccionado:', programaSeleccionado);
           this.nombreProgramaSeleccionado = programaSeleccionado?.NOMBRE || 'Nombre_Desconocido';
          // this.listaProgramasSectoriales = programasSectoriales;

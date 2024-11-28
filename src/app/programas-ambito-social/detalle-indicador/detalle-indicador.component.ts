@@ -40,6 +40,7 @@ export class DetalleIndicadorComponent {
   loadingProgramasSectoriales = true;
   barraVisible: boolean = true; // Inicialmente visible
   imgDescarga ='';
+  programa : any;
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     private servicio: DataDynamic,
@@ -151,7 +152,7 @@ toggleBarra() {
 onIdProgramaSectChange(newIdProgramaSect: number | null) {
   if(newIdProgramaSect !== this.idProgramaSect){
     this.mostrarDetalles = true;
-    this.idProgramaSect = newIdProgramaSect;
+    this.idProgramaSect = newIdProgramaSect;    
   }
 
   console.log('Nuevo idProgramaSect:', this.idProgramaSect);
@@ -186,4 +187,7 @@ descargarExcel() {
     this.imgDescarga = `${baseUrl}Icons-new%20DB/NUBE.jpg`;
     }
 
+    onProgramaSeleccionado(programa : any){     
+      this.programa = programa
+    } 
 }

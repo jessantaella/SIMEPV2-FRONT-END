@@ -63,7 +63,7 @@ export class ListadoFinIndicadoresComponent implements OnInit {
   consultaInformacion() {
     this.ambitoService.obtenerlistadoIndicadoresPoliticaSocial(this.datos.pCiclo,this.datos.pRamo,this.datos.pUnidad).subscribe(
       res=>{
-        console.log(res);
+        console.log({res});
         this.listaPorgramas = res?.Data.filter((item: any) => item.INDICADORES?.length > 0)
       }
     )
@@ -71,7 +71,7 @@ export class ListadoFinIndicadoresComponent implements OnInit {
 
 
   redirigiraDetalle(idIndicador:number,idMatriz:number,nivel:number,dependencia:string){
-    this.router.navigate(['/DetalleIndicadorFin',idIndicador,idMatriz,nivel,dependencia]);
+    this.router.navigate(['/DetalleIndicadorFin',idIndicador,idMatriz,nivel,dependencia,this.datos.pCiclo,this.datos.pRamo]);
   }
 
   obtenerMosaico() {
