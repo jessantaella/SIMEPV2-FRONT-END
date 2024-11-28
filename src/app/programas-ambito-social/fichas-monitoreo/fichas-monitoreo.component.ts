@@ -178,8 +178,11 @@ anterior() {
   consultarData() {
     if (this.isBrowser) {
       this.servicio.getInformacion().subscribe((res) => {
+        this.nombreSistema = 'MÓDULO DE PLANEACIÓN NACIONAL';
         this.redes = res.generales.redes;
       });
+      
     }
   }
 }
+

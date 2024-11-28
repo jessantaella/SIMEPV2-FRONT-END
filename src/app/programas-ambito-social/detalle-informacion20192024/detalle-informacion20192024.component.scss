@@ -271,3 +271,28 @@ li{
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 768px) {
+  .calidad-indicador ul.list-unstyled {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .calidad-indicador ul.list-unstyled li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .calidad-indicador ul.list-unstyled li img {
+    margin-bottom: 5px;
+  }
+
+  .calidad-indicador span.subtitulosMetasIndicador {
+    text-align: center !important;
+  }
+}

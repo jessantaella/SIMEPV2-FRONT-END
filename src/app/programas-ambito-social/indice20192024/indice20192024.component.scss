@@ -117,3 +117,9 @@ img{
     justify-content: center;
   }
 }
+@media only screen and (max-width: 450px) {
+  .redesInternas {
+    width: 50%;
+    margin: auto;
+  }
+}
