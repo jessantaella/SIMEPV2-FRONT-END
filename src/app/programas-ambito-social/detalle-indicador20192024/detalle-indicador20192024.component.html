@@ -62,8 +62,9 @@
     </app-carrusel1924>
 
     <div class="row" *ngIf="mostrarDetalles">
-    </div>
-    <div class="row" *ngIf="mostrarDetalles">
+      <div [ngClass]="'lblNombre-ProgramaSec colorPSec' + this.programa?.ID_PROG_SECTORIAL">
+        {{this.programa?.NOMBRE}}
+      </div>
       <!-- Componente lateral -->
       <div [ngClass]="{'col-4': barraVisible, 'col-1': !barraVisible, 'toggle-bar': true}" class="position-relative">
         <!-- Botón para ocultar/mostrar la barra, que estará sobre la barra -->
@@ -78,7 +79,7 @@
       </div>
                     <!-- Componente de información CBRP10-->
                     <div [ngClass]="barraVisible ? 'col-8' : 'col-11'">
-                      <app-detalle-informacion20192024></app-detalle-informacion20192024>
+                      <app-detalle-informacion20192024 (programaSeleccionado)="onProgramaSeleccionado($event)"></app-detalle-informacion20192024>
                         </div>
     </div>
     <div *ngIf="this.esTablet" style="height: 145px;"></div>
