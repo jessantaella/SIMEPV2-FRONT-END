@@ -154,33 +154,34 @@
 @media (max-width: 768px) {
   .areaGraficas {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 20px; 
-    background-color: #E8E8E8; 
-    width: 100%; 
-    min-height: auto; 
-    height: auto; 
-    overflow: visible; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #E8E8E8;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
   }
 
   .circulo-estadisticas {
-    flex: 0 1 45%; 
-    max-width: 45%; 
-    margin: 10px; 
-    text-align: center; 
+    flex: 0 1 100%; /* Cada elemento ocupa el 45% del ancho */
+    max-width: 40%; /* Limita el ancho al 45% */
+    margin: 10px; /* Espaciado entre los elementos */
+    text-align: center;
     box-sizing: border-box;
   }
 
+
   .circle {
-    width: 60px; 
+    width: 60px;
     height: 60px;
-    margin: 0 auto; 
+    margin: 0 auto;
   }
 
   .tipo {
-    font-size: 14px; 
+    font-size: 14px;
     margin-bottom: 5px;
   }
 
@@ -189,25 +190,15 @@
     margin-top: 20px;
   }
 
-  .col-12.col-md-1 {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-  }
+
 
   .image-mobile {
-    width: 100px !important; 
-    height: auto; 
-    margin: 0 auto; 
-    display: block; 
+    width: 100px !important;
+    height: auto;
+    margin: 0 auto;
+    display: block;
   }
 
-  .col-12.col-md-1 {
-    display: flex; /* Habilita flexbox */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    margin-top: 15px; /* Añade espacio superior para separar la imagen del selector */
-  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -322,4 +313,19 @@
 
 .colorPSec160 {
   color: rgb(104,51,141);
+}
+
+
+@media (max-width: 768px) {
+  .textoGraficas1 {
+    text-align: center;
+    min-height: 55px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
 }

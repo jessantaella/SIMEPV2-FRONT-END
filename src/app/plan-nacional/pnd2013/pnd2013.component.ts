@@ -112,16 +112,36 @@ traerTodoslosIndicadoresObjetivo(idMetaNacional:number){
     }
   )
 }
+traerObjetivosTransversales() {
+  // Siempre restablecemos y recargamos los datos
+  this.resetearVista();
 
-traerObjetivosTransversales(){
-  this.pndServices.getObjetivosTransversales().subscribe(
-    res=>{
-      console.log(res);
-      this.mostrarTransversales = true;
-      this.metaSeleccionada = 0;
-      this.objetivos = res?.Data;
-    });
+  this.traerDatosObjetivosTransversales();
 }
+
+traerDatosObjetivosTransversales() {
+  this.mostrarTransversales = true;
+
+  this.pndServices.getObjetivosTransversales().subscribe(
+    res => {
+      console.log(res);
+      this.metaSeleccionada = 0;
+      this.objetivos = res?.Data || [];
+    },
+    error => {
+      console.error('Error al obtener los objetivos transversales:', error);
+      this.mostrarTransversales = false;
+    }
+  );
+}
+
+resetearVista() {
+  this.objetivoSeleccionado = null;
+  this.nombreObjetivoSeleccionado = '';
+  this.mostrarVistaObjetivo = false;
+  this.mostrarTransversales = true; // Ocultar las estrategias transversales
+}
+
 
 obtenerIndicadoresObjetivo(ID_OBJETIVO_M:number){
   this.listadoIndicadorObjetivo = [];

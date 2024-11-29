@@ -37,24 +37,24 @@
   </div>
 
       <!-- Estadisticas Sector -->
-      <div class="d-flex justify-content-center mt-4">
-        <div class="areaGraficas d-flex align-items-center">
-        <div class=" col-md-12 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-100">
+     <div class="d-flex justify-content-center mt-4">
+    <div class="areaGraficas d-flex align-items-center">
+        <div class="col-md-12 d-flex p-3 flex-wrap gap-1 pt-4 align-items-center justify-content-evenly w-100">
             <div *ngFor="let estadistica of listaEstadisticasBasicasSector" class="circulo-estadisticas">
-              <p class="tipo text-center">{{estadistica.Tipo}}</p>
+                <p class="tipo text-center  textoGraficas1">{{estadistica.Tipo}}</p>
                 <div [ngClass]="{
                   'circle-objetivos': estadistica.Tipo === 'OBJETIVOS',
                   'circle-parametros': estadistica.Tipo === 'PARÁMETROS',
                   'circle-metas': estadistica.Tipo === 'METAS PARA EL BIENESTAR',
                   'circle-programas': estadistica.Tipo === 'PROGRAMAS DERIVADOS'
-                }" class=" circle">
+                }" class="circle">
                     {{estadistica.Conteo}}
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
     <app-carrusel1924
     [listaProgramasSectoriales]="listaProgramasSectoriales"
     [loading]="loadingProgramasSectoriales"

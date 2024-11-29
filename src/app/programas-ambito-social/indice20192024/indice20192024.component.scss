@@ -8,7 +8,18 @@
 .areaGraficas {
   background-color: #E8E8E8;
 }
-
+@media (max-width: 576px) {
+  .areaGraficas {
+    flex-direction: row; /* Cambia a una fila horizontal */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .areaGraficas > div {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+}
 .circle {
   width: 70px;
   height: 70px;
@@ -123,3 +134,20 @@ img{
     margin: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .textoGraficas1 {
+    text-align: center; /* Centra el texto horizontalmente */
+    min-height: 50px; /* Altura mínima suficiente para alinear textos largos y cortos */
+    line-height: 1.2; /* Espaciado del texto */
+    display: flex; /* Flexbox para centrar verticalmente */
+    align-items: center; /* Alinea el texto verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    padding: 3px; /* Espacio interno */
+    white-space: normal; /* Permite múltiples líneas de texto si son necesarias */
+    overflow-wrap: break-word; /* Asegura que el texto largo se ajuste al ancho */
+  }
+}
+
+
+
