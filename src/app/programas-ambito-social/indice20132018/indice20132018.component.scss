@@ -1,6 +1,6 @@
 .subtitulo{
     color: #278148;
-    font-family: Arial, Helvetica, sans-serif;
+    //font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 24px;
 }
@@ -19,7 +19,7 @@
   align-items: center;
   font-size: 16px;
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
+  //font-family: Arial, Helvetica, sans-serif;
 }
 
 img{
@@ -34,7 +34,7 @@ img{
 
 .nombreIndicador, .nombreIndicador2{
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    //font-family: Arial, Helvetica, sans-serif;
 }
 
 .nombreIndicador2{
@@ -54,7 +54,7 @@ img{
 
 .tituloPND{
     color:#FFFFFF;
-    font-family: Arial, Helvetica, sans-serif;
+    //font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 24px;
 }
@@ -87,7 +87,7 @@ img{
 }
 .texto-central {
   color: #000000;
-  font-family: Arial, sans-serif;
+  //font-family: Arial, sans-serif;
   font-size: 16px;
   text-align: center;
   margin-bottom: 0;
@@ -98,7 +98,7 @@ img{
   display: inline-block;
   color: #000000;
   font-size: 16px;
-  font-family: Arial, sans-serif;
+  //font-family: Arial, sans-serif;
 }
 
 .me-4 {
@@ -126,11 +126,12 @@ img{
   object-fit: contain; /* Ajusta la imagen para que mantenga su proporción */
 }
 
-.impresion {
-  color: #000000; /* Color negro */
-  font-family: Arial, sans-serif; /* Fuente Arial con respaldo */
-  font-size: 13px; /* Tamaño de letra */
+.impresion{
+  font-size: 13px;
+  //font-family: Arial, Helvetica, sans-serif;
+  text-align: start;
 }
+
 .no-select {
   cursor: pointer; /* Muestra la manita */
   user-select: none; /* Desactiva la selección de texto */
@@ -138,7 +139,7 @@ img{
 
 .nombreIndicador3{
   font-size: 13px;
-  font-family: Arial, Helvetica, sans-serif;
+  //font-family: Arial, Helvetica, sans-serif;
 }
 .nombreIndicador3{
   max-width: 150px;
@@ -160,3 +161,47 @@ img{
   text-align: center;
   gap: 5px;
 }
+
+img.img-fija{
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: cover;
+  align-items: end;
+}
+
+@media (max-width: 768px) {
+
+  .impresion {
+    font-size: 14px; /* Reducir el tamaño del texto */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Separar del botón */
+  }
+
+  img.button-image{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .impresion {
+    font-size: 14px; /* Reducir el tamaño del texto */
+    text-align: center; /* Centrar el texto */
+    margin: 0 auto; /* Separar del botón */
+    line-height: 1.5;
+    max-width: 600px;
+    white-space: normal; /* Permite saltos de línea */
+    word-wrap: break-word; /* Asegura que las palabras largas se ajusten */
+  }
+
+  img.button-image{
+    width: 10px;
+    height: 10px;
+    object-fit: cover;
+  }
+}
+

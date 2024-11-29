@@ -47,8 +47,8 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
 
       // Crear el gráfico
       let chart = am4core.create("chartdivLine", am4charts.XYChart);
-         // Deshabilitar el logo de amCharts
-    chart.logo.disabled = true;
+      // Deshabilitar el logo de amCharts
+      chart.logo.disabled = true;
 
       // Configurar los ejes
       let valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
@@ -113,7 +113,6 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
       bulletAlcanzada.tooltip.getStrokeFromObject = false;
 
       let cursor = new am4charts.XYCursor();
-      cursor.behavior = "none"; // Desactiva el comportamiento predeterminado (sin zoom)
       cursor.lineX.stroke = am4core.color("#FF0000"); // Línea roja para el eje X
       cursor.lineX.strokeWidth = 0.8; // Ancho de la línea
       cursor.lineX.strokeOpacity = 1; // Opacidad completa
