@@ -73,12 +73,23 @@ export class BarChartComponent implements OnInit, OnDestroy, OnChanges{
       seriesPlaneada.columns.template.tooltipText = "Meta Planeada {category}: [bold]{metaPlaneada}[/]";
       seriesPlaneada.columns.template.fillOpacity = 0.8;
 
+      seriesPlaneada.tooltip?.events.on("shown", function(ev) {
+        const tooltip = ev.target;
+        tooltip.pointerOrientation = "right"
+      });
+
       // Serie para Meta Alcanzada
       let seriesAlcanzada = chart.series.push(new am4charts.ColumnSeries());
       seriesAlcanzada.dataFields.valueY = "metaAlcanzada";
       seriesAlcanzada.dataFields.categoryX = "category";
-      seriesAlcanzada.columns.template.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";
-      seriesAlcanzada.columns.template.fillOpacity = 0.8;      
+      seriesAlcanzada.columns.template.tooltipText = "Meta Alcanzada {category}: [bold]{metaAlcanzada}[/]";     
+      seriesAlcanzada.columns.template.fillOpacity = 0.8;
+
+
+      seriesAlcanzada.tooltip?.events.on("shown", function(ev) {
+        const tooltip = ev.target;
+        tooltip.pointerOrientation = "left"   
+      });
 
       chart.scrollbarX = new am4core.Scrollbar();
 
@@ -143,9 +154,6 @@ export class BarChartComponent implements OnInit, OnDestroy, OnChanges{
       });
     }
   }
-
-
-
 
   ngOnDestroy(): void {
     if (this.chart) {
