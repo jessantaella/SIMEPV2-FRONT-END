@@ -54,6 +54,7 @@ export class DetalleIndicadorComponent {
     if (this.isBrowser) {
       this.cargarImg();
     }
+    this.scrollToTop();
   }
 
 
@@ -152,7 +153,7 @@ toggleBarra() {
 onIdProgramaSectChange(newIdProgramaSect: number | null) {
   if(newIdProgramaSect !== this.idProgramaSect){
     this.mostrarDetalles = true;
-    this.idProgramaSect = newIdProgramaSect;    
+    this.idProgramaSect = newIdProgramaSect;
   }
 
   console.log('Nuevo idProgramaSect:', this.idProgramaSect);
@@ -187,7 +188,11 @@ descargarExcel() {
     this.imgDescarga = `${baseUrl}Icons-new%20DB/NUBE.jpg`;
     }
 
-    onProgramaSeleccionado(programa : any){     
+    onProgramaSeleccionado(programa : any){
       this.programa = programa
-    } 
+    }
+
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
 }
