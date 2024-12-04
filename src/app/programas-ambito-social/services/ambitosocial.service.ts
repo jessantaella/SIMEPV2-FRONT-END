@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable} from 'rxjs';
 import { ServerConfService } from '../../../app/server-confing.service';
+import { extraerNombreDesdeHeader } from 'src/app/base/helpers/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -164,30 +165,69 @@ export class AmbitosocialService {
       return this.http.get(url, { responseType: 'blob' });
     }
 
-    descargarBDExcelID(id: number): Observable<Blob> {
+    descargarBDExcelID(id: number) {
       let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}`;
       return this.http.get(url, {
-        responseType: 'blob'});
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }
 
-    descargarBDCsvID(id: number): Observable<Blob> {
+    descargarBDCsvID(id: number) {
       let url = this.servidor+`/PAS1318/DescargarBasePND?id=${id}&tipo=2`;
-      return this.http.get(url, {responseType: 'blob'});
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }
 
-    descargarFichaTecnica1924(id: number, idIndicador: number): Observable<Blob> {
+    descargarFichaTecnica1924(id: number, idIndicador: number) {
       let url = this.servidor+`/PAS1924/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
-      return this.http.get(url, { responseType: 'blob' });
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }  
 
     descargarFichaTecnica1318(id: number, idIndicador: number) {      
       let url = this.servidor+`/PAS1318/DescargarFichaTecnica?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
-      return this.http.get(url, { responseType: 'blob' });
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }
     
     descargarFichasTecnicas1318(id: number, idIndicador: number) {
       let url = this.servidor+`/PAS1318/DescargarFichasTecnicas?parametros.id=${id}&parametros.idIndicador=${idIndicador}`;
-      return this.http.get(url, { responseType: 'blob' });
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }
 
     obtenerUrlReporteHistorico1318(): Observable<any> {
@@ -195,9 +235,17 @@ export class AmbitosocialService {
       return this.http.get<any>(url);
     }
 
-    descargarIndicadoresFin(anioSeleccionado: String, tipo: number): Observable<Blob> {
+    descargarIndicadoresFin(anioSeleccionado: String, tipo: number){
       const url = this.servidor+`/PAS1318/DescargarDBIndicadoresFin?parametros.ramo=0&parametros.ciclo=${anioSeleccionado}&parametros.matriz=0&parametros.indicador=0&parametros.nivel=1&parametros.tipo=${tipo}`;
-      return this.http.get(url, { responseType: 'blob' });
+      return this.http.get(url, {
+        observe: 'response',  // Necesitamos los encabezados de la respuesta
+        responseType: 'blob' // Aseguramos que la respuesta sea un blob
+      }).pipe(
+        map(response => {
+          // Retornar tanto el blob como el nombre del archivo
+          return extraerNombreDesdeHeader(response)
+        })
+      );
     }
 
     descargarFichaIndicador(ramo: string, ciclo: number, matriz: number, idIndicador: number, nivel: number) {
@@ -207,22 +255,8 @@ export class AmbitosocialService {
         responseType: 'blob' // Aseguramos que la respuesta sea un blob
       }).pipe(
         map(response => {
-          // Extraer el nombre del archivo desde el header 'Content-Disposition'
-          const contentDisposition = response.headers.get('content-disposition');  
-          let fileName = 'Archivo desconocido'; // Valor por defecto
-  
-          if (contentDisposition) {
-            const fileNameMatch = contentDisposition.match(/filename=(.+)/);
-            if (fileNameMatch) {
-              fileName = fileNameMatch[1]; // Extraemos el nombre del archivo
-            }
-          }     
-  
           // Retornar tanto el blob como el nombre del archivo
-          return {
-            fileName,
-            fileBlob: response.body
-          };
+          return extraerNombreDesdeHeader(response)
         })
       );
     }

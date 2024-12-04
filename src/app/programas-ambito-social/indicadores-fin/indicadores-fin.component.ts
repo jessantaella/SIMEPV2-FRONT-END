@@ -110,28 +110,20 @@ descargarArchivo(fileType: string) {
 }
 
 descargarArchivo2(tipoArchivo: 'xls' | 'csv') {
-  this.ambitoService.descargarIndicadoresFin(this.anioSeleccionado, tipoArchivo== 'xls' ? 1 : 2).subscribe({
-    next: (blob) => {
-      const fileURL = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-            if (tipoArchivo === 'xls') {
-        link.href = `${fileURL}`;
-        link.download = `Base_Indicadores_Fin__${this.anioSeleccionado}.xls`;
-        console.log("link" + link.download);
-      } else if (tipoArchivo === 'csv') {
-        link.href = `${fileURL}`;
-        link.download = `Base_Indicadores_Fin__${this.anioSeleccionado}.csv`;
-        console.log("link" + link.download);
-
-      }
-
-      link.click();
-      window.URL.revokeObjectURL(fileURL);
-    },
-    error: (err) => {
-      console.error('Error al descargar el archivo:', err);
-    }
-  });
+  this.ambitoService.descargarIndicadoresFin(this.anioSeleccionado, tipoArchivo== 'xls' ? 1 : 2).subscribe(response => {
+    const fileName = response.fileName;
+    const fileBlob = response.fileBlob;
+    
+    // Crear un enlace de descarga para el archivo
+    const link = document.createElement('a');
+    const fileUrl = window.URL.createObjectURL(fileBlob!);
+    link.href = fileUrl;
+    link.download = fileName;
+    link.click();
+    window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
+  }, error => {
+    console.error("Error al descargar", error);
+  });     
 }
 
 cargarImg() {

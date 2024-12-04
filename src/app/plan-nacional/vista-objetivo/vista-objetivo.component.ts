@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { IntervaloEnGrafica } from 'src/app/base/Models/IntervaloEnGrafica';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 
 @Component({
@@ -16,6 +17,7 @@ export class VistaObjetivoComponent implements OnInit{
   imgCheck= '';
   imgWarn='';
   isBrowser = false;
+  indicador: IntervaloEnGrafica = {minY: 0, maxY: 0, id_indicador: 0};
 
   constructor(private servicio: DataDynamic,  @Inject(PLATFORM_ID) private platformId: any
   )
@@ -27,6 +29,12 @@ export class VistaObjetivoComponent implements OnInit{
   }
   ngOnInit(): void {
    console.log(this.datoObjetivo);
+   if(this.datoObjetivo?.ID_INDICADOR_ESTR_TRANS === 12000003){
+    this.indicador.minY = 0.345
+    this.indicador.maxY = 0.385
+    this.indicador.id_indicador = this.datoObjetivo?.ID_INDICADOR_ESTR_TRANS
+   }
+   
   }
 
 

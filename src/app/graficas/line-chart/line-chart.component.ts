@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { IntervaloEnGrafica } from 'src/app/base/Models/IntervaloEnGrafica';
 
 @Component({
   selector: 'app-line-chart',
@@ -11,6 +12,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
 
   @Input() data: { Ciclo: number, MetaAlcanzada: string }[] = [];
+  @Input() indicador?: IntervaloEnGrafica;
 
   private chart: am4charts.XYChart | undefined;
 
@@ -23,7 +25,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
     // Verificar si el valor de 'data' ha cambiado
     if (changes['data'] && changes['data'].currentValue) {
       // Llamar a createChart con los nuevos datos
-      this.chart?.dispose();
+      this.chart?.dispose();      
       this.createChart(changes['data'].currentValue);
     }
   }
@@ -31,9 +33,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
   createChart(data: { Ciclo: number, MetaAlcanzada: string }[]) {
     // Crear la instancia del gráfico
     let chart = am4core.create('chartdiv', am4charts.XYChart);
-
-       // Deshabilitar el logo de amCharts
-       chart.logo.disabled = true;
+   
+    // Deshabilitar el logo de amCharts
+    chart.logo.disabled = true;
 
     // Asignar los datos recibidos al gráfico
     chart.data = data.map(item => ({
@@ -68,8 +70,24 @@ export class LineChartComponent implements OnInit, OnDestroy {
     valueAxis.renderer.labels.template.fontSize = 15; // Cambiar el valor según el tamaño deseado
 
     valueAxis.renderer.grid.template.disabled = true; // Desactivar líneas horizontales
-    valueAxis.tooltip!.disabled = true;
+    valueAxis.tooltip!.disabled = true;       
 
+    if(this.indicador && this.indicador.id_indicador !== 0){
+       
+      // Ajustar la cuadrícula y el intervalo      
+      valueAxis.renderer.grid.template.location = 0;
+      valueAxis.min = this.indicador.minY;  // Valor mínimo
+      valueAxis.max = this.indicador.maxY;  // Valor máximo
+      valueAxis.strictMinMax = true; // Respetar los valores mínimo y máximo definidos
+
+      // Formatear las etiquetas del eje Y para que tengan 3 decimale
+      valueAxis.renderer.labels.template.adapter.add("text", function(text) {
+        return parseFloat(text!).toFixed(3);  // Forzar a 3 decimales
+      });      
+
+      valueAxis.renderer.minGridDistance = 20;
+    }
+    
     // Crear serie
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
@@ -173,9 +191,6 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
     chart.logo.disabled = true;
 }
-
-
-
 
   ngOnDestroy(): void {
     // Destruir la instancia del gráfico para evitar problemas de memoria
