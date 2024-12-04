@@ -198,7 +198,7 @@ graficaSeleccionada : number = 1;
       link.click();
       window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
     }, error => {
-      console.error("Error al descargar la ficha técnica", error);
+      console.error("Error al descargar", error);
     });      
   }
 }

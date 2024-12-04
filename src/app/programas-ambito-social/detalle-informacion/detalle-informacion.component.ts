@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AmbitosocialService } from '../services/ambitosocial.service';
 import { DataDynamic } from 'src/app/base/services/dinamic-data.services';
 import { isPlatformBrowser } from '@angular/common';
+import { response } from 'express';
 
 @Component({
   selector: 'app-detalle-informacion',
@@ -118,82 +119,76 @@ export class DetalleInformacionComponent implements OnInit {
   }
 
   descargarBdExcelConId() {
-    const nombrePrograma = this.nombreProgramaSeleccionado
-    ? this.nombreProgramaSeleccionado.replace(/\s+/g, '_')
-    : 'Nombre_Desconocido';
-
-    this.ambitosocialService.descargarBDExcelID(this.idProgramaSectorial).subscribe(blob => {
-      const url = window.URL.createObjectURL(blob);
+    this.ambitosocialService.descargarBDExcelID(this.idProgramaSectorial).subscribe(response => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
       const link = document.createElement('a');
-      link.href = url;
-      link.download = `Base_de_Datos_${nombrePrograma}_${this.idProgramaSectorial}.xlsx`;
-      console.log('URL generada:', url);
-      console.log('Nombre del archivo a descargar:', link.download);
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
       link.click();
-      window.URL.revokeObjectURL(url);
-    });
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
+    }, error => {
+      console.error("Error al descargar", error);
+    });      
   }
 
 
 
   descargarBdCsv() {
-    const nombrePrograma = this.nombreProgramaSeleccionado
-      ? this.nombreProgramaSeleccionado.replace(/\s+/g, '_')
-      : 'Nombre_Desconocido';
-
-    this.ambitosocialService.descargarBDCsvID(this.idProgramaSectorial).subscribe(blob => {
-      const url = window.URL.createObjectURL(blob);
+    this.ambitosocialService.descargarBDCsvID(this.idProgramaSectorial).subscribe(response => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
       const link = document.createElement('a');
-      link.href = url;
-      link.download = `Base_de_Datos_${nombrePrograma}_${this.idProgramaSectorial}.csv`; // Nombre dinámico con el programa ajustado
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
       link.click();
-      window.URL.revokeObjectURL(url);
-    });
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
+    }, error => {
+      console.error("Error al descargar", error);
+    });   
   }
 
 
 descargarFichaTecnica1318() {
-  const nombrePrograma = this.nombreProgramaSeleccionado
-  ? this.nombreProgramaSeleccionado.replace(/\s+/g, '_')
-  : 'Nombre_Desconocido';
-
   this.ambitosocialService.descargarFichaTecnica1318(this.idProgramaSectorial, this.idIndicador)
-    .subscribe((response: Blob) => {
-      const url = window.URL.createObjectURL(response);
-      const a = document.createElement('a');
-
-      // Usar nombreProgramaSeleccionado para asignar el nombre al archivo
-      a.href = url;
-      a.download = `Ficha_Tecnica_Indicador_${nombrePrograma}_${this.idIndicador}.xls`; // Nombre dinámico con el nombre del programa
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+    .subscribe((response) => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
+      const link = document.createElement('a');
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
+      link.click();
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
     }, error => {
-      console.error("Error al descargar la ficha técnica", error);
-    });
+      console.error("Error al descargar", error);
+    });    
 }
 
 descargarFichasTecnicas1318() {
-  const nombrePrograma = this.nombreProgramaSeleccionado
-  ? this.nombreProgramaSeleccionado.replace(/\s+/g, '_')
-  : 'Nombre_Desconocido';
-
   this.ambitosocialService.descargarFichasTecnicas1318(this.idProgramaSectorial, this.idIndicador)
-    .subscribe((response: Blob) => {
-      const url = window.URL.createObjectURL(response);
-      const a = document.createElement('a');
-
-      // Usar nombreProgramaSeleccionado para asignar el nombre al archivo
-      a.href = url;
-      a.download = `Fichas_Tecnicas_Indicadores_${nombrePrograma}_${this.idIndicador}.xlsx`; // Nombre dinámico con el nombre del programa
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+    .subscribe((response) => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
+      const link = document.createElement('a');
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
+      link.click();
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
     }, error => {
-      console.error("Error al descargar la ficha técnica", error);
-    });
+      console.error("Error al descargar", error);
+    });    
 }
 
 cargarImg() {

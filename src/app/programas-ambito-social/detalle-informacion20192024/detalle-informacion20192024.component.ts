@@ -176,30 +176,22 @@ export class DetalleInformacion20192024Component implements OnInit{
         : 0;
       const idIndicador = this.idIndicador;
 
-      this.ambitosocialService.descargarFichaTecnica1924(id, idIndicador).subscribe({
-        next: blob => {
-          const url = window.URL.createObjectURL(blob);
-
-          const nombreSeguro = this.nombreProgramaSeleccionado
-            .replace(/[<>:"/\\|?*]/g, '')
-            .replace(/\s+/g, '_');
-
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = `Fichas_Tecnicas_Indicadores_PND4T_Ficha_Tecnica_${nombreSeguro}.xlsx`; // Nombre dinámico
-          link.click();
-
-          window.URL.revokeObjectURL(url);
-        },
-        error: error => {
-          console.error('Error al descargar la ficha técnica:', error);
-        },
-      });
+      this.ambitosocialService.descargarFichaTecnica1924(id, idIndicador)
+    .subscribe((response) => {
+      const fileName = response.fileName;
+      const fileBlob = response.fileBlob;
+      
+      // Crear un enlace de descarga para el archivo
+      const link = document.createElement('a');
+      const fileUrl = window.URL.createObjectURL(fileBlob!);
+      link.href = fileUrl;
+      link.download = fileName;
+      link.click();
+      window.URL.revokeObjectURL(fileUrl); // Liberar el objeto URL creado
+    }, error => {
+      console.error("Error al descargar", error);
+    }); 
     }
-
-
-
-
 
     toggleMostrarMas() {
       this.mostrarMas = !this.mostrarMas; // Cambia el estado de mostrar más
@@ -210,7 +202,6 @@ export class DetalleInformacion20192024Component implements OnInit{
       this.imgCheck= this.servicio.getImagen('iconoindicador_02.jpg');
       this.imgWarn=this.servicio.getImagen('iconoindicador_01.jpg');
     }
-
 
     consultaProgramasSectoriales(idProgramaSect: number): void {
       this.ambitosocialService.getTodosProgramasSectoriales1924().subscribe({
