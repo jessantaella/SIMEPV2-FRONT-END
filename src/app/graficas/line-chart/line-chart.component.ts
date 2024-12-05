@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import { IntervaloEnGrafica } from 'src/app/base/Models/IntervaloEnGrafica';
+import { configurarGraficaLineal } from 'src/app/base/helpers/utils';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,7 +12,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
 
   @Input() data: { Ciclo: number, MetaAlcanzada: string }[] = [];
-  @Input() indicador?: IntervaloEnGrafica;
+  @Input() indicador?: number;
 
   private chart: am4charts.XYChart | undefined;
 
@@ -59,7 +59,6 @@ export class LineChartComponent implements OnInit, OnDestroy {
     // Reducir el tamaño de la fuente de las etiquetas en el eje X
     dateAxis.renderer.labels.template.fontSize = 10; // Cambiar el valor según el tamaño deseado
 
-
     // Configuración de axisFills
     dateAxis.renderer.axisFills.template.disabled = false;
     dateAxis.renderer.axisFills.template.fillOpacity = 0.1;
@@ -71,22 +70,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
     valueAxis.renderer.grid.template.disabled = true; // Desactivar líneas horizontales
     valueAxis.tooltip!.disabled = true;       
-    valueAxis.renderer.minGridDistance = 20;
-
-    if(this.indicador && this.indicador.id_indicador !== 0){
-       
-      // Ajustar la cuadrícula y el intervalo      
-      valueAxis.renderer.grid.template.location = 0;
-      valueAxis.min = this.indicador.minY;  // Valor mínimo
-      valueAxis.max = this.indicador.maxY;  // Valor máximo
-      valueAxis.strictMinMax = true; // Respetar los valores mínimo y máximo definidos
-
-      // Formatear las etiquetas del eje Y para que tengan 3 decimale
-      valueAxis.renderer.labels.template.adapter.add("text", function(text) {
-        return parseFloat(text!).toFixed(3);  // Forzar a 3 decimales
-      });      
-    }
     
+    //Configurar intervalo eje Y
+    configurarGraficaLineal(valueAxis, this.indicador)    
     // Crear serie
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";

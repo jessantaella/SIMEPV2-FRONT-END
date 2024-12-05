@@ -76,6 +76,7 @@ export class DetalleInformacion20192024Component implements OnInit{
   }
 
   obtenerInformacionIndicadorDetalle() {
+    console.log("ID_INDICADOR", this.idIndicador);
     this.ambitosocialService.getinformacionIndicador1924(this.idIndicador).subscribe(
       res => {
         this.informacion = res?.Data[0];

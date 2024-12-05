@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, NgZone, Input, OnChanges, SimpleChanges }
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import { configurarGraficaLineal } from 'src/app/base/helpers/utils';
 
 interface IndicadorData {
   ABSOLUTA: boolean;
@@ -28,6 +29,7 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
   private chart: am4charts.XYChart | undefined;
 
   @Input() data: IndicadorData[] = [];
+  @Input() indicador?: number;
 
   constructor(private zone: NgZone) {}
 
@@ -54,6 +56,9 @@ export class LineChartIndicadorComponent implements OnInit, OnDestroy, OnChanges
       let valueAxisY = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxisY.title.text = ""; // Ocultar el título del eje Y
       valueAxisY.renderer.minGridDistance = 30;
+
+      //Configurar intervalo eje Y
+      configurarGraficaLineal(valueAxisY, this.indicador)    
 
       let categoryAxisX = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxisX.dataFields.category = "category";

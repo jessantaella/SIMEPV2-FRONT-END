@@ -17,7 +17,7 @@ export class VistaObjetivoComponent implements OnInit{
   imgCheck= '';
   imgWarn='';
   isBrowser = false;
-  indicador: IntervaloEnGrafica = {minY: 0, maxY: 0, id_indicador: 0};
+  id_indicador: number  = 0;
 
   constructor(private servicio: DataDynamic,  @Inject(PLATFORM_ID) private platformId: any
   )
@@ -28,13 +28,9 @@ export class VistaObjetivoComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-   console.log(this.datoObjetivo);
-   if(this.datoObjetivo?.ID_INDICADOR_ESTR_TRANS === 12000003){
-    this.indicador.minY = 0.345
-    this.indicador.maxY = 0.385
-    this.indicador.id_indicador = this.datoObjetivo?.ID_INDICADOR_ESTR_TRANS
-   }
-   
+   console.log("datoObjetivo", this.datoObjetivo);
+
+   this.id_indicador = this.datoObjetivo?.ID_INDICADOR_ESTR_TRANS || this.datoObjetivo?.ID_INDICADOR_PND 
   }
 
 

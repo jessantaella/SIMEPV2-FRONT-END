@@ -51,7 +51,7 @@
 </div>
 
 <app-bar-chart [data]="anios" *ngIf="graficaSeleccionada === 1"></app-bar-chart>
-<app-line-chart-indicador [data]="anios" *ngIf="graficaSeleccionada ===2"></app-line-chart-indicador>
+<app-line-chart-indicador [data]="anios" [indicador]="idIndicador" *ngIf="graficaSeleccionada ===2"></app-line-chart-indicador>
 
 
 <p class="text-center fuente" style="font-family: Arial, Helvetica, sans-serif;">Fuente: Elaboración CONEVAL con base en información del Portal Aplicativo de​ la Secretaría de Hacienda y Crédito Público (PASH)</p>

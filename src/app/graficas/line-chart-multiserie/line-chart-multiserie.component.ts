@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { configurarGraficaLineal } from 'src/app/base/helpers/utils';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
 
 
   @Input() data: { Ciclo: number, MI: number | null ,VALOR:number | null ,VALORLB : number | null, META :number | null, METASHISTORICO:string }[] = [];
-
+  @Input() indicador?: number;
 
   private chart: am4charts.XYChart | undefined;
 
@@ -78,6 +79,9 @@ export class LineChartMultiserieComponent implements OnInit, OnDestroy {
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.labels.template.fontSize = 10;
     // Reducir el tamaño de la fuente de las etiquetas en el eje X
+    
+    //Configurar intervalo eje Y
+    configurarGraficaLineal(valueAxis, this.indicador) 
 
     // Configuración de axisFills
     dateAxis.renderer.axisFills.template.disabled = false;
