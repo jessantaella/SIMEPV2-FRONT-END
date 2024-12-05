@@ -71,6 +71,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
     valueAxis.renderer.grid.template.disabled = true; // Desactivar líneas horizontales
     valueAxis.tooltip!.disabled = true;       
+    valueAxis.renderer.minGridDistance = 20;
 
     if(this.indicador && this.indicador.id_indicador !== 0){
        
@@ -84,8 +85,6 @@ export class LineChartComponent implements OnInit, OnDestroy {
       valueAxis.renderer.labels.template.adapter.add("text", function(text) {
         return parseFloat(text!).toFixed(3);  // Forzar a 3 decimales
       });      
-
-      valueAxis.renderer.minGridDistance = 20;
     }
     
     // Crear serie
