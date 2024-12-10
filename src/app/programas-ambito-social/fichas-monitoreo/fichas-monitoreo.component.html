@@ -11,64 +11,95 @@
 
 <div class="m-auto" [ngStyle]="{'padding-top':alto+'px', 'width':'85%','min-height':'90vh'}" id="total" id="padre">
 
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <span class="titulo">Fichas de Monitoreo de Políticas Sociales</span>
-            </div>
+  <div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <span class="titulo">Fichas de Monitoreo de Políticas Sociales</span>
         </div>
-        <div class="row mt-4">
-            <div class="col-auto">
-                <button *ngFor="let a of anios" class="btn m-2 ciclos"
-                        [ngClass]="{'cicloSeleccionado': a?.CICLO === cicloSeleccionado}"
-                        (click)="seleccionaCiclo(a?.CICLO ?? 2016)"
-                        >
-                    {{ a?.CICLO }}
-                </button>
-            </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-auto">
+            <button *ngFor="let a of anios" class="btn m-2 ciclos"
+                    [ngClass]="{'cicloSeleccionado': a?.CICLO === cicloSeleccionado}"
+                    (click)="seleccionaCiclo(a?.CICLO ?? 2016)"
+                    >
+                {{ a?.CICLO }}
+            </button>
         </div>
+    </div>
+</div>
+
+
+
+    <div class="row align-items-center fichas" *ngIf="fichas.length > 0">
+  <!-- Botón Izquierdo -->
+  <div class="col-auto d-flex justify-content-center align-items-center">
+    <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="moveRight()">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Contenedor del Carrusel -->
+<div class="col carousel-container position-relative">
+  <div
+    class="carousel"
+    #carousel
+    (mousedown)="startDrag($event)"
+    (mousemove)="drag($event)"
+    (mouseup)="stopDrag()"
+    (mouseleave)="stopDrag()"
+  >
+    <div
+      class="item"
+      *ngFor="let ficha of fichas"
+      [style.transform]="'translateX(' + translateX + '%)'"
+    >
+      <a [href]="ficha.URL_FICHA">
+        <img
+          [src]="ficha.URL_PORTADA"
+          [alt]="'Portada ' + ficha.ID_PROG_SECTORIAL"
+          class="img-fluid"
+          draggable="false"
+          style="width: 250px;"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Botón Derecho -->
+  <div class="col-auto d-flex justify-content-center align-items-center">
+    <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="moveLeft()">
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+
+    <!-- Indicadores -->
+    <div class="indicators">
+      <div
+        *ngFor="let groupIndex of getIndicatorIndexes(); let index = index"
+        class="indicator"
+        [class.active]="index === currentGroupIndex"
+        (click)="goToGroup(index)"
+      ></div>
     </div>
 
 
+  </div>
 
-    <div class="row align-items-center fichas" *ngIf="fichas.length>0">
-        <!-- Botones en pantallas medianas en adelante -->
-        <div class="col-auto d-none d-sm-flex justify-content-center">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()" >
-                <fa-icon [icon]="faChevronLeft"></fa-icon>
-            </button>
-        </div>
-
-        <!-- Contenido de la fila -->
-        <div class="col">
-            <div class="row">
-                <div class="col-6 col-sm-3" *ngFor="let cosa of arregloVisible">
-                    <a [href]="cosa?.URL_FICHA">
-                        <img [src]="cosa?.URL_PORTADA" class="img-fluid" style="width: 100%;" >
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-         <!-- Botones en pantallas medianas en adelante -->
-         <div class="col-auto d-none d-sm-flex justify-content-center">
-            <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
-                <fa-icon [icon]="faChevronRight"></fa-icon>
-            </button>
-        </div>
 
                <!-- Indicadores por bloque -->
-               <div class="d-flex justify-content-center mt-3">
+               <!--<div class="d-flex justify-content-center mt-3">
                 <div *ngFor="let bloque of bloques; let i = index"
                   class="indicador"
                   [class.activo]="i === bloqueActivo"
                   (click)="irABloque(i)">
                 </div>
-              </div>
+              </div>-->
 
 
-        <!-- Botones en pantallas pequeñas -->
+        <!-- Botones en pantallas pequeñas
         <div class="col-auto d-flex justify-content-center d-sm-none">
             <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="anterior()">
                 <fa-icon [icon]="faChevronLeft"></fa-icon>
@@ -79,11 +110,10 @@
             <button class="btn btn-transparent text-dark fw-bold btnCarousel" (click)="siguiente()">
                 <fa-icon [icon]="faChevronRight"></fa-icon>
             </button>
-        </div>
+        </div>-->
     </div>
 
 
-</div>
 
 
 
