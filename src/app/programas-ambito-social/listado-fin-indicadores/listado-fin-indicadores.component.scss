@@ -1,35 +1,35 @@
 .tituloAcordeon{
-    background-color: #e6e6e6 !important;
-    color: black;
-    //font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+  background-color: #e6e6e6 !important;
+  color: black !important;
+  //font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 .subtituloAcordeon{
-    background-color: #e6e6e6 !important;
-    color: #bd4c1b;
-    //font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    border-color: #adadad;
+  background-color: #e6e6e6 !important;
+  color: #bd4c1b !important;
+  //font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-color: #adadad;
 }
 .hijos{
-    //font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    background-color: #e6e6e6 !important;
-    border-color: #adadad;
-    padding: 10px;
-    cursor: pointer;
+  //font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #e6e6e6 !important;
+  border-color: #adadad;
+  padding: 10px;
+  cursor: pointer;
 }
 .texto-indicadores {
-  //font-family: Arial, sans-serif;
-  font-size: 24px;
-  color: #bd4c1b;
-  font-weight: bold;
+//font-family: Arial, sans-serif;
+font-size: 24px;
+color: #bd4c1b !important;
+font-weight: bold;
 }
 
 @media only screen and (max-width: 450px) {
-    .redesInternas {
-      width: 50%;
-      margin: auto;
-    }
+  .redesInternas {
+    width: 50%;
+    margin: auto;
   }
+}

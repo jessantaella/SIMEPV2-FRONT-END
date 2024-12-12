@@ -29,11 +29,12 @@
   </div>
   <!-- Texto a la derecha del botón -->
   <div class="col-12 col-md-3 text-center d-flex flex-column flex-md-row justify-content-center">
-    <a  (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv">
+    <a (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv">
       <img [src]="this.imdDescargaDatos"
       alt="Imagen del botón" class="img-fija">
     </a>
-    <span class="mx-3 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+    <span (click)="descargarExcel()" download="Metas_Nacionales_PND20132018.csv" class="mx-3 impresion">Base de datos de los indicadores derivados del PND 2013-2018</span>
+
   </div>
 </div>
 

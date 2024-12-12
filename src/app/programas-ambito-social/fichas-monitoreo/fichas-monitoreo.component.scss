@@ -56,8 +56,10 @@ appearance: none;
 }
 
 .ciclos:hover {
-font-weight: bold; /* Texto en negrita */
-text-decoration: underline; /* Subrayar texto */
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  background-color: #129F15 !important;
+  color: #fff !important;
 }
 
 @media only screen and (max-width: 450px) {
