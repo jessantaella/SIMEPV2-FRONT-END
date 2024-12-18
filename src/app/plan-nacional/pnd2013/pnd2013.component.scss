@@ -6,6 +6,7 @@ img{
   font-size: 13px;
   //font-family: Arial, Helvetica, sans-serif;
   text-align: start;
+  color: #000000;
 }
 
 .objetivoTitulo{
@@ -176,44 +177,49 @@ margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #E0F1DA;
+  background-color: #E0F1DA !important;
   border-radius: 12px;
   padding: 10px 20px;
-  //font-family: Arial, sans-serif;
   font-size: 24px;
   font-weight: bold;
-  color: #009169;
+  color: #009169 !important;
   gap: 8px;
   border: none;
+  width: 55px; /* Ajusta el tamaño deseado */
+  height: 57px; /* Ajusta el tamaño deseado */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.estrategias-transversales {
-  width: 55px;
-  height: 57px;
-}
-
-.estrategias-transversales {
-  padding: 10px 20px;
+.estrategias-transversales:hover,
+.estrategias-transversales:focus,
+.estrategias-transversales:active {
+  background-color: #E0F1DA !important;
+  color: #009169 !important;
+  outline: none;
+  box-shadow: none;
 }
 
 .imagen-dinamica {
   width: 60px;
   height: 50px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.estrategias-transversales:focus,
-.estrategias-transversales:active {
-  background-color: #E0F1DA;
-  color: #009169;
-  outline: none;
-  box-shadow: none;
+.imagen-dinamica.gris {
+  filter: grayscale(100%);
 }
+
 .btn-gris {
   background-color: #d3d3d3 !important;
   border-color: #b0b0b0;
-  color: #ffffff;
+  color: #ffffff !important;
 }
+
+.btn-gris:hover {
+  background-color: #d3d3d3 !important;
+  color: #ffffff !important;
+}
+
 .gris {
   filter: grayscale(100%);
 }
@@ -243,6 +249,8 @@ margin-bottom: 0;
     font-size: 14px; /* Reducir el tamaño del texto */
     text-align: center; /* Centrar el texto */
     margin-top: 10px; /* Separar del botón */
+    color: #000000;
+
   }
 
   /* Ajustar botones de las metas para que estén en filas */
@@ -297,6 +305,7 @@ margin-bottom: 0;
     max-width: 600px;
     white-space: normal; /* Permite saltos de línea */
     word-wrap: break-word; /* Asegura que las palabras largas se ajusten */
+    color: #000000;
   }
 
   img.button-image{
@@ -304,5 +313,8 @@ margin-bottom: 0;
     height: 10px;
     object-fit: cover;
   }
+}
+.enlace-descarga {
+  text-decoration: none;
 }
 
