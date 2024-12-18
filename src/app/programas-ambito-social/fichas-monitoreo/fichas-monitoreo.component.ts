@@ -16,7 +16,7 @@ export class FichasMonitoreoComponent implements OnInit,OnDestroy{
   nombreSistema: any;
   @ViewChild('planeacion')
   planeacion!: ElementRef;
-  alto=100;
+  alto=80;
   esTablet = false;
   isBrowser = false;
   posicionInicial = 0;
