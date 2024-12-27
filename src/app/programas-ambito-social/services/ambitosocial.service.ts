@@ -231,7 +231,7 @@ export class AmbitosocialService {
     }
 
     obtenerUrlReporteHistorico1318(): Observable<any> {
-      let url = this.servidor+`/PAS1318/Parametros?sNombreParametro=URL_REPORTE_HISTORICO_IND_FIN`;
+      let url = this.servidor+`/PAS1318/Parametros?sNombreParametro=URL_REPORTE_HISTORICO_INDI`;
       return this.http.get<any>(url);
     }
 

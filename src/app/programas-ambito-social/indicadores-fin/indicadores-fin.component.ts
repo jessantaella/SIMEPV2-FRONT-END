@@ -92,12 +92,13 @@ descargarArchivo(fileType: string) {
     next: (response) => {
       if (response.Success && response.Data.length > 0) {
         const urlBase = response.Data[0].VALOR;  // Obtienes la URL base
-        const urlCompleta = `${urlBase}Base_historica_fin_${this.anioSeleccionado}.${fileType}`;
-        console.log('urlCompleta'+ urlCompleta);
+        const urlCompleta = `${urlBase}${this.anioSeleccionado}.${fileType}`;
+        console.log('urlCompleta: '+ urlCompleta);
 
         const link = document.createElement('a');
         link.href = urlCompleta;  // URL completa para la descarga
-        link.download = `Base_historica_fin_${this.anioSeleccionado}..${fileType}`;
+        var nombreArchivo = this.getNombreArchivo(urlCompleta);        
+        link.download = nombreArchivo
         link.click();
       } else {
         console.error('Error: No se pudo obtener la URL base');
@@ -107,6 +108,11 @@ descargarArchivo(fileType: string) {
       console.error('Error al obtener la URL base:', err);
     }
   });
+}
+
+getNombreArchivo(path: string) {
+  var arr = path.split('/');  
+  return arr[arr.length-1];
 }
 
 descargarArchivo2(tipoArchivo: 'xls' | 'csv') {
