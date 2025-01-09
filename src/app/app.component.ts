@@ -31,14 +31,15 @@ export class AppComponent{
 
   private addResourcesBasedOnUrl() {
     const currentUrl = this.router.url;
-    const baseUrl = currentUrl.includes('10.1.15.102:81')
+    /*let baseUrl = currentUrl.includes('10.1.15.102:81')
     ? 'http://10.1.15.102:81/conf/assets'
     : currentUrl.includes('sistemas')
-    ? 'https://sistemas/conf/assets'
-    : 'https://qa.coneval.org.mx/conf/assets';
+    ? 'https://sistemas.coneval.org.mx/conf/assets'
+    : 'https://qa.coneval.org.mx/conf/assets';*/
 
+    let baseUrl="https://sistemas.coneval.org.mx/conf/assets";
     
-    const scripts = [
+    let scripts = [
       `${baseUrl}/js/menu.js`,
       `${baseUrl}/js/aos.min.js`,
       `${baseUrl}/js/bs-init.js`,
@@ -46,7 +47,7 @@ export class AppComponent{
     ];
 
     // Hojas de estilo a agregar
-    const styles = [
+    let styles = [
       `${baseUrl}/css/aos.min.css`,
       `${baseUrl}/css/header-nuevo.css`,
       `${baseUrl}/css/footer.css`
