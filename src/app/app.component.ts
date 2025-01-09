@@ -32,11 +32,12 @@ export class AppComponent{
   private addResourcesBasedOnUrl() {
     const currentUrl = this.router.url;
     const baseUrl = currentUrl.includes('10.1.15.102:81')
-      ? 'http://10.1.15.102:81/conf/assets'
-      : 'https://qa.coneval.org.mx/conf/assets';
+    ? 'http://10.1.15.102:81/conf/assets'
+    : currentUrl.includes('sistemas')
+    ? 'https://sistemas/conf/assets'
+    : 'https://qa.coneval.org.mx/conf/assets';
 
-      console.log(baseUrl);
-
+    
     const scripts = [
       `${baseUrl}/js/menu.js`,
       `${baseUrl}/js/aos.min.js`,
