@@ -31,11 +31,15 @@ export class AppComponent{
 
   private addResourcesBasedOnUrl() {
     const currentUrl = this.router.url;
-    /*let baseUrl = currentUrl.includes('10.1.15.102:81')
-    ? 'http://10.1.15.102:81/conf/assets'
-    : currentUrl.includes('sistemas')
-    ? 'https://sistemas.coneval.org.mx/conf/assets'
-    : 'https://qa.coneval.org.mx/conf/assets';*/
+    /*const urlMappings = [
+      { key: '10.1.15.102:81', url: 'http://10.1.15.102:81/conf/assets' },
+      { key: 'sistemas', url: 'https://sistemas.coneval.org.mx/conf/assets' },
+    ];
+    
+    let baseUrl = urlMappings.reduce(
+      (acc, { key, url }) => (currentUrl.includes(key) ? url : acc),
+      'https://qa.coneval.org.mx/conf/assets'
+    );*/
 
     let baseUrl="https://sistemas.coneval.org.mx/conf/assets";
     

@@ -86,6 +86,7 @@ getInfoImg(imagen: string): string {
   if (this.isBrowser) {
     const hostname = window.location.hostname; // Obtenemos el hostname actual
     let baseUrl: string;
+    console.log(hostname);
 
     if (hostname.includes('sistemas')) {
       baseUrl = 'https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/';
@@ -95,6 +96,8 @@ getInfoImg(imagen: string): string {
       // Ruta  de desarrollo en `webdev`
       baseUrl = 'http://webdev.coneval.org.mx/SiteCollectionImages/SIMEPS/';
     }
+
+    //baseUrl = "https://www.coneval.org.mx/SiteCollectionImages/SIMEPS/"
 
     return `${baseUrl}${imagen}`;
   } else {
