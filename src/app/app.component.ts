@@ -30,19 +30,11 @@ export class AppComponent{
 
 
   private addResourcesBasedOnUrl() {
-    const currentUrl = this.router.url;
-    /*const urlMappings = [
-      { key: '10.1.15.102:81', url: 'http://10.1.15.102:81/conf/assets' },
-      { key: 'sistemas', url: 'https://sistemas.coneval.org.mx/conf/assets' },
-    ];
-    
-    let baseUrl = urlMappings.reduce(
-      (acc, { key, url }) => (currentUrl.includes(key) ? url : acc),
-      'https://qa.coneval.org.mx/conf/assets'
-    );*/
-
-    let baseUrl="https://sistemas.coneval.org.mx/conf/assets";
-    
+    const currentUrl = window.location.host;    
+    // Llamar a la función para obtener la base URL
+    const baseUrl = this.getBaseUrl(currentUrl);
+    console.log({baseUrl});    
+      
     let scripts = [
       `${baseUrl}/js/menu.js`,
       `${baseUrl}/js/aos.min.js`,
@@ -73,6 +65,21 @@ export class AppComponent{
       this.document.head.appendChild(linkElement);
     });
   }
+
+// Función para obtener la base URL según el host actual
+getBaseUrl(currentUrl: string) {
+  const urlMappings: { [key: string]: string } = {
+    '10.1.15.102:81': 'http://10.1.15.102:81/conf/assets',
+    'qa': 'https://qa.coneval.org.mx/conf/assets',
+  };
+
+  // Buscar la base URL que coincida con el currentUrl
+  const matchedUrl = Object.keys(urlMappings).find(key => currentUrl.includes(key));
+
+  // Si se encuentra un match, devuelve la URL correspondiente, si no, devuelve la URL por defecto (QA)
+  return matchedUrl ? urlMappings[matchedUrl] : 'https://sistemas.coneval.org.mx/conf/assets';
+};
+
    cargaGA() {
       return new Promise((resolve, reject) => {
       let body =  document.body;
